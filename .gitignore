@@ -14,6 +14,35 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Output directories
+bin/
+obj/
+packages/
+
+#Build related files
+*.o
+*.lo
+*.la
+*.al
+.libs
+*.so
+*.so.[0-9]*
+*.a
+*.pyc
+*.pyo
+__pycache__
+*.rej
+*~ #*#
+.#*
+.*.swp
+.DS_Store
+*.suo
+*.user
+*.bak
+**.ReSharper**
+**\_ReSharper.**
+StyleCop.Cache
+
 # =========================
 # Operating System Files
 # =========================
