@@ -41,7 +41,7 @@ namespace TP1.Areas.HelpPage
         /// <summary>
         /// The _document navigator.
         /// </summary>
-        private readonly XPathNavigator documentNavigator;
+        private readonly XPathNavigator _documentNavigator;
 
         #endregion
 
@@ -61,7 +61,7 @@ namespace TP1.Areas.HelpPage
             }
 
             var xpath = new XPathDocument(documentPath);
-            this.documentNavigator = xpath.CreateNavigator();
+            this._documentNavigator = xpath.CreateNavigator();
         }
 
         #endregion
@@ -150,7 +150,6 @@ namespace TP1.Areas.HelpPage
                 string[] parameterTypeNames = parameters.Select(param => GetTypeName(param.ParameterType)).ToArray();
                 name += string.Format(CultureInfo.InvariantCulture, "({0})", string.Join(",", parameterTypeNames));
             }
-
             return name;
         }
 
@@ -203,7 +202,7 @@ namespace TP1.Areas.HelpPage
                     CultureInfo.InvariantCulture, 
                     MethodExpression, 
                     GetMemberName(reflectedActionDescriptor.MethodInfo));
-                return this.documentNavigator.SelectSingleNode(selectExpression);
+                return this._documentNavigator.SelectSingleNode(selectExpression);
             }
 
             return null;
