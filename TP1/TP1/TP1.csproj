@@ -217,13 +217,8 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterExternalLoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
-    <Compile Include="Models\TodoItemDto.cs" />
-    <Compile Include="Models\TodoListDto.cs" />
-    <Compile Include="Models\TodoList.cs" />
-    <Compile Include="Models\TodoItem.cs" />
-    <Compile Include="Models\TodoItemContext.cs" />
-    <Compile Include="Models\UserProfile.cs" />
-    <Compile Include="Models\UsersContext.cs" />
+    <Compile Include="DTOs\TodoItemDto.cs" />
+    <Compile Include="DTOs\TodoListDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -362,6 +357,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{DC3F89D9-0535-4B8D-8846-CF6698C82F98}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Model.csproj">
+      <Project>{B4620C6E-CD64-4436-89B2-A18CD5EE0BD4}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

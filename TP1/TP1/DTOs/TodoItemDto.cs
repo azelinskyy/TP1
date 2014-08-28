@@ -6,9 +6,11 @@
 //   The todo item dto.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace TP1.Models
+namespace TP1.DTOs
 {
     using System.ComponentModel.DataAnnotations;
+
+    using Model.ToDoModels;
 
     /// <summary>
     ///     The todo item dto.

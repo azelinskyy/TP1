@@ -6,9 +6,11 @@
 //   The users context.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace TP1.Models
+namespace Infrastructure.Contexts
 {
     using System.Data.Entity;
+
+    using Model.UserModels;
 
     /// <summary>
     ///     The users context.

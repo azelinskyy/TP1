@@ -14,7 +14,7 @@ namespace TP1.Filters
     using System.Threading;
     using System.Web.Mvc;
 
-    using TP1.Models;
+    using Infrastructure.Contexts;
 
     using WebMatrix.WebData;
 

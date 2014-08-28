@@ -15,8 +15,12 @@ namespace TP1.Controllers
     using System.Net.Http;
     using System.Web.Http;
 
+    using Infrastructure.Contexts;
+
+    using Model.ToDoModels;
+
+    using TP1.DTOs;
     using TP1.Filters;
-    using TP1.Models;
 
     /// <summary>
     ///     The todo controller.

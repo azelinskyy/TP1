@@ -17,7 +17,12 @@ namespace TP1.Controllers
 
     using DotNetOpenAuth.AspNet;
 
+    using Infrastructure.Contexts;
+
     using Microsoft.Web.WebPages.OAuth;
+
+    using Model.ToDoModels;
+    using Model.UserModels;
 
     using TP1.Filters;
     using TP1.Models;

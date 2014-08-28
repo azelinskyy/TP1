@@ -6,9 +6,11 @@
 //   Defines the TodoItemContext type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace TP1.Models
+namespace Infrastructure.Contexts
 {
     using System.Data.Entity;
+
+    using Model.ToDoModels;
 
     // You can add custom code to this file. Changes will not be overwritten.
     // If you want Entity Framework to drop and regenerate your database

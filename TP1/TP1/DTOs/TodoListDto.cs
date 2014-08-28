@@ -6,10 +6,12 @@
 //   Data transfer object for
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace TP1.Models
+namespace TP1.DTOs
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using Model.ToDoModels;
 
     /// <summary>
     ///     Data transfer object for <see cref="TodoList" />
