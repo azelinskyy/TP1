@@ -213,6 +213,19 @@
           </RuleSettings>
         </Rule>
       </Rules>
+      <AnalyzerSettings>
+        <StringProperty Name="CompanyName">Team Alpha Solutions</StringProperty>
+        <StringProperty Name="Copyright">Copyright © 2014 Team Alpha Solutions</StringProperty>
+      </AnalyzerSettings>
+    </Analyzer>
+    <Analyzer AnalyzerId="StyleCop.CSharp.ReadabilityRules">
+      <Rules>
+        <Rule Name="UseBuiltInTypeAlias">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
       <AnalyzerSettings />
     </Analyzer>
   </Analyzers>

@@ -1,24 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TodoItem.cs" company="Team Alpha Solutions">
+//   Copyright © 2014 Team Alpha Solutions
+// </copyright>
+// <summary>
+//   Todo item entity
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace TP1.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     /// <summary>
-    /// Todo item entity
+    ///     Todo item entity
     /// </summary>
     public class TodoItem
     {
-        public int TodoItemId { get; set; }
+        #region Public Properties
 
-        [Required]
-        public string Title { get; set; }
+        /// <summary>
+        ///     Gets or sets a value indicating whether is done.
+        /// </summary>
         public bool IsDone { get; set; }
 
+        /// <summary>
+        ///     Gets or sets the title.
+        /// </summary>
+        [Required]
+        public string Title { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the todo item id.
+        /// </summary>
+        public int TodoItemId { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the todo list.
+        /// </summary>
+        public virtual TodoList TodoList { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the todo list id.
+        /// </summary>
         [ForeignKey("TodoList")]
         public int TodoListId { get; set; }
-        public virtual TodoList TodoList { get; set; }
+
+        #endregion
     }
 }

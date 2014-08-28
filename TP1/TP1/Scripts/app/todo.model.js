@@ -1,4 +1,4 @@
-﻿(function (ko, datacontext) {
+﻿(function(ko, datacontext) {
     datacontext.todoItem = todoItem;
     datacontext.todoList = todoList;
 
@@ -15,7 +15,7 @@
         // Non-persisted properties
         self.errorMessage = ko.observable();
 
-        saveChanges = function () {
+        saveChanges = function() {
             return datacontext.saveChangedTodoItem(self);
         };
 
@@ -23,7 +23,7 @@
         self.isDone.subscribe(saveChanges);
         self.title.subscribe(saveChanges);
 
-        self.toJson = function () { return ko.toJSON(self) };
+        self.toJson = function() { return ko.toJSON(self); };
     };
 
     function todoList(data) {
@@ -41,35 +41,37 @@
         self.newTodoTitle = ko.observable();
         self.errorMessage = ko.observable();
 
-        self.deleteTodo = function () {
+        self.deleteTodo = function() {
             var todoItem = this;
             return datacontext.deleteTodoItem(todoItem)
-                 .done(function () { self.todos.remove(todoItem); });
+                .done(function() { self.todos.remove(todoItem); });
         };
 
         // Auto-save when these properties change
-        self.title.subscribe(function () {
+        self.title.subscribe(function() {
             return datacontext.saveChangedTodoList(self);
         });
 
-        self.toJson = function () { return ko.toJSON(self) };
+        self.toJson = function() { return ko.toJSON(self); };
     };
-    // convert raw todoItem data objects into array of TodoItems
+
+// convert raw todoItem data objects into array of TodoItems
     function importTodoItems(todoItems) {
         /// <returns value="[new todoItem()]"></returns>
         return $.map(todoItems || [],
-                function (todoItemData) {
-                    return datacontext.createTodoItem(todoItemData);
-                });
+            function(todoItemData) {
+                return datacontext.createTodoItem(todoItemData);
+            });
     }
-    todoList.prototype.addTodo = function () {
+
+    todoList.prototype.addTodo = function() {
         var self = this;
         if (self.newTodoTitle()) { // need a title to save
             var todoItem = datacontext.createTodoItem(
-                {
-                    title: self.newTodoTitle(),
-                    todoListId: self.todoListId
-                });
+            {
+                title: self.newTodoTitle(),
+                todoListId: self.todoListId
+            });
             self.todos.push(todoItem);
             datacontext.saveNewTodoItem(todoItem);
             self.newTodoTitle("");

@@ -1,19 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Global.asax.cs" company="Team Alpha Solutions">
+//   Copyright © 2014 Team Alpha Solutions
+// </copyright>
+// <summary>
+//   The mvc application.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace TP1
 {
+    using System.Web;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
+    /// <summary>
+    ///     The mvc application.
+    /// </summary>
+    public class MvcApplication : HttpApplication
     {
+        #region Methods
+
+        /// <summary>
+        ///     The application_ start.
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -24,5 +37,7 @@ namespace TP1
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
         }
+
+        #endregion
     }
 }

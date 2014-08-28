@@ -1,23 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RouteConfig.cs" company="Team Alpha Solutions">
+//   Copyright © 2014 Team Alpha Solutions
+// </copyright>
+// <summary>
+//   The route config.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace TP1
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
+    /// <summary>
+    ///     The route config.
+    /// </summary>
     public class RouteConfig
     {
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The register routes.
+        /// </summary>
+        /// <param name="routes">
+        /// The routes.
+        /// </param>
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                "Default", 
+                "{controller}/{action}/{id}", 
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional });
         }
+
+        #endregion
     }
 }

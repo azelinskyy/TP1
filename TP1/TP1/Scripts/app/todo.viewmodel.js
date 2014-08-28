@@ -1,8 +1,8 @@
-﻿window.todoApp.todoListViewModel = (function (ko, datacontext) {
+﻿window.todoApp.todoListViewModel = (function(ko, datacontext) {
     /// <field name="todoLists" value="[new datacontext.todoList()]"></field>
     var todoLists = ko.observableArray(),
         error = ko.observable(),
-        addTodoList = function () {
+        addTodoList = function() {
             var todoList = datacontext.createTodoList();
             todoList.isEditingListTitle(true);
             datacontext.saveNewTodoList(todoList)
@@ -12,14 +12,15 @@
             function addSucceeded() {
                 showTodoList(todoList);
             }
+
             function addFailed() {
                 error("Save of new todoList failed");
             }
         },
-        showTodoList = function (todoList) {
+        showTodoList = function(todoList) {
             todoLists.unshift(todoList); // Insert new todoList at the front
         },
-        deleteTodoList = function (todoList) {
+        deleteTodoList = function(todoList) {
             todoLists.remove(todoList);
             datacontext.deleteTodoList(todoList)
                 .fail(deleteFailed);

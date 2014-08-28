@@ -1,44 +1,42 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TodoList.cs" company="Team Alpha Solutions">
+// <copyright file="LoginModel.cs" company="Team Alpha Solutions">
 //   Copyright © 2014 Team Alpha Solutions
 // </copyright>
 // <summary>
-//   Todo list entity
+//   The login model.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace TP1.Models
 {
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    ///     Todo list entity
+    ///     The login model.
     /// </summary>
-    public class TodoList
+    public class LoginModel
     {
         #region Public Properties
 
         /// <summary>
-        ///     Gets or sets the title.
+        ///     Gets or sets the password.
         /// </summary>
         [Required]
-        public string Title { get; set; }
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
 
         /// <summary>
-        ///     Gets or sets the todo list id.
+        ///     Gets or sets a value indicating whether remember me.
         /// </summary>
-        public int TodoListId { get; set; }
+        [Display(Name = "Remember me?")]
+        public bool RememberMe { get; set; }
 
         /// <summary>
-        ///     Gets or sets the todos.
-        /// </summary>
-        public virtual List<TodoItem> Todos { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the user id.
+        ///     Gets or sets the user name.
         /// </summary>
         [Required]
-        public string UserId { get; set; }
+        [Display(Name = "User name")]
+        public string UserName { get; set; }
 
         #endregion
     }

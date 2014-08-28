@@ -1,9 +1,8 @@
-@using System.Web.Http
-@using TP1.Areas.HelpPage.Models
-@model HelpPageApiModel
+@using System.Web.Http.Description
+@model TP1.Areas.HelpPage.Models.HelpPageApiModel
 
-@{ 
-    var description = Model.ApiDescription;
+@{
+    ApiDescription description = Model.ApiDescription;
     bool hasParameters = description.ParameterDescriptions.Count > 0;
     bool hasRequestSamples = Model.SampleRequests.Count > 0;
     bool hasResponseSamples = Model.SampleResponses.Count > 0;
@@ -27,6 +26,7 @@
             <h3>Parameters</h3>
             @Html.DisplayFor(apiModel => apiModel.ApiDescription.ParameterDescriptions, "Parameters")
         }
+
         if (hasRequestSamples)
         {
             <h3>Request body formats</h3>
@@ -36,7 +36,7 @@
 
     @if (hasResponseSamples)
     {
-        <h2>Response Information</h2> 
+        <h2>Response Information</h2>
         <h3>Response body formats</h3>
         @Html.DisplayFor(apiModel => apiModel.SampleResponses, "Samples")
     }

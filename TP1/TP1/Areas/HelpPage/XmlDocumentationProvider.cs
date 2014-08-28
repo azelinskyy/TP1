@@ -1,39 +1,85 @@
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Web.Http.Controllers;
-using System.Web.Http.Description;
-using System.Xml.XPath;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="XmlDocumentationProvider.cs" company="Team Alpha Solutions">
+//   Copyright © 2014 Team Alpha Solutions
+// </copyright>
+// <summary>
+//   A custom <see cref="IDocumentationProvider" /> that reads the API documentation from an XML documentation file.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace TP1.Areas.HelpPage
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Description;
+    using System.Xml.XPath;
+
     /// <summary>
-    /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+    ///     A custom <see cref="IDocumentationProvider" /> that reads the API documentation from an XML documentation file.
     /// </summary>
     public class XmlDocumentationProvider : IDocumentationProvider
     {
-        private XPathNavigator _documentNavigator;
+        #region Constants
+
+        /// <summary>
+        /// The method expression.
+        /// </summary>
         private const string MethodExpression = "/doc/members/member[@name='M:{0}']";
+
+        /// <summary>
+        /// The parameter expression.
+        /// </summary>
         private const string ParameterExpression = "param[@name='{0}']";
+
+        #endregion
+
+        #region Fields
+
+        /// <summary>
+        /// The _document navigator.
+        /// </summary>
+        private readonly XPathNavigator documentNavigator;
+
+        #endregion
+
+        #region Constructors and Destructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlDocumentationProvider"/> class.
         /// </summary>
-        /// <param name="documentPath">The physical path to XML document.</param>
+        /// <param name="documentPath">
+        /// The physical path to XML document.
+        /// </param>
         public XmlDocumentationProvider(string documentPath)
         {
             if (documentPath == null)
             {
                 throw new ArgumentNullException("documentPath");
             }
-            XPathDocument xpath = new XPathDocument(documentPath);
-            _documentNavigator = xpath.CreateNavigator();
+
+            var xpath = new XPathDocument(documentPath);
+            this.documentNavigator = xpath.CreateNavigator();
         }
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The get documentation.
+        /// </summary>
+        /// <param name="actionDescriptor">
+        /// The action descriptor.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public virtual string GetDocumentation(HttpActionDescriptor actionDescriptor)
         {
-            XPathNavigator methodNode = GetMethodNode(actionDescriptor);
+            XPathNavigator methodNode = this.GetMethodNode(actionDescriptor);
             if (methodNode != null)
             {
                 XPathNavigator summaryNode = methodNode.SelectSingleNode("summary");
@@ -46,16 +92,27 @@ namespace TP1.Areas.HelpPage
             return null;
         }
 
+        /// <summary>
+        /// The get documentation.
+        /// </summary>
+        /// <param name="parameterDescriptor">
+        /// The parameter descriptor.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public virtual string GetDocumentation(HttpParameterDescriptor parameterDescriptor)
         {
-            ReflectedHttpParameterDescriptor reflectedParameterDescriptor = parameterDescriptor as ReflectedHttpParameterDescriptor;
+            var reflectedParameterDescriptor = parameterDescriptor as ReflectedHttpParameterDescriptor;
             if (reflectedParameterDescriptor != null)
             {
-                XPathNavigator methodNode = GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
+                XPathNavigator methodNode = this.GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
                 if (methodNode != null)
                 {
                     string parameterName = reflectedParameterDescriptor.ParameterInfo.Name;
-                    XPathNavigator parameterNode = methodNode.SelectSingleNode(String.Format(CultureInfo.InvariantCulture, ParameterExpression, parameterName));
+                    XPathNavigator parameterNode =
+                        methodNode.SelectSingleNode(
+                            string.Format(CultureInfo.InvariantCulture, ParameterExpression, parameterName));
                     if (parameterNode != null)
                     {
                         return parameterNode.Value.Trim();
@@ -66,31 +123,46 @@ namespace TP1.Areas.HelpPage
             return null;
         }
 
-        private XPathNavigator GetMethodNode(HttpActionDescriptor actionDescriptor)
-        {
-            ReflectedHttpActionDescriptor reflectedActionDescriptor = actionDescriptor as ReflectedHttpActionDescriptor;
-            if (reflectedActionDescriptor != null)
-            {
-                string selectExpression = String.Format(CultureInfo.InvariantCulture, MethodExpression, GetMemberName(reflectedActionDescriptor.MethodInfo));
-                return _documentNavigator.SelectSingleNode(selectExpression);
-            }
+        #endregion
 
-            return null;
-        }
+        #region Methods
 
+        /// <summary>
+        /// The get member name.
+        /// </summary>
+        /// <param name="method">
+        /// The method.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         private static string GetMemberName(MethodInfo method)
         {
-            string name = String.Format(CultureInfo.InvariantCulture, "{0}.{1}", method.DeclaringType.FullName, method.Name);
+            string name = string.Format(
+                CultureInfo.InvariantCulture,
+                "{0}.{1}",
+                // ReSharper disable once PossibleNullReferenceException
+                method.DeclaringType.FullName,
+                method.Name);
             ParameterInfo[] parameters = method.GetParameters();
             if (parameters.Length != 0)
             {
                 string[] parameterTypeNames = parameters.Select(param => GetTypeName(param.ParameterType)).ToArray();
-                name += String.Format(CultureInfo.InvariantCulture, "({0})", String.Join(",", parameterTypeNames));
+                name += string.Format(CultureInfo.InvariantCulture, "({0})", string.Join(",", parameterTypeNames));
             }
 
             return name;
         }
 
+        /// <summary>
+        /// The get type name.
+        /// </summary>
+        /// <param name="type">
+        /// The type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         private static string GetTypeName(Type type)
         {
             if (type.IsGenericType)
@@ -103,10 +175,40 @@ namespace TP1.Areas.HelpPage
                 // Trim the generic parameter counts from the name
                 typeName = typeName.Substring(0, typeName.IndexOf('`'));
                 string[] argumentTypeNames = genericArguments.Select(t => GetTypeName(t)).ToArray();
-                return String.Format(CultureInfo.InvariantCulture, "{0}{{{1}}}", typeName, String.Join(",", argumentTypeNames));
+                return string.Format(
+                    CultureInfo.InvariantCulture, 
+                    "{0}{{{1}}}", 
+                    typeName, 
+                    string.Join(",", argumentTypeNames));
             }
 
             return type.FullName;
         }
+
+        /// <summary>
+        /// The get method node.
+        /// </summary>
+        /// <param name="actionDescriptor">
+        /// The action descriptor.
+        /// </param>
+        /// <returns>
+        /// The <see cref="XPathNavigator"/>.
+        /// </returns>
+        private XPathNavigator GetMethodNode(HttpActionDescriptor actionDescriptor)
+        {
+            var reflectedActionDescriptor = actionDescriptor as ReflectedHttpActionDescriptor;
+            if (reflectedActionDescriptor != null)
+            {
+                string selectExpression = string.Format(
+                    CultureInfo.InvariantCulture, 
+                    MethodExpression, 
+                    GetMemberName(reflectedActionDescriptor.MethodInfo));
+                return this.documentNavigator.SelectSingleNode(selectExpression);
+            }
+
+            return null;
+        }
+
+        #endregion
     }
 }
