@@ -15,8 +15,6 @@ namespace TP1.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
 
-    using DotNetOpenAuth.AspNet;
-
     using Infrastructure.Contexts;
 
     using Microsoft.Web.WebPages.OAuth;
