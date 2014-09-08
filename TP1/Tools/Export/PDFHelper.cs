@@ -80,6 +80,7 @@ namespace Tools.Export
                 fd => !string.IsNullOrEmpty(fd.Description), 
                 fd => CreatePhrase("Bezug/Nutzung geplant für", fd.Description), 
                 item);
+            item.Add(Chunk.NEWLINE);
             return item;
         }
 
@@ -108,9 +109,9 @@ namespace Tools.Export
         }
 
         private static void AddIfPresent<T>(
-            T source, 
-            Func<T, bool> check, 
-            Func<T, IElement> provide, 
+            T source,
+            Func<T, bool> check,
+            Func<T, IElement> provide,
             Paragraph paragraph)
         {
             if (!check(source))
