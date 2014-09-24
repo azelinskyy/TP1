@@ -46,7 +46,6 @@ namespace TP1
                     "~/Scripts/app/todo.model.js", 
                     "~/Scripts/app/todo.viewmodel.js"));
 
-
             bundles.Add(
                 new ScriptBundle("~/bundles/Internationalization").Include(
                     "~/Scripts/Internationalization/base.js"));
