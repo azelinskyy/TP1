@@ -58,27 +58,27 @@ namespace Tools.Export
             item.Add(new Phrase(project.Description, Normal));
             item.Add(Chunk.NEWLINE);
             AddIfPresent(
-                project.Address, 
-                a => !string.IsNullOrEmpty(a.AddressString), 
-                a => CreatePhrase("Addresse", a.AddressString), 
+                project.Address,
+                a => !string.IsNullOrEmpty(a.AddressString),
+                a => CreatePhrase("Addresse", a.AddressString),
                 item);
             AddIfPresent(project.Architect, a => !string.IsNullOrEmpty(a.Name), a => CreatePhrase("A", a.Name), item);
             AddIfPresent(project.Owner, o => !string.IsNullOrEmpty(o.Name), o => CreatePhrase("B", o.Name), item);
             AddIfPresent(
-                project.Price, 
-                p => p > 0, 
-                p => CreatePhrase("Bausumme", p.ToString(CultureInfo.InvariantCulture)), 
+                project.Price,
+                p => p > 0,
+                p => CreatePhrase("Bausumme", p.ToString(CultureInfo.InvariantCulture)),
                 item);
             AddIfPresent(project.Space, s => !string.IsNullOrEmpty(s), s => CreatePhrase("Fläche/Volumen", s), item);
             AddIfPresent(
-                project.StartDate, 
-                sd => !string.IsNullOrEmpty(sd.Description), 
-                sd => CreatePhrase("Baugesuch geplant für", sd.Description), 
+                project.StartDate,
+                sd => !string.IsNullOrEmpty(sd.Description),
+                sd => CreatePhrase("Baugesuch geplant für", sd.Description),
                 item);
             AddIfPresent(
-                project.FinishDate, 
-                fd => !string.IsNullOrEmpty(fd.Description), 
-                fd => CreatePhrase("Bezug/Nutzung geplant für", fd.Description), 
+                project.FinishDate,
+                fd => !string.IsNullOrEmpty(fd.Description),
+                fd => CreatePhrase("Bezug/Nutzung geplant für", fd.Description),
                 item);
             item.Add(Chunk.NEWLINE);
             return item;
@@ -96,7 +96,10 @@ namespace Tools.Export
         internal void ExportProjects(IEnumerable<Project> projects, Stream output)
         {
             var document = new Document();
-            PdfWriter.GetInstance(document, output);
+            var writer = PdfWriter.GetInstance(document, output);
+            writer.PageEvent = new ProjectsPageEventHelper();
+            var art = new Rectangle(50, 50, 545, 792);
+            writer.SetBoxSize("art", art);
 
             document.Open();
 
