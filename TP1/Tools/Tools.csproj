@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Export\ExportService.cs" />
     <Compile Include="Export\PDFHelper.cs" />
+    <Compile Include="Export\ProjectsPageEventHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -96,7 +96,7 @@ namespace UnitTests.Tools
 
             var fileInfo = new FileInfo(fileName);
             Assert.True(fileInfo.Length > 0);
-            fileInfo.Delete();
+            //fileInfo.Delete();
         }
 
         #endregion
