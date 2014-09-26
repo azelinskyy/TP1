@@ -65,7 +65,7 @@ namespace Tools.Export
 
             var cell = this.GetNoBorderCell(new Phrase("Alle Projekte und zusätzliche detaillierte Informationen finden Sie unter www.bindexis.ch", Footer), Element.ALIGN_LEFT);
             footerTable.AddCell(cell);
-            
+
             cell = this.GetNoBorderCell(new Phrase(document.PageNumber.ToString(CultureInfo.InvariantCulture), Footer), Element.ALIGN_RIGHT);
             footerTable.AddCell(cell);
 
@@ -90,7 +90,7 @@ namespace Tools.Export
             headerTable.AddCell(cell);
 
             headerTable.CompleteRow();
-            headerTable.WriteSelectedRows(0, -1, document.Left, document.Top + (document.TopMargin / 2), writer.DirectContent);
+            headerTable.WriteSelectedRows(0, -1, document.Left, document.Top + ((document.TopMargin + image.ScaledHeight) / 2), writer.DirectContent);
         }
 
         private PdfPCell GetNoBorderCell(Phrase phrase, int horizontalAlignment)
