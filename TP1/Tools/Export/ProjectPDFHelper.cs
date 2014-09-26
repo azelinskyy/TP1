@@ -21,7 +21,7 @@ namespace Tools.Export
     /// <summary>
     ///     Helper to perform export into pdf-file (stream).
     /// </summary>
-    internal class PDFHelper
+    internal class ProjectPDFHelper
     {
         #region Static Fields
 
@@ -95,15 +95,17 @@ namespace Tools.Export
         /// </param>
         internal void ExportProjects(IEnumerable<Project> projects, Stream output)
         {
+            var marginMultiplier = 2;
+
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectsPageEventHelper();
-            var art = new Rectangle(50, 50, 545, 792);
-            writer.SetBoxSize("art", art);
+            writer.PageEvent = new ProjectPageEventHelper();
+
+            document.SetMargins(document.LeftMargin, document.RightMargin, document.TopMargin * marginMultiplier, document.BottomMargin * marginMultiplier);
 
             document.Open();
 
-            foreach (Project project in projects)
+            foreach (var project in projects)
             {
                 document.Add(CreateProject(project));
             }
