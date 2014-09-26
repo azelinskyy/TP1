@@ -26,36 +26,52 @@
 <div id="main-content">
     @if (@User.Identity.IsAuthenticated)
     {
-        <p class="error" data-bind="text: error"></p>
-        <input id="antiForgeryToken" type="hidden" value="@GetAntiForgeryToken()" />
-        <button data-bind="click: addTodoList">Add New Todo list</button>
-
-        <section id="lists" data-bind="foreach: todoLists, visible: todoLists().length > 0">
-            <article class="todoList">
-                <header>
-                    <form data-bind="validate: true">
-                        <input class="required" data-bind="value: title, selected: isEditingListTitle, blurOnEnter: true" />
-                    </form>
-                </header>
-
-                <a href="#" class="deletelist" data-bind="click: $parent.deleteTodoList">X</a>
-
-                <ul data-bind="foreach: todos">
-                    <li>
-                        <input type="checkbox" data-bind="checked: isDone" />
-                        <input class="todoItemInput" type="text" data-bind="value: title, disable: isDone, blurOnEnter: true" />
-                        <a href="#" data-bind="click: $parent.deleteTodo">X</a>
-                        <p class="error" data-bind="visible: errorMessage, text: errorMessage"></p>
+        <h2>Index</h2>
+        <div id="studentListGrid">
+            <table class="grdTbl">
+                <thead class="grdTblHead">
+                    <tr>
+                        <th><a href="#" onclick="window.reportApp.eW.Dashboard.StudentDataGrid.Sort('Name')" class="sortCol">@Html.KnockoutHelperFor("Title", "p")</a></th>
+                        <th><a href="#" onclick="window.reportApp.eW.Dashboard.StudentDataGrid.Sort('Age')" class="sortCol">@Html.KnockoutHelperFor("ZipCode", "p")</a></th>
+                        <th>@Html.KnockoutHelperFor("Address", "p")</th>
+                        <th>@Html.KnockoutHelperFor("StartDate", "p")</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: window.reportApp.eW.Dashboard.StudentDataGrid.DataRows">
+                    <tr>
+                        <td data-bind="text: Title"></td>
+                        <td data-bind="text: ZipCode"></td>
+                        <td data-bind="text: Company.Name"></td>
+                        <td data-bind="text: Company.Address"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pagerWrap">
+                <ul class="grdLinePager">
+                    <li class="liBgFirst"><a href="#" onclick="window.reportApp.eW.Dashboard.StudentDataGrid.FlipPage(1)"></a></li>
+                    <li class="liBgPrev"><a href="#" data-bind="click: function () { window.reportApp.eW.Dashboard.StudentDataGrid.FlipPage(window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.pageIndex() - 1)  }"></a></li>
+                    <li class="liBgCur">
+                        <input data-bind="value: window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.requestedPage" type="text" />
+                        <span>of total</span>
+                        <span data-bind="text: window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.totalPages()"></span>
+                        <span> pages</span>
                     </li>
+                    <li class="liBGNext"><a href="#" data-bind="click: function () { window.reportApp.eW.Dashboard.StudentDataGrid.FlipPage(window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.pageIndex() + 1) }"></a></li>
+                    <li class="liBGLast"><a href="#" data-bind="click: function () { window.reportApp.eW.Dashboard.StudentDataGrid.FlipPage(window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.totalPages()) }"></a></li>
                 </ul>
+                <div class="pagerNumWrap">
+                    <span># of rows in page </span>
+                    <select data-bind="options: window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.pageSizeOptions, value: window.reportApp.eW.Dashboard.StudentDataGrid.SelectedPageSizeOption "></select>
+                </div>
+                <!--this is for demo only. unhide it in style to view -->
+                <ul class="grdPager" data-bind="foreach: new Array(window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.totalPages())" style="display:none">
+                    <li><a href='#' data-bind="click: function () { window.reportApp.eW.Dashboard.StudentDataGrid.FlipPage($index() + 1) }, text: ($index() + 1), style: { color: ($index() + 1) == window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.pageIndex() ? 'black' : 'blue' } "></a></li>
+                </ul>
+            </div>
+        </div>
 
-                <form data-bind="submit: addTodo">
-                    <input class="addTodo" type="text" data-bind="value: newTodoTitle, placeholder: 'Type here to add', blurOnEnter: true, event: { blur: addTodo }" />
-                </form>
 
-                <p class="error" data-bind="visible: errorMessage, text: errorMessage"></p>
-            </article>
-        </section>
+
     }
     else
     {
@@ -67,7 +83,7 @@
             <section id="socialLoginPanel">
                 @Html.KnockoutHelperFor("AnotherLoginServiceTitle", "h2") 
                 @Html.KnockoutHelperFor("AnotherLoginServiceText") 
-              <!-- @Html.Action("ExternalLoginsList", "Account", new { ViewBag.ReturnUrl })-->
+                <!-- @Html.Action("ExternalLoginsList", "Account", new { ViewBag.ReturnUrl })-->
             </section>
             @Html.KnockoutHelperFor("FirstTimeHere", "p")  <a id="showRegister">@Html.KnockoutHelperFor("SignUp")</a>
         </div>
@@ -79,9 +95,22 @@
     }
 </div>
 
-@if (@User.Identity.IsAuthenticated)
-{
-@section scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/todo")
-}}
+@section Scripts {
+    <script type="text/javascript">
+
+        window.reportApp.eW.Dashboard = window.reportApp.eW.Dashboard || {};
+        window.reportApp.eW.Dashboard.StudentDataGrid = new window.reportApp.eW.DataGridAjax('/Report/GetReport', 10);
+
+        window.reportApp.eW.Dashboard.Init = function () {
+            window.reportApp.eW.Dashboard.StudentDataGrid.GetData();
+            window.reportApp.eW.Dashboard.StudentDataGrid.DataRows.language = languageModel(availableLanguages);
+
+            ko.applyBindings(window.reportApp.eW.Dashboard.StudentDataGrid.DataRows);
+        };
+        window.reportApp.eW.Dashboard.Init();
+
+    </script>
+}
+
+@Scripts.Render("~/bundles/Report")
+

@@ -10,6 +10,7 @@ var availableLanguages = [
         type: "ua"
     }
 ];
+//window.languageModel = {};
 
 
 var languageModel = function (languages) {
@@ -36,5 +37,5 @@ var languageModel = function (languages) {
 
     });
 };
-
-ko.applyBindings(new languageModel(availableLanguages));
+//window.languageModel = new languageModel(languageModel)
+//ko.applyBindings(new languageModel(availableLanguages));
