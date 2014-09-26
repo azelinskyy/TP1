@@ -31,7 +31,7 @@ namespace Tools.Export
         /// </param>
         public void ExportProjects(IEnumerable<Project> projects, Stream output)
         {
-            new PDFHelper().ExportProjects(projects, output);
+            new ProjectPDFHelper().ExportProjects(projects, output);
         }
 
         #endregion
