@@ -114,9 +114,6 @@ namespace TP1.Controllers
         /// <summary>
         ///     The get todo lists.
         /// </summary>
-        /// <returns>
-        ///     The <see cref="IEnumerable" />.
-        /// </returns>
         public IEnumerable<TodoListDto> GetTodoLists()
         {
             return

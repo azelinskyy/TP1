@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace TP1.DTOs
+﻿namespace TP1.DTOs
 {
+    using System;
+
     public class ReportDto
     {
         public string Title { get; set; }
