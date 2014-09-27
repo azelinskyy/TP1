@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Tools.Export
 {
+    using System;
     using System.Globalization;
 
     using iTextSharp.text;
@@ -33,6 +34,20 @@ namespace Tools.Export
         #endregion
 
         #region Fields
+
+        private readonly DateTime dateFrom;
+
+        private readonly DateTime dateTo;
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        public ProjectPageEventHelper(DateTime dateFrom, DateTime dateTo)
+        {
+            this.dateFrom = dateFrom;
+            this.dateTo = dateTo;
+        }
 
         #endregion
 
@@ -63,10 +78,17 @@ namespace Tools.Export
             footerTable.SetWidths(new[] { 9, 1 });
             footerTable.TotalWidth = document.Right - document.Left;
 
-            var cell = this.GetNoBorderCell(new Phrase("Alle Projekte und zusätzliche detaillierte Informationen finden Sie unter www.bindexis.ch", Footer), Element.ALIGN_LEFT);
+            var cell =
+                this.GetNoBorderCell(
+                    new Phrase(
+                        "Alle Projekte und zusätzliche detaillierte Informationen finden Sie unter www.bindexis.ch", 
+                        Footer), 
+                    Element.ALIGN_LEFT);
             footerTable.AddCell(cell);
 
-            cell = this.GetNoBorderCell(new Phrase(document.PageNumber.ToString(CultureInfo.InvariantCulture), Footer), Element.ALIGN_RIGHT);
+            cell = this.GetNoBorderCell(
+                new Phrase(document.PageNumber.ToString(CultureInfo.InvariantCulture), Footer), 
+                Element.ALIGN_RIGHT);
             footerTable.AddCell(cell);
 
             footerTable.CompleteRow();
@@ -86,31 +108,39 @@ namespace Tools.Export
             cell.Padding = 5;
             headerTable.AddCell(cell);
 
-            cell = this.GetNoBorderCell(new Phrase("Bauvorhaben KW 35, 18. - 24. August 2014", Header), Element.ALIGN_RIGHT);
+            cell = this.GetNoBorderCell(
+                new Phrase("Bauvorhaben " + this.FormatHeaderDate(), Header), 
+                Element.ALIGN_RIGHT);
             headerTable.AddCell(cell);
 
             headerTable.CompleteRow();
-            headerTable.WriteSelectedRows(0, -1, document.Left, document.Top + ((document.TopMargin + image.ScaledHeight) / 2), writer.DirectContent);
+            headerTable.WriteSelectedRows(
+                0, 
+                -1, 
+                document.Left, 
+                document.Top + ((document.TopMargin + image.ScaledHeight) / 2), 
+                writer.DirectContent);
         }
 
         private PdfPCell GetNoBorderCell(Phrase phrase, int horizontalAlignment)
         {
             return new PdfPCell(phrase)
-            {
-                BackgroundColor = BaseColor.LIGHT_GRAY,
-                HorizontalAlignment = horizontalAlignment,
-                VerticalAlignment = Element.ALIGN_MIDDLE,
-                Border = Rectangle.NO_BORDER
-            };
+                       {
+                           BackgroundColor = BaseColor.LIGHT_GRAY, 
+                           HorizontalAlignment = horizontalAlignment, 
+                           VerticalAlignment = Element.ALIGN_MIDDLE, 
+                           Border = Rectangle.NO_BORDER
+                       };
         }
 
         private PdfPCell GetNoBorderCell(Image image)
         {
-            return new PdfPCell(image)
-            {
-                BackgroundColor = BaseColor.LIGHT_GRAY,
-                Border = Rectangle.NO_BORDER
-            };
+            return new PdfPCell(image) { BackgroundColor = BaseColor.LIGHT_GRAY, Border = Rectangle.NO_BORDER };
+        }
+
+        private string FormatHeaderDate()
+        {
+            return new DateFormatter().Format(this.dateFrom, this.dateTo);
         }
 
         #endregion

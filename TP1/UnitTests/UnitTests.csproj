@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DbContext\CreateDomainContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\DateFormatting.cs" />
     <Compile Include="Tools\ExportProjects.cs" />
   </ItemGroup>
   <ItemGroup>

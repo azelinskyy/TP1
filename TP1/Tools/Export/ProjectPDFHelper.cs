@@ -59,27 +59,27 @@ namespace Tools.Export
             item.Add(new Phrase(project.Description, Normal));
             item.Add(Chunk.NEWLINE);
             AddIfPresent(
-                project.Address, 
-                a => !string.IsNullOrEmpty(a.AddressString), 
-                a => CreatePhrase("Addresse", a.AddressString), 
+                project.Address,
+                a => !string.IsNullOrEmpty(a.AddressString),
+                a => CreatePhrase("Addresse", a.AddressString),
                 item);
             AddIfPresent(project.Architect, a => !string.IsNullOrEmpty(a.Name), a => CreatePhrase("A", a.Name), item);
             AddIfPresent(project.Owner, o => !string.IsNullOrEmpty(o.Name), o => CreatePhrase("B", o.Name), item);
             AddIfPresent(
-                project.Price, 
-                p => p > 0, 
-                p => CreatePhrase("Bausumme", p.ToString(CultureInfo.InvariantCulture)), 
+                project.Price,
+                p => p > 0,
+                p => CreatePhrase("Bausumme", p.ToString(CultureInfo.InvariantCulture)),
                 item);
             AddIfPresent(project.Space, s => !string.IsNullOrEmpty(s), s => CreatePhrase("Fläche/Volumen", s), item);
             AddIfPresent(
-                project.StartDate, 
-                sd => !string.IsNullOrEmpty(sd.Description), 
-                sd => CreatePhrase("Baugesuch geplant für", sd.Description), 
+                project.StartDate,
+                sd => !string.IsNullOrEmpty(sd.Description),
+                sd => CreatePhrase("Baugesuch geplant für", sd.Description),
                 item);
             AddIfPresent(
-                project.FinishDate, 
-                fd => !string.IsNullOrEmpty(fd.Description), 
-                fd => CreatePhrase("Bezug/Nutzung geplant für", fd.Description), 
+                project.FinishDate,
+                fd => !string.IsNullOrEmpty(fd.Description),
+                fd => CreatePhrase("Bezug/Nutzung geplant für", fd.Description),
                 item);
             item.Add(Chunk.NEWLINE);
             return item;
@@ -91,19 +91,21 @@ namespace Tools.Export
         /// <param name="projects">
         ///     The enumeration of projects.
         /// </param>
+        /// <param name="dateFrom">The start date.</param>
+        /// <param name="dateTo">The end date.</param>
         /// <param name="output">
         ///     The output stream.
         /// </param>
-        internal void ExportProjects(IEnumerable<Project> projects, Stream output)
+        internal void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, FileStream output)
         {
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectPageEventHelper();
+            writer.PageEvent = new ProjectPageEventHelper(dateFrom, dateTo);
 
             document.SetMargins(
-                document.LeftMargin, 
-                document.RightMargin, 
-                document.TopMargin * 2, 
+                document.LeftMargin,
+                document.RightMargin,
+                document.TopMargin * 2,
                 document.BottomMargin * 2);
 
             document.Open();
@@ -131,9 +133,9 @@ namespace Tools.Export
 
             var columnText = new ColumnText(writer.DirectContent);
             columnText.SetSimpleColumn(
-                columnPoints[column][0], 
-                columnPoints[column][1], 
-                columnPoints[column][2], 
+                columnPoints[column][0],
+                columnPoints[column][1],
+                columnPoints[column][2],
                 columnPoints[column][3]);
             foreach (var project in projects)
             {
@@ -150,9 +152,9 @@ namespace Tools.Export
                     }
 
                     columnText.SetSimpleColumn(
-                        columnPoints[column][0], 
-                        columnPoints[column][1], 
-                        columnPoints[column][2], 
+                        columnPoints[column][0],
+                        columnPoints[column][1],
+                        columnPoints[column][2],
                         columnPoints[column][3]);
                     y = columnPoints[column][3];
                 }
@@ -167,9 +169,9 @@ namespace Tools.Export
         }
 
         private static void AddIfPresent<T>(
-            T source, 
-            Func<T, bool> check, 
-            Func<T, IElement> provide, 
+            T source,
+            Func<T, bool> check,
+            Func<T, IElement> provide,
             Paragraph paragraph)
         {
             if (!check(source))
