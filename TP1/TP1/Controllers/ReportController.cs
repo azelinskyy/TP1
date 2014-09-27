@@ -56,7 +56,7 @@
             Project projectToRemove = this.ProjectRepository.GetById(id);
             this.projectRepository.Remove(projectToRemove);
         }
-
+        
         public ProjectDto GetProject(int id)
         {
             return this.ProjectConvertFactory.FromModel(this.ProjectRepository.GetById(id));

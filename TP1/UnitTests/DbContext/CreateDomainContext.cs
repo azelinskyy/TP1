@@ -6,7 +6,6 @@
 //   The create domain context.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace UnitTests.DbContext
 {
     using Infrastructure.Contexts;
@@ -14,7 +13,7 @@ namespace UnitTests.DbContext
     using NUnit.Framework;
 
     /// <summary>
-    /// The create domain context.
+    ///     The create domain context.
     /// </summary>
     [TestFixture]
     public class CreateDomainContext
@@ -22,7 +21,7 @@ namespace UnitTests.DbContext
         #region Fields
 
         /// <summary>
-        /// The context.
+        ///     The context.
         /// </summary>
         private DomainContext context;
 
@@ -31,7 +30,7 @@ namespace UnitTests.DbContext
         #region Public Methods and Operators
 
         /// <summary>
-        /// The domain context can close connection.
+        ///     The domain context can close connection.
         /// </summary>
         [Test]
         public void DomainContextCanCloseConnection()
@@ -41,7 +40,7 @@ namespace UnitTests.DbContext
         }
 
         /// <summary>
-        /// The domain context can open connection.
+        ///     The domain context can open connection.
         /// </summary>
         [Test]
         public void DomainContextCanOpenConnection()
@@ -50,7 +49,7 @@ namespace UnitTests.DbContext
         }
 
         /// <summary>
-        /// The set up.
+        ///     The set up.
         /// </summary>
         [SetUp]
         public void SetUp()
@@ -59,7 +58,7 @@ namespace UnitTests.DbContext
         }
 
         /// <summary>
-        /// The system can create domain context.
+        ///     The system can create domain context.
         /// </summary>
         [Test]
         public void SystemCanCreateDomainContext()
@@ -68,7 +67,7 @@ namespace UnitTests.DbContext
         }
 
         /// <summary>
-        /// The tear down.
+        ///     The tear down.
         /// </summary>
         [TearDown]
         public void TearDown()

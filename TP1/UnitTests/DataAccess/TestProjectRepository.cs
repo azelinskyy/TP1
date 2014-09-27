@@ -6,11 +6,11 @@
 //   The test project repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace UnitTests.DataAccess
 {
     using System;
     using System.Globalization;
+    using System.Linq;
 
     using global::DataAccess.Repositories;
 
@@ -21,7 +21,7 @@ namespace UnitTests.DataAccess
     using NUnit.Framework;
 
     /// <summary>
-    /// The test project repository.
+    ///     The test project repository.
     /// </summary>
     [TestFixture]
     public class TestProjectRepository
@@ -29,12 +29,12 @@ namespace UnitTests.DataAccess
         #region Fields
 
         /// <summary>
-        /// The proj.
+        ///     The proj.
         /// </summary>
         private Project proj;
 
         /// <summary>
-        /// The repo.
+        ///     The repo.
         /// </summary>
         private ProjectRepoWrapper repo;
 
@@ -43,7 +43,7 @@ namespace UnitTests.DataAccess
         #region Public Methods and Operators
 
         /// <summary>
-        /// The set up.
+        ///     The set up.
         /// </summary>
         [SetUp]
         public void SetUp()
@@ -72,7 +72,7 @@ namespace UnitTests.DataAccess
         }
 
         /// <summary>
-        /// The tear down.
+        ///     The tear down.
         /// </summary>
         [TearDown]
         public void TearDown()
@@ -81,18 +81,40 @@ namespace UnitTests.DataAccess
         }
 
         /// <summary>
-        /// The test add.
+        ///     The test add.
         /// </summary>
         [Test]
         public void TestAdd()
         {
+            int countBeforeAdd = this.repo.GetAll().Count();
             this.proj.Id = 0;
             this.repo.Add(this.proj);
+            int countAfterAdd = this.repo.GetAll().Count();
+            Assert.AreEqual(countAfterAdd - countBeforeAdd, 1);
             Assert.AreNotEqual(this.proj.Id, 0);
         }
 
         /// <summary>
-        /// The test exception on add.
+        /// The test delete.
+        /// </summary>
+        [Test]
+        public void TestDelete()
+        {
+            int countBeforeAdd = this.repo.GetAll().Count();
+            this.proj.Id = 0;
+            this.repo.Add(this.proj);
+            int countAfterAdd = this.repo.GetAll().Count();
+            Assert.AreEqual(countAfterAdd - countBeforeAdd, 1);
+
+            this.repo.Remove(this.proj);
+            int countAfterDel = this.repo.GetAll().Count();
+
+            Assert.AreEqual(countBeforeAdd, countAfterDel);
+            Assert.Throws<InvalidOperationException>(() => this.repo.GetById(this.proj.Id));
+        }
+
+        /// <summary>
+        ///     The test exception on add.
         /// </summary>
         [Test]
         public void TestExceptionOnAdd()
@@ -100,17 +122,33 @@ namespace UnitTests.DataAccess
             Assert.Throws<ArgumentOutOfRangeException>(() => this.repo.Add(this.proj));
         }
 
+        /// <summary>
+        /// The test update.
+        /// </summary>
+        [Test]
+        public void TestUpdate()
+        {
+            this.proj.Id = 0;
+            this.repo.Add(this.proj);
+
+            this.proj.Price = 0;
+            this.repo.Update(this.proj);
+
+            Project projFromDb = this.repo.GetById(this.proj.Id);
+            Assert.AreEqual(this.proj.Price, projFromDb.Price);
+        }
+
         #endregion
 
         /// <summary>
-        /// The project repo wrapper.
+        ///     The project repo wrapper.
         /// </summary>
         public sealed class ProjectRepoWrapper : ProjectRepository
         {
             #region Fields
 
             /// <summary>
-            /// The context.
+            ///     The context.
             /// </summary>
             private DomainContext context;
 
@@ -119,10 +157,10 @@ namespace UnitTests.DataAccess
             #region Public Methods and Operators
 
             /// <summary>
-            /// The get db context.
+            ///     The get db context.
             /// </summary>
             /// <returns>
-            /// The <see cref="DomainContext"/>.
+            ///     The <see cref="DomainContext" />.
             /// </returns>
             public override DomainContext GetDbContext()
             {

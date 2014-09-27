@@ -6,7 +6,6 @@
 //   The test city convert factory.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace UnitTests.Factories
 {
     using Model.DomainModels;
@@ -17,7 +16,7 @@ namespace UnitTests.Factories
     using Services.Factories;
 
     /// <summary>
-    /// The test city convert factory.
+    ///     The test city convert factory.
     /// </summary>
     [TestFixture]
     public class TestCityConvertFactory
@@ -25,17 +24,17 @@ namespace UnitTests.Factories
         #region Fields
 
         /// <summary>
-        /// The converter.
+        ///     The converter.
         /// </summary>
         private CityConvertFactory converter;
 
         /// <summary>
-        /// The dto.
+        ///     The dto.
         /// </summary>
         private CityDto dto;
 
         /// <summary>
-        /// The model.
+        ///     The model.
         /// </summary>
         private City model;
 
@@ -44,7 +43,7 @@ namespace UnitTests.Factories
         #region Public Methods and Operators
 
         /// <summary>
-        /// The set up.
+        ///     The set up.
         /// </summary>
         [SetUp]
         public void SetUp()
@@ -57,7 +56,7 @@ namespace UnitTests.Factories
         }
 
         /// <summary>
-        /// The test from model.
+        ///     The test from model.
         /// </summary>
         [Test]
         public void TestFromModel()
@@ -68,7 +67,7 @@ namespace UnitTests.Factories
         }
 
         /// <summary>
-        /// The test to model.
+        ///     The test to model.
         /// </summary>
         [Test]
         public void TestToModel()

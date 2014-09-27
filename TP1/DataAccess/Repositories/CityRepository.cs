@@ -6,7 +6,6 @@
 //   The city repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace DataAccess.Repositories
 {
     using System;
@@ -15,7 +14,7 @@ namespace DataAccess.Repositories
     using Model.DomainModels;
 
     /// <summary>
-    /// The city repository.
+    ///     The city repository.
     /// </summary>
     public class CityRepository : RepositoryBase<City>
     {
@@ -48,10 +47,10 @@ namespace DataAccess.Repositories
         }
 
         /// <summary>
-        /// The get all.
+        ///     The get all.
         /// </summary>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
         /// <exception cref="NotImplementedException">
         /// </exception>
@@ -97,7 +96,7 @@ namespace DataAccess.Repositories
         /// </param>
         /// <exception cref="NotImplementedException">
         /// </exception>
-        public override void RemoveRange(IEnumerable<City> items)
+        public override void RemoveRange(IList<City> items)
         {
             throw new NotImplementedException();
         }

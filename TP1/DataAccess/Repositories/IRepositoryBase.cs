@@ -71,7 +71,7 @@ namespace DataAccess.Repositories
         /// <param name="items">
         /// The items.
         /// </param>
-        void RemoveRange(IEnumerable<T> items);
+        void RemoveRange(IList<T> items);
 
         /// <summary>
         /// The update item.

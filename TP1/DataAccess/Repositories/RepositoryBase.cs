@@ -78,7 +78,7 @@ namespace DataAccess.Repositories
         /// </returns>
         /// <exception cref="Exception">
         /// </exception>
-        public DomainContext GetDbContext()
+        public virtual DomainContext GetDbContext()
         {
             HttpContext httpContext = HttpContext.Current;
             if (httpContext != null)
@@ -108,7 +108,7 @@ namespace DataAccess.Repositories
         /// <param name="items">
         /// The items.
         /// </param>
-        public abstract void RemoveRange(IEnumerable<T> items);
+        public abstract void RemoveRange(IList<T> items);
 
         /// <summary>
         /// The update item.

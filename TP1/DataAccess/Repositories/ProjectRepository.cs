@@ -6,7 +6,6 @@
 //   The project repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace DataAccess.Repositories
 {
     using System;
@@ -16,7 +15,7 @@ namespace DataAccess.Repositories
     using Model.DomainModels;
 
     /// <summary>
-    /// The project repository.
+    ///     The project repository.
     /// </summary>
     public class ProjectRepository : RepositoryBase<Project>
     {
@@ -56,10 +55,10 @@ namespace DataAccess.Repositories
         }
 
         /// <summary>
-        /// The get all.
+        ///     The get all.
         /// </summary>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
         public override IEnumerable<Project> GetAll()
         {
@@ -88,7 +87,8 @@ namespace DataAccess.Repositories
         /// </param>
         public override void Remove(Project item)
         {
-            this.GetDbContext().Projects.Remove(item);
+            Project projectToRemove = this.GetDbContext().Projects.Single(p => p.Id == item.Id);
+            this.GetDbContext().Projects.Remove(projectToRemove);
             this.GetDbContext().SaveChanges();
         }
 
@@ -98,9 +98,11 @@ namespace DataAccess.Repositories
         /// <param name="items">
         /// The items.
         /// </param>
-        public override void RemoveRange(IEnumerable<Project> items)
+        public override void RemoveRange(IList<Project> items)
         {
-            foreach (Project project in items)
+            List<int> itemIds = items.Select(i => i.Id).ToList();
+            IQueryable<Project> projectsToRemove = this.GetDbContext().Projects.Where(p => itemIds.Contains(p.Id));
+            foreach (Project project in projectsToRemove)
             {
                 this.GetDbContext().Projects.Remove(project);
             }
