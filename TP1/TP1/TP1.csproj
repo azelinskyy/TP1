@@ -209,8 +209,6 @@
     <Compile Include="Controllers\InternationalizationController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\TodoListController.cs" />
-    <Compile Include="DTOs\CompanyDto.cs" />
-    <Compile Include="DTOs\ReportDto.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Filters\ValidateHttpAntiForgeryTokenAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -222,8 +220,6 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterExternalLoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
-    <Compile Include="DTOs\TodoItemDto.cs" />
-    <Compile Include="DTOs\TodoListDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

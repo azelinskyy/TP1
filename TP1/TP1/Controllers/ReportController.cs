@@ -1,13 +1,14 @@
 ﻿namespace TP1.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
     using System.Linq;
     using System.Web.Mvc;
 
-    using Newtonsoft.Json;
+    using Model.DTOs;
 
-    using TP1.DTOs;
+    using Newtonsoft.Json;
 
     public class ReportController : Controller
     {
@@ -25,9 +26,9 @@
             return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = jsonData });
         }
 
-        private IList<ReportDto> SortReport(IList<ReportDto> data, int pageIndex, int pageSize, string sortField, SortOrder order)
+        private IList<ProjectDto> SortReport(IEnumerable<ProjectDto> data, int pageIndex, int pageSize, string sortField, SortOrder order)
         {
-            IList<ReportDto> result;
+            IList<ProjectDto> result;
 
             if (order == SortOrder.Ascending)
             {
@@ -55,44 +56,44 @@
             return result;
         }
 
-        private List<ReportDto> BuildReports()
+        private List<ProjectDto> BuildReports()
         {
-            var companyA = new CompanyDto { Name = "company A", Address = "Location A" };
-            var companyB = new CompanyDto { Name = "company B", Address = "Location B" };
-            var reports = new List<ReportDto>
+            var companyA = new CityDto { Name = "Lviv" };
+            var companyB = new CityDto { Name = "Dresden" };
+            var reports = new List<ProjectDto>
                               {
-                                  new ReportDto { Title = "AA", ZipCode = 10, Company = companyA },
-                                  new ReportDto { Title = "AB", ZipCode = 11, Company = companyA },
-                                  new ReportDto { Title = "AC", ZipCode = 12, Company = companyA },
-                                  new ReportDto { Title = "AD", ZipCode = 13, Company = companyA },
-                                  new ReportDto { Title = "AE", ZipCode = 14, Company = companyA },
-                                  new ReportDto { Title = "AF", ZipCode = 15, Company = companyA },
-                                  new ReportDto { Title = "AG", ZipCode = 16, Company = companyA },
-                                  new ReportDto { Title = "AH", ZipCode = 17, Company = companyA },
-                                  new ReportDto { Title = "AI", ZipCode = 18, Company = companyA },
-                                  new ReportDto { Title = "AJ", ZipCode = 19, Company = companyA },
-                                  new ReportDto { Title = "AK", ZipCode = 20, Company = companyA },
-                                  new ReportDto { Title = "AL", ZipCode = 21, Company = companyA },
-                                  new ReportDto { Title = "AM", ZipCode = 22, Company = companyA },
-                                  new ReportDto { Title = "AN", ZipCode = 23, Company = companyA },
-                                  new ReportDto { Title = "AO", ZipCode = 24, Company = companyA },
-                                  new ReportDto { Title = "AP", ZipCode = 25, Company = companyA },
-                                  new ReportDto { Title = "BA", ZipCode = 10, Company = companyB },
-                                  new ReportDto { Title = "BB", ZipCode = 11, Company = companyB },
-                                  new ReportDto { Title = "BC", ZipCode = 12, Company = companyB },
-                                  new ReportDto { Title = "BD", ZipCode = 13, Company = companyB },
-                                  new ReportDto { Title = "BE", ZipCode = 14, Company = companyB },
-                                  new ReportDto { Title = "BF", ZipCode = 15, Company = companyB },
-                                  new ReportDto { Title = "BG", ZipCode = 16, Company = companyB },
-                                  new ReportDto { Title = "BH", ZipCode = 17, Company = companyB },
-                                  new ReportDto { Title = "BI", ZipCode = 18, Company = companyB },
-                                  new ReportDto { Title = "BJ", ZipCode = 19, Company = companyB },
-                                  new ReportDto { Title = "BK", ZipCode = 20, Company = companyB },
-                                  new ReportDto { Title = "BL", ZipCode = 21, Company = companyB },
-                                  new ReportDto { Title = "BM", ZipCode = 22, Company = companyB },
-                                  new ReportDto { Title = "BN", ZipCode = 23, Company = companyB },
-                                  new ReportDto { Title = "BO", ZipCode = 24, Company = companyB },
-                                  new ReportDto { Title = "BP", ZipCode = 25, Company = companyB }
+                                  new ProjectDto { Title = "AA", ZipCode = 10.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AB", ZipCode = 11.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AC", ZipCode = 12.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AD", ZipCode = 13.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AE", ZipCode = 14.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AF", ZipCode = 15.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AG", ZipCode = 16.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AH", ZipCode = 17.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AI", ZipCode = 18.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AJ", ZipCode = 19.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AK", ZipCode = 20.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AL", ZipCode = 21.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AM", ZipCode = 22.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AN", ZipCode = 23.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AO", ZipCode = 24.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "AP", ZipCode = 25.ToString(), City = companyA, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BA", ZipCode = 10.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BB", ZipCode = 11.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BC", ZipCode = 12.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BD", ZipCode = 13.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BE", ZipCode = 14.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BF", ZipCode = 15.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BG", ZipCode = 16.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BH", ZipCode = 17.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BI", ZipCode = 18.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BJ", ZipCode = 19.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BK", ZipCode = 20.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BL", ZipCode = 21.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BM", ZipCode = 22.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BN", ZipCode = 23.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BO", ZipCode = 24.ToString(), City = companyB, DateAdded = DateTime.Now },
+                                  new ProjectDto { Title = "BP", ZipCode = 25.ToString(), City = companyB, DateAdded = DateTime.Now }
                               };
 
             return reports;

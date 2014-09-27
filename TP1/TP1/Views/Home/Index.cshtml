@@ -33,16 +33,16 @@
                     <tr>
                         <th><a href="#" onclick="window.reportApp.eW.Dashboard.StudentDataGrid.Sort('Name')" class="sortCol">@Html.KnockoutHelperFor("Title", "p")</a></th>
                         <th><a href="#" onclick="window.reportApp.eW.Dashboard.StudentDataGrid.Sort('Age')" class="sortCol">@Html.KnockoutHelperFor("ZipCode", "p")</a></th>
-                        <th>@Html.KnockoutHelperFor("Address", "p")</th>
-                        <th>@Html.KnockoutHelperFor("StartDate", "p")</th>
+                        <th>@Html.KnockoutHelperFor("City", "p")</th>
+                        <th>@Html.KnockoutHelperFor("DateAdded", "p")</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: window.reportApp.eW.Dashboard.StudentDataGrid.DataRows">
                     <tr>
                         <td data-bind="text: Title"></td>
                         <td data-bind="text: ZipCode"></td>
-                        <td data-bind="text: Company.Name"></td>
-                        <td data-bind="text: Company.Address"></td>
+                        <td data-bind="text: City.Name"></td>
+                        <td data-bind="text: DateAdded"></td>
                     </tr>
                 </tbody>
             </table>

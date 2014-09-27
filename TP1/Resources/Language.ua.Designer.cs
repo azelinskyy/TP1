@@ -61,15 +61,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Адреса.
-        /// </summary>
-        public static string Address {
-            get {
-                return ResourceManager.GetString("Address", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Вже зареєстровані?.
         /// </summary>
         public static string AlreadySignedUp {
@@ -97,11 +88,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Місто.
+        /// </summary>
+        public static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Підтвердити пароль.
         /// </summary>
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата додання.
+        /// </summary>
+        public static string DateAdded {
+            get {
+                return ResourceManager.GetString("DateAdded", resourceCulture);
             }
         }
         
@@ -165,15 +174,6 @@ namespace Resources {
         public static string SiteName {
             get {
                 return ResourceManager.GetString("SiteName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Дата початку.
-        /// </summary>
-        public static string StartDate {
-            get {
-                return ResourceManager.GetString("StartDate", resourceCulture);
             }
         }
         

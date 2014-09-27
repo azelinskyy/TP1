@@ -19,9 +19,9 @@ namespace TP1.Controllers
 
     using Infrastructure.Contexts;
 
+    using Model.DTOs;
     using Model.ToDoModels;
 
-    using TP1.DTOs;
     using TP1.Filters;
 
     /// <summary>

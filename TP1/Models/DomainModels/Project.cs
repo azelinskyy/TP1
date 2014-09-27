@@ -14,7 +14,7 @@ namespace Model.DomainModels
     /// <summary>
     ///     The project.
     /// </summary>
-    public class Project
+    public class Project : DomainModel
     {
         #region Public Properties
 
@@ -49,19 +49,9 @@ namespace Model.DomainModels
         public string Description { get; set; }
 
         /// <summary>
-        ///     Gets or sets the domain date.
-        /// </summary>
-        public DomainDate DomainDate { get; set; }
-
-        /// <summary>
         ///     Gets or sets the finish date.
         /// </summary>
         public DomainDate FinishDate { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the id.
-        /// </summary>
-        public int Id { get; set; }
 
         /// <summary>
         ///     Gets or sets the owner.

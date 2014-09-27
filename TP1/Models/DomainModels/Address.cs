@@ -12,7 +12,7 @@ namespace Model.DomainModels
     /// <summary>
     /// The address.
     /// </summary>
-    public class Address
+    public class Address : DomainModel
     {
         #region Public Properties
 
@@ -20,11 +20,6 @@ namespace Model.DomainModels
         /// Gets or sets the address string.
         /// </summary>
         public string AddressString { get; set; }
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
-        public int Id { get; set; }
 
         #endregion
     }

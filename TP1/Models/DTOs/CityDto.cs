@@ -1,18 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="City.cs" company="Team Alpha Solutions">
+// <copyright file="CompanyDto.cs" company="Team Alpha Solutions">
 //   Copyright © 2014 Team Alpha Solutions
 // </copyright>
 // <summary>
-//   The company.
+//   The company dto.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Model.DomainModels
+namespace Model.DTOs
 {
     /// <summary>
-    /// The company.
+    /// The company dto.
     /// </summary>
-    public class Company : DomainModel
+    public class CityDto
     {
         #region Public Properties
 

@@ -11,14 +11,9 @@ namespace Model.DomainModels
     /// <summary>
     ///     The city.
     /// </summary>
-    public class City
+    public class City : DomainModel
     {
         #region Public Properties
-
-        /// <summary>
-        ///     Gets or sets the id.
-        /// </summary>
-        public int Id { get; set; }
 
         /// <summary>
         ///     Gets or sets the name.

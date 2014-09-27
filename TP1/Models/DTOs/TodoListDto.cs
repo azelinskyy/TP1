@@ -6,7 +6,7 @@
 //   Data transfer object for
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace TP1.DTOs
+namespace Model.DTOs
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
