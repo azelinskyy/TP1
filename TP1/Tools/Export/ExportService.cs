@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Tools.Export
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
 
@@ -26,12 +27,14 @@ namespace Tools.Export
         /// <param name="projects">
         /// The enumeration of projects.
         /// </param>
+        /// <param name="dateFrom">The start date.</param>
+        /// <param name="dateTo">The end date.</param>
         /// <param name="output">
         /// The output stream to export.
         /// </param>
-        public void ExportProjects(IEnumerable<Project> projects, Stream output)
+        public void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, FileStream output)
         {
-            new ProjectPDFHelper().ExportProjects(projects, output);
+            new ProjectPDFHelper().ExportProjects(projects, dateFrom, dateTo, output);
         }
 
         #endregion

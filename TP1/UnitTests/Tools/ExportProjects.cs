@@ -9,6 +9,7 @@
 
 namespace UnitTests.Tools
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
 
@@ -72,9 +73,12 @@ namespace UnitTests.Tools
                 projects.Add(this.project);
             }
 
+            var to = DateTime.Now;
+            var from = to.AddDays(-7);
+
             var service = new ExportService();
             var output = new FileStream(fileName, FileMode.Create, FileAccess.Write);
-            service.ExportProjects(projects, output);
+            service.ExportProjects(projects, from, to, output);
 
             var fileInfo = new FileInfo(fileName);
             Assert.True(fileInfo.Length > 0);
