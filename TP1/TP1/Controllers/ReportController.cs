@@ -17,6 +17,26 @@
 
     public class ReportController : Controller
     {
+        private ProjectRepository projectRepository;
+
+        private ProjectConvertFactory projectConvertFactory;
+
+        public ProjectRepository ProjectRepository 
+        {
+            get
+            {
+                return this.projectRepository = this.projectRepository ?? new ProjectRepository();
+            }
+        }
+
+        public ProjectConvertFactory ProjectConvertFactory
+        {
+            get
+            {
+                return this.projectConvertFactory = this.projectConvertFactory ?? new ProjectConvertFactory();
+            }
+        }
+
         [HttpPost]
         public string GetAllStudentList()
         {
@@ -29,6 +49,35 @@
             var data = this.BuildReports();
             var jsonData = JsonConvert.SerializeObject(this.SortReport(data, pageIndex, pageSize, sortField, (SortOrder)sortOrder));
             return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = jsonData });
+        }
+
+        public void DeleteProject(int id)
+        {
+            Project projectToRemove = this.ProjectRepository.GetById(id);
+            this.projectRepository.Remove(projectToRemove);
+        }
+
+        public ProjectDto GetProject(int id)
+        {
+            return this.ProjectConvertFactory.FromModel(this.ProjectRepository.GetById(id));
+        }
+
+        public int PostProject(ProjectDto project)
+        {
+            var entity = this.ProjectConvertFactory.ToModel(project);
+            this.projectRepository.Add(entity);
+            return entity.Id;
+        }
+
+        public void PutProject(int id, ProjectDto project)
+        {
+            var entity = this.ProjectConvertFactory.ToModel(project);
+            if (entity.Id != id)
+            {
+                throw new ArgumentOutOfRangeException("Ids do not match");
+            }
+
+            this.ProjectRepository.Update(entity);
         }
 
         private IList<ProjectDto> SortReport(IEnumerable<ProjectDto> data, int pageIndex, int pageSize, string sortField, SortOrder order)
@@ -63,6 +112,10 @@
 
         private List<ProjectDto> BuildReports()
         {
+            var converter = new ProjectConvertFactory();
+            return this.ProjectRepository.GetAll().Select(converter.FromModel).ToList();
+
+            // replace code above withthis one for initial insert of test data
             /*var companyA = new City { Name = "Lviv" };
             var companyB = new City { Name = "Dresden" };
             var reports = new List<Project>
@@ -99,16 +152,12 @@
                                   new Project { Title = "BN", ZipCode = 79023.ToString(), City = companyB, DateAdded = DateTime.Now },
                                   new Project { Title = "BO", ZipCode = 79024.ToString(), City = companyB, DateAdded = DateTime.Now },
                                   new Project { Title = "BP", ZipCode = 79025.ToString(), City = companyB, DateAdded = DateTime.Now }
-                              };*/
+                              };
 
             var repo = new ProjectRepository();
-
-// repo.AddRange(reports);
+            repo.AddRange(reports);
             var converter = new ProjectConvertFactory();
-
-             return repo.GetAll().Select(converter.FromModel).ToList();
-
-// return reports.Select(converter.FromModel).ToList();
+            return reports.Select(converter.FromModel).ToList();*/
         }
     }
 }

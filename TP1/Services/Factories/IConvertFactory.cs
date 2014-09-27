@@ -9,6 +9,7 @@
 namespace Services.Factories
 {
     using Model.DomainModels;
+    using Model.DTOs;
 
     /// <summary>
     /// The ConvertFactory interface.
@@ -18,7 +19,7 @@ namespace Services.Factories
     /// <typeparam name="T2">
     /// </typeparam>
     public interface IConvertFactory<T1, T2>
-        where T1 : DomainModel where T2 : class
+        where T1 : DomainModel where T2 : DomainDto
     {
         #region Public Methods and Operators
 

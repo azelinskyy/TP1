@@ -33,6 +33,7 @@ namespace Services.Factories
         {
             return new ProjectDto
                        {
+                           Id = model.Id,
                            City = new CityConvertFactory().FromModel(model.City), 
                            DateAdded = model.DateAdded, 
                            Title = model.Title, 
@@ -53,7 +54,14 @@ namespace Services.Factories
         /// </exception>
         public Project ToModel(ProjectDto obj)
         {
-            throw new NotImplementedException();
+            return new Project
+                       {
+                           Id = obj.Id,
+                           City = new CityConvertFactory().ToModel(obj.City),
+                           DateAdded = obj.DateAdded,
+                           Title = obj.Title,
+                           ZipCode = obj.ZipCode
+                       };
         }
 
         #endregion

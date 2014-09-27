@@ -29,7 +29,7 @@ namespace Services.Factories
         /// </returns>
         public CityDto FromModel(City model)
         {
-            return new CityDto { Name = model.Name };
+            return new CityDto { Id = model.Id, Name = model.Name };
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Services.Factories
         /// </returns>
         public City ToModel(CityDto obj)
         {
-            return new City { Name = obj.Name };
+            return new City { Id = obj.Id, Name = obj.Name };
         }
 
         #endregion

@@ -42,6 +42,7 @@
     <Compile Include="DomainModels\DomainModel.cs" />
     <Compile Include="DomainModels\Project.cs" />
     <Compile Include="DTOs\CityDto.cs" />
+    <Compile Include="DTOs\DomainDto.cs" />
     <Compile Include="DTOs\ProjectDto.cs" />
     <Compile Include="DTOs\TodoItemDto.cs" />
     <Compile Include="DTOs\TodoListDto.cs" />

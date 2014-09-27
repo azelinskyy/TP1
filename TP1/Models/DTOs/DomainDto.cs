@@ -1,24 +1,25 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CityDto.cs" company="Team Alpha Solutions">
+// <copyright file="DomainDto.cs" company="Team Alpha Solutions">
 //   Copyright © 2014 Team Alpha Solutions
 // </copyright>
 // <summary>
-//   The company dto.
+//   The domain dto.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace Model.DTOs
 {
     /// <summary>
-    ///     The company dto.
+    /// The domain dto.
     /// </summary>
-    public class CityDto : DomainDto
+    public abstract class DomainDto
     {
         #region Public Properties
 
         /// <summary>
-        ///     Gets or sets the name.
+        /// Gets or sets the id.
         /// </summary>
-        public string Name { get; set; }
+        public int Id { get; set; }
 
         #endregion
     }

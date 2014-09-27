@@ -1,0 +1,135 @@
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TestProjectRepository.cs" company="Team Alpha Solutions">
+//   Copyright © 2014 Team Alpha Solutions
+// </copyright>
+// <summary>
+//   The test project repository.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace UnitTests.DataAccess
+{
+    using System;
+    using System.Globalization;
+
+    using global::DataAccess.Repositories;
+
+    using Infrastructure.Contexts;
+
+    using Model.DomainModels;
+
+    using NUnit.Framework;
+
+    /// <summary>
+    /// The test project repository.
+    /// </summary>
+    [TestFixture]
+    public class TestProjectRepository
+    {
+        #region Fields
+
+        /// <summary>
+        /// The proj.
+        /// </summary>
+        private Project proj;
+
+        /// <summary>
+        /// The repo.
+        /// </summary>
+        private ProjectRepoWrapper repo;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The set up.
+        /// </summary>
+        [SetUp]
+        public void SetUp()
+        {
+            this.repo = new ProjectRepoWrapper();
+            DateTime modify = DateTime.Now;
+            DateTime start = DateTime.Now;
+            DateTime end = DateTime.Now;
+            this.proj = new Project
+                            {
+                                Id = 143, 
+                                City = new City { Id = 32, Name = "Lviv" }, 
+                                DateAdded = DateTime.ParseExact("06/16/1986", "d", CultureInfo.InvariantCulture), 
+                                Title = "Test proj", 
+                                ZipCode = "79031", 
+                                Address = new Address { AddressString = "Home" }, 
+                                Architect = new Company { Name = "A" }, 
+                                DateModified = modify, 
+                                StartDate = new DomainDate { DateTime = start, Description = "Start" }, 
+                                Description = "Cool project", 
+                                FinishDate = new DomainDate { DateTime = end, Description = "End" }, 
+                                Owner = new Company { Name = "Me" }, 
+                                Price = 10443, 
+                                Space = "to big"
+                            };
+        }
+
+        /// <summary>
+        /// The tear down.
+        /// </summary>
+        [TearDown]
+        public void TearDown()
+        {
+            this.repo = null;
+        }
+
+        /// <summary>
+        /// The test add.
+        /// </summary>
+        [Test]
+        public void TestAdd()
+        {
+            this.proj.Id = 0;
+            this.repo.Add(this.proj);
+            Assert.AreNotEqual(this.proj.Id, 0);
+        }
+
+        /// <summary>
+        /// The test exception on add.
+        /// </summary>
+        [Test]
+        public void TestExceptionOnAdd()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => this.repo.Add(this.proj));
+        }
+
+        #endregion
+
+        /// <summary>
+        /// The project repo wrapper.
+        /// </summary>
+        public sealed class ProjectRepoWrapper : ProjectRepository
+        {
+            #region Fields
+
+            /// <summary>
+            /// The context.
+            /// </summary>
+            private DomainContext context;
+
+            #endregion
+
+            #region Public Methods and Operators
+
+            /// <summary>
+            /// The get db context.
+            /// </summary>
+            /// <returns>
+            /// The <see cref="DomainContext"/>.
+            /// </returns>
+            public override DomainContext GetDbContext()
+            {
+                return this.context = this.context ?? new DomainContext();
+            }
+
+            #endregion
+        }
+    }
+}

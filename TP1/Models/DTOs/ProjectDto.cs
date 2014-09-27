@@ -13,7 +13,7 @@ namespace Model.DTOs
     /// <summary>
     ///     The project dto.
     /// </summary>
-    public class ProjectDto
+    public class ProjectDto : DomainDto
     {
         #region Public Properties
 

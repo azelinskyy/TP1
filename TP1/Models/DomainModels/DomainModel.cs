@@ -22,6 +22,17 @@ namespace Model.DomainModels
         /// </summary>
         public int Id { get; set; }
 
+        /// <summary>
+        /// Gets a value indicating whether persisted.
+        /// </summary>
+        public bool Persisted
+        {
+            get
+            {
+                return this.Id != 0;
+            }
+        }
+
         #endregion
 
         #region Public Methods and Operators

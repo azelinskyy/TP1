@@ -9,8 +9,8 @@
 
 namespace DataAccess.Repositories
 {
+    using System;
     using System.Collections.Generic;
-    using System.Data;
     using System.Linq;
 
     using Model.DomainModels;
@@ -30,6 +30,11 @@ namespace DataAccess.Repositories
         /// </param>
         public override void Add(Project item)
         {
+            if (item.Id != 0)
+            {
+                throw new ArgumentOutOfRangeException("Id");
+            }
+
             this.GetDbContext().Projects.Add(item);
             this.GetDbContext().SaveChanges();
         }
@@ -111,8 +116,21 @@ namespace DataAccess.Repositories
         /// </param>
         public override void Update(Project item)
         {
-            this.GetDbContext().Entry(item).State = EntityState.Detached;
-            this.GetDbContext().Entry(item).State = EntityState.Modified;
+            Project project = this.GetById(item.Id);
+            project.Address = item.Address;
+            project.Architect = item.Architect;
+            project.City = item.City;
+            project.DateAdded = item.DateAdded;
+            project.DateModified = item.DateModified;
+            project.Description = item.Description;
+            project.FinishDate = item.FinishDate;
+            project.Owner = item.Owner;
+            project.Price = item.Price;
+            project.Space = item.Space;
+            project.StartDate = item.StartDate;
+            project.Title = item.Title;
+            project.ZipCode = item.ZipCode;
+
             this.GetDbContext().SaveChanges();
         }
 
