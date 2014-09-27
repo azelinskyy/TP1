@@ -96,7 +96,7 @@ namespace Tools.Export
         /// <param name="output">
         ///     The output stream.
         /// </param>
-        internal void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, FileStream output)
+        internal void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output)
         {
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
