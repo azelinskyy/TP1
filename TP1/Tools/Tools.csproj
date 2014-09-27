@@ -45,6 +45,7 @@
     <Compile Include="Export\ExportService.cs" />
     <Compile Include="Export\ProjectPDFHelper.cs" />
     <Compile Include="Export\ProjectPageEventHelper.cs" />
+    <Compile Include="Notification\EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

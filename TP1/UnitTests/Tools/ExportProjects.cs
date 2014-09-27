@@ -85,6 +85,25 @@ namespace UnitTests.Tools
             //// fileInfo.Delete();
         }
 
+        /// <summary>
+        /// Exports projects to pdf and check file size after that.
+        /// </summary>
+        [Test]
+        public void ExportProjectsToPDFAndSendEmail()
+        {
+            var projects = new List<Project>();
+            for (var i = 0; i < 20; i++)
+            {
+                projects.Add(this.project);
+            }
+
+            var to = DateTime.Now;
+            var from = to.AddDays(-7);
+
+            var service = new ExportService();
+            service.ExportProjects(projects, from, to, "gregory.hasyn@gmail.com");
+        }
+
         #endregion
     }
 }
