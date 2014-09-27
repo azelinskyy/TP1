@@ -6,25 +6,35 @@
 //   The domain model.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Model.DomainModels
 {
     using System;
 
     /// <summary>
-    /// The domain model.
+    ///     The domain model.
     /// </summary>
     public abstract class DomainModel : IEquatable<DomainModel>
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the id.
+        ///     Gets or sets the id.
         /// </summary>
         public int Id { get; set; }
 
         #endregion
 
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The equals.
+        /// </summary>
+        /// <param name="other">
+        /// The other.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Equals(DomainModel other)
         {
             if (other == null)
@@ -34,5 +44,7 @@ namespace Model.DomainModels
 
             return this.Id == other.Id;
         }
+
+        #endregion
     }
 }

@@ -14,6 +14,8 @@ namespace TP1
     using System.Web.Optimization;
     using System.Web.Routing;
 
+    using Infrastructure.Contexts;
+
     using Newtonsoft.Json;
 
     using Resources;
@@ -42,7 +44,9 @@ namespace TP1
             AuthConfig.RegisterAuth();
 
             System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/ua.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(Language_ua.ResourceManager)));
-            System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/us.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(languages_us.ResourceManager))); 
+            System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/us.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(languages_us.ResourceManager)));
+
+            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<DomainContext>());
         }
 
         #endregion

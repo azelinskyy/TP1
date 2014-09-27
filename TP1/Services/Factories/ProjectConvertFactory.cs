@@ -6,7 +6,6 @@
 //   The project convert factory.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Services.Factories
 {
     using System;
@@ -15,7 +14,7 @@ namespace Services.Factories
     using Model.DTOs;
 
     /// <summary>
-    /// The project convert factory.
+    ///     The project convert factory.
     /// </summary>
     public class ProjectConvertFactory : IConvertFactory<Project, ProjectDto>
     {

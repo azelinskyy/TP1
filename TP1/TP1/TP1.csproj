@@ -362,6 +362,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{B3222FE5-577C-48AD-BDC9-540B8A1DA420}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{DC3F89D9-0535-4B8D-8846-CF6698C82F98}</Project>
       <Name>Infrastructure</Name>

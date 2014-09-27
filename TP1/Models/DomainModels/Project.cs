@@ -16,32 +16,45 @@ namespace Model.DomainModels
     /// </summary>
     public class Project : DomainModel
     {
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Project"/> class.
+        /// </summary>
+        public Project()
+        {
+            this.FinishDate = new DomainDate();
+            this.StartDate = new DomainDate();
+        }
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
         ///     Gets or sets the address.
         /// </summary>
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
 
         /// <summary>
         ///     Gets or sets the architect.
         /// </summary>
-        public Company Architect { get; set; }
+        public virtual Company Architect { get; set; }
 
         /// <summary>
         ///     Gets or sets the city.
         /// </summary>
-        public City City { get; set; }
+        public virtual City City { get; set; }
 
         /// <summary>
-        /// Gets or sets the date added.
+        ///     Gets or sets the date added.
         /// </summary>
         public DateTime DateAdded { get; set; }
 
         /// <summary>
-        /// Gets or sets the date modified.
+        ///     Gets or sets the date modified.
         /// </summary>
-        public DateTime DateModified { get; set; }
+        public DateTime? DateModified { get; set; }
 
         /// <summary>
         ///     Gets or sets the description.
@@ -56,7 +69,7 @@ namespace Model.DomainModels
         /// <summary>
         ///     Gets or sets the owner.
         /// </summary>
-        public Company Owner { get; set; }
+        public virtual Company Owner { get; set; }
 
         /// <summary>
         ///     Gets or sets the price.

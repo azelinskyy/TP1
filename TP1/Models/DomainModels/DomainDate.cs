@@ -6,14 +6,13 @@
 //   The domain date.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Model.DomainModels
 {
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
-    /// The domain date.
+    ///     The domain date.
     /// </summary>
     [ComplexType]
     public class DomainDate
@@ -21,12 +20,12 @@ namespace Model.DomainModels
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the date time.
+        ///     Gets or sets the date time.
         /// </summary>
-        public DateTime DateTime { get; set; }
+        public DateTime? DateTime { get; set; }
 
         /// <summary>
-        /// Gets or sets the description.
+        ///     Gets or sets the description.
         /// </summary>
         public string Description { get; set; }
 

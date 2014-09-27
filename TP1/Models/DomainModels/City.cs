@@ -25,10 +25,10 @@ namespace Model.DomainModels
         #region Public Methods and Operators
 
         /// <summary>
-        /// String reprosentations of the city name
+        ///     String reprosentations of the city name
         /// </summary>
         /// <returns>
-        /// Name of the city <see cref="string"/>.
+        ///     Name of the city <see cref="string" />.
         /// </returns>
         public override string ToString()
         {

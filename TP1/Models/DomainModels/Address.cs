@@ -6,18 +6,17 @@
 //   The address.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Model.DomainModels
 {
     /// <summary>
-    /// The address.
+    ///     The address.
     /// </summary>
     public class Address : DomainModel
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the address string.
+        ///     Gets or sets the address string.
         /// </summary>
         public string AddressString { get; set; }
 
