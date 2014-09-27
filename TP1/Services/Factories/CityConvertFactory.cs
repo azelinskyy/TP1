@@ -14,7 +14,7 @@ namespace Services.Factories
     /// <summary>
     ///     The company convert factory.
     /// </summary>
-    public class CityConvertFactory : IConvertFactory<Company, CityDto>
+    public class CityConvertFactory : IConvertFactory<City, CityDto>
     {
         #region Public Methods and Operators
 
@@ -27,7 +27,7 @@ namespace Services.Factories
         /// <returns>
         /// The <see cref="CityDto"/>.
         /// </returns>
-        public CityDto FromModel(Company model)
+        public CityDto FromModel(City model)
         {
             return new CityDto { Name = model.Name };
         }
@@ -41,9 +41,9 @@ namespace Services.Factories
         /// <returns>
         /// The <see cref="Company"/>.
         /// </returns>
-        public Company ToModel(CityDto obj)
+        public City ToModel(CityDto obj)
         {
-            return new Company { Name = obj.Name };
+            return new City { Name = obj.Name };
         }
 
         #endregion

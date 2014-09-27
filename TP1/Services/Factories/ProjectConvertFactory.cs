@@ -34,8 +34,8 @@ namespace Services.Factories
         {
             return new ProjectDto
                        {
-                           City = new CompanyConvertFactory().FromModel(model.Owner), 
-                           DateAdded = model.StartDate.DateTime, 
+                           City = new CityConvertFactory().FromModel(model.City), 
+                           DateAdded = model.DateAdded, 
                            Title = model.Title, 
                            ZipCode = model.ZipCode
                        };
