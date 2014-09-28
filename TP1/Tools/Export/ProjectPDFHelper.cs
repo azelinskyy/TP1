@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PDFHelper.cs" company="Team Alpha Solutions">
+// <copyright file="ProjectPDFHelper.cs" company="Team Alpha Solutions">
 //   Copyright © 2014 Team Alpha Solutions
 // </copyright>
 // <summary>
@@ -23,6 +23,15 @@ namespace Tools.Export
     /// </summary>
     internal class ProjectPDFHelper
     {
+        #region Constants
+
+        /// <summary>
+        ///     Leading for paragraph or phrase.
+        /// </summary>
+        private const int Leading = 10;
+
+        #endregion
+
         #region Static Fields
 
         /// <summary>
@@ -40,18 +49,18 @@ namespace Tools.Export
         #region Methods
 
         /// <summary>
-        ///     Create the project paragraph.
+        /// Create the project paragraph.
         /// </summary>
         /// <param name="project">
-        ///     The project.
+        /// The project.
         /// </param>
         /// <returns>
-        ///     The <see cref="Paragraph" />.
+        /// The <see cref="Paragraph"/>.
         /// </returns>
-        internal static Paragraph CreateProject(Project project)
+        internal static Paragraph CreateProjectParagraph(Project project)
         {
             var item = new Paragraph();
-            item.Leading = 12;
+            item.Leading = Leading;
             item.Add(CreateProjectHeader(project));
             item.Add(Chunk.NEWLINE);
             item.Add(new Phrase(project.Title, Bold));
@@ -59,42 +68,88 @@ namespace Tools.Export
             item.Add(new Phrase(project.Description, Normal));
             item.Add(Chunk.NEWLINE);
             AddIfPresent(
-                project.Address,
-                a => !string.IsNullOrEmpty(a.AddressString),
-                a => CreatePhrase("Addresse", a.AddressString),
+                project.Address, 
+                a => !string.IsNullOrEmpty(a.AddressString), 
+                a => CreatePhrase("Addresse", a.AddressString), 
                 item);
             AddIfPresent(project.Architect, a => !string.IsNullOrEmpty(a.Name), a => CreatePhrase("A", a.Name), item);
             AddIfPresent(project.Owner, o => !string.IsNullOrEmpty(o.Name), o => CreatePhrase("B", o.Name), item);
             AddIfPresent(
-                project.Price,
-                p => p > 0,
-                p => CreatePhrase("Bausumme", p.ToString(CultureInfo.InvariantCulture)),
+                project.Price, 
+                p => p > 0, 
+                p => CreatePhrase("Bausumme", p.ToString(CultureInfo.InvariantCulture)), 
                 item);
             AddIfPresent(project.Space, s => !string.IsNullOrEmpty(s), s => CreatePhrase("Fläche/Volumen", s), item);
             AddIfPresent(
-                project.StartDate,
-                sd => !string.IsNullOrEmpty(sd.Description),
-                sd => CreatePhrase("Baugesuch geplant für", sd.Description),
+                project.StartDate, 
+                sd => !string.IsNullOrEmpty(sd.Description), 
+                sd => CreatePhrase("Baugesuch geplant für", sd.Description), 
                 item);
             AddIfPresent(
-                project.FinishDate,
-                fd => !string.IsNullOrEmpty(fd.Description),
-                fd => CreatePhrase("Bezug/Nutzung geplant für", fd.Description),
+                project.FinishDate, 
+                fd => !string.IsNullOrEmpty(fd.Description), 
+                fd => CreatePhrase("Bezug/Nutzung geplant für", fd.Description), 
                 item);
             item.Add(Chunk.NEWLINE);
             return item;
         }
 
         /// <summary>
-        ///     Exports projects into output stream.
+        /// Create the project paragraph.
+        /// </summary>
+        /// <param name="project">
+        /// The project.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Paragraph"/>.
+        /// </returns>
+        internal static IEnumerable<IElement> CreateProjectPhrases(Project project)
+        {
+            var result = new List<IElement>();
+            result.Add(CreateProjectHeader(project));
+            result.Add(new Phrase(project.Title, Bold) { Leading = Leading });
+            result.Add(new Phrase(project.Description, Normal) { Leading = Leading });
+            AddIfPresent(
+                project.Address, 
+                a => !string.IsNullOrEmpty(a.AddressString), 
+                a => CreatePhrase("Addresse", a.AddressString), 
+                result);
+            AddIfPresent(project.Architect, a => !string.IsNullOrEmpty(a.Name), a => CreatePhrase("A", a.Name), result);
+            AddIfPresent(project.Owner, o => !string.IsNullOrEmpty(o.Name), o => CreatePhrase("B", o.Name), result);
+            AddIfPresent(
+                project.Price, 
+                p => p > 0, 
+                p => CreatePhrase("Bausumme", p.ToString(CultureInfo.InvariantCulture)), 
+                result);
+            AddIfPresent(project.Space, s => !string.IsNullOrEmpty(s), s => CreatePhrase("Fläche/Volumen", s), result);
+            AddIfPresent(
+                project.StartDate, 
+                sd => !string.IsNullOrEmpty(sd.Description), 
+                sd => CreatePhrase("Baugesuch geplant für", sd.Description), 
+                result);
+            AddIfPresent(
+                project.FinishDate, 
+                fd => !string.IsNullOrEmpty(fd.Description), 
+                fd => CreatePhrase("Bezug/Nutzung geplant für", fd.Description), 
+                result);
+            result.Add(Chunk.NEWLINE);
+            return result;
+        }
+
+        /// <summary>
+        /// Exports projects into output stream.
         /// </summary>
         /// <param name="projects">
-        ///     The enumeration of projects.
+        /// The enumeration of projects.
         /// </param>
-        /// <param name="dateFrom">The start date.</param>
-        /// <param name="dateTo">The end date.</param>
+        /// <param name="dateFrom">
+        /// The start date.
+        /// </param>
+        /// <param name="dateTo">
+        /// The end date.
+        /// </param>
         /// <param name="output">
-        ///     The output stream.
+        /// The output stream.
         /// </param>
         internal void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output)
         {
@@ -103,9 +158,9 @@ namespace Tools.Export
             writer.PageEvent = new ProjectPageEventHelper(dateFrom, dateTo);
 
             document.SetMargins(
-                document.LeftMargin,
-                document.RightMargin,
-                document.TopMargin * 2,
+                document.LeftMargin, 
+                document.RightMargin, 
+                document.TopMargin * 2, 
                 document.BottomMargin * 2);
 
             document.Open();
@@ -133,45 +188,65 @@ namespace Tools.Export
 
             var columnText = new ColumnText(writer.DirectContent);
             columnText.SetSimpleColumn(
-                columnPoints[column][0],
-                columnPoints[column][1],
-                columnPoints[column][2],
+                columnPoints[column][0], 
+                columnPoints[column][1], 
+                columnPoints[column][2], 
                 columnPoints[column][3]);
             foreach (var project in projects)
             {
-                var y = columnText.YLine;
-                var paragraph = CreateProject(project);
-                columnText.AddElement(paragraph);
-                var status = columnText.Go(true);
-                if (ColumnText.HasMoreText(status))
+                var elements = CreateProjectPhrases(project);
+                foreach (var element in elements)
                 {
-                    column = (column + 1) % 3;
-                    if (column == 0)
+                    var y = columnText.YLine;
+                    columnText.AddElement(element);
+                    var status = columnText.Go(true);
+                    if (ColumnText.HasMoreText(status))
                     {
-                        document.NewPage();
+                        column = (column + 1) % 3;
+                        if (column == 0)
+                        {
+                            document.NewPage();
+                        }
+
+                        columnText.SetSimpleColumn(
+                            columnPoints[column][0], 
+                            columnPoints[column][1], 
+                            columnPoints[column][2], 
+                            columnPoints[column][3]);
+                        y = columnPoints[column][3];
                     }
 
-                    columnText.SetSimpleColumn(
-                        columnPoints[column][0],
-                        columnPoints[column][1],
-                        columnPoints[column][2],
-                        columnPoints[column][3]);
-                    y = columnPoints[column][3];
+                    columnText.YLine = y;
+                    columnText.SetText(null);
+                    columnText.AddElement(element);
+                    columnText.Go(false);
                 }
-
-                columnText.YLine = y;
-                columnText.SetText(null);
-                columnText.AddElement(paragraph);
-                columnText.Go(false);
             }
 
             document.Close();
         }
 
+        /// <summary>
+        /// The add if present.
+        /// </summary>
+        /// <param name="source">
+        /// The source.
+        /// </param>
+        /// <param name="check">
+        /// The check.
+        /// </param>
+        /// <param name="provide">
+        /// The provide.
+        /// </param>
+        /// <param name="paragraph">
+        /// The paragraph.
+        /// </param>
+        /// <typeparam name="T">
+        /// </typeparam>
         private static void AddIfPresent<T>(
-            T source,
-            Func<T, bool> check,
-            Func<T, IElement> provide,
+            T source, 
+            Func<T, bool> check, 
+            Func<T, IElement> provide, 
             Paragraph paragraph)
         {
             if (!check(source))
@@ -183,14 +258,68 @@ namespace Tools.Export
             paragraph.Add(Chunk.NEWLINE);
         }
 
-        private static Phrase CreatePhrase(string header, string text)
+        /// <summary>
+        /// The add if present.
+        /// </summary>
+        /// <param name="source">
+        /// The source.
+        /// </param>
+        /// <param name="check">
+        /// The check.
+        /// </param>
+        /// <param name="provide">
+        /// The provide.
+        /// </param>
+        /// <param name="output">
+        /// The output.
+        /// </param>
+        /// <typeparam name="T">
+        /// </typeparam>
+        private static void AddIfPresent<T>(
+            T source, 
+            Func<T, bool> check, 
+            Func<T, IElement> provide, 
+            ICollection<IElement> output)
         {
-            return new Phrase { new Chunk(header + ": ", Bold), new Chunk(text, Normal) };
+            if (!check(source))
+            {
+                return;
+            }
+
+            output.Add(provide(source));
         }
 
+        /// <summary>
+        /// The create phrase.
+        /// </summary>
+        /// <param name="header">
+        /// The header.
+        /// </param>
+        /// <param name="text">
+        /// The text.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Phrase"/>.
+        /// </returns>
+        private static Phrase CreatePhrase(string header, string text)
+        {
+            var phrase = new Phrase { new Chunk(header + ": ", Bold), new Chunk(text, Normal) };
+            phrase.Leading = Leading;
+            return phrase;
+        }
+
+        /// <summary>
+        /// The create project header.
+        /// </summary>
+        /// <param name="project">
+        /// The project.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Phrase"/>.
+        /// </returns>
         private static Phrase CreateProjectHeader(Project project)
         {
-            return new Phrase(string.Format("{0} {1}", project.ZipCode, project.City), Bold);
+            return new Phrase(string.Format("{0} {1}", project.ZipCode, project.City), Bold) { Leading = Leading };
         }
 
         #endregion
