@@ -78,7 +78,7 @@ namespace DataAccess.Repositories
         /// </returns>
         /// <exception cref="Exception">
         /// </exception>
-        public virtual DomainContext GetDbContext()
+        protected virtual DomainContext GetDbContext()
         {
             HttpContext httpContext = HttpContext.Current;
             if (httpContext != null)

@@ -9,7 +9,6 @@
 
 namespace TP1.Areas.HelpPage.Controllers
 {
-    using System;
     using System.Web.Http;
     using System.Web.Mvc;
 

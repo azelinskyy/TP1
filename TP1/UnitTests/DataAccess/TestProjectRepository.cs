@@ -143,7 +143,7 @@ namespace UnitTests.DataAccess
         /// <summary>
         ///     The project repo wrapper.
         /// </summary>
-        public sealed class ProjectRepoWrapper : ProjectRepository
+        internal sealed class ProjectRepoWrapper : ProjectRepository
         {
             #region Fields
 
@@ -162,7 +162,7 @@ namespace UnitTests.DataAccess
             /// <returns>
             ///     The <see cref="DomainContext" />.
             /// </returns>
-            public override DomainContext GetDbContext()
+            protected override DomainContext GetDbContext()
             {
                 return this.context = this.context ?? new DomainContext();
             }
