@@ -18,6 +18,8 @@ namespace Tools.Export
 
     using Model.DomainModels;
 
+    using Resources;
+
     /// <summary>
     ///     Helper to perform export into pdf-file (stream).
     /// </summary>
@@ -34,6 +36,8 @@ namespace Tools.Export
 
         #region Static Fields
 
+        private static readonly BaseFont BaseCyrFont = BaseFont.CreateFont(@"C:\Windows\fonts\Helvetica.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED); 
+
         /// <summary>
         ///     The bold fond const to internal use.
         /// </summary>
@@ -43,6 +47,36 @@ namespace Tools.Export
         ///     The normal fond const to internal use.
         /// </summary>
         private static readonly Font Normal = new Font(Font.FontFamily.HELVETICA, 8, Font.NORMAL);
+
+        #endregion
+
+        #region Fields
+
+        /// <summary>
+        /// The culture.
+        /// </summary>
+        private readonly CultureInfo culture;
+
+        /// <summary>
+        /// The resource service.
+        /// </summary>
+        private readonly ResourceService resourceService;
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectPDFHelper"/> class.
+        /// </summary>
+        /// <param name="culture">
+        /// The culture.
+        /// </param>
+        public ProjectPDFHelper(CultureInfo culture)
+        {
+            this.culture = culture;
+            this.resourceService = new ResourceService(culture);
+        }
 
         #endregion
 
@@ -57,7 +91,7 @@ namespace Tools.Export
         /// <returns>
         /// The <see cref="Paragraph"/>.
         /// </returns>
-        internal static Paragraph CreateProjectParagraph(Project project)
+        internal Paragraph CreateProjectParagraph(Project project)
         {
             var item = new Paragraph();
             item.Leading = Leading;
@@ -70,25 +104,25 @@ namespace Tools.Export
             AddIfPresent(
                 project.Address, 
                 a => !string.IsNullOrEmpty(a.AddressString), 
-                a => CreatePhrase("Addresse", a.AddressString), 
+                a => CreatePhrase(this.resourceService["Address"], a.AddressString), 
                 item);
-            AddIfPresent(project.Architect, a => !string.IsNullOrEmpty(a.Name), a => CreatePhrase("A", a.Name), item);
-            AddIfPresent(project.Owner, o => !string.IsNullOrEmpty(o.Name), o => CreatePhrase("B", o.Name), item);
+            AddIfPresent(project.Architect, a => !string.IsNullOrEmpty(a.Name), a => CreatePhrase(this.resourceService["A_acrchitect"], a.Name), item);
+            AddIfPresent(project.Owner, o => !string.IsNullOrEmpty(o.Name), o => CreatePhrase(this.resourceService["B_builder"], o.Name), item);
             AddIfPresent(
                 project.Price, 
                 p => p > 0, 
-                p => CreatePhrase("Bausumme", p.ToString(CultureInfo.InvariantCulture)), 
+                p => CreatePhrase(this.resourceService["ConstructionCost"], p.ToString(CultureInfo.InvariantCulture)), 
                 item);
-            AddIfPresent(project.Space, s => !string.IsNullOrEmpty(s), s => CreatePhrase("Fläche/Volumen", s), item);
+            AddIfPresent(project.Space, s => !string.IsNullOrEmpty(s), s => CreatePhrase(this.resourceService["AreaVolume"], s), item);
             AddIfPresent(
                 project.StartDate, 
                 sd => !string.IsNullOrEmpty(sd.Description), 
-                sd => CreatePhrase("Baugesuch geplant für", sd.Description), 
+                sd => CreatePhrase(this.resourceService["PlanningApplication"], sd.Description), 
                 item);
             AddIfPresent(
                 project.FinishDate, 
                 fd => !string.IsNullOrEmpty(fd.Description), 
-                fd => CreatePhrase("Bezug/Nutzung geplant für", fd.Description), 
+                fd => CreatePhrase(this.resourceService["SubscribeTermsPlanned"], fd.Description), 
                 item);
             item.Add(Chunk.NEWLINE);
             return item;
@@ -103,7 +137,7 @@ namespace Tools.Export
         /// <returns>
         /// The <see cref="Paragraph"/>.
         /// </returns>
-        internal static IEnumerable<IElement> CreateProjectPhrases(Project project)
+        internal IEnumerable<IElement> CreateProjectPhrases(Project project)
         {
             var result = new List<IElement>();
             result.Add(CreateProjectHeader(project));
@@ -112,25 +146,25 @@ namespace Tools.Export
             AddIfPresent(
                 project.Address, 
                 a => !string.IsNullOrEmpty(a.AddressString), 
-                a => CreatePhrase("Addresse", a.AddressString), 
+                a => CreatePhrase(this.resourceService["Address"], a.AddressString), 
                 result);
-            AddIfPresent(project.Architect, a => !string.IsNullOrEmpty(a.Name), a => CreatePhrase("A", a.Name), result);
-            AddIfPresent(project.Owner, o => !string.IsNullOrEmpty(o.Name), o => CreatePhrase("B", o.Name), result);
+            AddIfPresent(project.Architect, a => !string.IsNullOrEmpty(a.Name), a => CreatePhrase(this.resourceService["A_acrchitect"], a.Name), result);
+            AddIfPresent(project.Owner, o => !string.IsNullOrEmpty(o.Name), o => CreatePhrase(this.resourceService["B_builder"], o.Name), result);
             AddIfPresent(
                 project.Price, 
                 p => p > 0, 
-                p => CreatePhrase("Bausumme", p.ToString(CultureInfo.InvariantCulture)), 
+                p => CreatePhrase(this.resourceService["ConstructionCost"], p.ToString(CultureInfo.InvariantCulture)), 
                 result);
-            AddIfPresent(project.Space, s => !string.IsNullOrEmpty(s), s => CreatePhrase("Fläche/Volumen", s), result);
+            AddIfPresent(project.Space, s => !string.IsNullOrEmpty(s), s => CreatePhrase(this.resourceService["AreaVolume"], s), result);
             AddIfPresent(
                 project.StartDate, 
                 sd => !string.IsNullOrEmpty(sd.Description), 
-                sd => CreatePhrase("Baugesuch geplant für", sd.Description), 
+                sd => CreatePhrase(this.resourceService["PlanningApplication"], sd.Description), 
                 result);
             AddIfPresent(
                 project.FinishDate, 
                 fd => !string.IsNullOrEmpty(fd.Description), 
-                fd => CreatePhrase("Bezug/Nutzung geplant für", fd.Description), 
+                fd => CreatePhrase(this.resourceService["SubscribeTermsPlanned"], fd.Description), 
                 result);
             result.Add(Chunk.NEWLINE);
             return result;
@@ -155,7 +189,7 @@ namespace Tools.Export
         {
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectPageEventHelper(dateFrom, dateTo);
+            writer.PageEvent = new ProjectPageEventHelper(dateFrom, dateTo, this.culture);
 
             document.SetMargins(
                 document.LeftMargin, 
@@ -194,7 +228,7 @@ namespace Tools.Export
                 columnPoints[column][3]);
             foreach (var project in projects)
             {
-                var elements = CreateProjectPhrases(project);
+                var elements = this.CreateProjectPhrases(project);
                 foreach (var element in elements)
                 {
                     var y = columnText.YLine;

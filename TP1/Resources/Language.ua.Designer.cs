@@ -61,6 +61,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to А.
+        /// </summary>
+        public static string A_acrchitect {
+            get {
+                return ResourceManager.GetString("A_acrchitect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Адреса.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Вже зареєстровані?.
         /// </summary>
         public static string AlreadySignedUp {
@@ -88,6 +106,69 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Архітектор.
+        /// </summary>
+        public static string Architect {
+            get {
+                return ResourceManager.GetString("Architect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Площа / об&apos;єм.
+        /// </summary>
+        public static string AreaVolume {
+            get {
+                return ResourceManager.GetString("AreaVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Б.
+        /// </summary>
+        public static string B_builder {
+            get {
+                return ResourceManager.GetString("B_builder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ПБ.
+        /// </summary>
+        public static string BR_builders_representative {
+            get {
+                return ResourceManager.GetString("BR_builders_representative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Будівельник.
+        /// </summary>
+        public static string Builder {
+            get {
+                return ResourceManager.GetString("Builder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Представник будівельника.
+        /// </summary>
+        public static string BuildersRepresentative {
+            get {
+                return ResourceManager.GetString("BuildersRepresentative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проект будівлі.
+        /// </summary>
+        public static string BuildingProject {
+            get {
+                return ResourceManager.GetString("BuildingProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Місто.
         /// </summary>
         public static string City {
@@ -106,6 +187,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вартість будівництва.
+        /// </summary>
+        public static string ConstructionCost {
+            get {
+                return ResourceManager.GetString("ConstructionCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Дата додання.
         /// </summary>
         public static string DateAdded {
@@ -120,6 +210,24 @@ namespace Resources {
         public static string FirstTimeHere {
             get {
                 return ResourceManager.GetString("FirstTimeHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Всі проекти та додаткова докладна інформація на www.bindexis.ch.
+        /// </summary>
+        public static string FullInfoOnSite {
+            get {
+                return ResourceManager.GetString("FullInfoOnSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Скорочення.
+        /// </summary>
+        public static string Legend {
+            get {
+                return ResourceManager.GetString("Legend", resourceCulture);
             }
         }
         
@@ -151,6 +259,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to План додатку запланований на.
+        /// </summary>
+        public static string PlanningApplication {
+            get {
+                return ResourceManager.GetString("PlanningApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Запамятати.
         /// </summary>
         public static string RememberMe {
@@ -174,6 +291,15 @@ namespace Resources {
         public static string SiteName {
             get {
                 return ResourceManager.GetString("SiteName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Підписання / Умови заплановані на.
+        /// </summary>
+        public static string SubscribeTermsPlanned {
+            get {
+                return ResourceManager.GetString("SubscribeTermsPlanned", resourceCulture);
             }
         }
         

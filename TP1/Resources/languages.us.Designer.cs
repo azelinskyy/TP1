@@ -61,6 +61,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A.
+        /// </summary>
+        public static string A_acrchitect {
+            get {
+                return ResourceManager.GetString("A_acrchitect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Already signed up?.
         /// </summary>
         public static string AlreadySignedUp {
@@ -88,6 +106,69 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Architect.
+        /// </summary>
+        public static string Architect {
+            get {
+                return ResourceManager.GetString("Architect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Area / Volume.
+        /// </summary>
+        public static string AreaVolume {
+            get {
+                return ResourceManager.GetString("AreaVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        public static string B_builder {
+            get {
+                return ResourceManager.GetString("B_builder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BR.
+        /// </summary>
+        public static string BR_builders_representative {
+            get {
+                return ResourceManager.GetString("BR_builders_representative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Builder.
+        /// </summary>
+        public static string Builder {
+            get {
+                return ResourceManager.GetString("Builder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Builders Representative.
+        /// </summary>
+        public static string BuildersRepresentative {
+            get {
+                return ResourceManager.GetString("BuildersRepresentative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building Project.
+        /// </summary>
+        public static string BuildingProject {
+            get {
+                return ResourceManager.GetString("BuildingProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         public static string City {
@@ -106,6 +187,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Construction cost.
+        /// </summary>
+        public static string ConstructionCost {
+            get {
+                return ResourceManager.GetString("ConstructionCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date Added.
         /// </summary>
         public static string DateAdded {
@@ -120,6 +210,24 @@ namespace Resources {
         public static string FirstTimeHere {
             get {
                 return ResourceManager.GetString("FirstTimeHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All projects and additional detailed information, see www.bindexis.ch.
+        /// </summary>
+        public static string FullInfoOnSite {
+            get {
+                return ResourceManager.GetString("FullInfoOnSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legend.
+        /// </summary>
+        public static string Legend {
+            get {
+                return ResourceManager.GetString("Legend", resourceCulture);
             }
         }
         
@@ -151,6 +259,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Planning application planned for.
+        /// </summary>
+        public static string PlanningApplication {
+            get {
+                return ResourceManager.GetString("PlanningApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remember me?.
         /// </summary>
         public static string RememberMe {
@@ -174,6 +291,15 @@ namespace Resources {
         public static string SiteName {
             get {
                 return ResourceManager.GetString("SiteName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscribe / Terms planned for.
+        /// </summary>
+        public static string SubscribeTermsPlanned {
+            get {
+                return ResourceManager.GetString("SubscribeTermsPlanned", resourceCulture);
             }
         }
         

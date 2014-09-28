@@ -10,6 +10,7 @@
 namespace UnitTests.Tools
 {
     using System;
+    using System.Globalization;
 
     using NUnit.Framework;
 
@@ -21,7 +22,15 @@ namespace UnitTests.Tools
     [TestFixture]
     public class DateFormatting
     {
+        private CultureInfo culture;
+
         #region Public Methods and Operators
+
+        [SetUp]
+        public void SetUp()
+        {
+            this.culture = CultureInfo.GetCultureInfo("en-US");
+        }
 
         /// <summary>
         /// The one day.
@@ -33,7 +42,7 @@ namespace UnitTests.Tools
             DateTime dateFrom = dateTo;
 
             var formatter = new DateFormatter();
-            string formatedDate = formatter.Format(dateFrom, dateTo);
+            string formatedDate = formatter.Format(dateFrom, dateTo, this.culture);
 
             Assert.AreEqual("10. September 2014", formatedDate);
         }
@@ -48,7 +57,7 @@ namespace UnitTests.Tools
             DateTime dateFrom = dateTo.AddDays(-7);
 
             var formatter = new DateFormatter();
-            string formatedDate = formatter.Format(dateFrom, dateTo);
+            string formatedDate = formatter.Format(dateFrom, dateTo, this.culture);
 
             Assert.AreEqual("KW 35, 29. August - 5. September 2014", formatedDate);
         }
@@ -63,7 +72,7 @@ namespace UnitTests.Tools
             DateTime dateFrom = dateTo.AddDays(-7);
 
             var formatter = new DateFormatter();
-            string formatedDate = formatter.Format(dateFrom, dateTo);
+            string formatedDate = formatter.Format(dateFrom, dateTo, this.culture);
 
             Assert.AreEqual("KW 36, 3. - 10. September 2014", formatedDate);
         }
@@ -78,7 +87,7 @@ namespace UnitTests.Tools
             DateTime dateFrom = dateTo.AddDays(-21);
 
             var formatter = new DateFormatter();
-            string formatedDate = formatter.Format(dateFrom, dateTo);
+            string formatedDate = formatter.Format(dateFrom, dateTo, this.culture);
 
             Assert.AreEqual("15. August - 5. September 2014", formatedDate);
         }
@@ -93,7 +102,7 @@ namespace UnitTests.Tools
             var dateFrom = new DateTime(2013, 7, 12);
 
             var formatter = new DateFormatter();
-            string formatedDate = formatter.Format(dateFrom, dateTo);
+            string formatedDate = formatter.Format(dateFrom, dateTo, this.culture);
 
             Assert.AreEqual("12. July 2013 - 5. September 2014", formatedDate);
         }
@@ -108,7 +117,7 @@ namespace UnitTests.Tools
             DateTime dateFrom = dateTo.AddDays(-12);
 
             var formatter = new DateFormatter();
-            string formatedDate = formatter.Format(dateFrom, dateTo);
+            string formatedDate = formatter.Format(dateFrom, dateTo, this.culture);
 
             Assert.AreEqual("10. - 22. September 2014", formatedDate);
         }

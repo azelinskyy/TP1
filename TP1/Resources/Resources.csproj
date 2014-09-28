@@ -45,6 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConvertToJson.cs" />
+    <Compile Include="Language.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.de.resx</DependentUpon>
+    </Compile>
     <Compile Include="Language.ua.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -56,8 +61,13 @@
       <DependentUpon>languages.us.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Language.de.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Language.ua.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.ua.Designer.cs</LastGenOutput>

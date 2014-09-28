@@ -10,6 +10,7 @@
 namespace Tools.Export
 {
     using System;
+    using System.Globalization;
 
     /// <summary>
     /// The date formatter.
@@ -27,10 +28,11 @@ namespace Tools.Export
         /// <param name="dateTo">
         /// The date to.
         /// </param>
+        /// <param name="culture">The culture.</param>
         /// <returns>
         /// The string that represents period between input from/to dates.
         /// </returns>
-        public string Format(DateTime dateFrom, DateTime dateTo)
+        public string Format(DateTime dateFrom, DateTime dateTo, CultureInfo culture)
         {
             var sameYear = dateFrom.Year == dateTo.Year;
             var sameMonth = dateFrom.Month == dateTo.Month;
@@ -38,7 +40,7 @@ namespace Tools.Export
 
             if (sameYear && sameMonth && sameDay)
             {
-                return dateFrom.ToString("d. MMMM yyyy");
+                return dateFrom.ToString("d. MMMM yyyy", culture);
             }
 
             var weekFactor = string.Empty;
@@ -49,7 +51,7 @@ namespace Tools.Export
                     weekFactor = string.Format("KW {0}, ", dateTo.DayOfYear / 7);
                 }
 
-                return string.Format("{0}{1}. - {2}", weekFactor, dateFrom.Day, dateTo.ToString("d. MMMM yyyy"));
+                return string.Format("{0}{1}. - {2}", weekFactor, dateFrom.Day, dateTo.ToString("d. MMMM yyyy", culture));
             }
 
             if (sameYear)
@@ -59,10 +61,10 @@ namespace Tools.Export
                     weekFactor = string.Format("KW {0}, ", dateTo.DayOfYear / 7);
                 }
 
-                return string.Format("{0}{1} - {2}", weekFactor, dateFrom.ToString("d. MMMM"), dateTo.ToString("d. MMMM yyyy"));
+                return string.Format("{0}{1} - {2}", weekFactor, dateFrom.ToString("d. MMMM", culture), dateTo.ToString("d. MMMM yyyy", culture));
             }
 
-            return string.Format("{0} - {1}", dateFrom.ToString("d. MMMM yyyy"), dateTo.ToString("d. MMMM yyyy"));
+            return string.Format("{0} - {1}", dateFrom.ToString("d. MMMM yyyy", culture), dateTo.ToString("d. MMMM yyyy", culture));
         }
 
         #endregion

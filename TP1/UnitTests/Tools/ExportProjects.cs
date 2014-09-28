@@ -11,6 +11,7 @@ namespace UnitTests.Tools
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
 
     using Model.DomainModels;
@@ -55,9 +56,17 @@ namespace UnitTests.Tools
                                                    FinishDate = new DomainDate { Description = "frühestens 2020" }
                                                };
 
+        private CultureInfo culture;
+
         #endregion
 
         #region Public Methods and Operators
+
+        [SetUp]
+        public void SetUp()
+        {
+            this.culture = CultureInfo.GetCultureInfo("uk-UA");
+        }
 
         /// <summary>
         /// Exports projects to pdf and check file size after that.
@@ -78,7 +87,7 @@ namespace UnitTests.Tools
 
             var service = new ExportService();
             var output = new FileStream(fileName, FileMode.Create, FileAccess.Write);
-            service.ExportProjects(projects, from, to, output);
+            service.ExportProjects(projects, from, to, output, this.culture);
 
             var fileInfo = new FileInfo(fileName);
             Assert.True(fileInfo.Length > 0);
@@ -101,7 +110,7 @@ namespace UnitTests.Tools
             var from = to.AddDays(-7);
 
             var service = new ExportService();
-            service.ExportProjects(projects, from, to, "gregory.hasyn@gmail.com");
+            service.ExportProjects(projects, from, to, "gregory.hasyn@gmail.com", this.culture);
         }
 
         #endregion

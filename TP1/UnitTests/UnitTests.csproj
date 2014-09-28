@@ -75,6 +75,10 @@
       <Project>{B4620C6E-CD64-4436-89B2-A18CD5EE0BD4}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{014f1445-a066-4411-85f4-d1d45e46e029}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{D6160870-8977-45D4-8DC1-104079FE9FF9}</Project>
       <Name>Services</Name>

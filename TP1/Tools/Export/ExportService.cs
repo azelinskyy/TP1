@@ -10,6 +10,7 @@ namespace Tools.Export
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
 
     using Model.DomainModels;
@@ -34,9 +35,10 @@ namespace Tools.Export
         /// <param name="output">
         /// The output stream to export.
         /// </param>
-        public void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output)
+        /// <param name="culture">The culture.</param>
+        public void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output, CultureInfo culture)
         {
-            new ProjectPDFHelper().ExportProjects(projects, dateFrom, dateTo, output);
+            new ProjectPDFHelper(culture).ExportProjects(projects, dateFrom, dateTo, output);
         }
 
         /// <summary>
@@ -48,10 +50,11 @@ namespace Tools.Export
         /// <param name="dateFrom">The start date.</param>
         /// <param name="dateTo">The end date.</param>
         /// <param name="email">The email of recipient.</param>
-        public void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, string email)
+        /// <param name="culture">The culture.</param>
+        public void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, string email, CultureInfo culture)
         {
             var pdfStream = new MemoryStream();
-            this.ExportProjects(projects, dateFrom, dateTo, pdfStream);
+            this.ExportProjects(projects, dateFrom, dateTo, pdfStream, culture);
 
             var attachment = new MemoryStream(pdfStream.ToArray());
             attachment.Seek(0, SeekOrigin.Begin);

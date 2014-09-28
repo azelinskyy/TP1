@@ -56,6 +56,10 @@
       <Project>{b4620c6e-cd64-4436-89b2-a18cd5ee0bd4}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{014f1445-a066-4411-85f4-d1d45e46e029}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.gif">

@@ -165,4 +165,46 @@
   <data name="ZipCode" xml:space="preserve">
     <value>Zip Code</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AreaVolume" xml:space="preserve">
+    <value>Area / Volume</value>
+  </data>
+  <data name="A_acrchitect" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="BR_builders_representative" xml:space="preserve">
+    <value>BR</value>
+  </data>
+  <data name="BuildingProject" xml:space="preserve">
+    <value>Building Project</value>
+  </data>
+  <data name="B_builder" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="ConstructionCost" xml:space="preserve">
+    <value>Construction cost</value>
+  </data>
+  <data name="FullInfoOnSite" xml:space="preserve">
+    <value>All projects and additional detailed information, see www.bindexis.ch</value>
+  </data>
+  <data name="PlanningApplication" xml:space="preserve">
+    <value>Planning application planned for</value>
+  </data>
+  <data name="SubscribeTermsPlanned" xml:space="preserve">
+    <value>Subscribe / Terms planned for</value>
+  </data>
+  <data name="Architect" xml:space="preserve">
+    <value>Architect</value>
+  </data>
+  <data name="Builder" xml:space="preserve">
+    <value>Builder</value>
+  </data>
+  <data name="BuildersRepresentative" xml:space="preserve">
+    <value>Builders Representative</value>
+  </data>
+  <data name="Legend" xml:space="preserve">
+    <value>Legend</value>
+  </data>
 </root>
