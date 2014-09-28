@@ -36,7 +36,7 @@ namespace Tools.Export
         /// The output stream to export.
         /// </param>
         /// <param name="culture">The culture.</param>
-        public void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output, CultureInfo culture)
+        public void ExportProjects(IEnumerable<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output, CultureInfo culture)
         {
             new ProjectPDFHelper(culture).ExportProjects(projects, dateFrom, dateTo, output);
         }
@@ -51,7 +51,7 @@ namespace Tools.Export
         /// <param name="dateTo">The end date.</param>
         /// <param name="email">The email of recipient.</param>
         /// <param name="culture">The culture.</param>
-        public void ExportProjects(List<Project> projects, DateTime dateFrom, DateTime dateTo, string email, CultureInfo culture)
+        public void ExportProjects(IEnumerable<Project> projects, DateTime dateFrom, DateTime dateTo, string email, CultureInfo culture)
         {
             var pdfStream = new MemoryStream();
             this.ExportProjects(projects, dateFrom, dateTo, pdfStream, culture);

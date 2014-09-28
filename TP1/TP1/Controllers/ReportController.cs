@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
+    using System.Globalization;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -15,13 +16,15 @@
 
     using Services.Factories;
 
+    using Tools.Export;
+
     public class ReportController : Controller
     {
         private ProjectRepository projectRepository;
 
         private ProjectConvertFactory projectConvertFactory;
 
-        public ProjectRepository ProjectRepository 
+        public ProjectRepository ProjectRepository
         {
             get
             {
@@ -44,6 +47,36 @@
             return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = data });
         }
 
+        public void Export(DateTime from, DateTime to, string email, int pageIndex = 1, int pageSize = 10, string sortField = "", int sortOrder = 0, string lang = "en-US")
+        {
+            var projects = this.ProjectRepository.GetAll().Where(p => p.DateAdded >= @from && p.DateAdded <= to);
+
+            if ((SortOrder)sortOrder == SortOrder.Ascending)
+            {
+                if (sortField.ToLower() == "ZipCode")
+                {
+                    projects = projects.OrderBy(x => x.ZipCode).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                }
+                else
+                {
+                    projects = projects.OrderBy(x => x.Title).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                }
+            }
+            else
+            {
+                if (sortField.ToLower() == "ZipCode")
+                {
+                    projects = projects.OrderByDescending(x => x.ZipCode).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                }
+                else
+                {
+                    projects = projects.OrderByDescending(x => x.Title).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                }
+            }
+
+            new ExportService().ExportProjects(projects, from, to, email, new CultureInfo(lang));
+        }
+
         public string GetReport(int pageIndex = 1, int pageSize = 10, string sortField = "", int sortOrder = 0)
         {
             var data = this.BuildReports();
@@ -56,7 +89,7 @@
             Project projectToRemove = this.ProjectRepository.GetById(id);
             this.projectRepository.Remove(projectToRemove);
         }
-        
+
         public ProjectDto GetProject(int id)
         {
             return this.ProjectConvertFactory.FromModel(this.ProjectRepository.GetById(id));
