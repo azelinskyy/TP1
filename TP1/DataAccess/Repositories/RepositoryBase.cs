@@ -71,30 +71,6 @@ namespace DataAccess.Repositories
         public abstract T GetById(int id);
 
         /// <summary>
-        ///     The get db context.
-        /// </summary>
-        /// <returns>
-        ///     The <see cref="DomainContext" />.
-        /// </returns>
-        /// <exception cref="Exception">
-        /// </exception>
-        protected virtual DomainContext GetDbContext()
-        {
-            HttpContext httpContext = HttpContext.Current;
-            if (httpContext != null)
-            {
-                if (httpContext.Items[ContextKey] == null)
-                {
-                    httpContext.Items.Add(ContextKey, new DomainContext());
-                }
-
-                return httpContext.Items[ContextKey] as DomainContext;
-            }
-
-            throw new Exception("No HttpContext available");
-        }
-
-        /// <summary>
         /// The remove single.
         /// </summary>
         /// <param name="item">
@@ -117,6 +93,30 @@ namespace DataAccess.Repositories
         /// The item.
         /// </param>
         public abstract void Update(T item);
+
+        /// <summary>
+        ///     The get db context.
+        /// </summary>
+        /// <returns>
+        ///     The <see cref="DomainContext" />.
+        /// </returns>
+        /// <exception cref="Exception">
+        /// </exception>
+        protected virtual DomainContext GetDbContext()
+        {
+            HttpContext httpContext = HttpContext.Current;
+            if (httpContext != null)
+            {
+                if (httpContext.Items[ContextKey] == null)
+                {
+                    httpContext.Items.Add(ContextKey, new DomainContext());
+                }
+
+                return httpContext.Items[ContextKey] as DomainContext;
+            }
+
+            throw new Exception("No HttpContext available");
+        }
 
         #endregion
     }
