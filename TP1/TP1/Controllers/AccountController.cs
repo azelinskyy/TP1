@@ -222,8 +222,6 @@ namespace TP1.Controllers
                         db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
                         db.SaveChanges();
 
-                        InitiateDatabaseForNewUser(model.UserName);
-
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                         OAuthWebSecurity.Login(provider, providerUserId, false);
 
@@ -327,8 +325,6 @@ namespace TP1.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-
-                    InitiateDatabaseForNewUser(model.UserName);
 
                     FormsAuthentication.SetAuthCookie(model.UserName, false);
                     return this.Json(new { success = true, redirect = returnUrl });
@@ -539,25 +535,6 @@ namespace TP1.Controllers
                     return
                         "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
             }
-        }
-
-        /// <summary>
-        /// Initiate a new todo list for new user
-        /// </summary>
-        /// <param name="userName">
-        /// </param>
-        private static void InitiateDatabaseForNewUser(string userName)
-        {
-            var db = new TodoItemContext();
-            var todoList = new TodoList { UserId = userName, Title = "My Todo List #1", Todos = new List<TodoItem>() };
-            db.TodoLists.Add(todoList);
-            db.SaveChanges();
-
-            todoList.Todos.Add(
-                new TodoItem { Title = "Todo item #1", TodoListId = todoList.TodoListId, IsDone = false });
-            todoList.Todos.Add(
-                new TodoItem { Title = "Todo item #2", TodoListId = todoList.TodoListId, IsDone = false });
-            db.SaveChanges();
         }
 
         /// <summary>

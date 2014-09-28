@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\DomainContext.cs" />
-    <Compile Include="Contexts\TodoItemContext.cs" />
     <Compile Include="Contexts\UsersContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
