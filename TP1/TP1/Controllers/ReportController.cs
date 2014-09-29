@@ -47,33 +47,9 @@
             return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = data });
         }
 
-        public void Export(DateTime from, DateTime to, string email, int pageIndex = 1, int pageSize = 10, string sortField = "", int sortOrder = 0, string lang = "en-US")
+        public void Export(DateTime from, DateTime to, string email, string lang = "en-US")
         {
             var projects = this.ProjectRepository.GetAll().Where(p => p.DateAdded >= @from && p.DateAdded <= to);
-
-            if ((SortOrder)sortOrder == SortOrder.Ascending)
-            {
-                if (sortField.ToLower() == "ZipCode")
-                {
-                    projects = projects.OrderBy(x => x.ZipCode).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
-                }
-                else
-                {
-                    projects = projects.OrderBy(x => x.Title).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
-                }
-            }
-            else
-            {
-                if (sortField.ToLower() == "ZipCode")
-                {
-                    projects = projects.OrderByDescending(x => x.ZipCode).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
-                }
-                else
-                {
-                    projects = projects.OrderByDescending(x => x.Title).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
-                }
-            }
-
             new ExportService().ExportProjects(projects, from, to, email, new CultureInfo(lang));
         }
 
