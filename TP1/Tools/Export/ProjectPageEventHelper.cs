@@ -23,7 +23,7 @@ namespace Tools.Export
     {
         #region Static Fields
 
-        private static readonly BaseFont BaseCyrFont = BaseFont.CreateFont(@"C:\Windows\fonts\Helvetica.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED); 
+        //// private static readonly BaseFont BaseCyrFont = BaseFont.CreateFont(@"C:\Windows\fonts\Helvetica.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED); 
 
         /// <summary>
         ///     The footer font.

@@ -36,7 +36,7 @@ namespace Tools.Export
 
         #region Static Fields
 
-        private static readonly BaseFont BaseCyrFont = BaseFont.CreateFont(@"C:\Windows\fonts\Helvetica.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED); 
+        //// private static readonly BaseFont BaseCyrFont = BaseFont.CreateFont(@"C:\Windows\fonts\Helvetica.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED); 
 
         /// <summary>
         ///     The bold fond const to internal use.
