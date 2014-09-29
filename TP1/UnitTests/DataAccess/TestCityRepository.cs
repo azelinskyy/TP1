@@ -10,6 +10,7 @@ namespace UnitTests.DataAccess
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using global::DataAccess.Repositories;
 
@@ -65,7 +66,12 @@ namespace UnitTests.DataAccess
         [Test]
         public void TestAdd()
         {
-            Assert.Throws<NotImplementedException>(() => this.repo.Add(this.city));
+            int countBeforeAdd = this.repo.GetAll().Count();
+            this.city.Id = 0;
+            this.repo.Add(this.city);
+            int countAfterAdd = this.repo.GetAll().Count();
+            Assert.AreEqual(countAfterAdd - countBeforeAdd, 1);
+            Assert.AreNotEqual(this.city.Id, 0);
         }
 
         /// <summary>
@@ -83,7 +89,7 @@ namespace UnitTests.DataAccess
         [Test]
         public void TestGetAll()
         {
-            Assert.Throws<NotImplementedException>(() => this.repo.GetAll());
+            Assert.DoesNotThrow(() => this.repo.GetAll());
         }
 
         /// <summary>
@@ -92,7 +98,12 @@ namespace UnitTests.DataAccess
         [Test]
         public void TestGetById()
         {
-            Assert.Throws<NotImplementedException>(() => this.repo.GetById(1));
+            Assert.Throws<InvalidOperationException>(() => this.repo.GetById(0));
+            this.repo.Add(this.city);
+            var item = this.repo.GetById(this.city.Id);
+            Assert.IsNotNull(item);
+            Assert.AreEqual(item.Id, this.city.Id);
+            Assert.AreEqual(item.Name, this.city.Name);
         }
 
         /// <summary>
