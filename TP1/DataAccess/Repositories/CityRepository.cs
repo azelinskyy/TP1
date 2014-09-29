@@ -10,6 +10,7 @@ namespace DataAccess.Repositories
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using Model.DomainModels;
 
@@ -30,7 +31,13 @@ namespace DataAccess.Repositories
         /// </exception>
         public override void Add(City item)
         {
-            throw new NotImplementedException();
+            if (item.Id != 0)
+            {
+                throw new ArgumentOutOfRangeException("Id");
+            }
+
+            this.GetDbContext().Cities.Add(item);
+            this.GetDbContext().SaveChanges();
         }
 
         /// <summary>
@@ -56,7 +63,7 @@ namespace DataAccess.Repositories
         /// </exception>
         public override IEnumerable<City> GetAll()
         {
-            throw new NotImplementedException();
+            return this.GetDbContext().Cities;
         }
 
         /// <summary>
@@ -72,7 +79,7 @@ namespace DataAccess.Repositories
         /// </exception>
         public override City GetById(int id)
         {
-            throw new NotImplementedException();
+            return this.GetDbContext().Cities.Single(c => c.Id == id);
         }
 
         /// <summary>
