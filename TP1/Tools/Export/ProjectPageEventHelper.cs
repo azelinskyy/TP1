@@ -10,6 +10,7 @@ namespace Tools.Export
 {
     using System;
     using System.Globalization;
+    using System.IO;
 
     using iTextSharp.text;
     using iTextSharp.text.pdf;
@@ -23,39 +24,51 @@ namespace Tools.Export
     {
         #region Static Fields
 
-        private static readonly BaseFont BaseCyrFont = BaseFont.CreateFont(@"C:\Windows\fonts\Helvetica.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED); 
+        /// <summary>
+        /// The path to arialuni.tff file with proper font.
+        /// </summary>
+        private static readonly string ArialuniTff =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIALUNI.TTF");
 
         /// <summary>
         ///     The footer font.
         /// </summary>
-        private static readonly Font Footer = new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL);
+        private static readonly Font Footer = new Font(UnicodeBaseFont, 11, Font.NORMAL);
 
         /// <summary>
         ///     The header font.
         /// </summary>
-        private static readonly Font Header = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+        private static readonly Font Header = new Font(UnicodeBaseFont, 12, Font.BOLD);
+
+        /// <summary>
+        /// The instance of font base for proper font.
+        /// </summary>
+        private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
+            ArialuniTff, 
+            BaseFont.IDENTITY_H, 
+            BaseFont.NOT_EMBEDDED);
 
         #endregion
 
         #region Fields
 
         /// <summary>
-        /// The culture.
+        ///     The culture.
         /// </summary>
         private readonly CultureInfo culture;
 
         /// <summary>
-        /// The date from.
+        ///     The date from.
         /// </summary>
         private readonly DateTime dateFrom;
 
         /// <summary>
-        /// The date to.
+        ///     The date to.
         /// </summary>
         private readonly DateTime dateTo;
 
         /// <summary>
-        /// The resource service.
+        ///     The resource service.
         /// </summary>
         private readonly ResourceService resourceService;
 
@@ -121,7 +134,7 @@ namespace Tools.Export
             footerTable.SetWidths(new[] { 9, 1 });
             footerTable.TotalWidth = document.Right - document.Left;
 
-            PdfPCell cell = this.GetNoBorderCell(
+            var cell = this.GetNoBorderCell(
                 new Phrase(this.resourceService["FullInfoOnSite"], Footer), 
                 Element.ALIGN_LEFT);
             footerTable.AddCell(cell);
@@ -150,10 +163,10 @@ namespace Tools.Export
             headerTable.SetWidths(new[] { 1, 2 });
             headerTable.TotalWidth = document.Right - document.Left;
 
-            Image image = Image.GetInstance("logo.gif");
+            var image = Image.GetInstance("logo.gif");
             image.ScalePercent(75);
 
-            PdfPCell cell = this.GetNoBorderCell(image);
+            var cell = this.GetNoBorderCell(image);
             cell.Padding = 5;
             headerTable.AddCell(cell);
 
@@ -173,10 +186,10 @@ namespace Tools.Export
         }
 
         /// <summary>
-        /// The format header date.
+        ///     The format header date.
         /// </summary>
         /// <returns>
-        /// The <see cref="string"/>.
+        ///     The <see cref="string" />.
         /// </returns>
         private string FormatHeaderDate()
         {

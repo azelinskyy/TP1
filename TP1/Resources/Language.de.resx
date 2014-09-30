@@ -135,9 +135,6 @@
   <data name="AreaVolume" xml:space="preserve">
     <value>Fläche/Volumen</value>
   </data>
-  <data name="A_acrchitect" xml:space="preserve">
-    <value>A</value>
-  </data>
   <data name="BR_builders_representative" xml:space="preserve">
     <value>BV</value>
   </data>
@@ -206,5 +203,8 @@
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>PLZ</value>
+  </data>
+  <data name="A_acrchitect" xml:space="preserve">
+    <value>A</value>
   </data>
 </root>
