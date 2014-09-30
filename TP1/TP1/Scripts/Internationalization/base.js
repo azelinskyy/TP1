@@ -10,8 +10,6 @@ var availableLanguages = [
         type: "ua"
     }
 ];
-//window.languageModel = {};
-
 
 var languageModel = function (languages) {
     var self = this;
@@ -37,5 +35,3 @@ var languageModel = function (languages) {
 
     });
 };
-//window.languageModel = new languageModel(languageModel)
-//ko.applyBindings(new languageModel(availableLanguages));

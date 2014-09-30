@@ -78,13 +78,10 @@
             return entity.Id;
         }
 
-        public void PutProject(int id, ProjectDto project)
+        public void PutProject(ProjectDto project)
         {
             var entity = this.ProjectConvertFactory.ToModel(project);
-            if (entity.Id != id)
-            {
-                throw new ArgumentOutOfRangeException("Ids do not match");
-            }
+         
 
             this.ProjectRepository.Update(entity);
         }
@@ -118,14 +115,35 @@
 
             return result;
         }
+        public class Product
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Category { get; set; }
+            public decimal Price { get; set; }
+        }
+        public JsonResult GetAllProduct()
+        {
+            var data = this.BuildReports();
+            return this.Json(data, JsonRequestBehavior.AllowGet);
+
+
+            List<Product> products = new List<Product>();
+            // Add products for the Demonstration
+            products.Add(new Product { Id =1,  Name = "Computer", Category = "Electronics", Price = 23.54M });
+            products.Add(new Product { Id = 2, Name = "Laptop", Category = "Electronics", Price = 33.75M });
+            products.Add(new Product { Id = 3, Name = "iPhone4", Category = "Phone", Price = 16.99M });
+            return Json(products, JsonRequestBehavior.AllowGet);
+        }
+
 
         private List<ProjectDto> BuildReports()
         {
             var converter = new ProjectConvertFactory();
-            return this.ProjectRepository.GetAll().Select(converter.FromModel).ToList();
-
+            
+            /*
             // replace code above withthis one for initial insert of test data
-            /*var companyA = new City { Name = "Lviv" };
+            var companyA = new City { Name = "Lviv" };
             var companyB = new City { Name = "Dresden" };
             var reports = new List<Project>
                               {
@@ -164,9 +182,9 @@
                               };
 
             var repo = new ProjectRepository();
-            repo.AddRange(reports);
-            var converter = new ProjectConvertFactory();
-            return reports.Select(converter.FromModel).ToList();*/
+            repo.AddRange(reports);*/
+
+            return this.ProjectRepository.GetAll().Select(converter.FromModel).ToList();
         }
     }
 }

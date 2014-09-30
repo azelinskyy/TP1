@@ -16,7 +16,6 @@
         AntiForgery.GetTokens(null, out cookieToken, out formToken);
         return cookieToken + ":" + formToken;
     }
-
 }
 
 <header>
@@ -26,51 +25,100 @@
 <div id="main-content">
     @if (@User.Identity.IsAuthenticated)
     {
-        <h2>Index</h2>
-        <div id="studentListGrid">
-            <table class="grdTbl">
-                <thead class="grdTblHead">
-                    <tr>
-                        <th><a href="#" onclick="window.reportApp.eW.Dashboard.StudentDataGrid.Sort('Name')" class="sortCol">@Html.KnockoutHelperFor("Title", "p")</a></th>
-                        <th><a href="#" onclick="window.reportApp.eW.Dashboard.StudentDataGrid.Sort('Age')" class="sortCol">@Html.KnockoutHelperFor("ZipCode", "p")</a></th>
-                        <th>@Html.KnockoutHelperFor("City", "p")</th>
-                        <th>@Html.KnockoutHelperFor("DateAdded", "p")</th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: window.reportApp.eW.Dashboard.StudentDataGrid.DataRows">
-                    <tr>
-                        <td data-bind="text: Title"></td>
-                        <td data-bind="text: ZipCode"></td>
-                        <td data-bind="text: City.Name"></td>
-                        <td data-bind="text: DateAdded"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="pagerWrap">
-                <ul class="grdLinePager">
-                    <li class="liBgFirst"><a href="#" onclick="window.reportApp.eW.Dashboard.StudentDataGrid.FlipPage(1)"></a></li>
-                    <li class="liBgPrev"><a href="#" data-bind="click: function () { window.reportApp.eW.Dashboard.StudentDataGrid.FlipPage(window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.pageIndex() - 1)  }"></a></li>
-                    <li class="liBgCur">
-                        <input data-bind="value: window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.requestedPage" type="text" />
-                        <span>of total</span>
-                        <span data-bind="text: window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.totalPages()"></span>
-                        <span> pages</span>
-                    </li>
-                    <li class="liBGNext"><a href="#" data-bind="click: function () { window.reportApp.eW.Dashboard.StudentDataGrid.FlipPage(window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.pageIndex() + 1) }"></a></li>
-                    <li class="liBGLast"><a href="#" data-bind="click: function () { window.reportApp.eW.Dashboard.StudentDataGrid.FlipPage(window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.totalPages()) }"></a></li>
-                </ul>
-                <div class="pagerNumWrap">
-                    <span># of rows in page </span>
-                    <select data-bind="options: window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.pageSizeOptions, value: window.reportApp.eW.Dashboard.StudentDataGrid.SelectedPageSizeOption "></select>
-                </div>
-                <!--this is for demo only. unhide it in style to view -->
-                <ul class="grdPager" data-bind="foreach: new Array(window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.totalPages())" style="display:none">
-                    <li><a href='#' data-bind="click: function () { window.reportApp.eW.Dashboard.StudentDataGrid.FlipPage($index() + 1) }, text: ($index() + 1), style: { color: ($index() + 1) == window.reportApp.eW.Dashboard.StudentDataGrid.GridParams.pageIndex() ? 'black' : 'blue' } "></a></li>
-                </ul>
+        <button data-bind="click: $root.add">Edit</button>
+    <table id="products1" data-bind="visible: displayGrid">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>@Html.KnockoutHelperFor("Title", "p")</th>
+                <th>@Html.KnockoutHelperFor("ZipCode", "p")</th>
+                <th>@Html.KnockoutHelperFor("City", "p")</th>
+                <th>@Html.KnockoutHelperFor("DateAdded", "p")</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: Products">
+            <tr>
+                <td data-bind="text: Id"></td>
+                <td data-bind="text: Title"></td>
+                <td data-bind="text: ZipCode"></td>
+                <td data-bind="text: City.Name"></td>
+                <td data-bind="text: DateAdded"></td>
+                <td>
+                    <button data-bind="click: $root.edit">Edit</button>
+                    <button data-bind="click: $root.delete">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>footer</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    <br />
+    <div style="border-top: solid 2px  #282828; width: 430px; height: 10px">&nbsp;</div>
+    <div data-bind="visible: displayForm">
+        <div data-bind="if: Project">
+            <div>
+                <h2>Update Product</h2>
+            </div>
+            <div>
+                <label for="productId" data-bind="visible: false">ID</label>
+                <label data-bind="text: Project().Id, visible: false"></label>
+
+            </div>
+            <div>
+                <label for="title">@Html.KnockoutHelperFor("Title", "p")</label>
+                <input data-bind="value: Project().Title" type="text" title="Name" />
+            </div>
+
+            <div>
+                <label for="name">@Html.KnockoutHelperFor("ZipCode", "p")</label>
+                <input data-bind="value: Project().ZipCode" type="text" title="Name" />
+            </div>
+
+            <div>
+                <label for="category">@Html.KnockoutHelperFor("City", "p")</label>
+                <input data-bind="value: Project().City.Name" type="text" title="Category" />
+            </div>
+            <br />
+            <div>
+                <button data-bind="click: $root.update">Update</button>
+                <button data-bind="click: $root.cancel">Cancel</button>
+
             </div>
         </div>
 
+        <div data-bind="ifnot: Project()">
+            <div>
+                <h2>Add New Product</h2>
+            </div>
+            <div>
+                <label for="title">@Html.KnockoutHelperFor("Title", "p")</label>
+                <input data-bind="value: $root.Title" type="text" title="Name" />
+            </div>
 
+            <div>
+                <label for="zipcode">@Html.KnockoutHelperFor("ZipCode", "p")</label>
+                <input data-bind="value: $root.ZipCode" type="text" title="Category" />
+            </div>
+
+            <div>
+                <label for="city">@Html.KnockoutHelperFor("City", "p")</label>
+              <!--  <input data-bind="value: $root.City.Name" type="text" title="Price" />-->
+            </div>
+            <br />
+            <div>
+                <button data-bind="click: $root.create">Save</button>
+                <button data-bind="click: $root.reset">Reset</button>
+                <button data-bind="click: $root.cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     }
     else
@@ -97,18 +145,9 @@
 
 @section Scripts {
     <script type="text/javascript">
-
-        window.reportApp.eW.Dashboard = window.reportApp.eW.Dashboard || {};
-        window.reportApp.eW.Dashboard.StudentDataGrid = new window.reportApp.eW.DataGridAjax('/Report/GetReport', 10);
-
-        window.reportApp.eW.Dashboard.Init = function () {
-            window.reportApp.eW.Dashboard.StudentDataGrid.GetData();
-            window.reportApp.eW.Dashboard.StudentDataGrid.DataRows.language = languageModel(availableLanguages);
-
-            ko.applyBindings(window.reportApp.eW.Dashboard.StudentDataGrid.DataRows);
-        };
-        window.reportApp.eW.Dashboard.Init();
-
+        var viewModel = new ReportViewModel();
+        viewModel.Language = languageModel(availableLanguages);
+        ko.applyBindings(viewModel);
     </script>
 }
 

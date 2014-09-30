@@ -11,6 +11,7 @@
                 <th><a href="#" onclick="window.reportApp.eW.Dashboard.StudentDataGrid.Sort('ZipCode')" class="sortCol">@Html.KnockoutHelperFor("ZipCode", "p")</a></th>
                 <th>@Html.KnockoutHelperFor("Address", "p")</th>
                 <th>@Html.KnockoutHelperFor("StartDate", "p")</th>
+                <th>tesr</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: window.reportApp.eW.Dashboard.StudentDataGrid.DataRows">
@@ -19,6 +20,10 @@
                 <td data-bind="text: ZipCode"></td>
                 <td data-bind="text: City.Name"></td>
                 <td data-bind="text: City.Address"></td>
+                 <td>
+                    <button data-bind="click: function () { alert(); $root }">Edit</button>
+                    <button>Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>
