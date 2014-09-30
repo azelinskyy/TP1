@@ -36,29 +36,41 @@ namespace Tools.Export
 
         #region Static Fields
 
-        //// private static readonly BaseFont BaseCyrFont = BaseFont.CreateFont(@"C:\Windows\fonts\Helvetica.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED); 
+        /// <summary>
+        /// The path to arialuni.tff file with proper font.
+        /// </summary>
+        private static readonly string ArialuniTff =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIALUNI.TTF");
 
         /// <summary>
         ///     The bold fond const to internal use.
         /// </summary>
-        private static readonly Font Bold = new Font(Font.FontFamily.HELVETICA, 8, Font.BOLD);
+        private static readonly Font Bold = new Font(UnicodeBaseFont, 8, Font.BOLD);
 
         /// <summary>
         ///     The normal fond const to internal use.
         /// </summary>
-        private static readonly Font Normal = new Font(Font.FontFamily.HELVETICA, 8, Font.NORMAL);
+        private static readonly Font Normal = new Font(UnicodeBaseFont, 8, Font.NORMAL);
+
+        /// <summary>
+        /// The instance of font base for proper font.
+        /// </summary>
+        private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
+            ArialuniTff, 
+            BaseFont.IDENTITY_H, 
+            BaseFont.NOT_EMBEDDED);
 
         #endregion
 
         #region Fields
 
         /// <summary>
-        /// The culture.
+        ///     The culture.
         /// </summary>
         private readonly CultureInfo culture;
 
         /// <summary>
-        /// The resource service.
+        ///     The resource service.
         /// </summary>
         private readonly ResourceService resourceService;
 
@@ -106,14 +118,26 @@ namespace Tools.Export
                 a => !string.IsNullOrEmpty(a.AddressString), 
                 a => CreatePhrase(this.resourceService["Address"], a.AddressString), 
                 item);
-            AddIfPresent(project.Architect, a => !string.IsNullOrEmpty(a.Name), a => CreatePhrase(this.resourceService["A_acrchitect"], a.Name), item);
-            AddIfPresent(project.Owner, o => !string.IsNullOrEmpty(o.Name), o => CreatePhrase(this.resourceService["B_builder"], o.Name), item);
+            AddIfPresent(
+                project.Architect, 
+                a => !string.IsNullOrEmpty(a.Name), 
+                a => CreatePhrase(this.resourceService["A_acrchitect"], a.Name), 
+                item);
+            AddIfPresent(
+                project.Owner, 
+                o => !string.IsNullOrEmpty(o.Name), 
+                o => CreatePhrase(this.resourceService["B_builder"], o.Name), 
+                item);
             AddIfPresent(
                 project.Price, 
                 p => p > 0, 
                 p => CreatePhrase(this.resourceService["ConstructionCost"], p.ToString(CultureInfo.InvariantCulture)), 
                 item);
-            AddIfPresent(project.Space, s => !string.IsNullOrEmpty(s), s => CreatePhrase(this.resourceService["AreaVolume"], s), item);
+            AddIfPresent(
+                project.Space, 
+                s => !string.IsNullOrEmpty(s), 
+                s => CreatePhrase(this.resourceService["AreaVolume"], s), 
+                item);
             AddIfPresent(
                 project.StartDate, 
                 sd => !string.IsNullOrEmpty(sd.Description), 
@@ -148,14 +172,26 @@ namespace Tools.Export
                 a => !string.IsNullOrEmpty(a.AddressString), 
                 a => CreatePhrase(this.resourceService["Address"], a.AddressString), 
                 result);
-            AddIfPresent(project.Architect, a => !string.IsNullOrEmpty(a.Name), a => CreatePhrase(this.resourceService["A_acrchitect"], a.Name), result);
-            AddIfPresent(project.Owner, o => !string.IsNullOrEmpty(o.Name), o => CreatePhrase(this.resourceService["B_builder"], o.Name), result);
+            AddIfPresent(
+                project.Architect, 
+                a => !string.IsNullOrEmpty(a.Name), 
+                a => CreatePhrase(this.resourceService["A_acrchitect"], a.Name), 
+                result);
+            AddIfPresent(
+                project.Owner, 
+                o => !string.IsNullOrEmpty(o.Name), 
+                o => CreatePhrase(this.resourceService["B_builder"], o.Name), 
+                result);
             AddIfPresent(
                 project.Price, 
                 p => p > 0, 
                 p => CreatePhrase(this.resourceService["ConstructionCost"], p.ToString(CultureInfo.InvariantCulture)), 
                 result);
-            AddIfPresent(project.Space, s => !string.IsNullOrEmpty(s), s => CreatePhrase(this.resourceService["AreaVolume"], s), result);
+            AddIfPresent(
+                project.Space, 
+                s => !string.IsNullOrEmpty(s), 
+                s => CreatePhrase(this.resourceService["AreaVolume"], s), 
+                result);
             AddIfPresent(
                 project.StartDate, 
                 sd => !string.IsNullOrEmpty(sd.Description), 
