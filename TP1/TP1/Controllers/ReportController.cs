@@ -1,4 +1,13 @@
-﻿namespace TP1.Controllers
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ReportController.cs" company="Team Alpha Solutions">
+//   Copyright © 2014 Team Alpha Solutions
+// </copyright>
+// <summary>
+//   The report controller.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace TP1.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -18,20 +27,30 @@
 
     using Tools.Export;
 
+    /// <summary>
+    /// The report controller.
+    /// </summary>
     public class ReportController : Controller
     {
-        private ProjectRepository projectRepository;
+        #region Fields
 
+        /// <summary>
+        /// The project convert factory.
+        /// </summary>
         private ProjectConvertFactory projectConvertFactory;
 
-        public ProjectRepository ProjectRepository
-        {
-            get
-            {
-                return this.projectRepository = this.projectRepository ?? new ProjectRepository();
-            }
-        }
+        /// <summary>
+        /// The project repository.
+        /// </summary>
+        private ProjectRepository projectRepository;
 
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets the project convert factory.
+        /// </summary>
         public ProjectConvertFactory ProjectConvertFactory
         {
             get
@@ -40,107 +59,171 @@
             }
         }
 
-        [HttpPost]
-        public string GetAllStudentList()
+        /// <summary>
+        /// Gets the project repository.
+        /// </summary>
+        public ProjectRepository ProjectRepository
         {
-            var data = this.BuildReports();
-            return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = data });
+            get
+            {
+                return this.projectRepository = this.projectRepository ?? new ProjectRepository();
+            }
         }
 
-        public void Export(DateTime from, DateTime to, string email, string lang = "en-US")
-        {
-            var projects = this.ProjectRepository.GetAll().Where(p => p.DateAdded >= @from && p.DateAdded <= to);
-            new ExportService().ExportProjects(projects, from, to, email, new CultureInfo(lang));
-        }
+        #endregion
 
-        public string GetReport(int pageIndex = 1, int pageSize = 10, string sortField = "", int sortOrder = 0)
-        {
-            var data = this.BuildReports();
-            var jsonData = JsonConvert.SerializeObject(this.SortReport(data, pageIndex, pageSize, sortField, (SortOrder)sortOrder));
-            return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = jsonData });
-        }
+        #region Public Methods and Operators
 
+        /// <summary>
+        /// The delete project.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
         public void DeleteProject(int id)
         {
             Project projectToRemove = this.ProjectRepository.GetById(id);
             this.projectRepository.Remove(projectToRemove);
         }
 
+        /// <summary>
+        /// The export.
+        /// </summary>
+        /// <param name="from">
+        /// The from.
+        /// </param>
+        /// <param name="to">
+        /// The to.
+        /// </param>
+        /// <param name="email">
+        /// The email.
+        /// </param>
+        /// <param name="lang">
+        /// The lang.
+        /// </param>
+        public void Export(DateTime from, DateTime to, string email, string lang = "en-US")
+        {
+            IEnumerable<Project> projects =
+                this.ProjectRepository.GetAll().Where(p => p.DateAdded >= @from && p.DateAdded <= to);
+            new ExportService().ExportProjects(projects, from, to, email, new CultureInfo(lang));
+        }
+
+        /// <summary>
+        /// The get all product.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="JsonResult"/>.
+        /// </returns>
+        public JsonResult GetAllProduct()
+        {
+            List<ProjectDto> data = this.BuildReports();
+            return this.Json(data, JsonRequestBehavior.AllowGet);
+
+            var products = new List<Product>();
+
+            // Add products for the Demonstration
+            products.Add(new Product { Id = 1, Name = "Computer", Category = "Electronics", Price = 23.54M });
+            products.Add(new Product { Id = 2, Name = "Laptop", Category = "Electronics", Price = 33.75M });
+            products.Add(new Product { Id = 3, Name = "iPhone4", Category = "Phone", Price = 16.99M });
+            return this.Json(products, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// The get all student list.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
+        [HttpPost]
+        public string GetAllStudentList()
+        {
+            List<ProjectDto> data = this.BuildReports();
+            return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = data });
+        }
+
+        /// <summary>
+        /// The get project.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="ProjectDto"/>.
+        /// </returns>
         public ProjectDto GetProject(int id)
         {
             return this.ProjectConvertFactory.FromModel(this.ProjectRepository.GetById(id));
         }
 
+        /// <summary>
+        /// The get report.
+        /// </summary>
+        /// <param name="pageIndex">
+        /// The page index.
+        /// </param>
+        /// <param name="pageSize">
+        /// The page size.
+        /// </param>
+        /// <param name="sortField">
+        /// The sort field.
+        /// </param>
+        /// <param name="sortOrder">
+        /// The sort order.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
+        public string GetReport(int pageIndex = 1, int pageSize = 10, string sortField = "", int sortOrder = 0)
+        {
+            List<ProjectDto> data = this.BuildReports();
+            string jsonData =
+                JsonConvert.SerializeObject(this.SortReport(data, pageIndex, pageSize, sortField, (SortOrder)sortOrder));
+            return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = jsonData });
+        }
+
+        /// <summary>
+        /// The post project.
+        /// </summary>
+        /// <param name="project">
+        /// The project.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public int PostProject(ProjectDto project)
         {
-            var entity = this.ProjectConvertFactory.ToModel(project);
+            Project entity = this.ProjectConvertFactory.ToModel(project);
             this.projectRepository.Add(entity);
             return entity.Id;
         }
 
+        /// <summary>
+        /// The put project.
+        /// </summary>
+        /// <param name="project">
+        /// The project.
+        /// </param>
         public void PutProject(ProjectDto project)
         {
-            var entity = this.ProjectConvertFactory.ToModel(project);
-         
+            Project entity = this.ProjectConvertFactory.ToModel(project);
 
             this.ProjectRepository.Update(entity);
         }
 
-        private IList<ProjectDto> SortReport(IEnumerable<ProjectDto> data, int pageIndex, int pageSize, string sortField, SortOrder order)
-        {
-            IList<ProjectDto> result;
+        #endregion
 
-            if (order == SortOrder.Ascending)
-            {
-                if (sortField.ToLower() == "ZipCode")
-                {
-                    result = data.OrderBy(x => x.ZipCode).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
-                }
-                else
-                {
-                    result = data.OrderBy(x => x.Title).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
-                }
-            }
-            else
-            {
-                if (sortField.ToLower() == "ZipCode")
-                {
-                    result = data.OrderByDescending(x => x.ZipCode).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
-                }
-                else
-                {
-                    result = data.OrderByDescending(x => x.Title).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
-                }
-            }
+        #region Methods
 
-            return result;
-        }
-        public class Product
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Category { get; set; }
-            public decimal Price { get; set; }
-        }
-        public JsonResult GetAllProduct()
-        {
-            var data = this.BuildReports();
-            return this.Json(data, JsonRequestBehavior.AllowGet);
-
-
-            List<Product> products = new List<Product>();
-            // Add products for the Demonstration
-            products.Add(new Product { Id =1,  Name = "Computer", Category = "Electronics", Price = 23.54M });
-            products.Add(new Product { Id = 2, Name = "Laptop", Category = "Electronics", Price = 33.75M });
-            products.Add(new Product { Id = 3, Name = "iPhone4", Category = "Phone", Price = 16.99M });
-            return Json(products, JsonRequestBehavior.AllowGet);
-        }
-
-
+        /// <summary>
+        /// The build reports.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
         private List<ProjectDto> BuildReports()
         {
             var converter = new ProjectConvertFactory();
-            
+
             /*
             // replace code above withthis one for initial insert of test data
             var companyA = new City { Name = "Lviv" };
@@ -183,8 +266,97 @@
 
             var repo = new ProjectRepository();
             repo.AddRange(reports);*/
-
             return this.ProjectRepository.GetAll().Select(converter.FromModel).ToList();
+        }
+
+        /// <summary>
+        /// The sort report.
+        /// </summary>
+        /// <param name="data">
+        /// The data.
+        /// </param>
+        /// <param name="pageIndex">
+        /// The page index.
+        /// </param>
+        /// <param name="pageSize">
+        /// The page size.
+        /// </param>
+        /// <param name="sortField">
+        /// The sort field.
+        /// </param>
+        /// <param name="order">
+        /// The order.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IList"/>.
+        /// </returns>
+        private IList<ProjectDto> SortReport(
+            IEnumerable<ProjectDto> data, 
+            int pageIndex, 
+            int pageSize, 
+            string sortField, 
+            SortOrder order)
+        {
+            IList<ProjectDto> result;
+
+            if (order == SortOrder.Ascending)
+            {
+                if (sortField.ToLower() == "ZipCode")
+                {
+                    result = data.OrderBy(x => x.ZipCode).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                }
+                else
+                {
+                    result = data.OrderBy(x => x.Title).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                }
+            }
+            else
+            {
+                if (sortField.ToLower() == "ZipCode")
+                {
+                    result =
+                        data.OrderByDescending(x => x.ZipCode).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                }
+                else
+                {
+                    result =
+                        data.OrderByDescending(x => x.Title).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// The product.
+        /// </summary>
+        public class Product
+        {
+            #region Public Properties
+
+            /// <summary>
+            /// Gets or sets the category.
+            /// </summary>
+            public string Category { get; set; }
+
+            /// <summary>
+            /// Gets or sets the id.
+            /// </summary>
+            public int Id { get; set; }
+
+            /// <summary>
+            /// Gets or sets the name.
+            /// </summary>
+            public string Name { get; set; }
+
+            /// <summary>
+            /// Gets or sets the price.
+            /// </summary>
+            public decimal Price { get; set; }
+
+            #endregion
         }
     }
 }
