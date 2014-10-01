@@ -65,7 +65,7 @@ namespace UnitTests.Tools
         [SetUp]
         public void SetUp()
         {
-            this.culture = CultureInfo.GetCultureInfo("uk-UA");
+            this.culture = CultureInfo.GetCultureInfo("en-US");
         }
 
         /// <summary>

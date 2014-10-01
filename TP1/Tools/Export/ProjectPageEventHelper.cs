@@ -45,8 +45,8 @@ namespace Tools.Export
         /// </summary>
         private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
             ArialuniTff, 
-            BaseFont.IDENTITY_H, 
-            BaseFont.NOT_EMBEDDED);
+            BaseFont.IDENTITY_H,
+            BaseFont.EMBEDDED);
 
         #endregion
 

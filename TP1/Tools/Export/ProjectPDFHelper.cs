@@ -56,9 +56,9 @@ namespace Tools.Export
         /// The instance of font base for proper font.
         /// </summary>
         private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
-            ArialuniTff, 
-            BaseFont.IDENTITY_H, 
-            BaseFont.NOT_EMBEDDED);
+            ArialuniTff,
+            BaseFont.IDENTITY_H,
+            BaseFont.EMBEDDED);
 
         #endregion
 
@@ -114,39 +114,39 @@ namespace Tools.Export
             item.Add(new Phrase(project.Description, Normal));
             item.Add(Chunk.NEWLINE);
             AddIfPresent(
-                project.Address, 
-                a => !string.IsNullOrEmpty(a.AddressString), 
-                a => CreatePhrase(this.resourceService["Address"], a.AddressString), 
+                project.Address,
+                a => !string.IsNullOrEmpty(a.AddressString),
+                a => CreatePhrase(this.resourceService["Address"], a.AddressString),
                 item);
             AddIfPresent(
-                project.Architect, 
-                a => !string.IsNullOrEmpty(a.Name), 
-                a => CreatePhrase(this.resourceService["A_acrchitect"], a.Name), 
+                project.Architect,
+                a => !string.IsNullOrEmpty(a.Name),
+                a => CreatePhrase(this.resourceService["A_acrchitect"], a.Name),
                 item);
             AddIfPresent(
-                project.Owner, 
-                o => !string.IsNullOrEmpty(o.Name), 
-                o => CreatePhrase(this.resourceService["B_builder"], o.Name), 
+                project.Owner,
+                o => !string.IsNullOrEmpty(o.Name),
+                o => CreatePhrase(this.resourceService["B_builder"], o.Name),
                 item);
             AddIfPresent(
-                project.Price, 
-                p => p > 0, 
-                p => CreatePhrase(this.resourceService["ConstructionCost"], p.ToString(CultureInfo.InvariantCulture)), 
+                project.Price,
+                p => p > 0,
+                p => CreatePhrase(this.resourceService["ConstructionCost"], p.ToString(CultureInfo.InvariantCulture)),
                 item);
             AddIfPresent(
-                project.Space, 
-                s => !string.IsNullOrEmpty(s), 
-                s => CreatePhrase(this.resourceService["AreaVolume"], s), 
+                project.Space,
+                s => !string.IsNullOrEmpty(s),
+                s => CreatePhrase(this.resourceService["AreaVolume"], s),
                 item);
             AddIfPresent(
-                project.StartDate, 
-                sd => !string.IsNullOrEmpty(sd.Description), 
-                sd => CreatePhrase(this.resourceService["PlanningApplication"], sd.Description), 
+                project.StartDate,
+                sd => !string.IsNullOrEmpty(sd.Description),
+                sd => CreatePhrase(this.resourceService["PlanningApplication"], sd.Description),
                 item);
             AddIfPresent(
-                project.FinishDate, 
-                fd => !string.IsNullOrEmpty(fd.Description), 
-                fd => CreatePhrase(this.resourceService["SubscribeTermsPlanned"], fd.Description), 
+                project.FinishDate,
+                fd => !string.IsNullOrEmpty(fd.Description),
+                fd => CreatePhrase(this.resourceService["SubscribeTermsPlanned"], fd.Description),
                 item);
             item.Add(Chunk.NEWLINE);
             return item;
@@ -168,42 +168,130 @@ namespace Tools.Export
             result.Add(new Phrase(project.Title, Bold) { Leading = Leading });
             result.Add(new Phrase(project.Description, Normal) { Leading = Leading });
             AddIfPresent(
-                project.Address, 
-                a => !string.IsNullOrEmpty(a.AddressString), 
-                a => CreatePhrase(this.resourceService["Address"], a.AddressString), 
+                project.Address,
+                a => !string.IsNullOrEmpty(a.AddressString),
+                a => CreatePhrase(this.resourceService["Address"], a.AddressString),
                 result);
             AddIfPresent(
-                project.Architect, 
-                a => !string.IsNullOrEmpty(a.Name), 
-                a => CreatePhrase(this.resourceService["A_acrchitect"], a.Name), 
+                project.Architect,
+                a => !string.IsNullOrEmpty(a.Name),
+                a => CreatePhrase(this.resourceService["A_acrchitect"], a.Name),
                 result);
             AddIfPresent(
-                project.Owner, 
-                o => !string.IsNullOrEmpty(o.Name), 
-                o => CreatePhrase(this.resourceService["B_builder"], o.Name), 
+                project.Owner,
+                o => !string.IsNullOrEmpty(o.Name),
+                o => CreatePhrase(this.resourceService["B_builder"], o.Name),
                 result);
             AddIfPresent(
-                project.Price, 
-                p => p > 0, 
-                p => CreatePhrase(this.resourceService["ConstructionCost"], p.ToString(CultureInfo.InvariantCulture)), 
+                project.Price,
+                p => p > 0,
+                p => CreatePhrase(this.resourceService["ConstructionCost"], p.ToString(CultureInfo.InvariantCulture)),
                 result);
             AddIfPresent(
-                project.Space, 
-                s => !string.IsNullOrEmpty(s), 
-                s => CreatePhrase(this.resourceService["AreaVolume"], s), 
+                project.Space,
+                s => !string.IsNullOrEmpty(s),
+                s => CreatePhrase(this.resourceService["AreaVolume"], s),
                 result);
             AddIfPresent(
-                project.StartDate, 
-                sd => !string.IsNullOrEmpty(sd.Description), 
-                sd => CreatePhrase(this.resourceService["PlanningApplication"], sd.Description), 
+                project.StartDate,
+                sd => !string.IsNullOrEmpty(sd.Description),
+                sd => CreatePhrase(this.resourceService["PlanningApplication"], sd.Description),
                 result);
             AddIfPresent(
-                project.FinishDate, 
-                fd => !string.IsNullOrEmpty(fd.Description), 
-                fd => CreatePhrase(this.resourceService["SubscribeTermsPlanned"], fd.Description), 
+                project.FinishDate,
+                fd => !string.IsNullOrEmpty(fd.Description),
+                fd => CreatePhrase(this.resourceService["SubscribeTermsPlanned"], fd.Description),
                 result);
             result.Add(Chunk.NEWLINE);
             return result;
+        }
+
+        /// <summary>
+        /// Exports projects into output stream.
+        /// </summary>
+        /// <param name="projects">
+        /// The enumeration of projects.
+        /// </param>
+        /// <param name="dateFrom">
+        /// The start date.
+        /// </param>
+        /// <param name="dateTo">
+        /// The end date.
+        /// </param>
+        /// <param name="output">
+        /// The output stream.
+        /// </param>
+        internal void ExportProjectsAsTable(IEnumerable<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output)
+        {
+            var document = new Document();
+            var writer = PdfWriter.GetInstance(document, output);
+            writer.PageEvent = new ProjectPageEventHelper(dateFrom, dateTo, this.culture);
+
+            document.SetMargins(
+                document.LeftMargin,
+                document.RightMargin,
+                document.TopMargin * 2,
+                document.BottomMargin * 2);
+
+            document.Open();
+
+            var table = new PdfPTable(2);
+            table.SetWidths(new[] { 1, 9 });
+            table.TotalWidth = document.Right - document.Left;
+
+            foreach (var project in projects)
+            {
+                CreatePhraseRow(() => CreateProjectHeader(project), 2, table);
+                CreatePhraseRow(() => new Phrase(project.Title, Bold) { Leading = Leading }, 2, table);
+                CreatePhraseRow(() => new Phrase(project.Description, Normal) { Leading = Leading }, 2, table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.Address.AddressString),
+                    this.resourceService["Address"],
+                    project.Address.AddressString,
+                    table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.Architect.Name),
+                    this.resourceService["A_acrchitect"],
+                    project.Architect.Name,
+                    table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.Owner.Name),
+                    this.resourceService["B_builder"],
+                    project.Owner.Name,
+                    table);
+
+                AddIfPresent(
+                    project.Price > 0,
+                    this.resourceService["ConstructionCost"],
+                    project.Price.ToString(CultureInfo.InvariantCulture),
+                    table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.Space),
+                    this.resourceService["AreaVolume"],
+                    project.Space,
+                    table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.StartDate.Description),
+                    this.resourceService["PlanningApplication"],
+                    project.StartDate.Description,
+                    table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.FinishDate.Description),
+                    this.resourceService["SubscribeTermsPlanned"],
+                    project.FinishDate.Description,
+                    table);
+            }
+
+            table.CompleteRow();
+            table.WriteSelectedRows(0, -1, document.Left, document.Top, writer.DirectContent);
+
+            document.Close();
         }
 
         /// <summary>
@@ -228,9 +316,9 @@ namespace Tools.Export
             writer.PageEvent = new ProjectPageEventHelper(dateFrom, dateTo, this.culture);
 
             document.SetMargins(
-                document.LeftMargin, 
-                document.RightMargin, 
-                document.TopMargin * 2, 
+                document.LeftMargin,
+                document.RightMargin,
+                document.TopMargin * 2,
                 document.BottomMargin * 2);
 
             document.Open();
@@ -258,9 +346,9 @@ namespace Tools.Export
 
             var columnText = new ColumnText(writer.DirectContent);
             columnText.SetSimpleColumn(
-                columnPoints[column][0], 
-                columnPoints[column][1], 
-                columnPoints[column][2], 
+                columnPoints[column][0],
+                columnPoints[column][1],
+                columnPoints[column][2],
                 columnPoints[column][3]);
             foreach (var project in projects)
             {
@@ -279,9 +367,9 @@ namespace Tools.Export
                         }
 
                         columnText.SetSimpleColumn(
-                            columnPoints[column][0], 
-                            columnPoints[column][1], 
-                            columnPoints[column][2], 
+                            columnPoints[column][0],
+                            columnPoints[column][1],
+                            columnPoints[column][2],
                             columnPoints[column][3]);
                         y = columnPoints[column][3];
                     }
@@ -314,9 +402,9 @@ namespace Tools.Export
         /// <typeparam name="T">
         /// </typeparam>
         private static void AddIfPresent<T>(
-            T source, 
-            Func<T, bool> check, 
-            Func<T, IElement> provide, 
+            T source,
+            Func<T, bool> check,
+            Func<T, IElement> provide,
             Paragraph paragraph)
         {
             if (!check(source))
@@ -346,9 +434,9 @@ namespace Tools.Export
         /// <typeparam name="T">
         /// </typeparam>
         private static void AddIfPresent<T>(
-            T source, 
-            Func<T, bool> check, 
-            Func<T, IElement> provide, 
+            T source,
+            Func<T, bool> check,
+            Func<T, IElement> provide,
             ICollection<IElement> output)
         {
             if (!check(source))
@@ -357,6 +445,28 @@ namespace Tools.Export
             }
 
             output.Add(provide(source));
+        }
+
+        private static void AddIfPresent(
+            bool check,
+            string firstCellProvide,
+            string secondCellProvide,
+            PdfPTable output)
+        {
+            if (!check)
+            {
+                return;
+            }
+
+            output.AddCell(new PdfPCell(new Phrase(firstCellProvide, Bold) { Leading = Leading }));
+            output.AddCell(new PdfPCell(new Phrase(secondCellProvide, Normal) { Leading = Leading }));
+        }
+
+        private static void CreatePhraseRow(Func<Phrase> provider, int colspan, PdfPTable output)
+        {
+            var cell = new PdfPCell(provider());
+            cell.Colspan = colspan;
+            output.AddCell(cell);
         }
 
         /// <summary>
