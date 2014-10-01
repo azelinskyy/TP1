@@ -85,8 +85,6 @@ header p {
 }
 
 #loginPanel {
-    display: block;
-    float: left;
     padding: 25px;
     position: relative;
     text-align: left;
@@ -225,61 +223,58 @@ footer {
 }
 
 /*#endregion */
-body {
-            margin: 20px;
-            font-family: "Arial", "Helventica", sans-serif;
-        }
 
-        label {
-            width: 80px;
-            display: inline-block;
-        }
 
-        button {
-            display: inline-block;
-            outline: none;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            padding: .4em 1.1em .4em;
-            color: #fef4e9;
-            border: solid 1px #006fb9;
-            background: #1276bb;
-        }
+label {
+    display: inline-block;
+}
 
-            button:hover {
-                text-decoration: none;
-                background: #282828;
-                border: solid 1px #000;
-            }
+button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    padding: .2em .4em .2em;
+    color: #fef4e9;
+    border: solid 1px #006fb9;
+    background: #1276bb;
+}
 
-        table {
-            padding-top: 1em;
-        }
+button:hover {
+    text-decoration: none;
+    background: #282828;
+    border: solid 1px #000;
+}
 
-        thead, tfoot {
-            font-weight: 600;
-        }
+table {
+    padding-top: 1em;
+}
 
-        th, td {
-            padding: .1em .5em;
-            text-align: left;
-        }
+thead, tfoot {
+    font-weight: 600;
+}
 
-            td li, td ul {
-                margin: 0;
-                padding: 0;
-            }
+th, td {
+    padding: .1em .5em;
+    text-align: left;
+}
 
-            td li {
-                display: inline;
-            }
+td li, td ul {
+    margin: 0;
+    padding: 0;
+}
 
-                td li::after {
-                    content: ',';
-                }
+td li {
+    display: inline;
+}
 
-                td li:last-child::after {
-                    content: '';
-                }
+td li::after {
+    content: ',';
+}
+
+td li:last-child::after {
+    content: '';
+}
 
