@@ -23,10 +23,7 @@
         Category: self.DateAdded
     };
 
-    self.GridParams = {
-        pageIndex: ko.observable(1),
-        pageSize: ko.observable(10)
-    }
+    self.Grid = ko.observable();
 
     self.EditableItem = ko.observable();
 
