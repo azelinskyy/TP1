@@ -12,6 +12,7 @@ namespace Tools.Export
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
 
     using Model.DomainModels;
 
@@ -38,6 +39,11 @@ namespace Tools.Export
         /// <param name="culture">The culture.</param>
         public void ExportProjects(IEnumerable<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output, CultureInfo culture)
         {
+            if (!projects.Any())
+            {
+                throw new ArgumentException("The collection of projects should not be empty.");
+            }
+
             new ProjectPDFHelper(culture).ExportProjects(projects, dateFrom, dateTo, output);
         }
 

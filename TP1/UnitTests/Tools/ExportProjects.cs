@@ -95,6 +95,24 @@ namespace UnitTests.Tools
         }
 
         /// <summary>
+        /// Exports empty collection to pdf should throw exception.
+        /// </summary>
+        [Test]
+        public void ExportEmptyToPDF()
+        {
+            string fileName = "test.pdf";
+
+            var projects = new List<Project>();
+
+            var to = DateTime.Now;
+            var from = to.AddDays(-7);
+
+            var service = new ExportService();
+            var output = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+            Assert.Throws<ArgumentException>(() => service.ExportProjects(projects, from, to, output, this.culture));
+        }
+
+        /// <summary>
         /// Exports projects to pdf and check file size after that.
         /// </summary>
         [Test]
