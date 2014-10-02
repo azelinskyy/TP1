@@ -207,4 +207,7 @@
   <data name="A_acrchitect" xml:space="preserve">
     <value>A</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>email</value>
+  </data>
 </root>

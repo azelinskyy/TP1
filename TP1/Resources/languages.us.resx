@@ -207,4 +207,7 @@
   <data name="Legend" xml:space="preserve">
     <value>Legend</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>email</value>
+  </data>
 </root>

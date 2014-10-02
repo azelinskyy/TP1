@@ -27,6 +27,8 @@ namespace TP1.Controllers
 
     using Tools.Export;
 
+    using TP1.Models;
+
     /// <summary>
     /// The report controller.
     /// </summary>
@@ -89,23 +91,14 @@ namespace TP1.Controllers
         /// <summary>
         /// The export.
         /// </summary>
-        /// <param name="from">
-        /// The from.
+        /// <param name="export">
+        /// The data with export info - email, from/to, language.
         /// </param>
-        /// <param name="to">
-        /// The to.
-        /// </param>
-        /// <param name="email">
-        /// The email.
-        /// </param>
-        /// <param name="lang">
-        /// The lang.
-        /// </param>
-        public void Export(DateTime from, DateTime to, string email, string lang = "en-US")
+        public void Export(ExportModel export)
         {
             IEnumerable<Project> projects =
-                this.ProjectRepository.GetAll().Where(p => p.DateAdded >= @from && p.DateAdded <= to);
-            new ExportService().ExportProjects(projects, from, to, email, new CultureInfo(lang));
+                this.ProjectRepository.GetAll().Where(p => p.DateAdded >= export.From && p.DateAdded <= export.To);
+            new ExportService().ExportProjects(projects, export.From, export.To, export.Email, new CultureInfo(export.Language));
         }
 
         /// <summary>
@@ -158,26 +151,17 @@ namespace TP1.Controllers
         /// <summary>
         /// The get report.
         /// </summary>
-        /// <param name="pageIndex">
-        /// The page index.
-        /// </param>
-        /// <param name="pageSize">
-        /// The page size.
-        /// </param>
-        /// <param name="sortField">
-        /// The sort field.
-        /// </param>
-        /// <param name="sortOrder">
-        /// The sort order.
+        /// <param name="filter">
+        /// The grid filter.
         /// </param>
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
-        public string GetReport(int pageIndex = 1, int pageSize = 10, string sortField = "", int sortOrder = 0)
+        public string GetReport(GridFilter filter)
         {
             List<ProjectDto> data = this.BuildReports();
             string jsonData =
-                JsonConvert.SerializeObject(this.SortReport(data, pageIndex, pageSize, sortField, (SortOrder)sortOrder));
+                JsonConvert.SerializeObject(this.SortReport(data, filter));
             return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = jsonData });
         }
 
@@ -275,52 +259,40 @@ namespace TP1.Controllers
         /// <param name="data">
         /// The data.
         /// </param>
-        /// <param name="pageIndex">
-        /// The page index.
-        /// </param>
-        /// <param name="pageSize">
-        /// The page size.
-        /// </param>
-        /// <param name="sortField">
-        /// The sort field.
-        /// </param>
-        /// <param name="order">
-        /// The order.
+        /// <param name="filter">
+        /// The grid filter with order, page size and proper field to perform sorting.
         /// </param>
         /// <returns>
         /// The <see cref="IList"/>.
         /// </returns>
         private IList<ProjectDto> SortReport(
-            IEnumerable<ProjectDto> data, 
-            int pageIndex, 
-            int pageSize, 
-            string sortField, 
-            SortOrder order)
+            IEnumerable<ProjectDto> data,
+            GridFilter filter)
         {
             IList<ProjectDto> result;
 
-            if (order == SortOrder.Ascending)
+            if (filter.SortOrder == SortOrder.Ascending)
             {
-                if (sortField.ToLower() == "ZipCode")
+                if (filter.SortField.ToLower() == "ZipCode")
                 {
-                    result = data.OrderBy(x => x.ZipCode).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                    result = data.OrderBy(x => x.ZipCode).Skip(filter.PageSize * (filter.PageIndex - 1)).Take(filter.PageSize).ToList();
                 }
                 else
                 {
-                    result = data.OrderBy(x => x.Title).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                    result = data.OrderBy(x => x.Title).Skip(filter.PageSize * (filter.PageIndex - 1)).Take(filter.PageSize).ToList();
                 }
             }
             else
             {
-                if (sortField.ToLower() == "ZipCode")
+                if (filter.SortField.ToLower() == "ZipCode")
                 {
                     result =
-                        data.OrderByDescending(x => x.ZipCode).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                        data.OrderByDescending(x => x.ZipCode).Skip(filter.PageSize * (filter.PageIndex - 1)).Take(filter.PageSize).ToList();
                 }
                 else
                 {
                     result =
-                        data.OrderByDescending(x => x.Title).Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToList();
+                        data.OrderByDescending(x => x.Title).Skip(filter.PageSize * (filter.PageIndex - 1)).Take(filter.PageSize).ToList();
                 }
             }
 

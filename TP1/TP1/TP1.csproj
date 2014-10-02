@@ -214,9 +214,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\KnockoutHtmlHelper.cs" />
+    <Compile Include="Models\ExportModel.cs" />
     <Compile Include="Models\ExternalLogin.cs" />
+    <Compile Include="Models\GridFilter.cs" />
     <Compile Include="Models\LocalPasswordModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ProjectGridFilter.cs" />
     <Compile Include="Models\RegisterExternalLoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

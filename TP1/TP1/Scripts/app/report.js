@@ -7,10 +7,11 @@
     self.DateAdded = ko.observable("");
     self.Title = ko.observable("");
     self.ZipCode = ko.observable("");
-  
+
 
     self.displayGrid = ko.observable(true);
     self.displayForm = ko.observable(false);
+    self.displayExport = ko.observable(false);
 
     var project = {
         Id: self.Id,
@@ -135,5 +136,32 @@
     self.changeVisibility = function (state) {
         self.displayGrid(state);
         self.displayForm(!state);
+    }
+
+    self.tryExport = function () {
+        self.displayGrid(false);
+        self.displayForm(false);
+        self.displayExport(true);
+    }
+
+    self.cancelExport = function () {
+        self.displayExport(false);
+        self.displayGrid(true);
+    }
+
+    self.export = function () {
+        //    $.ajax({
+        //        url: '/Report/Export',
+        //        cache: false,
+        //        type: 'POST',
+        //        contentType: 'application/json; charset=utf-8',
+        //        data: ko.toJSON({})
+        //    })
+        //.fail(
+        //    function (xhr, textStatus, err) {
+        //        alert(err);
+        //    });
+        alert("!!!");
+        self.cancelExport();
     }
 }
