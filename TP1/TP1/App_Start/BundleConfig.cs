@@ -51,6 +51,10 @@ namespace TP1
                     "~/Scripts/Internationalization/base.js"));
 
             bundles.Add(
+                new ScriptBundle("~/bundles/tools").Include(
+                    "~/Scripts/tools/binders.datepicker.js"));
+
+            bundles.Add(
                 new ScriptBundle("~/bundles/report").Include(
                     "~/Scripts/app/report.js"));
            

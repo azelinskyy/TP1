@@ -25,8 +25,8 @@
 <div id="main-content">
     @if (@User.Identity.IsAuthenticated)
     {
-        <input type="text" data-bind="value: $root.DateFrom" />
-        <input type="text" data-bind="value: $root.DateTo" />
+        <input id="dateFrom" type="text" data-bind="datepicker:{}, value: $root.DateFrom" />
+        <input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
         <button data-bind="click: $root.tryExport">Export</button>
         <button data-bind="click: $root.add">Add</button>
         <table id="products1" data-bind="visible: displayGrid">
