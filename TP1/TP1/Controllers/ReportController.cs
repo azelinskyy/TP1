@@ -110,14 +110,6 @@ namespace TP1.Controllers
         {
             List<ProjectDto> data = this.BuildReports();
             return this.Json(data, JsonRequestBehavior.AllowGet);
-
-            var products = new List<Product>();
-
-            // Add products for the Demonstration
-            products.Add(new Product { Id = 1, Name = "Computer", Category = "Electronics", Price = 23.54M });
-            products.Add(new Product { Id = 2, Name = "Laptop", Category = "Electronics", Price = 33.75M });
-            products.Add(new Product { Id = 3, Name = "iPhone4", Category = "Phone", Price = 16.99M });
-            return this.Json(products, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
