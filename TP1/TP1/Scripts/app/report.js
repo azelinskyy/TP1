@@ -46,6 +46,13 @@
         }
     });
 
+    self.changeDatesRange = function () {
+        //// Place to refresh grid based on new dates range.
+    }
+
+    self.DateFrom.subscribe(self.changeDatesRange);
+    self.DateTo.subscribe(self.changeDatesRange);
+
     //Add New Item
     self.create = function () {
         if (project.Name() != "" && project.Price() != "" && project.Category() != "") {
