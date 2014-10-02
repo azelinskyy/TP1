@@ -23,10 +23,7 @@
         Category: self.DateAdded
     };
 
-    self.GridParams = {
-        pageIndex: ko.observable(1),
-        pageSize: ko.observable(10)
-    }
+    self.Grid = ko.observable();
 
     self.EditableItem = ko.observable();
 
@@ -34,27 +31,31 @@
     self.Products = ko.observableArray();   // Contains the list of products
     self.Language = ko.observableArray();
 
-    // Initialize the view-model
-    $.ajax({
-        url: '/Report/GetReport',
-        cache: false,
-        type: 'GET',
-        contentType: 'application/json; charset=utf-8',
-        data: {},
-        success: function (data) {
-            self.Products($.parseJSON($.parseJSON(data).result)); //Put the response in ObservableArray
-        }
-    });
+    self.LoadData = function (requestOptions) {
+        // Initialize the view-model
+        $.ajax({
+            url: '/Report/GetReport',
+            cache: false,
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            data: requestOptions,
+            success: function (data) {
+                self.Products($.parseJSON($.parseJSON(data).result)); //Put the response in ObservableArray
+            }
+        });
+    };
 
-    self.changeDatesRange = function () {
+    self.LoadData(self.Grid.requestOptions);
+
+    self.changeDatesRange = function() {
         //// Place to refresh grid based on new dates range.
-    }
+    };
 
     self.DateFrom.subscribe(self.changeDatesRange);
     self.DateTo.subscribe(self.changeDatesRange);
 
     //Add New Item
-    self.create = function () {
+    self.create = function() {
         if (project.Name() != "" && project.Price() != "" && project.Category() != "") {
             $.ajax({
                 url: '@Url.Action("AddProduct", "Product")',
@@ -62,7 +63,7 @@
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 data: ko.toJSON(project),
-                success: function (data) {
+                success: function(data) {
                     // alert('added');
                     self.Products.push(data);
                     self.Name("");
@@ -70,15 +71,13 @@
                     self.Category("");
                 }
             }).fail(
-                 function (xhr, textStatus, err) {
-                     alert(err);
-                 });
-        }
-        else {
+                function(xhr, textStatus, err) {
+                    alert(err);
+                });
+        } else {
             alert('Please Enter All the Values !!');
         }
-
-    }
+    };
 
     // Delete project
     self.delete = function (project) {

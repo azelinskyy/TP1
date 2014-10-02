@@ -54,12 +54,21 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td>footer</td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                    <td colspan = "6">
+                        <div class="pagerWrap">
+                            <ul class="pager">
+                                <li class="pagerFirst" data-bind="click: selectFirst"><a href="#">First</a></li>
+                                <li class="pagerPrev" data-bind="click: selectPrevious"><a href="#">Previous</a></li>
+                                <li class="pagerCurrent">
+                                    <span data-bind="text: searchOptions().pageIndex()"></span>
+                                    <span>of total</span><span data-bind="text: totalPages()"></span><span> pages</span>
+                                </li>
+                                <li class="pagerNext" data-bind="click: selectNext"><a href="#">Next</a></li>
+                                <li class="pagerLast" data-bind="click: selectLast"><a href="#">Last</a></li>
+                            </ul>   
+                        </div>
+                    </td>
+                </tr>  
             </tfoot>
         </table>
         <br />
@@ -167,6 +176,7 @@
     <script type="text/javascript">
         var viewModel = new ReportViewModel();
         viewModel.Language = languageModel(availableLanguages);
+        viewModel.Grid = gridModel(viewModel.LoadData);
         ko.applyBindings(viewModel);
     </script>
 }
