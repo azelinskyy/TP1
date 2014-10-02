@@ -97,8 +97,8 @@ namespace TP1.Controllers
         public void Export(ExportModel export)
         {
             IEnumerable<Project> projects =
-                this.ProjectRepository.GetAll().Where(p => p.DateAdded >= export.From && p.DateAdded <= export.To);
-            new ExportService().ExportProjects(projects, export.From, export.To, export.Email, new CultureInfo(export.Language));
+                this.ProjectRepository.GetAll().Where(p => p.DateAdded.Date >= export.From.Date && p.DateAdded.Date <= export.To.Date);
+            new ExportService().ExportProjects(projects, export.From.Date, export.To.Date, export.Email, new CultureInfo(export.Language));
         }
 
         /// <summary>

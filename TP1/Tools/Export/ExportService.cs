@@ -54,10 +54,12 @@ namespace Tools.Export
         public void ExportProjects(IEnumerable<Project> projects, DateTime dateFrom, DateTime dateTo, string email, CultureInfo culture)
         {
             var pdfStream = new MemoryStream();
+
             this.ExportProjects(projects, dateFrom, dateTo, pdfStream, culture);
 
             var attachment = new MemoryStream(pdfStream.ToArray());
             attachment.Seek(0, SeekOrigin.Begin);
+
             new EmailService().Send(email, attachment);
         }
 

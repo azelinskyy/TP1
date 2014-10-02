@@ -7,6 +7,9 @@
     self.DateAdded = ko.observable("");
     self.Title = ko.observable("");
     self.ZipCode = ko.observable("");
+    self.DateFrom = ko.observable();
+    self.DateTo = ko.observable();
+    self.Email = ko.observable("");
 
 
     self.displayGrid = ko.observable(true);
@@ -144,24 +147,26 @@
         self.displayExport(true);
     }
 
-    self.cancelExport = function () {
+    self.hideExport = function () {
         self.displayExport(false);
         self.displayGrid(true);
     }
 
     self.export = function () {
-        //    $.ajax({
-        //        url: '/Report/Export',
-        //        cache: false,
-        //        type: 'POST',
-        //        contentType: 'application/json; charset=utf-8',
-        //        data: ko.toJSON({})
-        //    })
-        //.fail(
-        //    function (xhr, textStatus, err) {
-        //        alert(err);
-        //    });
-        alert("!!!");
-        self.cancelExport();
+        $.ajax({
+            url: '/Report/Export',
+            cache: false,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Language: "en-US"/*self.Language.selectedLanguage().type*/ }),
+            success: function (data) {
+                self.hideExport();
+            }
+        })
+    .fail(
+        function (xhr, textStatus, err) {
+            alert(err);
+            self.hideExport();
+        });
     }
 }

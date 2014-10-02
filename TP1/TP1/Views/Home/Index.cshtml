@@ -25,8 +25,8 @@
 <div id="main-content">
     @if (@User.Identity.IsAuthenticated)
     {
-        @*<input type="text" data-bind="datepicker: {}, value: dateFrom" />
-        <input type="text" data-bind="datepicker: {}, value: dateTo" />*@
+        <input type="text" data-bind="value: $root.DateFrom" />
+        <input type="text" data-bind="value: $root.DateTo" />
         <button data-bind="click: $root.tryExport">Export</button>
         <button data-bind="click: $root.add">Add</button>
         <table id="products1" data-bind="visible: displayGrid">
@@ -130,12 +130,12 @@
                 </div>
                 <div>
                     <label for="email">@Html.KnockoutHelperFor("Email", "p")</label>
-                    @*<input data-bind="value: email" type="text" title="Email" name="email" />*@
+                    <input data-bind="value: $root.Email" type="text" title="Email" name="email" />
                 </div>
                 <br />
                 <div>
                     <button data-bind="click: $root.export">Export</button>
-                    <button data-bind="click: $root.cancelExport">Cancel</button>
+                    <button data-bind="click: $root.hideExport">Cancel</button>
                 </div>
             </div>
         </div>
