@@ -165,7 +165,7 @@
             cache: false,
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
-            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Language: "en-US"/*self.Language.selectedLanguage().type*/ }),
+            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Language: "en-US"/*self.Culture.selectedLanguage().type*/ }),
             success: function (data) {
                 self.hideExport();
             }

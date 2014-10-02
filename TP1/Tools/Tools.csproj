@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Export\DateFormatter.cs" />
+    <Compile Include="Export\ExportConfiguration.cs" />
     <Compile Include="Export\ExportService.cs" />
     <Compile Include="Export\ProjectPDFHelper.cs" />
     <Compile Include="Export\ProjectPageEventHelper.cs" />
+    <Compile Include="Export\ReportModels.cs" />
     <Compile Include="Notification\EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

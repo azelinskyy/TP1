@@ -31,20 +31,25 @@ namespace Tools.Export
         /// <param name="projects">
         /// The enumeration of projects.
         /// </param>
-        /// <param name="dateFrom">The start date.</param>
-        /// <param name="dateTo">The end date.</param>
-        /// <param name="output">
-        /// The output stream to export.
+        /// <param name="configuration">
+        /// The configuration for export.
         /// </param>
-        /// <param name="culture">The culture.</param>
-        public void ExportProjects(IEnumerable<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output, CultureInfo culture)
+        public void ExportProjects(IEnumerable<Project> projects, ExportConfiguration configuration, Stream output)
         {
             if (!projects.Any())
             {
                 throw new ArgumentException("The collection of projects should not be empty.");
             }
 
-            new ProjectPDFHelper(culture).ExportProjects(projects, dateFrom, dateTo, output);
+            var pdfHelper = new ProjectPDFHelper(new CultureInfo(configuration.Culture));
+            if (configuration.Model == ReportModels.Columns)
+            {
+                pdfHelper.ExportProjects(projects, configuration, output);
+            }
+            else
+            {
+                pdfHelper.ExportProjectsAsTable(projects, configuration, output);
+            }
         }
 
         /// <summary>
@@ -53,20 +58,19 @@ namespace Tools.Export
         /// <param name="projects">
         /// The enumeration of projects.
         /// </param>
-        /// <param name="dateFrom">The start date.</param>
-        /// <param name="dateTo">The end date.</param>
-        /// <param name="email">The email of recipient.</param>
-        /// <param name="culture">The culture.</param>
-        public void ExportProjects(IEnumerable<Project> projects, DateTime dateFrom, DateTime dateTo, string email, CultureInfo culture)
+        /// <param name="configuration">
+        /// The configuration for export.
+        /// </param>
+        public void ExportProjects(IEnumerable<Project> projects, ExportConfiguration configuration)
         {
             var pdfStream = new MemoryStream();
 
-            this.ExportProjects(projects, dateFrom, dateTo, pdfStream, culture);
+            this.ExportProjects(projects, configuration, pdfStream);
 
             var attachment = new MemoryStream(pdfStream.ToArray());
             attachment.Seek(0, SeekOrigin.Begin);
 
-            new EmailService().Send(email, attachment);
+            new EmailService().Send(configuration.Email, attachment);
         }
 
         #endregion

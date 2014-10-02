@@ -31,6 +31,14 @@ namespace Tools.Export
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIALUNI.TTF");
 
         /// <summary>
+        /// The instance of font base for proper font.
+        /// </summary>
+        private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
+            ArialuniTff, 
+            BaseFont.IDENTITY_H,
+            BaseFont.EMBEDDED);
+
+        /// <summary>
         ///     The footer font.
         /// </summary>
         private static readonly Font Footer = new Font(UnicodeBaseFont, 11, Font.NORMAL);
@@ -39,14 +47,6 @@ namespace Tools.Export
         ///     The header font.
         /// </summary>
         private static readonly Font Header = new Font(UnicodeBaseFont, 12, Font.BOLD);
-
-        /// <summary>
-        /// The instance of font base for proper font.
-        /// </summary>
-        private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
-            ArialuniTff, 
-            BaseFont.IDENTITY_H,
-            BaseFont.EMBEDDED);
 
         #endregion
 

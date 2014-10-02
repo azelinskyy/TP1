@@ -1,32 +1,33 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExportModel.cs" company="Team Alpha Solutions">
+// <copyright file="ExportConfiguration.cs" company="Team Alpha Solutions">
 //   Copyright © 2014 Team Alpha Solutions
 // </copyright>
 // <summary>
 //   The export model.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-namespace TP1.Models
+namespace Tools.Export
 {
     using System;
+    using System.Globalization;
 
     /// <summary>
-    /// The export model.
+    ///     The export model.
     /// </summary>
-    public class ExportModel
+    public class ExportConfiguration
     {
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExportModel"/> class.
+        ///     Initializes a new instance of the <see cref="ExportConfiguration" /> class.
         /// </summary>
-        public ExportModel()
+        public ExportConfiguration()
         {
             this.From = DateTime.Now;
             this.To = this.From;
             this.Email = string.Empty;
-            this.Language = "en-US";
+            this.Culture = "en-US";
+            this.Model = ReportModels.Columns;
         }
 
         #endregion
@@ -34,22 +35,27 @@ namespace TP1.Models
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the email.
+        ///     Gets or sets the language.
+        /// </summary>
+        public string Culture { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the email.
         /// </summary>
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or sets the from.
+        ///     Gets or sets the from.
         /// </summary>
         public DateTime From { get; set; }
 
         /// <summary>
-        /// Gets or sets the language.
+        ///     Gets or sets the to.
         /// </summary>
-        public string Language { get; set; }
+        public ReportModels Model { get; set; }
 
         /// <summary>
-        /// Gets or sets the to.
+        ///     Gets or sets the to.
         /// </summary>
         public DateTime To { get; set; }
 

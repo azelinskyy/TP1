@@ -62,12 +62,6 @@ namespace UnitTests.Tools
 
         #region Public Methods and Operators
 
-        [SetUp]
-        public void SetUp()
-        {
-            this.culture = CultureInfo.GetCultureInfo("en-US");
-        }
-
         /// <summary>
         /// Exports projects to pdf and check file size after that.
         /// </summary>
@@ -85,9 +79,11 @@ namespace UnitTests.Tools
             var to = DateTime.Now;
             var from = to.AddDays(-7);
 
+            var configuration = new ExportConfiguration { Culture = "en-US", Email = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
+
             var service = new ExportService();
             var output = new FileStream(fileName, FileMode.Create, FileAccess.Write);
-            service.ExportProjects(projects, from, to, output, this.culture);
+            service.ExportProjects(projects, configuration, output);
 
             var fileInfo = new FileInfo(fileName);
             Assert.True(fileInfo.Length > 0);
@@ -100,16 +96,18 @@ namespace UnitTests.Tools
         [Test]
         public void ExportEmptyToPDF()
         {
-            string fileName = "test.pdf";
+            string fileName = "empty.pdf";
 
             var projects = new List<Project>();
 
             var to = DateTime.Now;
             var from = to.AddDays(-7);
 
+            var configuration = new ExportConfiguration { Culture = "en-US", Email = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
+
             var service = new ExportService();
             var output = new FileStream(fileName, FileMode.Create, FileAccess.Write);
-            Assert.Throws<ArgumentException>(() => service.ExportProjects(projects, from, to, output, this.culture));
+            Assert.Throws<ArgumentException>(() => service.ExportProjects(projects, configuration, output));
         }
 
         /// <summary>
@@ -127,8 +125,10 @@ namespace UnitTests.Tools
             var to = DateTime.Now;
             var from = to.AddDays(-7);
 
+            var configuration = new ExportConfiguration { Culture = "en-US", Email = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
+
             var service = new ExportService();
-            service.ExportProjects(projects, from, to, "gregory.hasyn@gmail.com", this.culture);
+            service.ExportProjects(projects, configuration);
         }
 
         #endregion

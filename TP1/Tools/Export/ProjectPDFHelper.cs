@@ -37,10 +37,18 @@ namespace Tools.Export
         #region Static Fields
 
         /// <summary>
-        /// The path to arialuni.tff file with proper font.
+        ///     The path to arialuni.tff file with proper font.
         /// </summary>
         private static readonly string ArialuniTff =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIALUNI.TTF");
+
+        /// <summary>
+        ///     The instance of font base for proper font.
+        /// </summary>
+        private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
+            ArialuniTff,
+            BaseFont.IDENTITY_H,
+            BaseFont.EMBEDDED);
 
         /// <summary>
         ///     The bold fond const to internal use.
@@ -51,14 +59,6 @@ namespace Tools.Export
         ///     The normal fond const to internal use.
         /// </summary>
         private static readonly Font Normal = new Font(UnicodeBaseFont, 8, Font.NORMAL);
-
-        /// <summary>
-        /// The instance of font base for proper font.
-        /// </summary>
-        private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
-            ArialuniTff,
-            BaseFont.IDENTITY_H,
-            BaseFont.EMBEDDED);
 
         #endregion
 
@@ -212,108 +212,17 @@ namespace Tools.Export
         /// <param name="projects">
         /// The enumeration of projects.
         /// </param>
-        /// <param name="dateFrom">
-        /// The start date.
-        /// </param>
-        /// <param name="dateTo">
-        /// The end date.
+        /// <param name="configuration">
+        /// The configuration for export.
         /// </param>
         /// <param name="output">
         /// The output stream.
         /// </param>
-        internal void ExportProjectsAsTable(IEnumerable<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output)
+        internal void ExportProjects(IEnumerable<Project> projects, ExportConfiguration configuration, Stream output)
         {
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectPageEventHelper(dateFrom, dateTo, this.culture);
-
-            document.SetMargins(
-                document.LeftMargin,
-                document.RightMargin,
-                document.TopMargin * 2,
-                document.BottomMargin * 2);
-
-            document.Open();
-
-            var table = new PdfPTable(2);
-            table.SetWidths(new[] { 1, 9 });
-            table.TotalWidth = document.Right - document.Left;
-
-            foreach (var project in projects)
-            {
-                CreatePhraseRow(() => CreateProjectHeader(project), 2, table);
-                CreatePhraseRow(() => new Phrase(project.Title, Bold) { Leading = Leading }, 2, table);
-                CreatePhraseRow(() => new Phrase(project.Description, Normal) { Leading = Leading }, 2, table);
-
-                AddIfPresent(
-                    !string.IsNullOrEmpty(project.Address.AddressString),
-                    this.resourceService["Address"],
-                    project.Address.AddressString,
-                    table);
-
-                AddIfPresent(
-                    !string.IsNullOrEmpty(project.Architect.Name),
-                    this.resourceService["A_acrchitect"],
-                    project.Architect.Name,
-                    table);
-
-                AddIfPresent(
-                    !string.IsNullOrEmpty(project.Owner.Name),
-                    this.resourceService["B_builder"],
-                    project.Owner.Name,
-                    table);
-
-                AddIfPresent(
-                    project.Price > 0,
-                    this.resourceService["ConstructionCost"],
-                    project.Price.ToString(CultureInfo.InvariantCulture),
-                    table);
-
-                AddIfPresent(
-                    !string.IsNullOrEmpty(project.Space),
-                    this.resourceService["AreaVolume"],
-                    project.Space,
-                    table);
-
-                AddIfPresent(
-                    !string.IsNullOrEmpty(project.StartDate.Description),
-                    this.resourceService["PlanningApplication"],
-                    project.StartDate.Description,
-                    table);
-
-                AddIfPresent(
-                    !string.IsNullOrEmpty(project.FinishDate.Description),
-                    this.resourceService["SubscribeTermsPlanned"],
-                    project.FinishDate.Description,
-                    table);
-            }
-
-            table.CompleteRow();
-            table.WriteSelectedRows(0, -1, document.Left, document.Top, writer.DirectContent);
-
-            document.Close();
-        }
-
-        /// <summary>
-        /// Exports projects into output stream.
-        /// </summary>
-        /// <param name="projects">
-        /// The enumeration of projects.
-        /// </param>
-        /// <param name="dateFrom">
-        /// The start date.
-        /// </param>
-        /// <param name="dateTo">
-        /// The end date.
-        /// </param>
-        /// <param name="output">
-        /// The output stream.
-        /// </param>
-        internal void ExportProjects(IEnumerable<Project> projects, DateTime dateFrom, DateTime dateTo, Stream output)
-        {
-            var document = new Document();
-            var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectPageEventHelper(dateFrom, dateTo, this.culture);
+            writer.PageEvent = new ProjectPageEventHelper(configuration.From, configuration.To, this.culture);
 
             document.SetMargins(
                 document.LeftMargin,
@@ -385,6 +294,107 @@ namespace Tools.Export
         }
 
         /// <summary>
+        /// Exports projects into output stream.
+        /// </summary>
+        /// <param name="projects">
+        /// The enumeration of projects.
+        /// </param>
+        /// <param name="configuration">
+        /// The configuration for export.
+        /// </param>
+        /// <param name="output">
+        /// The output stream.
+        /// </param>
+        internal void ExportProjectsAsTable(IEnumerable<Project> projects, ExportConfiguration configuration, Stream output)
+        {
+            var document = new Document();
+            var writer = PdfWriter.GetInstance(document, output);
+            writer.PageEvent = new ProjectPageEventHelper(configuration.From, configuration.To, this.culture);
+
+            document.SetMargins(
+                document.LeftMargin,
+                document.RightMargin,
+                document.TopMargin * 2,
+                document.BottomMargin * 2);
+
+            document.Open();
+
+            var table = new PdfPTable(2);
+            table.SetWidths(new[] { 3, 7 });
+            table.TotalWidth = document.Right - document.Left;
+
+            foreach (var project in projects)
+            {
+                CreatePhraseRow(() => CreateProjectHeader(project), 2, table);
+                CreatePhraseRow(() => new Phrase(project.Title, Bold) { Leading = Leading }, 2, table);
+                CreatePhraseRow(() => new Phrase(project.Description, Normal) { Leading = Leading }, 2, table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.Address.AddressString),
+                    this.resourceService["Address"],
+                    project.Address.AddressString,
+                    table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.Architect.Name),
+                    this.resourceService["A_acrchitect"],
+                    project.Architect.Name,
+                    table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.Owner.Name),
+                    this.resourceService["B_builder"],
+                    project.Owner.Name,
+                    table);
+
+                AddIfPresent(
+                    project.Price > 0,
+                    this.resourceService["ConstructionCost"],
+                    project.Price.ToString(CultureInfo.InvariantCulture),
+                    table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.Space),
+                    this.resourceService["AreaVolume"],
+                    project.Space,
+                    table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.StartDate.Description),
+                    this.resourceService["PlanningApplication"],
+                    project.StartDate.Description,
+                    table);
+
+                AddIfPresent(
+                    !string.IsNullOrEmpty(project.FinishDate.Description),
+                    this.resourceService["SubscribeTermsPlanned"],
+                    project.FinishDate.Description,
+                    table);
+
+                AddEmptyCells(table, 2);
+            }
+
+            document.Add(table);
+
+            document.Close();
+        }
+
+        /// <summary>
+        /// Add sempty cells.
+        /// </summary>
+        /// <param name="output">
+        /// The table.
+        /// </param>
+        /// <param name="colspan">
+        /// The colspan.
+        /// </param>
+        private static void AddEmptyCells(PdfPTable output, int colspan)
+        {
+            var cell = new PdfPCell(new Phrase(Chunk.NEWLINE)) { Border = Rectangle.NO_BORDER, Colspan = colspan };
+            output.AddCell(cell);
+        }
+
+        /// <summary>
         /// The add if present.
         /// </summary>
         /// <param name="source">
@@ -401,11 +411,7 @@ namespace Tools.Export
         /// </param>
         /// <typeparam name="T">
         /// </typeparam>
-        private static void AddIfPresent<T>(
-            T source,
-            Func<T, bool> check,
-            Func<T, IElement> provide,
-            Paragraph paragraph)
+        private static void AddIfPresent<T>(T source, Func<T, bool> check, Func<T, IElement> provide, Paragraph paragraph)
         {
             if (!check(source))
             {
@@ -433,11 +439,7 @@ namespace Tools.Export
         /// </param>
         /// <typeparam name="T">
         /// </typeparam>
-        private static void AddIfPresent<T>(
-            T source,
-            Func<T, bool> check,
-            Func<T, IElement> provide,
-            ICollection<IElement> output)
+        private static void AddIfPresent<T>(T source, Func<T, bool> check, Func<T, IElement> provide, ICollection<IElement> output)
         {
             if (!check(source))
             {
@@ -447,11 +449,22 @@ namespace Tools.Export
             output.Add(provide(source));
         }
 
-        private static void AddIfPresent(
-            bool check,
-            string firstCellProvide,
-            string secondCellProvide,
-            PdfPTable output)
+        /// <summary>
+        /// The add if present.
+        /// </summary>
+        /// <param name="check">
+        /// The check.
+        /// </param>
+        /// <param name="firstCellProvide">
+        /// The first cell provide.
+        /// </param>
+        /// <param name="secondCellProvide">
+        /// The second cell provide.
+        /// </param>
+        /// <param name="output">
+        /// The output.
+        /// </param>
+        private static void AddIfPresent(bool check, string firstCellProvide, string secondCellProvide, PdfPTable output)
         {
             if (!check)
             {
@@ -460,13 +473,6 @@ namespace Tools.Export
 
             output.AddCell(new PdfPCell(new Phrase(firstCellProvide, Bold) { Leading = Leading }));
             output.AddCell(new PdfPCell(new Phrase(secondCellProvide, Normal) { Leading = Leading }));
-        }
-
-        private static void CreatePhraseRow(Func<Phrase> provider, int colspan, PdfPTable output)
-        {
-            var cell = new PdfPCell(provider());
-            cell.Colspan = colspan;
-            output.AddCell(cell);
         }
 
         /// <summary>
@@ -486,6 +492,25 @@ namespace Tools.Export
             var phrase = new Phrase { new Chunk(header + ": ", Bold), new Chunk(text, Normal) };
             phrase.Leading = Leading;
             return phrase;
+        }
+
+        /// <summary>
+        /// The create phrase row.
+        /// </summary>
+        /// <param name="provider">
+        /// The provider.
+        /// </param>
+        /// <param name="colspan">
+        /// The colspan.
+        /// </param>
+        /// <param name="output">
+        /// The output.
+        /// </param>
+        private static void CreatePhraseRow(Func<Phrase> provider, int colspan, PdfPTable output)
+        {
+            var cell = new PdfPCell(provider());
+            cell.Colspan = colspan;
+            output.AddCell(cell);
         }
 
         /// <summary>
