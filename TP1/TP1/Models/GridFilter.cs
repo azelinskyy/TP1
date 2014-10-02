@@ -24,7 +24,7 @@ namespace TP1.Models
         {
             this.PageIndex = 1;
             this.PageSize = 10;
-            this.SortField = string.Empty;
+            this.SortField = "Id";
             this.SortOrder = SortOrder.Ascending;
         }
 

@@ -18,6 +18,12 @@ namespace TP1.Models
     {
         #region Public Properties
 
+        public ProjectGridFilter() : base()
+        {
+            this.From = DateTime.Now.AddDays(-7);
+            this.To = DateTime.Now;
+        }
+
         /// <summary>
         /// Gets or sets the from date.
         /// </summary>

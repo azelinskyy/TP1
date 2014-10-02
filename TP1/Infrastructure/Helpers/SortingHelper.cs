@@ -9,6 +9,7 @@
 
 namespace Infrastructure.Helpers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -37,6 +38,11 @@ namespace Infrastructure.Helpers
             this IEnumerable<TSource> source, 
             string propertyName)
         {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
             return source.OrderBy(p => typeof(TSource).GetProperty(propertyName).GetValue(p));
         }
 
@@ -58,6 +64,11 @@ namespace Infrastructure.Helpers
             this IEnumerable<TSource> source, 
             string propertyName)
         {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
             return source.OrderByDescending(p => typeof(TSource).GetProperty(propertyName).GetValue(p));
         }
 
@@ -79,6 +90,11 @@ namespace Infrastructure.Helpers
             this IOrderedEnumerable<TSource> source, 
             string propertyName)
         {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
             return source.ThenBy(p => typeof(TSource).GetProperty(propertyName).GetValue(p));
         }
 
@@ -100,6 +116,11 @@ namespace Infrastructure.Helpers
             this IOrderedEnumerable<TSource> source, 
             string propertyName)
         {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
             return source.ThenByDescending(p => typeof(TSource).GetProperty(propertyName).GetValue(p));
         }
 

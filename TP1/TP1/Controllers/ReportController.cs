@@ -6,17 +6,17 @@
 //   The report controller.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace TP1.Controllers
 {
     using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
-    using System.Globalization;
     using System.Linq;
     using System.Web.Mvc;
 
     using DataAccess.Repositories;
+
+    using Infrastructure.Helpers;
 
     using Model.DomainModels;
     using Model.DTOs;
@@ -30,19 +30,19 @@ namespace TP1.Controllers
     using TP1.Models;
 
     /// <summary>
-    /// The report controller.
+    ///     The report controller.
     /// </summary>
     public class ReportController : Controller
     {
         #region Fields
 
         /// <summary>
-        /// The project convert factory.
+        ///     The project convert factory.
         /// </summary>
         private ProjectConvertFactory projectConvertFactory;
 
         /// <summary>
-        /// The project repository.
+        ///     The project repository.
         /// </summary>
         private ProjectRepository projectRepository;
 
@@ -51,7 +51,7 @@ namespace TP1.Controllers
         #region Public Properties
 
         /// <summary>
-        /// Gets the project convert factory.
+        ///     Gets the project convert factory.
         /// </summary>
         public ProjectConvertFactory ProjectConvertFactory
         {
@@ -62,7 +62,7 @@ namespace TP1.Controllers
         }
 
         /// <summary>
-        /// Gets the project repository.
+        ///     Gets the project repository.
         /// </summary>
         public ProjectRepository ProjectRepository
         {
@@ -96,15 +96,31 @@ namespace TP1.Controllers
         /// </param>
         public void Export(ExportConfiguration export)
         {
-            var projects = this.ProjectRepository.GetAll().Where(p => p.DateAdded.Date >= export.From && p.DateAdded.Date <= export.To);
+            IEnumerable<Project> projects =
+                this.ProjectRepository.GetAll()
+                    .Where(p => p.DateAdded.Date >= export.From && p.DateAdded.Date <= export.To);
             new ExportService().ExportProjects(projects, export);
         }
 
         /// <summary>
-        /// The get all product.
+        /// The get accaptable projects range.
+        /// </summary>
+        /// <param name="filter">
+        /// The filter.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IEnumerable"/>.
+        /// </returns>
+        public IEnumerable<Project> GetAcceptableProjectsRange(ProjectGridFilter filter)
+        {
+            return this.ProjectRepository.GetAll().Where(p => p.DateAdded >= filter.From && p.DateAdded <= filter.To);
+        }
+
+        /// <summary>
+        ///     The get all product.
         /// </summary>
         /// <returns>
-        /// The <see cref="JsonResult"/>.
+        ///     The <see cref="JsonResult" />.
         /// </returns>
         public JsonResult GetAllProduct()
         {
@@ -113,10 +129,10 @@ namespace TP1.Controllers
         }
 
         /// <summary>
-        /// The get all student list.
+        ///     The get all student list.
         /// </summary>
         /// <returns>
-        /// The <see cref="string"/>.
+        ///     The <see cref="string" />.
         /// </returns>
         [HttpPost]
         public string GetAllStudentList()
@@ -148,11 +164,10 @@ namespace TP1.Controllers
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
-        public string GetReport(GridFilter filter)
+        public string GetReport(ProjectGridFilter filter)
         {
-            List<ProjectDto> data = this.BuildReports();
-            string jsonData =
-                JsonConvert.SerializeObject(this.SortReport(data, filter));
+            IEnumerable<Project> data = this.GetAcceptableProjectsRange(filter);
+            string jsonData = JsonConvert.SerializeObject(this.SortReport(data, filter));
             return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = jsonData });
         }
 
@@ -190,10 +205,10 @@ namespace TP1.Controllers
         #region Methods
 
         /// <summary>
-        /// The build reports.
+        ///     The build reports.
         /// </summary>
         /// <returns>
-        /// The <see cref="List"/>.
+        ///     The <see cref="List" />.
         /// </returns>
         private List<ProjectDto> BuildReports()
         {
@@ -247,8 +262,8 @@ namespace TP1.Controllers
         /// <summary>
         /// The sort report.
         /// </summary>
-        /// <param name="data">
-        /// The data.
+        /// <param name="acceptableRangeProjects">
+        /// The acceptable Range Projects.
         /// </param>
         /// <param name="filter">
         /// The grid filter with order, page size and proper field to perform sorting.
@@ -256,66 +271,57 @@ namespace TP1.Controllers
         /// <returns>
         /// The <see cref="IList"/>.
         /// </returns>
-        private IList<ProjectDto> SortReport(
-            IEnumerable<ProjectDto> data,
-            GridFilter filter)
+        private IList<ProjectDto> SortReport(IEnumerable<Project> acceptableRangeProjects, ProjectGridFilter filter)
         {
-            IList<ProjectDto> result;
-
-            if (filter.SortOrder == SortOrder.Ascending)
+            IEnumerable<Project> filteredList = acceptableRangeProjects;
+            if (!string.IsNullOrEmpty(filter.SortField))
             {
-                if (filter.SortField.ToLower() == "ZipCode")
+                switch (filter.SortOrder)
                 {
-                    result = data.OrderBy(x => x.ZipCode).Skip(filter.PageSize * (filter.PageIndex - 1)).Take(filter.PageSize).ToList();
-                }
-                else
-                {
-                    result = data.OrderBy(x => x.Title).Skip(filter.PageSize * (filter.PageIndex - 1)).Take(filter.PageSize).ToList();
-                }
-            }
-            else
-            {
-                if (filter.SortField.ToLower() == "ZipCode")
-                {
-                    result =
-                        data.OrderByDescending(x => x.ZipCode).Skip(filter.PageSize * (filter.PageIndex - 1)).Take(filter.PageSize).ToList();
-                }
-                else
-                {
-                    result =
-                        data.OrderByDescending(x => x.Title).Skip(filter.PageSize * (filter.PageIndex - 1)).Take(filter.PageSize).ToList();
+                    case SortOrder.Unspecified:
+                    case SortOrder.Ascending:
+                        filteredList = filteredList.OrderByString(filter.SortField);
+                        break;
+                    case SortOrder.Descending:
+                        filteredList = filteredList.OrderByStringDescending(filter.SortField);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
 
-            return result;
+            IEnumerable<Project> filteredProjects =
+                filteredList.Skip(filter.PageSize * (filter.PageIndex - 1)).Take(filter.PageSize);
+
+            return filteredProjects.Select(this.ProjectConvertFactory.FromModel).ToList();
         }
 
         #endregion
 
         /// <summary>
-        /// The product.
+        ///     The product.
         /// </summary>
         public class Product
         {
             #region Public Properties
 
             /// <summary>
-            /// Gets or sets the category.
+            ///     Gets or sets the category.
             /// </summary>
             public string Category { get; set; }
 
             /// <summary>
-            /// Gets or sets the id.
+            ///     Gets or sets the id.
             /// </summary>
             public int Id { get; set; }
 
             /// <summary>
-            /// Gets or sets the name.
+            ///     Gets or sets the name.
             /// </summary>
             public string Name { get; set; }
 
             /// <summary>
-            /// Gets or sets the price.
+            ///     Gets or sets the price.
             /// </summary>
             public decimal Price { get; set; }
 
