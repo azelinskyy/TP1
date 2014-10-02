@@ -270,10 +270,6 @@ td li {
     display: inline;
 }
 
-td li::after {
-    content: ',';
-}
-
 td li:last-child::after {
     content: '';
 }
