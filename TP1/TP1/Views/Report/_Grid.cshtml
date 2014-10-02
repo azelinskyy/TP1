@@ -1,0 +1,42 @@
+﻿<table id="products1" data-bind="visible: displayGrid">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>@Html.KnockoutHelperFor("Title", "p")</th>
+            <th>@Html.KnockoutHelperFor("ZipCode", "p")</th>
+            <th>@Html.KnockoutHelperFor("City", "p")</th>
+            <th>@Html.KnockoutHelperFor("DateAdded", "p")</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: Products">
+        <tr>
+            <td data-bind="text: Id"></td>
+            <td data-bind="text: Title"></td>
+            <td data-bind="text: ZipCode"></td>
+            <td data-bind="text: City.Name"></td>
+            <td data-bind="text: DateAdded"></td>
+            <td>
+                <button data-bind="click: $root.edit">Edit</button>
+                <button data-bind="click: $root.delete">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan = "6">
+                <div class="pagerWrap">
+                    <ul class="pager">
+                        <li class="pagerFirst" data-bind="click: selectFirst"><a href="#">First</a></li>
+                        <li class="pagerPrev" data-bind="click: selectPrevious"><a href="#">Previous</a></li>
+                        <li class="pagerCurrent">
+                            <span data-bind="text: searchOptions().pageIndex()"></span>
+                            <span>of total</span><span data-bind="text: totalPages()"></span><span> pages</span>
+                        </li>
+                        <li class="pagerNext" data-bind="click: selectNext"><a href="#">Next</a></li>
+                        <li class="pagerLast" data-bind="click: selectLast"><a href="#">Last</a></li>
+                    </ul>   
+                </div>
+            </td>
+        </tr>  
+    </tfoot>
+</table>

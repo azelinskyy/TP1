@@ -1,8 +1,6 @@
-﻿
-var gridModel = function (getDataFunction) {
+﻿var gridModel = function (getDataFunction, rowCount) {
     var self = this;
 
-    self.reloadData = getDataFunction;
     var requestOptions = {
         pageIndex: ko.observable(1),
         pageSize: ko.observable(10),
@@ -10,9 +8,13 @@ var gridModel = function (getDataFunction) {
         sortOrder: ko.observable('Desc'),
     };
 
-    self.searchOptions = ko.observable(requestOptions),
-    self.totalRows = ko.observable(0),
-    self.totalPages = ko.observable(0),
+    self.reloadData = getDataFunction;
+    self.searchOptions = ko.observable(requestOptions);
+    self.totalRows = ko.observable(rowCount);
+
+    self.totalPages = function() {
+        return self.totalRows() / self.searchOptions().pageSize();
+    };
     self.requestedPage = ko.observable(0),
 
     // navigation functionality

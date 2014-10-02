@@ -225,10 +225,6 @@ footer {
 /*#endregion */
 
 
-label {
-    display: inline-block;
-}
-
 button {
     display: inline-block;
     outline: none;

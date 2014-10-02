@@ -30,6 +30,7 @@
     self.Project = ko.observable();
     self.Products = ko.observableArray();   // Contains the list of products
     self.Language = ko.observableArray();
+    self.RowCount = ko.observable();
 
     self.LoadData = function (requestOptions) {
         // Initialize the view-model
@@ -40,12 +41,13 @@
             contentType: 'application/json; charset=utf-8',
             data: requestOptions,
             success: function (data) {
-                self.Products($.parseJSON($.parseJSON(data).result)); //Put the response in ObservableArray
+                var parsedData = $.parseJSON(data);
+                self.Products($.parseJSON(parsedData.result)); //Put the response in ObservableArray
             }
         });
     };
 
-    self.LoadData(self.Grid.requestOptions);
+    self.LoadData();
 
     self.changeDatesRange = function() {
         //// Place to refresh grid based on new dates range.
@@ -64,11 +66,7 @@
                 contentType: 'application/json; charset=utf-8',
                 data: ko.toJSON(project),
                 success: function(data) {
-                    // alert('added');
-                    self.Products.push(data);
-                    self.Name("");
-                    self.Price("");
-                    self.Category("");
+             
                 }
             }).fail(
                 function(xhr, textStatus, err) {
@@ -80,7 +78,7 @@
     };
 
     // Delete project
-    self.delete = function (project) {
+    self.delete = function(project) {
         if (confirm('Are you sure to Delete "' + project.Title + '" product ??')) {
             var id = project.Id;
             $.ajax({
@@ -89,74 +87,75 @@
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
                 data: { id: id },
-                success: function (data) {
-                    self.Products.remove(project);
+                success: function(data) {
+                    self.LoadData();
                 }
             }).fail(
-             function (xhr, textStatus, err) {
-                 alert(err);
-             });
+                function(xhr, textStatus, err) {
+                    alert(err);
+                });
         }
-    }
+    };
 
     // Edit project details
-    self.add = function () {
+    self.add = function() {
         self.changeVisibility(false);
-    }
+    };
 
     // Edit project details
-    self.edit = function (project) {
+    self.edit = function(project) {
         self.changeVisibility(false);
         self.Project(project);
         self.EditableItem = project;
-    }
+    };
 
     // Update product details
-    self.update = function () {
+    self.update = function() {
         var projectToUpdate = self.Project();
         $.ajax({
-            url: '/Report/PutProject',
-            cache: false,
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            data: ko.toJSON(projectToUpdate),
-            success: function (data) {
-                self.changeVisibility(true);
-            }
-        })
-    .fail(
-        function (xhr, textStatus, err) {
-            alert(err);
-        });
-    }
+                url: '/Report/PutProject',
+                cache: false,
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                data: ko.toJSON(projectToUpdate),
+                success: function(data) {
+                    self.changeVisibility(true);
+                    self.LoadData();
+                }
+            })
+            .fail(
+                function(xhr, textStatus, err) {
+                    alert(err);
+                });
+    };
 
     // Reset product details
-    self.reset = function () {
+    self.reset = function() {
         self.Title("");
         self.ZipCode("");
-    }
+    };
 
     // Cancel product details
-    self.cancel = function () {
+    self.cancel = function() {
         self.changeVisibility(true);
         self.Project(null);
-    }
+    };
 
-    self.changeVisibility = function (state) {
+    self.changeVisibility = function(state) {
         self.displayGrid(state);
         self.displayForm(!state);
-    }
+    };
 
-    self.tryExport = function () {
+    self.tryExport = function() {
         self.displayGrid(false);
         self.displayForm(false);
         self.displayExport(true);
-    }
+    };
 
-    self.hideExport = function () {
+    self.hideExport = function() {
         self.displayExport(false);
         self.displayGrid(true);
-    }
+    };
 
     self.export = function () {
         $.ajax({

@@ -1,0 +1,31 @@
+﻿<input id="dateFrom" type="text" data-bind="datepicker: {}, value: $root.DateFrom" />
+        <input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
+        <button data-bind="click: $root.tryExport">Export</button>
+        <button data-bind="click: $root.add">Add</button>
+            @Html.Partial("~/Views/Report/_Grid.cshtml")
+        <br />
+        <div style="border-top: solid 2px  #282828; width: 430px; height: 10px">&nbsp;</div>
+        <div data-bind="visible: displayForm">
+            @Html.Partial("~/Views/Report/_EditProjectForm.cshtml")
+
+            @Html.Partial("~/Views/Report/_AddProjectForm.cshtml")
+        </div>
+
+<div data-bind="visible: displayExport">
+    <div>
+        <div>
+            <h2>Export projects</h2>
+        </div>
+        <div>
+            <label for="email">@Html.KnockoutHelperFor("Email", "p")</label>
+            <input data-bind="value: $root.Email" type="text" title="Email" name="email" />
+        </div>
+        <br />
+        <div>
+            <button data-bind="click: $root.export">Export</button>
+            <button data-bind="click: $root.hideExport">Cancel</button>
+        </div>
+    </div>
+</div>
+
+

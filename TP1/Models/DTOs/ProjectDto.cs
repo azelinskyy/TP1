@@ -6,6 +6,7 @@
 //   The project dto.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace Model.DTOs
 {
     using System;
@@ -36,6 +37,51 @@ namespace Model.DTOs
         ///     Gets or sets the zip code.
         /// </summary>
         public string ZipCode { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the address.
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the architect.
+        /// </summary>
+        public string Architect { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the date modified.
+        /// </summary>
+        public DateTime? DateModified { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the description.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the finish date.
+        /// </summary>
+        public DateTime? FinishDate { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the owner.
+        /// </summary>
+        public string Owner { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the price.
+        /// </summary>
+        public double Price { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the space.
+        /// </summary>
+        public string Space { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the start date.
+        /// </summary>
+        public DateTime? StartDate { get; set; }
 
         #endregion
     }

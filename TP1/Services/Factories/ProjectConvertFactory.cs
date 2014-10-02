@@ -33,11 +33,19 @@ namespace Services.Factories
         {
             return new ProjectDto
                        {
-                           Id = model.Id,
-                           City = new CityConvertFactory().FromModel(model.City), 
-                           DateAdded = model.DateAdded, 
-                           Title = model.Title, 
-                           ZipCode = model.ZipCode
+                            Id = model.Id,
+                            City = new CityConvertFactory().FromModel(model.City), 
+                            DateAdded = model.DateAdded, 
+                            Title = model.Title, 
+                            ZipCode = model.ZipCode,
+                            Architect = model.Architect != null ? model.Architect.Name : null,
+                            DateModified = model.DateModified,
+                            Description  = model.Description,
+                            FinishDate = model.FinishDate != null ? model.FinishDate.DateTime : null,
+                            Owner = model.Owner != null ? model.Owner.Name : null,
+                            Price  = model.Price,
+                            Space  = model.Space,
+                            StartDate = model.StartDate != null ? model.StartDate.DateTime : null
                        };
         }
 

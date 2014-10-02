@@ -166,7 +166,7 @@ namespace TP1.Controllers
         /// </returns>
         public string GetReport(ProjectGridFilter filter)
         {
-            IEnumerable<Project> data = this.GetAcceptableProjectsRange(filter);
+            List<Project> data = this.GetAcceptableProjectsRange(filter).ToList();
             string jsonData = JsonConvert.SerializeObject(this.SortReport(data, filter));
             return JsonConvert.SerializeObject(new { totalRows = data.Count(), result = jsonData });
         }
@@ -297,35 +297,5 @@ namespace TP1.Controllers
         }
 
         #endregion
-
-        /// <summary>
-        ///     The product.
-        /// </summary>
-        public class Product
-        {
-            #region Public Properties
-
-            /// <summary>
-            ///     Gets or sets the category.
-            /// </summary>
-            public string Category { get; set; }
-
-            /// <summary>
-            ///     Gets or sets the id.
-            /// </summary>
-            public int Id { get; set; }
-
-            /// <summary>
-            ///     Gets or sets the name.
-            /// </summary>
-            public string Name { get; set; }
-
-            /// <summary>
-            ///     Gets or sets the price.
-            /// </summary>
-            public decimal Price { get; set; }
-
-            #endregion
-        }
     }
 }

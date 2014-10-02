@@ -22,7 +22,7 @@ namespace Model.DomainModels
         /// <summary>
         ///     Gets or sets the date time.
         /// </summary>
-        public DateTime? DateTime { get; set; }
+        public DateTime?    DateTime { get; set; }
 
         /// <summary>
         ///     Gets or sets the description.
