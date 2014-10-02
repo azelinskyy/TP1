@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Contexts\DomainContext.cs" />
     <Compile Include="Contexts\UsersContext.cs" />
+    <Compile Include="Helpers\SortingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

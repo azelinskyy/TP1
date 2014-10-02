@@ -14,7 +14,7 @@ namespace UnitTests.DataAccess
 
     using global::DataAccess.Repositories;
 
-    using Infrastructure.Contexts;
+    using global::Infrastructure.Contexts;
 
     using Model.DomainModels;
 
@@ -95,7 +95,7 @@ namespace UnitTests.DataAccess
         }
 
         /// <summary>
-        /// The test delete.
+        ///     The test delete.
         /// </summary>
         [Test]
         public void TestDelete()
@@ -123,7 +123,7 @@ namespace UnitTests.DataAccess
         }
 
         /// <summary>
-        /// The test update.
+        ///     The test update.
         /// </summary>
         [Test]
         public void TestUpdate()
@@ -154,7 +154,7 @@ namespace UnitTests.DataAccess
 
             #endregion
 
-            #region Public Methods and Operators
+            #region Methods
 
             /// <summary>
             ///     The get db context.

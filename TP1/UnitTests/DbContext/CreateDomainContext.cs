@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace UnitTests.DbContext
 {
-    using Infrastructure.Contexts;
+    using global::Infrastructure.Contexts;
 
     using NUnit.Framework;
 

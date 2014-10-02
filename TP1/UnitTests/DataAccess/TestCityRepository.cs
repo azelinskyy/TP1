@@ -14,7 +14,7 @@ namespace UnitTests.DataAccess
 
     using global::DataAccess.Repositories;
 
-    using Infrastructure.Contexts;
+    using global::Infrastructure.Contexts;
 
     using Model.DomainModels;
 
@@ -100,7 +100,7 @@ namespace UnitTests.DataAccess
         {
             Assert.Throws<InvalidOperationException>(() => this.repo.GetById(0));
             this.repo.Add(this.city);
-            var item = this.repo.GetById(this.city.Id);
+            City item = this.repo.GetById(this.city.Id);
             Assert.IsNotNull(item);
             Assert.AreEqual(item.Id, this.city.Id);
             Assert.AreEqual(item.Name, this.city.Name);
@@ -125,7 +125,7 @@ namespace UnitTests.DataAccess
         }
 
         /// <summary>
-        /// The test update.
+        ///     The test update.
         /// </summary>
         [Test]
         public void TestUpdate()

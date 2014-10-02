@@ -13,7 +13,7 @@ namespace UnitTests.DataAccess
 
     using global::DataAccess.Repositories;
 
-    using Infrastructure.Contexts;
+    using global::Infrastructure.Contexts;
 
     using Model.DomainModels;
 
@@ -114,7 +114,7 @@ namespace UnitTests.DataAccess
         }
 
         /// <summary>
-        /// The test update.
+        ///     The test update.
         /// </summary>
         [Test]
         public void TestUpdate()
