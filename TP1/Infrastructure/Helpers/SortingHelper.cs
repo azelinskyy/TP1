@@ -9,6 +9,7 @@
 namespace Infrastructure.Helpers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
@@ -45,6 +46,32 @@ namespace Infrastructure.Helpers
         }
 
         /// <summary>
+        /// The order by.
+        /// </summary>
+        /// <param name="source">
+        /// The source.
+        /// </param>
+        /// <param name="propertyName">
+        /// The property name.
+        /// </param>
+        /// <typeparam name="TModel">
+        /// </typeparam>
+        /// <returns>
+        /// The <see cref="IOrderedEnumerable"/>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// </exception>
+        public static IOrderedEnumerable<TModel> OrderBy<TModel>(this IEnumerable<TModel> source, string propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            return source.OrderBy(p => typeof(TModel).GetProperty(propertyName).GetValue(p));
+        }
+
+        /// <summary>
         /// The order by descending.
         /// </summary>
         /// <param name="query">
@@ -67,6 +94,34 @@ namespace Infrastructure.Helpers
             MethodInfo m = typeof(SortingHelper).GetMethod("OrderByPropertyDescending")
                 .MakeGenericMethod(entityType, p.PropertyType);
             return (IOrderedQueryable<TModel>)m.Invoke(null, new object[] { query, p });
+        }
+
+        /// <summary>
+        /// The order by descending.
+        /// </summary>
+        /// <param name="source">
+        /// The source.
+        /// </param>
+        /// <param name="propertyName">
+        /// The property name.
+        /// </param>
+        /// <typeparam name="TModel">
+        /// </typeparam>
+        /// <returns>
+        /// The <see cref="IOrderedEnumerable"/>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// </exception>
+        public static IOrderedEnumerable<TModel> OrderByDescending<TModel>(
+            this IEnumerable<TModel> source, 
+            string propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            return source.OrderByDescending(p => typeof(TModel).GetProperty(propertyName).GetValue(p));
         }
 
         /// <summary>
@@ -143,6 +198,34 @@ namespace Infrastructure.Helpers
         }
 
         /// <summary>
+        /// The then by.
+        /// </summary>
+        /// <param name="source">
+        /// The source.
+        /// </param>
+        /// <param name="propertyName">
+        /// The property name.
+        /// </param>
+        /// <typeparam name="TModel">
+        /// </typeparam>
+        /// <returns>
+        /// The <see cref="IOrderedEnumerable"/>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// </exception>
+        public static IOrderedEnumerable<TModel> ThenBy<TModel>(
+            this IOrderedEnumerable<TModel> source, 
+            string propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            return source.ThenBy(p => typeof(TModel).GetProperty(propertyName).GetValue(p));
+        }
+
+        /// <summary>
         /// The then by descending.
         /// </summary>
         /// <param name="query">
@@ -165,6 +248,34 @@ namespace Infrastructure.Helpers
             MethodInfo m = typeof(SortingHelper).GetMethod("ThenByPropertyDescending")
                 .MakeGenericMethod(entityType, p.PropertyType);
             return (IOrderedQueryable<TModel>)m.Invoke(null, new object[] { query, p });
+        }
+
+        /// <summary>
+        /// The then by descending.
+        /// </summary>
+        /// <param name="source">
+        /// The source.
+        /// </param>
+        /// <param name="propertyName">
+        /// The property name.
+        /// </param>
+        /// <typeparam name="TModel">
+        /// </typeparam>
+        /// <returns>
+        /// The <see cref="IOrderedEnumerable"/>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// </exception>
+        public static IOrderedEnumerable<TModel> ThenByDescending<TModel>(
+            this IOrderedEnumerable<TModel> source, 
+            string propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            return source.ThenByDescending(p => typeof(TModel).GetProperty(propertyName).GetValue(p));
         }
 
         /// <summary>
