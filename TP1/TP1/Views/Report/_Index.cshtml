@@ -1,13 +1,15 @@
+﻿@Html.KnockoutHelperFor("From", "span")
 ﻿<input id="dateFrom" type="text" data-bind="datepicker: {}, value: $root.DateFrom" />
-        <input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
-        <button data-bind="click: $root.tryExport">Export</button>
-        <button data-bind="click: $root.add">Add</button>
-            @Html.Partial("~/Views/Report/_Grid.cshtml")
-        <br />
-        <div style="border-top: solid 2px  #282828; width: 430px; height: 10px">&nbsp;</div>
-        <div data-bind="visible: displayForm">
-            @Html.Partial("~/Views/Report/_EditProjectForm.cshtml")
-        </div>
+@Html.KnockoutHelperFor("To", "span")
+<input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
+<button data-bind="click: $root.tryExport">Export</button>
+<button data-bind="click: $root.add">Add</button>
+    @Html.Partial("~/Views/Report/_Grid.cshtml")
+<br />
+<div style="border-top: solid 2px  #282828; width: 430px; height: 10px">&nbsp;</div>
+<div data-bind="visible: displayForm">
+    @Html.Partial("~/Views/Report/_EditProjectForm.cshtml")
+</div>
 
 <div data-bind="visible: displayExport">
     <div>
@@ -18,6 +20,12 @@
             <label for="email">@Html.KnockoutHelperFor("Email", "p")</label>
             <input data-bind="value: $root.Email" type="text" title="Email" name="email" />
         </div>
+        <div>
+            <label for="type">@Html.KnockoutHelperFor("Type", "p")</label>
+            <select data-bind="options: $root.ExportModels,
+                       optionsText: 'name',
+                       value: 'value'" name="type"></select>
+        </div>
         <br />
         <div>
             <button data-bind="click: $root.export">Export</button>
@@ -25,5 +33,3 @@
         </div>
     </div>
 </div>
-
-
