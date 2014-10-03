@@ -1,13 +1,13 @@
 ﻿<input id="dateFrom" type="text" data-bind="datepicker: {}, value: $root.DateFrom" />
-        <input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
-        <button data-bind="click: $root.tryExport">Export</button>
-        <button data-bind="click: $root.add">Add</button>
-            @Html.Partial("~/Views/Report/_Grid.cshtml")
-        <br />
-        <div style="border-top: solid 2px  #282828; width: 430px; height: 10px">&nbsp;</div>
-        <div data-bind="visible: displayForm">
-            @Html.Partial("~/Views/Report/_EditProjectForm.cshtml")
-        </div>
+<input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
+@Html.KnockoutHelperForButton("Export", "click: $root.tryExport")
+@Html.KnockoutHelperForButton("Add", "click: $root.add")
+    @Html.Partial("~/Views/Report/_Grid.cshtml")
+<br />
+<div style="border-top: solid 2px  #282828; width: 430px; height: 10px">&nbsp;</div>
+<div data-bind="visible: displayForm">
+    @Html.Partial("~/Views/Report/_EditProjectForm.cshtml")
+</div>
 
 <div data-bind="visible: displayExport">
     <div>
@@ -20,8 +20,8 @@
         </div>
         <br />
         <div>
-            <button data-bind="click: $root.export">Export</button>
-            <button data-bind="click: $root.hideExport">Cancel</button>
+            @Html.KnockoutHelperForButton("Export", "click: $root.export")
+            @Html.KnockoutHelperForButton("Cancel", "click: $root.hideExport")
         </div>
     </div>
 </div>

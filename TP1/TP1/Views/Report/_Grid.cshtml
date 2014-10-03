@@ -16,8 +16,8 @@
             <td data-bind="text: City.Name"></td>
             <td data-bind="text: DateAdded"></td>
             <td>
-                <button data-bind="click: $root.edit">Edit</button>
-                <button data-bind="click: $root.delete">Delete</button>
+                @Html.KnockoutHelperForButton("Edit", "click: $root.edit")
+                @Html.KnockoutHelperForButton("Delete", "click: $root.delete")
             </td>
         </tr>
     </tbody>

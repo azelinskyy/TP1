@@ -210,4 +210,25 @@
   <data name="Email" xml:space="preserve">
     <value>email</value>
   </data>
+  <data name="ProjectFormTitle" xml:space="preserve">
+    <value>Форма проекту</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Додати</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Відміна</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Експортувати</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Зберігти</value>
+  </data>
 </root>

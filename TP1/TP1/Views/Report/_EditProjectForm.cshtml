@@ -1,6 +1,6 @@
 ﻿<div class="editform">
     <div>
-        <h2>Update Product method from partial view</h2>
+        @Html.KnockoutHelperFor("ProjectFormTitle", "h2")
     </div>
     <div>
         <label for="productId" data-bind="visible: false">ID</label>
@@ -67,8 +67,7 @@
     </div>
     <br />
     <div>
-        <button data-bind="click: $root.update">Update</button>
-        <button data-bind="click: $root.cancel">Cancel</button>
-
+        @Html.KnockoutHelperForButton("Save", "click: $root.update")
+        @Html.KnockoutHelperForButton("Cancel", "click: $root.cancel")
     </div>
 </div>

@@ -66,7 +66,7 @@
 
     //Add New Item
     self.create = function() {
-        if (project.Name() != "" && project.Price() != "" && project.Category() != "") {
+        /*if (project.Name() != "" && project.Price() != "" && project.Category() != "") {
             $.ajax({
                 url: '@Url.Action("AddProduct", "Product")',
                 cache: false,
@@ -82,7 +82,7 @@
                 });
         } else {
             alert('Please Enter All the Values !!');
-        }
+        }*/
     };
 
     // Delete project
@@ -146,7 +146,7 @@
     // Cancel project details
     self.cancel = function() {
         self.changeVisibility(true);
-        self.Project(null);
+       // self.Project(null);
     };
 
     self.changeVisibility = function(state) {
