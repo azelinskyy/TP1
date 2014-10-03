@@ -16,19 +16,27 @@
     self.displayForm = ko.observable(false);
     self.displayExport = ko.observable(false);
 
-    var project = {
-        Id: self.Id,
-        Name: self.Title,
-        Price: self.ZipCode,
-        Category: self.DateAdded
+     var projectModel = {
+        Id: ko.observable(""),
+        Title: ko.observable(""),
+        ZipCode: ko.observable(""),
+        City: ko.observable(""), 
+        Address: ko.observable(""),
+        Architect: ko.observable(""),
+        DateModified: ko.observable(""),
+        Description: ko.observable(""),
+        FinishDate: ko.observable(""),
+        Owner: ko.observable(""),
+        Price: ko.observable(""),
+        Space: ko.observable(""),
+        StartDate: ko.observable("")
     };
 
     self.Grid = ko.observable();
 
-    self.EditableItem = ko.observable();
 
-    self.Project = ko.observable();
-    self.Products = ko.observableArray();   // Contains the list of products
+    self.Project = ko.observable(projectModel);
+    self.Projects = ko.observableArray();   // Contains the list of projects
     self.Language = ko.observableArray();
     self.RowCount = ko.observable();
 
@@ -42,7 +50,7 @@
             data: requestOptions,
             success: function (data) {
                 var parsedData = $.parseJSON(data);
-                self.Products($.parseJSON(parsedData.result)); //Put the response in ObservableArray
+                self.Projects($.parseJSON(parsedData.result)); //Put the response in ObservableArray
             }
         });
     };
@@ -79,7 +87,7 @@
 
     // Delete project
     self.delete = function(project) {
-        if (confirm('Are you sure to Delete "' + project.Title + '" product ??')) {
+        if (confirm('Are you sure to Delete "' + project.Title + '" project?')) {
             var id = project.Id;
             $.ajax({
                 url: '/Report/DeleteProject',
@@ -100,13 +108,13 @@
     // Edit project details
     self.add = function() {
         self.changeVisibility(false);
+        self.Project(self.projectModel);
     };
 
     // Edit project details
     self.edit = function(project) {
         self.changeVisibility(false);
         self.Project(project);
-        self.EditableItem = project;
     };
 
     // Update product details
@@ -129,13 +137,13 @@
                 });
     };
 
-    // Reset product details
+    // Reset project details
     self.reset = function() {
         self.Title("");
         self.ZipCode("");
     };
 
-    // Cancel product details
+    // Cancel project details
     self.cancel = function() {
         self.changeVisibility(true);
         self.Project(null);

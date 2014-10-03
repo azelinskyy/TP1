@@ -1,11 +1,10 @@
-﻿<div class="editform" data-bind="if: Project">
+﻿<div class="editform">
     <div>
         <h2>Update Product method from partial view</h2>
     </div>
     <div>
         <label for="productId" data-bind="visible: false">ID</label>
         <label data-bind="text: Project().Id, visible: false"></label>
-
     </div>
     <div>
         <label for="title">@Html.KnockoutHelperFor("Title", "p")</label>
