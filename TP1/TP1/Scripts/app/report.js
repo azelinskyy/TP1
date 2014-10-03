@@ -2,6 +2,9 @@
 
     //Make the self as 'this' reference
     var self = this;
+
+    self.ExportModels = [{ name: "Columns", value: "0" }, { name: "Tables", value: "1" }];
+
     //Declare observable which will be bind with UI 
     self.Id = ko.observable("");
     self.DateAdded = ko.observable("");
@@ -10,6 +13,7 @@
     self.DateFrom = ko.observable();
     self.DateTo = ko.observable();
     self.Email = ko.observable("");
+    self.ExportModel = ko.observable("");
 
 
     self.displayGrid = ko.observable(true);
@@ -171,7 +175,7 @@
             cache: false,
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
-            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Language: "en-US"/*self.Culture.selectedLanguage().type*/ }),
+            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Model: self.ExportModel().value, Language: "en-US"/*self.Culture.selectedLanguage().type*/ }),
             success: function (data) {
                 self.hideExport();
             }

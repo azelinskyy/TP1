@@ -1,7 +1,9 @@
+﻿@Html.KnockoutHelperFor("From", "span")
 ﻿<input id="dateFrom" type="text" data-bind="datepicker: {}, value: $root.DateFrom" />
+@Html.KnockoutHelperFor("To", "span")
 <input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
-@Html.KnockoutHelperForButton("Export", "click: $root.tryExport")
-@Html.KnockoutHelperForButton("Add", "click: $root.add")
+    @Html.KnockoutHelperForButton("Export", "click: $root.tryExport")
+    @Html.KnockoutHelperForButton("Add", "click: $root.add")
     @Html.Partial("~/Views/Report/_Grid.cshtml")
 <br />
 <div style="border-top: solid 2px  #282828; width: 430px; height: 10px">&nbsp;</div>
@@ -18,6 +20,12 @@
             <label for="email">@Html.KnockoutHelperFor("Email", "p")</label>
             <input data-bind="value: $root.Email" type="text" title="Email" name="email" />
         </div>
+        <div>
+            <label for="type">@Html.KnockoutHelperFor("Type", "p")</label>
+            <select data-bind="options: $root.ExportModels,
+                       optionsText: 'name',
+                       value: 'value'" name="type"></select>
+        </div>
         <br />
         <div>
             @Html.KnockoutHelperForButton("Export", "click: $root.export")
@@ -25,5 +33,3 @@
         </div>
     </div>
 </div>
-
-
