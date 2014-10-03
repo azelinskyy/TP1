@@ -208,7 +208,7 @@
     <value>Скорочення</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>email</value>
+    <value>Email</value>
   </data>
   <data name="ProjectFormTitle" xml:space="preserve">
     <value>Форма проекту</value>
@@ -233,5 +233,14 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Опис</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>З</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>По</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
   </data>
 </root>

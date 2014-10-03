@@ -208,7 +208,7 @@
     <value>Legend</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>email</value>
+    <value>Email</value>
   </data>
   <data name="ProjectFormTitle" xml:space="preserve">
     <value>Project form</value>
@@ -233,5 +233,14 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>
