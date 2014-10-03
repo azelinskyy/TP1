@@ -112,19 +112,6 @@ namespace TP1.Controllers
         }
 
         /// <summary>
-        ///     The get all product.
-        /// </summary>
-        /// <returns>
-        ///     The <see cref="JsonResult" />.
-        /// </returns>
-        public JsonResult GetAllProduct()
-        {
-            List<ProjectDto> data =
-                this.ProjectRepository.GetAll().Select(this.ProjectConvertFactory.FromModel).ToList();
-            return this.Json(data, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
         /// The get project.
         /// </summary>
         /// <param name="id">

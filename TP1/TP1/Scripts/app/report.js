@@ -112,7 +112,7 @@
     // Edit project details
     self.add = function() {
         self.changeVisibility(false);
-        self.Project(self.projectModel);
+        self.Project(projectModel);
     };
 
     // Edit project details
