@@ -49,7 +49,7 @@ namespace DataAccess.Repositories
         /// <param name="items">
         /// The items.
         /// </param>
-        public abstract void AddRange(IEnumerable<T> items);
+        public abstract void AddRange(IList<T> items);
 
         /// <summary>
         ///     The get all.
@@ -57,7 +57,7 @@ namespace DataAccess.Repositories
         /// <returns>
         ///     The <see cref="IEnumerable" />.
         /// </returns>
-        public abstract IEnumerable<T> GetAll();
+        public abstract List<T> GetAll();
 
         /// <summary>
         /// The get by id.
@@ -69,6 +69,14 @@ namespace DataAccess.Repositories
         /// The <see cref="T"/>.
         /// </returns>
         public abstract T GetById(int id);
+
+        /// <summary>
+        /// The get count.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        public abstract int GetCount();
 
         /// <summary>
         /// The remove single.
@@ -93,6 +101,10 @@ namespace DataAccess.Repositories
         /// The item.
         /// </param>
         public abstract void Update(T item);
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         ///     The get db context.

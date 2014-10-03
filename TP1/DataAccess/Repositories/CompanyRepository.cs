@@ -6,16 +6,16 @@
 //   The company repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace DataAccess.Repositories
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using Model.DomainModels;
 
     /// <summary>
-    /// The company repository.
+    ///     The company repository.
     /// </summary>
     public class CompanyRepository : RepositoryBase<Company>
     {
@@ -42,20 +42,20 @@ namespace DataAccess.Repositories
         /// </param>
         /// <exception cref="NotImplementedException">
         /// </exception>
-        public override void AddRange(IEnumerable<Company> items)
+        public override void AddRange(IList<Company> items)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// The get all.
+        ///     The get all.
         /// </summary>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
         /// <exception cref="NotImplementedException">
         /// </exception>
-        public override IEnumerable<Company> GetAll()
+        public override List<Company> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -74,6 +74,17 @@ namespace DataAccess.Repositories
         public override Company GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// The get count.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        public override int GetCount()
+        {
+            return this.GetDbContext().Cities.Count();
         }
 
         /// <summary>

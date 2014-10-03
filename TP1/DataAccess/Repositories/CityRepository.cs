@@ -48,7 +48,7 @@ namespace DataAccess.Repositories
         /// </param>
         /// <exception cref="NotImplementedException">
         /// </exception>
-        public override void AddRange(IEnumerable<City> items)
+        public override void AddRange(IList<City> items)
         {
             throw new NotImplementedException();
         }
@@ -61,9 +61,9 @@ namespace DataAccess.Repositories
         /// </returns>
         /// <exception cref="NotImplementedException">
         /// </exception>
-        public override IEnumerable<City> GetAll()
+        public override List<City> GetAll()
         {
-            return this.GetDbContext().Cities;
+            return this.GetDbContext().Cities.ToList();
         }
 
         /// <summary>
@@ -80,6 +80,31 @@ namespace DataAccess.Repositories
         public override City GetById(int id)
         {
             return this.GetDbContext().Cities.Single(c => c.Id == id);
+        }
+
+        /// <summary>
+        /// The get by name.
+        /// </summary>
+        /// <param name="name">
+        /// The name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="City"/>.
+        /// </returns>
+        public City GetByName(string name)
+        {
+            return this.GetDbContext().Cities.Single(c => c.Name == name);
+        }
+
+        /// <summary>
+        /// The get count.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        public override int GetCount()
+        {
+            return this.GetDbContext().Projects.Count();
         }
 
         /// <summary>

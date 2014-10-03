@@ -36,7 +36,7 @@ namespace DataAccess.Repositories
         /// <param name="items">
         /// The items.
         /// </param>
-        void AddRange(IEnumerable<T> items);
+        void AddRange(IList<T> items);
 
         /// <summary>
         ///     The get all.
@@ -44,7 +44,7 @@ namespace DataAccess.Repositories
         /// <returns>
         ///     The <see cref="IEnumerable" />.
         /// </returns>
-        IEnumerable<T> GetAll();
+        List<T> GetAll();
 
         /// <summary>
         /// The get by id.
@@ -56,6 +56,14 @@ namespace DataAccess.Repositories
         /// The <see cref="T"/>.
         /// </returns>
         T GetById(int id);
+
+        /// <summary>
+        /// The get count.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        int GetCount();
 
         /// <summary>
         /// The remove single.

@@ -10,9 +10,13 @@ namespace DataAccess.Repositories
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.SqlClient;
     using System.Linq;
 
+    using Infrastructure.Helpers;
+
     using Model.DomainModels;
+    using Model.Filters;
 
     /// <summary>
     ///     The project repository.
@@ -44,7 +48,7 @@ namespace DataAccess.Repositories
         /// <param name="items">
         /// The items.
         /// </param>
-        public override void AddRange(IEnumerable<Project> items)
+        public override void AddRange(IList<Project> items)
         {
             foreach (Project project in items)
             {
@@ -60,9 +64,9 @@ namespace DataAccess.Repositories
         /// <returns>
         ///     The <see cref="IEnumerable" />.
         /// </returns>
-        public override IEnumerable<Project> GetAll()
+        public override List<Project> GetAll()
         {
-            return this.GetDbContext().Projects;
+            return this.GetDbContext().Projects.ToList();
         }
 
         /// <summary>
@@ -77,6 +81,90 @@ namespace DataAccess.Repositories
         public override Project GetById(int id)
         {
             return this.GetDbContext().Projects.Single(p => p.Id == id);
+        }
+
+        /// <summary>
+        /// The get count.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        public override int GetCount()
+        {
+            return this.GetDbContext().Projects.Count();
+        }
+
+        /// <summary>
+        /// The get projects filtered by date range.
+        /// </summary>
+        /// <param name="filter">
+        /// The filter.
+        /// </param>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
+        public List<Project> GetProjectsFilteredByDateRange(ProjectGridFilter filter)
+        {
+            IQueryable<Project> projects =
+                this.GetDbContext().Projects.Where(p => p.DateAdded >= filter.From && p.DateAdded <= filter.To);
+            return projects.ToList();
+        }
+
+        /// <summary>
+        /// The get projects filtered by date range count.
+        /// </summary>
+        /// <param name="filter">
+        /// The filter.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        public int GetProjectsFilteredByDateRangeCount(ProjectGridFilter filter)
+        {
+            IQueryable<Project> projects =
+                this.GetDbContext().Projects.Where(p => p.DateAdded >= filter.From && p.DateAdded <= filter.To);
+            return projects.Count();
+        }
+
+        /// <summary>
+        /// The get projects filtered by project grid.
+        /// </summary>
+        /// <param name="filter">
+        /// The filter.
+        /// </param>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// </exception>
+        public List<Project> GetProjectsFilteredByProjectGrid(ProjectGridFilter filter)
+        {
+            // General filtering by date
+            IQueryable<Project> projects =
+                this.GetDbContext().Projects.Where(p => p.DateAdded >= filter.From && p.DateAdded <= filter.To);
+
+            // sort by id if sorting field is not provided
+            if (string.IsNullOrEmpty(filter.SortField))
+            {
+                filter.SortField = "Id";
+            }
+
+            switch (filter.SortOrder)
+                {
+                    case SortOrder.Unspecified:
+                    case SortOrder.Ascending:
+                        projects = projects.OrderBy(filter.SortField);
+                        break;
+                    case SortOrder.Descending:
+                        projects = projects.OrderBy(filter.SortField);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+            // filtering based on page size and number
+            projects = projects.Skip(filter.PageSize * (filter.PageIndex - 1)).Take(filter.PageSize);
+            return projects.ToList();
         }
 
         /// <summary>

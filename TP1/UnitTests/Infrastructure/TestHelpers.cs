@@ -64,7 +64,7 @@ namespace UnitTests.Infrastructure
         [Test]
         public void TestOrderByStringDesendingExtension()
         {
-            IOrderedEnumerable<Project> ordered = this.projects.OrderByStringDescending("Id");
+            IOrderedQueryable<Project> ordered = this.projects.AsQueryable().OrderByDescending("Id");
             Assert.AreEqual(ordered.First().Id, 3);
             Assert.AreEqual(ordered.Last().Id, 1);
         }
@@ -75,7 +75,7 @@ namespace UnitTests.Infrastructure
         [Test]
         public void TestOrderByStringExtension()
         {
-            IOrderedEnumerable<Project> ordered = this.projects.OrderByString("Id");
+            IOrderedQueryable<Project> ordered = this.projects.AsQueryable().OrderBy("Id");
             Assert.AreEqual(ordered.First().Id, 1);
             Assert.AreEqual(ordered.Last().Id, 3);
         }
@@ -86,7 +86,7 @@ namespace UnitTests.Infrastructure
         [Test]
         public void TestThenByStringDesendingExtension()
         {
-            IOrderedEnumerable<Project> ordered = this.projects.OrderByString("Price").ThenByStringDescending("Id");
+            IQueryable<Project> ordered = this.projects.AsQueryable().OrderBy("Price").ThenByDescending("Id");
             Assert.AreEqual(ordered.First().Id, 2);
             Assert.AreEqual(ordered.Last().Id, 1);
         }
@@ -97,7 +97,7 @@ namespace UnitTests.Infrastructure
         [Test]
         public void TestThenByStringExtension()
         {
-            IOrderedEnumerable<Project> ordered = this.projects.OrderByString("Price").ThenByString("Id");
+            IOrderedQueryable<Project> ordered = this.projects.AsQueryable().OrderBy("Price").ThenBy("Id");
             Assert.AreEqual(ordered.First().Id, 2);
             Assert.AreEqual(ordered.Last().Id, 3);
         }
