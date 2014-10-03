@@ -231,4 +231,7 @@
   <data name="Save" xml:space="preserve">
     <value>Зберігти</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Опис</value>
+  </data>
 </root>
