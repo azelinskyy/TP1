@@ -37,16 +37,10 @@ namespace Tools.Export
         #region Static Fields
 
         /// <summary>
-        ///     The path to arialuni.tff file with proper font.
-        /// </summary>
-        private static readonly string ArialuniTff =
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIALUNI.TTF");
-
-        /// <summary>
         ///     The instance of font base for proper font.
         /// </summary>
         private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
-            ArialuniTff,
+            "arialuni.ttf",
             BaseFont.IDENTITY_H,
             BaseFont.EMBEDDED);
 

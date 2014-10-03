@@ -25,16 +25,10 @@ namespace Tools.Export
         #region Static Fields
 
         /// <summary>
-        /// The path to arialuni.tff file with proper font.
-        /// </summary>
-        private static readonly string ArialuniTff =
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIALUNI.TTF");
-
-        /// <summary>
         /// The instance of font base for proper font.
         /// </summary>
         private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
-            ArialuniTff, 
+            "arialuni.ttf",
             BaseFont.IDENTITY_H,
             BaseFont.EMBEDDED);
 
@@ -135,12 +129,12 @@ namespace Tools.Export
             footerTable.TotalWidth = document.Right - document.Left;
 
             var cell = this.GetNoBorderCell(
-                new Phrase(this.resourceService["FullInfoOnSite"], Footer), 
+                new Phrase(this.resourceService["FullInfoOnSite"], Footer),
                 Element.ALIGN_LEFT);
             footerTable.AddCell(cell);
 
             cell = this.GetNoBorderCell(
-                new Phrase(document.PageNumber.ToString(CultureInfo.InvariantCulture), Footer), 
+                new Phrase(document.PageNumber.ToString(CultureInfo.InvariantCulture), Footer),
                 Element.ALIGN_RIGHT);
             footerTable.AddCell(cell);
 
@@ -172,16 +166,16 @@ namespace Tools.Export
 
             cell =
                 this.GetNoBorderCell(
-                    new Phrase(this.resourceService["BuildingProject"] + this.FormatHeaderDate(), Header), 
+                    new Phrase(this.resourceService["BuildingProject"] + " " + this.FormatHeaderDate(), Header),
                     Element.ALIGN_RIGHT);
             headerTable.AddCell(cell);
 
             headerTable.CompleteRow();
             headerTable.WriteSelectedRows(
-                0, 
-                -1, 
-                document.Left, 
-                document.Top + ((document.TopMargin + image.ScaledHeight) / 2), 
+                0,
+                -1,
+                document.Left,
+                document.Top + ((document.TopMargin + image.ScaledHeight) / 2),
                 writer.DirectContent);
         }
 
@@ -212,9 +206,9 @@ namespace Tools.Export
         {
             return new PdfPCell(phrase)
                        {
-                           BackgroundColor = BaseColor.LIGHT_GRAY, 
-                           HorizontalAlignment = horizontalAlignment, 
-                           VerticalAlignment = Element.ALIGN_MIDDLE, 
+                           BackgroundColor = BaseColor.LIGHT_GRAY,
+                           HorizontalAlignment = horizontalAlignment,
+                           VerticalAlignment = Element.ALIGN_MIDDLE,
                            Border = Rectangle.NO_BORDER
                        };
         }
