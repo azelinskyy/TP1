@@ -356,7 +356,6 @@
     <Content Include="Views\Home\_Register.cshtml" />
     <Content Include="Views\Report\_EditProjectForm.cshtml" />
     <Content Include="Views\Report\_Grid.cshtml" />
-    <Content Include="Views\Report\_AddProjectForm.cshtml" />
     <Content Include="Views\Report\_Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
