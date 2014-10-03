@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainModels\Address.cs" />
@@ -46,6 +47,8 @@
     <Compile Include="DTOs\ProjectDto.cs" />
     <Compile Include="DTOs\TodoItemDto.cs" />
     <Compile Include="DTOs\TodoListDto.cs" />
+    <Compile Include="Filters\GridFilter.cs" />
+    <Compile Include="Filters\ProjectGridFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToDoModels\TodoItem.cs" />
     <Compile Include="ToDoModels\TodoList.cs" />

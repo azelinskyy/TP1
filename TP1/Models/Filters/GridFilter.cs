@@ -6,7 +6,7 @@
 //   The grid filter.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace TP1.Models
+namespace Model.Filters
 {
     using System.Data.SqlClient;
 
@@ -18,7 +18,7 @@ namespace TP1.Models
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GridFilter"/> class.
+        ///     Initializes a new instance of the <see cref="GridFilter" /> class.
         /// </summary>
         public GridFilter()
         {
