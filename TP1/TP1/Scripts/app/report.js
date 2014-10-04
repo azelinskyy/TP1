@@ -10,8 +10,8 @@
     self.DateAdded = ko.observable("");
     self.Title = ko.observable("");
     self.ZipCode = ko.observable("");
-    self.DateFrom = ko.observable();
-    self.DateTo = ko.observable();
+    self.DateFrom = ko.observable(new Date(new Date().setDate(new Date().getDate()-7)).toLocaleDateString());
+    self.DateTo = ko.observable(new Date().toLocaleDateString());
     self.Email = ko.observable("");
     self.ExportModel = ko.observable("");
 
