@@ -45,36 +45,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConvertToJson.cs" />
-    <Compile Include="Language.de.Designer.cs">
+    <Compile Include="Language.de-DE.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Language.de.resx</DependentUpon>
+      <DependentUpon>Language.de-DE.resx</DependentUpon>
     </Compile>
-    <Compile Include="Language.ua.Designer.cs">
+    <Compile Include="Language.uk-UA.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Language.ua.resx</DependentUpon>
+      <DependentUpon>Language.uk-UA.resx</DependentUpon>
     </Compile>
-    <Compile Include="languages.us.Designer.cs">
+    <Compile Include="Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>languages.us.resx</DependentUpon>
+      <DependentUpon>Language.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceService.cs" />
+    <Compile Include="LocalizationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Language.de.resx">
+    <EmbeddedResource Include="Language.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Language.de.Designer.cs</LastGenOutput>
+      <LastGenOutput>Language.de-DE.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Language.ua.resx">
+    <EmbeddedResource Include="Language.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Language.ua.Designer.cs</LastGenOutput>
+      <LastGenOutput>Language.uk-UA.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="languages.us.resx">
+    <EmbeddedResource Include="Language.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>languages.us.Designer.cs</LastGenOutput>
+      <LastGenOutput>Language.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

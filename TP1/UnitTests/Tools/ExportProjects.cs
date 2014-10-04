@@ -56,8 +56,6 @@ namespace UnitTests.Tools
                                                    FinishDate = new DomainDate { Description = "frühestens 2020" }
                                                };
 
-        private CultureInfo culture;
-
         #endregion
 
         #region Public Methods and Operators
@@ -79,7 +77,7 @@ namespace UnitTests.Tools
             var to = DateTime.Now;
             var from = to.AddDays(-7);
 
-            var configuration = new ExportConfiguration { Culture = "uk-UA", Email = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
+            var configuration = new ExportConfiguration { Culture = "de-DE", Email = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
 
             var service = new ExportService();
             var output = new FileStream(fileName, FileMode.Create, FileAccess.Write);

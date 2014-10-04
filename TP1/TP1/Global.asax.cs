@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace TP1
 {
+    using System.Globalization;
     using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
@@ -43,8 +44,10 @@ namespace TP1
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/ua.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(Language_ua.ResourceManager)));
-            System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/us.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(languages_us.ResourceManager)));
+            var resourceService = new LocalizationService();
+            System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/ua.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(resourceService.Manager, new CultureInfo("uk-UA"))));
+            System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/en.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(resourceService.Manager, CultureInfo.CurrentCulture)));
+            System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/de.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(resourceService.Manager, new CultureInfo("de-DE"))));
 
             System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<DomainContext>());
         }

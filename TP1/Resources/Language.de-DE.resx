@@ -219,4 +219,10 @@
   <data name="Type" xml:space="preserve">
     <value>Art</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
 </root>

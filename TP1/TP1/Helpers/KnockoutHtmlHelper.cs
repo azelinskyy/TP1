@@ -9,7 +9,7 @@
         public static MvcHtmlString KnockoutHelperFor<TModel, TValue>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TValue>> expression, string tagName = "label")
         {
             string propertyName = ModelMetadata.FromLambdaExpression(expression, helper.ViewData).PropertyName;
- 
+
             return Tag(propertyName, tagName);
         }
 
@@ -21,12 +21,12 @@
         public static MvcHtmlString Tag(string name, string tagName, string additionBinders = "")
         {
             var tag = new TagBuilder(tagName);
-            if (additionBinders != "")
+            if (additionBinders != string.Empty)
             {
                 additionBinders = ", " + additionBinders;
             }
-            
-            tag.Attributes.Add("data-bind", String.Format("text: language().{0} {1}", name, additionBinders));
+
+            tag.Attributes.Add("data-bind", String.Format("text: language().{0}{1}", name, additionBinders));
             return new MvcHtmlString(tag.ToString());
         }
 

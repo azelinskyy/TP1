@@ -1,67 +1,61 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ResourceService.cs" company="Team Alpha Solutions">
+// <copyright file="LocalizationService.cs" company="Team Alpha Solutions">
 //   Copyright © 2014 Team Alpha Solutions
 // </copyright>
 // <summary>
-//   The resource service.
+//   The localization service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Resources
 {
-    using System;
     using System.Globalization;
     using System.Resources;
 
     /// <summary>
-    /// The resource service.
+    ///     The resource service.
     /// </summary>
-    public class ResourceService
+    public class LocalizationService
     {
         #region Fields
 
         /// <summary>
-        /// The culture.
+        ///     The culture.
         /// </summary>
         private readonly CultureInfo culture;
-
-        /// <summary>
-        /// The manager.
-        /// </summary>
-        private readonly ResourceManager manager;
 
         #endregion
 
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ResourceService"/> class.
+        /// Initializes a new instance of the <see cref="LocalizationService"/> class.
         /// </summary>
         /// <param name="culture">
         /// The culture.
         /// </param>
-        /// <exception cref="NotSupportedException">
-        /// </exception>
-        public ResourceService(CultureInfo culture)
+        public LocalizationService(CultureInfo culture)
         {
             this.culture = culture;
-            if (culture.Name.Equals("uk-UA"))
-            {
-                this.manager = Language_ua.ResourceManager;
-            }
-            else if (culture.Name.Equals("en-US"))
-            {
-                this.manager = languages_us.ResourceManager;
-            }
-            else if (culture.Name.Equals("de-DE"))
-            {
-                //// this.manager = Language_de.ResourceManager;
-            }
-            else
-            {
-                throw new NotSupportedException("Not supported languages");
-            }
+            this.Manager = new ResourceManager("Resources.Language", this.GetType().Assembly);
         }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="LocalizationService" /> class.
+        /// </summary>
+        public LocalizationService()
+        {
+            this.culture = CultureInfo.CurrentCulture;
+            this.Manager = new ResourceManager("Resources.Language", this.GetType().Assembly);
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        ///     The manager.
+        /// </summary>
+        public ResourceManager Manager { get; private set; }
 
         #endregion
 
@@ -80,7 +74,7 @@ namespace Resources
         {
             get
             {
-                return this.manager.GetString(name, this.culture);
+                return this.Manager.GetString(name, this.culture);
             }
         }
 

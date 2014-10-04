@@ -20,11 +20,11 @@
     self.displayForm = ko.observable(false);
     self.displayExport = ko.observable(false);
 
-     var projectModel = {
+    var projectModel = {
         Id: ko.observable(""),
         Title: ko.observable(""),
         ZipCode: ko.observable(""),
-        City: ko.observable(""), 
+        City: ko.observable(""),
         Address: ko.observable(""),
         Architect: ko.observable(""),
         DateModified: ko.observable(""),
@@ -61,7 +61,7 @@
 
     self.LoadData();
 
-    self.changeDatesRange = function() {
+    self.changeDatesRange = function () {
         //// Place to refresh grid based on new dates range.
     };
 
@@ -69,7 +69,7 @@
     self.DateTo.subscribe(self.changeDatesRange);
 
     //Add New Item
-    self.create = function() {
+    self.create = function () {
         /*if (project.Name() != "" && project.Price() != "" && project.Category() != "") {
             $.ajax({
                 url: '@Url.Action("AddProduct", "Product")',
@@ -90,7 +90,7 @@
     };
 
     // Delete project
-    self.delete = function(project) {
+    self.delete = function (project) {
         if (confirm('Are you sure to Delete "' + project.Title + '" project?')) {
             var id = project.Id;
             $.ajax({
@@ -99,72 +99,73 @@
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
                 data: { id: id },
-                success: function(data) {
+                success: function (data) {
                     self.LoadData();
                 }
             }).fail(
-                function(xhr, textStatus, err) {
+                function (xhr, textStatus, err) {
                     alert(err);
                 });
         }
     };
 
     // Edit project details
-    self.add = function() {
+    self.add = function () {
         self.changeVisibility(false);
         self.Project(projectModel);
     };
 
     // Edit project details
-    self.edit = function(project) {
+    self.edit = function (project) {
         self.changeVisibility(false);
         self.Project(project);
     };
 
     // Update product details
-    self.update = function() {
+    self.update = function () {
         var projectToUpdate = self.Project();
         $.ajax({
-                url: '/Report/PutProject',
-                cache: false,
-                type: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                data: ko.toJSON(projectToUpdate),
-                success: function(data) {
-                    self.changeVisibility(true);
-                    self.LoadData();
-                }
-            })
+            url: '/Report/PutProject',
+            cache: false,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: ko.toJSON(projectToUpdate),
+            success: function (data) {
+                self.changeVisibility(true);
+                self.LoadData();
+            }
+        })
             .fail(
-                function(xhr, textStatus, err) {
+                function (xhr, textStatus, err) {
                     alert(err);
                 });
     };
 
     // Reset project details
-    self.reset = function() {
+    self.reset = function () {
         self.Title("");
         self.ZipCode("");
     };
 
     // Cancel project details
-    self.cancel = function() {
+    self.cancel = function () {
         self.changeVisibility(true);
-       // self.Project(null);
+        // self.Project(null);
     };
 
-    self.changeVisibility = function(state) {
+    self.changeVisibility = function (state) {
         self.displayGrid(state);
         self.displayForm(!state);
+        self.displayExport(false);
     };
 
-    self.tryExport = function() {
+    self.tryExport = function () {
         self.displayGrid(false);
         self.displayForm(false);
         self.displayExport(true);
     };
 
-    self.hideExport = function() {
+    self.hideExport = function () {
         self.displayExport(false);
         self.displayGrid(true);
     };

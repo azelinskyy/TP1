@@ -64,7 +64,7 @@ namespace Tools.Export
         /// <summary>
         ///     The resource service.
         /// </summary>
-        private readonly ResourceService resourceService;
+        private readonly LocalizationService resourceService;
 
         #endregion
 
@@ -87,7 +87,7 @@ namespace Tools.Export
             this.dateFrom = dateFrom;
             this.dateTo = dateTo;
             this.culture = culture;
-            this.resourceService = new ResourceService(culture);
+            this.resourceService = new LocalizationService(culture);
         }
 
         #endregion

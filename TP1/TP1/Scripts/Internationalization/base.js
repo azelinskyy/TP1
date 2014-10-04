@@ -3,13 +3,18 @@
 var availableLanguages = [
     {
         name: "English",
-        type: "us",
-        culture: "en-US"
+        type: "en",
+        culture: "en-EN"
     },
     {
         name: "Українська",
         type: "ua",
         culture: "uk-UA"
+    },
+    {
+        name: "Deutsch",
+        type: "de",
+        culture: "de-DE"
     }
 ];
 
