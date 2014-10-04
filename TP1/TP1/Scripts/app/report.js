@@ -91,7 +91,7 @@
 
     // Delete project
     self.delete = function (project) {
-        if (confirm('Are you sure to Delete "' + project.Title + '" project?')) {
+        if (confirm('Are you sure you want to delete project "' + project.Title + '"?')) {
             var id = project.Id;
             $.ajax({
                 url: '/Report/DeleteProject',
