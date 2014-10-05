@@ -35,7 +35,7 @@ namespace Services.Factories
                        {
                             Id = model.Id,
                             City = new CityConvertFactory().FromModel(model.City), 
-                            DateAdded = model.DateAdded, 
+                            DateAdded = model.DateAdded.ToShortDateString(), 
                             Title = model.Title, 
                             ZipCode = model.ZipCode,
                             Architect = model.Architect != null ? model.Architect.Name : null,
@@ -66,7 +66,7 @@ namespace Services.Factories
                        {
                            Id = obj.Id,
                            City = new CityConvertFactory().ToModel(obj.City),
-                           DateAdded = obj.DateAdded,
+                           DateAdded = DateTime.Parse(obj.DateAdded),
                            Title = obj.Title,
                            ZipCode = obj.ZipCode
                        };

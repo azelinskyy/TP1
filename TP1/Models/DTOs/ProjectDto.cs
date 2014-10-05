@@ -35,7 +35,7 @@ namespace Model.DTOs
         /// <summary>
         ///     Gets or sets the date added.
         /// </summary>
-        public DateTime DateAdded { get; set; }
+        public string DateAdded { get; set; }
 
         /// <summary>
         ///     Gets or sets the date modified.
