@@ -160,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Builders Representative.
+        ///   Looks up a localized string similar to Builder&apos;s Representative.
         /// </summary>
         public static string BuildersRepresentative {
             get {
@@ -196,7 +196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ConfirmPassword.
+        ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string ConfirmPassword {
             get {
@@ -250,7 +250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email.
+        ///   Looks up a localized string similar to Recipients&apos; Emails.
         /// </summary>
         public static string Email {
             get {
@@ -264,6 +264,15 @@ namespace Resources {
         public static string Export {
             get {
                 return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export {0} projects added from {1} to {2}.
+        /// </summary>
+        public static string ExportTab_ProjectsNumberAndRange {
+            get {
+                return ResourceManager.GetString("ExportTab_ProjectsNumberAndRange", resourceCulture);
             }
         }
         
@@ -286,7 +295,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All projects and additional detailed information, see www.bindexis.ch.
+        ///   Looks up a localized string similar to All projects and additional detailed information can be found at www.bindexis.ch.
         /// </summary>
         public static string FullInfoOnSite {
             get {
@@ -304,7 +313,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log In.
+        ///   Looks up a localized string similar to Log in.
         /// </summary>
         public static string LogIn {
             get {
@@ -331,7 +340,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Planning application planned for.
+        ///   Looks up a localized string similar to Building documentation planned for.
         /// </summary>
         public static string PlanningApplication {
             get {
@@ -349,7 +358,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remember me?.
+        ///   Looks up a localized string similar to Remember me.
         /// </summary>
         public static string RememberMe {
             get {
@@ -385,7 +394,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subscribe / Terms planned for.
+        ///   Looks up a localized string similar to Due for completion in.
         /// </summary>
         public static string SubscribeTermsPlanned {
             get {
@@ -412,7 +421,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type.
+        ///   Looks up a localized string similar to Report&apos;s Layout Type.
         /// </summary>
         public static string Type {
             get {
@@ -421,7 +430,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login.
+        ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string UserName {
             get {
