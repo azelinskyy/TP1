@@ -204,12 +204,8 @@ namespace TP1.Helpers
             }
 
             tag.Attributes.Add(
-                "data-bind", 
-                string.Format(
-                    "text: String.format(language().{0}{1},{2})", 
-                    name, 
-                    additionBinders, 
-                    string.Join(", ", values)));
+                "data-bind",
+                string.Format("text: String.format(language().{0}{1},{2})", name, additionBinders, string.Join(", ", values)));
             return new MvcHtmlString(tag.ToString());
         }
 
