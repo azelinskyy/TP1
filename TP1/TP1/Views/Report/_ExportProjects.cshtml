@@ -1,4 +1,5 @@
-﻿<div class="well-lg">
+﻿@using TP1.Helpers
+<div class="well-lg">
     @Html.KnockoutHelperFor("ExportTab_ProjectsNumberAndRange", "p", "", "$root.Projects().length", " $root.DateFrom()", "$root.DateTo()")
 </div>
 

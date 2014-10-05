@@ -1,4 +1,5 @@
-﻿<div class="editform">
+﻿@using TP1.Helpers
+<div class="editform">
     <table>
     <tr>
         <td><label for="productId" data-bind="visible: false">ID</label></td>
@@ -66,7 +67,7 @@
         </table>
     <br />
     <div>
-        @Html.KnockoutHelperForButton("Save", "click: $root.update")
-        @Html.KnockoutHelperForButton("Cancel", "click: $root.cancel")
+        @Html.KnockoutHelperForButton("Save", "click: $root.update", "btn btn-primary col-md-2")
+        @Html.KnockoutHelperForButton("Cancel", "click: $root.cancel", "btn btn-primary col-md-2")
     </div>
 </div>

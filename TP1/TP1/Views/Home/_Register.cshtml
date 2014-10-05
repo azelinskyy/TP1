@@ -1,4 +1,5 @@
-﻿@model TP1.Models.RegisterModel
+﻿@using TP1.Helpers
+@model TP1.Models.RegisterModel
 
 @using (Html.BeginForm("JsonRegister", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { Id = "registerForm" }))
 {
