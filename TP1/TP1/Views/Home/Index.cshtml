@@ -20,12 +20,11 @@ else
 }
 
 @section Scripts {
-    <script type="text/javascript">
-        var viewModel = new ReportViewModel(window.reportApp.datacontext());
-        viewModel.Language = languageModel(availableLanguages);
-        viewModel.Grid(gridModel(window.reportApp.datacontext.getProjectLists));
-    //    window.reportApp.datacontext.getProjectLists(gridModel.searchOptions, viewModel.Projects, viewModel.Grid().totalCount);
-        ko.applyBindings(viewModel);
+       <script type="text/javascript">
+           var context = window.reportApp.datacontext();
+           var grid = new gridModel(context.getProjectLists);
+           var viewModel = new ReportViewModel(context, languageModel(availableLanguages), grid);
+           ko.applyBindings(viewModel);
     </script>
 }
 

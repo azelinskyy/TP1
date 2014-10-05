@@ -20,7 +20,7 @@ window.reportApp.datacontext = (function () {
         ajaxRequest("GET", projectUrl(null, "GetReport"), requestOptions).done(getSucceeded);
         function getSucceeded(data) {
             projectObservable($.parseJSON(data.result)); //Put the response in ObservableArray
-            //totalCount(data.totalRows);
+            totalCount(data.totalRows);
         }
     };
 

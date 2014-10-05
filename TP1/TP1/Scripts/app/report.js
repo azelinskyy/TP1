@@ -1,4 +1,4 @@
-﻿function ReportViewModel(datacontext) {
+﻿function ReportViewModel(datacontext, language, gridModel) {
 
     //Make the self as 'this' reference
     var self = this;
@@ -31,8 +31,7 @@
         StartDate: ko.observable("")
     };
 
-    self.Grid = ko.observable();
-
+    self.Grid = ko.observable(gridModel);
 
     self.Project = ko.observable(projectModel);
     self.Projects = ko.observableArray();   // Contains the list of projects
