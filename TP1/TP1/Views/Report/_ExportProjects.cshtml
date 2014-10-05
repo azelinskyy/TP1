@@ -1,6 +1,7 @@
-﻿<div>
-    <h2>Export projects</h2>
+﻿<div class="well-lg">
+    <label for="email">@Html.KnockoutHelperFor("ExportTab_ProjectsNumberAndRange", "p", "", "$root.Projects().length", " $root.DateFrom()", "$root.DateTo()")</label>
 </div>
+
 <div>
     <label for="email">@Html.KnockoutHelperFor("Email", "p")</label>
     <input data-bind="value: $root.Email" type="text" title="Email" name="email" />
@@ -15,7 +16,3 @@
 </div>
 
 
-<div class="well-lg">
-    <span data-bind="text: String.format('You have selected {0} projects(added from {1} to {2})', $root.Projects().length, $root.DateFrom(), $root.DateTo())"></span>
-    
-</div>
