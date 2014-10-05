@@ -10,6 +10,7 @@
 namespace Tools.Notification
 {
     using System.IO;
+    using System.Linq;
     using System.Net;
     using System.Net.Mail;
     using System.Net.Mime;
@@ -24,14 +25,20 @@ namespace Tools.Notification
         /// <summary>
         /// Send email with proper attachment.
         /// </summary>
-        /// <param name="email">
+        /// <param name="emails">
         /// The email address.
         /// </param>
         /// <param name="output">
         /// The output stream with file.
         /// </param>
-        public void Send(string email, Stream output)
+        public void Send(string emails, Stream output)
         {
+            var mailsTo = emails.Split(',', ';').ToList();
+            if (!mailsTo.Any())
+            {
+                return;
+            }
+
             var client = new SmtpClient();
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential("my_manhattan_2014@yahoo.com", "+{_P)O9i8u7y");
@@ -42,7 +49,7 @@ namespace Tools.Notification
 
             var mail = new MailMessage();
             mail.From = new MailAddress("my_manhattan_2014@yahoo.com");
-            mail.To.Add(email);
+            mailsTo.ForEach(mailTo => mail.To.Add(mailTo));
 
             var attachment = new Attachment(output, MediaTypeNames.Application.Pdf);
             attachment.ContentDisposition.FileName = "attachment.pdf";
