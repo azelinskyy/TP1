@@ -1,8 +1,8 @@
 ﻿@using TP1.Helpers
-<table id="products1" data-bind="visible: displayGrid">
+<table id="products1" class="nav nav-pills nav-justified" data-bind="visible: displayGrid">
     <thead>
         <tr>
-            <th>ID</th>
+            <th><p>ID</p></th>
             <th>@Html.KnockoutHelperFor("Title", "p")</th>
             <th>@Html.KnockoutHelperFor("ZipCode", "p")</th>
             <th>@Html.KnockoutHelperFor("City", "p")</th>
