@@ -37,8 +37,8 @@
     self.Projects = ko.observableArray();   // Contains the list of projects
     self.Language = ko.observableArray();
     self.RowCount = ko.observable();
-    var ints = 0;
-    datacontext.getProjectLists(null, self.Projects, ints);
+
+    datacontext.getProjectLists(null, self.Projects, self.Grid().totalRows);
 
     self.changeDatesRange = function () {
         //// Place to refresh grid based on new dates range.
