@@ -1,4 +1,5 @@
-﻿<table id="products1" data-bind="visible: displayGrid">
+﻿@using TP1.Helpers
+<table id="products1" data-bind="visible: displayGrid">
     <thead>
         <tr>
             <th>ID</th>
@@ -16,8 +17,8 @@
             <td data-bind="text: City.Name"></td>
             <td data-bind="text: DateAdded"></td>
             <td>
-                @Html.KnockoutHelperForButton("Edit", "click: $root.edit")
-                @Html.KnockoutHelperForButton("Delete", "click: $root.delete")
+                @Html.KnockoutHelperForButton("Edit", "click: $root.edit", "btn btn-primary")
+                @Html.KnockoutHelperForButton("Delete", "click: $root.delete", "btn btn-primary ")
             </td>
         </tr>
     </tbody>

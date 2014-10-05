@@ -1,11 +1,13 @@
-﻿@model TP1.Models.RegisterModel
+﻿@using TP1.Helpers
+@model TP1.Models.RegisterModel
 
 @using (Html.BeginForm("JsonRegister", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { Id = "registerForm" }))
 {
     @Html.AntiForgeryToken()
 
     <fieldset>
-        <legend>Registration Form</legend>
+        @Html.KnockoutHelperFor("RegistrationForm", "legend") 
+        @*<legend>Registration Form</legend>*@
         <ol>
             <li>
                 @Html.KnockoutHelperFor(m => m.UserName)  
@@ -20,7 +22,7 @@
                 @Html.PasswordFor(m => m.ConfirmPassword)
             </li>
             <li>
-                <input type="submit" value="Sign up" />
+                <input type="submit" data-bind ="value: language().SignUp"/>
             </li>
         </ol>
         @Html.ValidationSummary()
