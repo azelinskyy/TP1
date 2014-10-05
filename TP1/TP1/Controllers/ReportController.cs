@@ -94,7 +94,7 @@ namespace TP1.Controllers
             IList<Project> projects =
                 this.ProjectRepository.GetProjectsFilteredByDateRange(
                     new ProjectGridFilter { From = export.From, To = export.To });
-            new ExportService().ExportProjects(projects, export);
+            new ExportService(Server.MapPath("~/bin")).ExportProjects(projects, export);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace TP1.Controllers
                 JsonConvert.SerializeObject(
                     new
                         {
-                            totalRows = this.ProjectRepository.GetProjectsFilteredByDateRangeCount(filter), 
+                            totalRows = this.ProjectRepository.GetProjectsFilteredByDateRangeCount(filter),
                             result = jsonData
                         });
         }

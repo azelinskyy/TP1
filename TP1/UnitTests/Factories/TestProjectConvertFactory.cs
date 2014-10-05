@@ -55,7 +55,7 @@ namespace UnitTests.Factories
                            {
                                Id = 143, 
                                City = new CityDto { Id = 32, Name = "Lviv" }, 
-                               DateAdded = DateTime.ParseExact("06/16/1986", "d", CultureInfo.InvariantCulture), 
+                               DateAdded = "06/16/1986", 
                                Title = "Test proj", 
                                ZipCode = "79031"
                            };

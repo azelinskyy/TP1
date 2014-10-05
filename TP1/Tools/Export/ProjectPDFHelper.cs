@@ -34,29 +34,22 @@ namespace Tools.Export
 
         #endregion
 
-        #region Static Fields
-
-        /// <summary>
-        ///     The instance of font base for proper font.
-        /// </summary>
-        private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
-            "arialuni.ttf",
-            BaseFont.IDENTITY_H,
-            BaseFont.EMBEDDED);
+        #region Fields
 
         /// <summary>
         ///     The bold fond const to internal use.
         /// </summary>
-        private static readonly Font Bold = new Font(UnicodeBaseFont, 8, Font.BOLD);
+        private readonly Font bold;
 
         /// <summary>
         ///     The normal fond const to internal use.
         /// </summary>
-        private static readonly Font Normal = new Font(UnicodeBaseFont, 8, Font.NORMAL);
+        private readonly Font normal;
 
-        #endregion
-
-        #region Fields
+        /// <summary>
+        /// The path of root to configure fonts.
+        /// </summary>
+        private readonly string rootPath;
 
         /// <summary>
         ///     The culture.
@@ -75,13 +68,25 @@ namespace Tools.Export
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectPDFHelper"/> class.
         /// </summary>
+        /// <param name="rootPath"></param>
         /// <param name="culture">
-        /// The culture.
+        ///     The culture.
         /// </param>
-        public ProjectPDFHelper(CultureInfo culture)
+        public ProjectPDFHelper(string rootPath, CultureInfo culture)
         {
+            this.rootPath = rootPath;
             this.culture = culture;
             this.resourceService = new LocalizationService(culture);
+
+            var fullPath = "arialuni.ttf";
+            if (!string.IsNullOrEmpty(rootPath))
+            {
+                fullPath = Path.Combine(rootPath, fullPath);
+            }
+
+            var unicodeBaseFont = BaseFont.CreateFont(fullPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            this.bold = new Font(unicodeBaseFont, 8, Font.BOLD);
+            this.normal = new Font(unicodeBaseFont, 8, Font.NORMAL);
         }
 
         #endregion
@@ -103,9 +108,9 @@ namespace Tools.Export
             item.Leading = Leading;
             item.Add(CreateProjectHeader(project));
             item.Add(Chunk.NEWLINE);
-            item.Add(new Phrase(project.Title, Bold));
+            item.Add(new Phrase(project.Title, this.bold));
             item.Add(Chunk.NEWLINE);
-            item.Add(new Phrase(project.Description, Normal));
+            item.Add(new Phrase(project.Description, this.normal));
             item.Add(Chunk.NEWLINE);
             AddIfPresent(
                 project.Address,
@@ -159,8 +164,8 @@ namespace Tools.Export
         {
             var result = new List<IElement>();
             result.Add(CreateProjectHeader(project));
-            result.Add(new Phrase(project.Title, Bold) { Leading = Leading });
-            result.Add(new Phrase(project.Description, Normal) { Leading = Leading });
+            result.Add(new Phrase(project.Title, this.bold) { Leading = Leading });
+            result.Add(new Phrase(project.Description, this.normal) { Leading = Leading });
             AddIfPresent(
                 project.Address,
                 a => !string.IsNullOrEmpty(a.AddressString),
@@ -216,7 +221,7 @@ namespace Tools.Export
         {
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectPageEventHelper(configuration.From, configuration.To, this.culture);
+            writer.PageEvent = new ProjectPageEventHelper(configuration.From, configuration.To, this.culture, this.rootPath);
 
             document.SetMargins(
                 document.LeftMargin,
@@ -303,7 +308,7 @@ namespace Tools.Export
         {
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectPageEventHelper(configuration.From, configuration.To, this.culture);
+            writer.PageEvent = new ProjectPageEventHelper(configuration.From, configuration.To, this.culture, this.rootPath);
 
             document.SetMargins(
                 document.LeftMargin,
@@ -320,8 +325,8 @@ namespace Tools.Export
             foreach (var project in projects)
             {
                 CreatePhraseRow(() => CreateProjectHeader(project), 2, table);
-                CreatePhraseRow(() => new Phrase(project.Title, Bold) { Leading = Leading }, 2, table);
-                CreatePhraseRow(() => new Phrase(project.Description, Normal) { Leading = Leading }, 2, table);
+                CreatePhraseRow(() => new Phrase(project.Title, this.bold) { Leading = Leading }, 2, table);
+                CreatePhraseRow(() => new Phrase(project.Description, this.normal) { Leading = Leading }, 2, table);
 
                 AddIfPresent(
                     !string.IsNullOrEmpty(project.Address.AddressString),
@@ -458,15 +463,15 @@ namespace Tools.Export
         /// <param name="output">
         /// The output.
         /// </param>
-        private static void AddIfPresent(bool check, string firstCellProvide, string secondCellProvide, PdfPTable output)
+        private void AddIfPresent(bool check, string firstCellProvide, string secondCellProvide, PdfPTable output)
         {
             if (!check)
             {
                 return;
             }
 
-            output.AddCell(new PdfPCell(new Phrase(firstCellProvide, Bold) { Leading = Leading }));
-            output.AddCell(new PdfPCell(new Phrase(secondCellProvide, Normal) { Leading = Leading }));
+            output.AddCell(new PdfPCell(new Phrase(firstCellProvide, this.bold) { Leading = Leading }));
+            output.AddCell(new PdfPCell(new Phrase(secondCellProvide, this.normal) { Leading = Leading }));
         }
 
         /// <summary>
@@ -481,9 +486,9 @@ namespace Tools.Export
         /// <returns>
         /// The <see cref="Phrase"/>.
         /// </returns>
-        private static Phrase CreatePhrase(string header, string text)
+        private Phrase CreatePhrase(string header, string text)
         {
-            var phrase = new Phrase { new Chunk(header + ": ", Bold), new Chunk(text, Normal) };
+            var phrase = new Phrase { new Chunk(header + ": ", this.bold), new Chunk(text, this.normal) };
             phrase.Leading = Leading;
             return phrase;
         }
@@ -500,7 +505,7 @@ namespace Tools.Export
         /// <param name="output">
         /// The output.
         /// </param>
-        private static void CreatePhraseRow(Func<Phrase> provider, int colspan, PdfPTable output)
+        private void CreatePhraseRow(Func<Phrase> provider, int colspan, PdfPTable output)
         {
             var cell = new PdfPCell(provider());
             cell.Colspan = colspan;
@@ -516,9 +521,9 @@ namespace Tools.Export
         /// <returns>
         /// The <see cref="Phrase"/>.
         /// </returns>
-        private static Phrase CreateProjectHeader(Project project)
+        private Phrase CreateProjectHeader(Project project)
         {
-            return new Phrase(string.Format("{0} {1}", project.ZipCode, project.City), Bold) { Leading = Leading };
+            return new Phrase(string.Format("{0} {1}", project.ZipCode, project.City), this.bold) { Leading = Leading };
         }
 
         #endregion

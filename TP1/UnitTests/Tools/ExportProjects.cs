@@ -11,7 +11,6 @@ namespace UnitTests.Tools
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
 
     using Model.DomainModels;
@@ -77,7 +76,7 @@ namespace UnitTests.Tools
             var to = DateTime.Now;
             var from = to.AddDays(-7);
 
-            var configuration = new ExportConfiguration { Culture = "de-DE", Email = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
+            var configuration = new ExportConfiguration { Culture = "de-DE", Emails = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
 
             var service = new ExportService();
             var output = new FileStream(fileName, FileMode.Create, FileAccess.Write);
@@ -101,7 +100,7 @@ namespace UnitTests.Tools
             var to = DateTime.Now;
             var from = to.AddDays(-7);
 
-            var configuration = new ExportConfiguration { Culture = "en-US", Email = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
+            var configuration = new ExportConfiguration { Culture = "en-US", Emails = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
 
             var service = new ExportService();
             var output = new FileStream(fileName, FileMode.Create, FileAccess.Write);
@@ -123,7 +122,7 @@ namespace UnitTests.Tools
             var to = DateTime.Now;
             var from = to.AddDays(-7);
 
-            var configuration = new ExportConfiguration { Culture = "en-US", Email = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
+            var configuration = new ExportConfiguration { Culture = "en-US", Emails = "gregory.hasyn@gmail.com", From = from, To = to, Model = ReportModels.Columns };
 
             var service = new ExportService();
             service.ExportProjects(projects, configuration);

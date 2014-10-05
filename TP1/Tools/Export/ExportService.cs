@@ -23,6 +23,13 @@ namespace Tools.Export
     /// </summary>
     public class ExportService
     {
+        private readonly string rootPath;
+
+        public ExportService(string rootPath = null)
+        {
+            this.rootPath = rootPath;
+        }
+
         #region Public Methods and Operators
 
         /// <summary>
@@ -41,7 +48,7 @@ namespace Tools.Export
                 throw new ArgumentException("The collection of projects should not be empty.");
             }
 
-            var pdfHelper = new ProjectPDFHelper(new CultureInfo(configuration.Culture));
+            var pdfHelper = new ProjectPDFHelper(this.rootPath, new CultureInfo(configuration.Culture));
             if (configuration.Model == ReportModels.Columns)
             {
                 pdfHelper.ExportProjects(projects, configuration, output);

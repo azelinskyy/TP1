@@ -22,34 +22,27 @@ namespace Tools.Export
     /// </summary>
     public class ProjectPageEventHelper : PdfPageEventHelper
     {
-        #region Static Fields
-
-        /// <summary>
-        /// The instance of font base for proper font.
-        /// </summary>
-        private static readonly BaseFont UnicodeBaseFont = BaseFont.CreateFont(
-            "arialuni.ttf",
-            BaseFont.IDENTITY_H,
-            BaseFont.EMBEDDED);
+        #region Fields
 
         /// <summary>
         ///     The footer font.
         /// </summary>
-        private static readonly Font Footer = new Font(UnicodeBaseFont, 11, Font.NORMAL);
+        private readonly Font footer;
 
         /// <summary>
         ///     The header font.
         /// </summary>
-        private static readonly Font Header = new Font(UnicodeBaseFont, 12, Font.BOLD);
-
-        #endregion
-
-        #region Fields
+        private readonly Font header;
 
         /// <summary>
         ///     The culture.
         /// </summary>
         private readonly CultureInfo culture;
+
+        /// <summary>
+        /// The path of root to configure fonts.
+        /// </summary>
+        private readonly string rootPath;
 
         /// <summary>
         ///     The date from.
@@ -74,20 +67,26 @@ namespace Tools.Export
         /// Initializes a new instance of the <see cref="ProjectPageEventHelper"/> class.
         /// </summary>
         /// <param name="dateFrom">
-        /// The date from.
+        ///     The date from.
         /// </param>
         /// <param name="dateTo">
-        /// The date to.
+        ///     The date to.
         /// </param>
         /// <param name="culture">
-        /// The culture.
+        ///     The culture.
         /// </param>
-        public ProjectPageEventHelper(DateTime dateFrom, DateTime dateTo, CultureInfo culture)
+        /// <param name="rootPath"></param>
+        public ProjectPageEventHelper(DateTime dateFrom, DateTime dateTo, CultureInfo culture, string rootPath)
         {
             this.dateFrom = dateFrom;
             this.dateTo = dateTo;
             this.culture = culture;
+            this.rootPath = rootPath;
             this.resourceService = new LocalizationService(culture);
+
+            var unicodeBaseFont = BaseFont.CreateFont(this.GetFullPath("arialuni.ttf"), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            this.footer = new Font(unicodeBaseFont, 11, Font.NORMAL);
+            this.header = new Font(unicodeBaseFont, 12, Font.BOLD);
         }
 
         #endregion
@@ -129,12 +128,12 @@ namespace Tools.Export
             footerTable.TotalWidth = document.Right - document.Left;
 
             var cell = this.GetNoBorderCell(
-                new Phrase(this.resourceService["FullInfoOnSite"], Footer),
+                new Phrase(this.resourceService["FullInfoOnSite"], this.footer),
                 Element.ALIGN_LEFT);
             footerTable.AddCell(cell);
 
             cell = this.GetNoBorderCell(
-                new Phrase(document.PageNumber.ToString(CultureInfo.InvariantCulture), Footer),
+                new Phrase(document.PageNumber.ToString(CultureInfo.InvariantCulture), this.footer),
                 Element.ALIGN_RIGHT);
             footerTable.AddCell(cell);
 
@@ -157,7 +156,7 @@ namespace Tools.Export
             headerTable.SetWidths(new[] { 1, 2 });
             headerTable.TotalWidth = document.Right - document.Left;
 
-            var image = Image.GetInstance("logo.gif");
+            var image = Image.GetInstance(this.GetFullPath("logo.gif"));
             image.ScalePercent(75);
 
             var cell = this.GetNoBorderCell(image);
@@ -166,7 +165,7 @@ namespace Tools.Export
 
             cell =
                 this.GetNoBorderCell(
-                    new Phrase(this.resourceService["BuildingProject"] + " " + this.FormatHeaderDate(), Header),
+                    new Phrase(this.resourceService["BuildingProject"] + " " + this.FormatHeaderDate(), this.header),
                     Element.ALIGN_RIGHT);
             headerTable.AddCell(cell);
 
@@ -177,6 +176,15 @@ namespace Tools.Export
                 document.Left,
                 document.Top + ((document.TopMargin + image.ScaledHeight) / 2),
                 writer.DirectContent);
+        }
+
+        private string GetFullPath(string fullPath)
+        {
+            if (!string.IsNullOrEmpty(this.rootPath))
+            {
+                fullPath = Path.Combine(this.rootPath, fullPath);
+            }
+            return fullPath;
         }
 
         /// <summary>
