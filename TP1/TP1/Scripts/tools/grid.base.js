@@ -1,14 +1,14 @@
-﻿var gridModel = function (getDataFunction, rowCount) {
+﻿var gridModel = function (dataContext, rowCount) {
     var self = this;
 
     var requestOptions = {
         pageIndex: ko.observable(1),
         pageSize: ko.observable(10),
         sortField: ko.observable(''),
-        sortOrder: ko.observable('Desc'),
+        sortOrder: ko.observable('Desc')
     };
 
-    self.reloadData = getDataFunction;
+    self.reloadData = dataContext;
     self.searchOptions = ko.observable(requestOptions);
     self.totalRows = ko.observable(rowCount);
 

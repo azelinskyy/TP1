@@ -298,6 +298,7 @@
     <Content Include="Images\logo.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\app\report.datacontext.js" />
     <Content Include="Scripts\app\report.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

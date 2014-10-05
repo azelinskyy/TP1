@@ -20,9 +20,10 @@ else
 
 @section Scripts {
     <script type="text/javascript">
-        var viewModel = new ReportViewModel();
+        var viewModel = new ReportViewModel(window.reportApp.datacontext());
         viewModel.Language = languageModel(availableLanguages);
-        viewModel.Grid = gridModel(viewModel.LoadData);
+        viewModel.Grid(gridModel(window.reportApp.datacontext.getProjectLists));
+    //    window.reportApp.datacontext.getProjectLists(gridModel.searchOptions, viewModel.Projects, viewModel.Grid().totalCount);
         ko.applyBindings(viewModel);
     </script>
 }
