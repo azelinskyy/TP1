@@ -256,22 +256,22 @@
     <value>Projekten exportieren</value>
   </data>
   <data name="First" xml:space="preserve">
-    <value>Erstes</value>
+    <value>Erste</value>
   </data>
   <data name="Last" xml:space="preserve">
-    <value>Lätztes</value>
+    <value>Lätzte</value>
   </data>
   <data name="LogOff" xml:space="preserve">
     <value>Ausloggen</value>
   </data>
   <data name="Next" xml:space="preserve">
-    <value>Nächstes</value>
+    <value>Nächste</value>
   </data>
   <data name="NumberOfTotalPages" xml:space="preserve">
     <value>Seite {0} aus {1}</value>
   </data>
   <data name="Previous" xml:space="preserve">
-    <value>Vorheriges</value>
+    <value>Vorherige</value>
   </data>
   <data name="ProjectsView_SelectRangeText" xml:space="preserve">
     <value>Wählen Sie, bitte, die benötigten Daten:</value>
