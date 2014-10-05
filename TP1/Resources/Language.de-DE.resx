@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Address" xml:space="preserve">
     <value>Adresse</value>
@@ -127,7 +127,7 @@
     <value>Es sind keine externen Authentifizierungsdienste konfiguriert. Lesen Sie diesen Artikel für Details über die Einrichtung dieses ASP.NET-Anwendung unterstützt die Anmeldung über externe Dienste.</value>
   </data>
   <data name="AnotherLoginServiceTitle" xml:space="preserve">
-    <value>Melden Sie sich mit anderen Service</value>
+    <value>Mit dem anderen Service sich anmelden</value>
   </data>
   <data name="Architect" xml:space="preserve">
     <value>Architekt</value>
@@ -160,10 +160,10 @@
     <value>Bausumme</value>
   </data>
   <data name="DateAdded" xml:space="preserve">
-    <value>Aufgenommen</value>
+    <value>Hinzufügungsdatum</value>
   </data>
   <data name="FirstTimeHere" xml:space="preserve">
-    <value>Zum ersten Mal hier</value>
+    <value>Zum ersten Mal hier?</value>
   </data>
   <data name="FullInfoOnSite" xml:space="preserve">
     <value>Alle Projekte und zusätzliche detaillierte Informationen finden Sie unter www.bindexis.ch</value>
@@ -172,7 +172,7 @@
     <value>Legende</value>
   </data>
   <data name="LogIn" xml:space="preserve">
-    <value>Anmelden</value>
+    <value>Login</value>
   </data>
   <data name="name" xml:space="preserve">
     <value>Deutsch</value>
@@ -184,10 +184,10 @@
     <value>Baugesuch geplant für</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value>Mich erinnern</value>
+    <value>Auf diesem Computer merken</value>
   </data>
   <data name="SignUp" xml:space="preserve">
-    <value>Anheuern</value>
+    <value>Anmelden</value>
   </data>
   <data name="SiteName" xml:space="preserve">
     <value>Berichte</value>
@@ -202,13 +202,13 @@
     <value>Benutzername</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
-    <value>PLZ</value>
+    <value>Postleitzahl</value>
   </data>
   <data name="A_acrchitect" xml:space="preserve">
     <value>A</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Email</value>
+    <value>Empfänger E-Mails</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>Von</value>
@@ -217,12 +217,30 @@
     <value>Bis</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Art</value>
+    <value>Bericht Darstellungsart</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export</value>
+    <value>Datenexport</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="ProjectFormTitle" xml:space="preserve">
+    <value>Projektform</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Ändern</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Speichern</value>
   </data>
 </root>

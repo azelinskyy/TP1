@@ -112,16 +112,13 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="name" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="SiteName" xml:space="preserve">
-    <value>Report</value>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
   </data>
   <data name="AlreadySignedUp" xml:space="preserve">
     <value>Already signed up?</value>
@@ -132,50 +129,20 @@
   <data name="AnotherLoginServiceTitle" xml:space="preserve">
     <value>Log in using another service</value>
   </data>
-  <data name="ConfirmPassword" xml:space="preserve">
-    <value>ConfirmPassword</value>
-  </data>
-  <data name="FirstTimeHere" xml:space="preserve">
-    <value>First time here?</value>
-  </data>
-  <data name="LogIn" xml:space="preserve">
-    <value>Log In</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="RememberMe" xml:space="preserve">
-    <value>Remember me?</value>
-  </data>
-  <data name="SignUp" xml:space="preserve">
-    <value>Sign up</value>
-  </data>
-  <data name="UserName" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="DateAdded" xml:space="preserve">
-    <value>Date Added</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="ZipCode" xml:space="preserve">
-    <value>Zip Code</value>
-  </data>
-  <data name="Address" xml:space="preserve">
-    <value>Address</value>
+  <data name="Architect" xml:space="preserve">
+    <value>Architect</value>
   </data>
   <data name="AreaVolume" xml:space="preserve">
     <value>Area / Volume</value>
   </data>
-  <data name="A_acrchitect" xml:space="preserve">
-    <value>A</value>
-  </data>
   <data name="BR_builders_representative" xml:space="preserve">
     <value>BR</value>
+  </data>
+  <data name="Builder" xml:space="preserve">
+    <value>Builder</value>
+  </data>
+  <data name="BuildersRepresentative" xml:space="preserve">
+    <value>Builder's Representative</value>
   </data>
   <data name="BuildingProject" xml:space="preserve">
     <value>Building Project</value>
@@ -183,38 +150,86 @@
   <data name="B_builder" xml:space="preserve">
     <value>B</value>
   </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
   <data name="ConstructionCost" xml:space="preserve">
     <value>Construction cost</value>
   </data>
+  <data name="DateAdded" xml:space="preserve">
+    <value>Date Added</value>
+  </data>
+  <data name="FirstTimeHere" xml:space="preserve">
+    <value>First time here?</value>
+  </data>
   <data name="FullInfoOnSite" xml:space="preserve">
-    <value>All projects and additional detailed information, see www.bindexis.ch</value>
-  </data>
-  <data name="PlanningApplication" xml:space="preserve">
-    <value>Planning application planned for</value>
-  </data>
-  <data name="SubscribeTermsPlanned" xml:space="preserve">
-    <value>Subscribe / Terms planned for</value>
-  </data>
-  <data name="Architect" xml:space="preserve">
-    <value>Architect</value>
-  </data>
-  <data name="Builder" xml:space="preserve">
-    <value>Builder</value>
-  </data>
-  <data name="BuildersRepresentative" xml:space="preserve">
-    <value>Builders Representative</value>
+    <value>All projects and additional detailed information can be found at www.bindexis.ch</value>
   </data>
   <data name="Legend" xml:space="preserve">
     <value>Legend</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
+  <data name="LogIn" xml:space="preserve">
+    <value>Log in</value>
   </data>
-  <data name="ProjectFormTitle" xml:space="preserve">
-    <value>Project form</value>
+  <data name="name" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PlanningApplication" xml:space="preserve">
+    <value>Building documentation planned for</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="SubscribeTermsPlanned" xml:space="preserve">
+    <value>Due for completion in</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Zip Code</value>
+  </data>
+  <data name="A_acrchitect" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Recipients' Emails</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Report's Layout Type</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value>Add</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ProjectFormTitle" xml:space="preserve">
+    <value>Project form</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -225,22 +240,7 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="Export" xml:space="preserve">
-    <value>Export</value>
-  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="From" xml:space="preserve">
-    <value>From</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>To</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>Type</value>
   </data>
 </root>
