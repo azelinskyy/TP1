@@ -12,12 +12,12 @@
     </thead>
     <tbody data-bind="foreach: Projects">
         <tr>
-            <td style="width: 3%" data-bind="text: Id"></td>
-            <td style="width: 55%" data-bind="text: Title"></td>
-            <td style="width: 7%" data-bind="text: ZipCode"></td>
-            <td style="width: 10%" data-bind="text: City.Name"></td>
-            <td style="width: 10%" data-bind="text: DateAdded"></td>
-            <td style="width: 15%">
+            <td data-bind="text: Id"></td>
+            <td class="col-md-5" data-bind="text: Title"></td>
+            <td class="col-md-1" data-bind="text: ZipCode"></td>
+            <td class="col-md-2" data-bind="text: City.Name"></td>
+            <td class="col-md-1" data-bind="text: DateAdded"></td>
+            <td class="col-md-3" >
                 @Html.KnockoutHelperForButton("Edit", "click: $root.edit", "col-md-6 btn-primary btn")
                 @Html.KnockoutHelperForButton("Delete", "click: $root.delete", "col-md-6 btn-primary btn")
             </td>
