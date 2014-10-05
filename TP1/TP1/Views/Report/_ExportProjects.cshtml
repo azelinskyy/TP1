@@ -1,18 +1,24 @@
 ﻿<div class="well-lg">
-    <label for="email">@Html.KnockoutHelperFor("ExportTab_ProjectsNumberAndRange", "p", "", "$root.Projects().length", " $root.DateFrom()", "$root.DateTo()")</label>
+    @Html.KnockoutHelperFor("ExportTab_ProjectsNumberAndRange", "p", "", "$root.Projects().length", " $root.DateFrom()", "$root.DateTo()")
 </div>
 
-<div>
-    <label for="email">@Html.KnockoutHelperFor("Email", "p")</label>
-    <input data-bind="value: $root.Email" type="text" title="Email" name="email" />
-</div>
-<div>
-    <label for="type">@Html.KnockoutHelperFor("Type", "p")</label>
-    <select data-bind="options: $root.ExportModels,
+<div class="container">
+
+    <div class="row">
+        <label class="col-md-2" for="email">@Html.KnockoutHelperFor("Email", "p")</label>
+        <textarea data-bind="value: $root.Email" title="Email" name="email" class="col-md-4"></textarea>
+    </div>
+    <div class="row">
+        <label class="col-md-2" for="type">@Html.KnockoutHelperFor("Type", "p")</label>
+        <select class="col-md-4" data-bind="options: $root.ExportModels,
     optionsText: 'name',
     value: 'value'"
-        name="type">
-    </select>
+            name="type">
+        </select>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-primary col-md-2 disabled" data-bind="click: $root.saveAs">Save As</button>
+        <button type="button" class="btn btn-primary col-md-2" data-bind="click: $root.export">Export</button>
+        <button type="button" class="btn btn-primary col-md-2" data-bind="click: $root.viewProjects">Cancel</button>
+    </div>
 </div>
-
-

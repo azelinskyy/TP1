@@ -24,13 +24,15 @@
     </div>
 
 
-    
+
     <div class="container">
         @RenderBody()
     </div>
 
     <div class="container">
-        <p>&copy; @DateTime.Now.Year - team Alpha</p>
+        <div class="well-lg">
+            <p>&copy; @DateTime.Now.Year - team Alpha</p>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
