@@ -23,7 +23,7 @@
                 @Html.KnockoutHelperFor(m => m.RememberMe) 
             </li>
             <li>
-                <input type="submit" value="Log in" />
+                <input type="submit" data-bind="value : language().LogIn" />
             </li>
         </ol>
         @Html.ValidationSummary() 

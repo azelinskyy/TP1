@@ -12,7 +12,7 @@ else
         @Html.KnockoutHelperFor("FirstTimeHere", "p")  <a id="showRegister">@Html.KnockoutHelperFor("SignUp")</a>
     </div>
     <div id="registerPanel">
-        <h2>Sign up</h2>
+        @Html.KnockoutHelperFor("SignUp", "h2")
         @Html.Partial("_Register")
         @Html.KnockoutHelperFor("AlreadySignedUp", "p")  <a id="showLogin">@Html.KnockoutHelperFor("LogIn") </a>
     </div>
