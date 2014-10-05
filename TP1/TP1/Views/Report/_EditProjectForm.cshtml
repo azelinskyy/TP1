@@ -17,7 +17,7 @@
 
     <tr>
         <td><label for="category">@Html.KnockoutHelperFor("City", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().City.Name" type="text" title="Category" /></td>
+        <td><input class="form-control" data-bind="value: Project().City" type="text" title="Category" /></td>
     </tr>
     
     <tr>
@@ -42,7 +42,7 @@
     
     <tr>
         <td><label for="category">@Html.KnockoutHelperFor("SubscribeTermsPlanned", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().FinishDate, datepicker: {}" type="text" title="Category" /></td>
+        <td><input class="form-control" data-bind="value: Project().FinishDate" type="text" title="Category" /></td>
     </tr>
     
     <tr>
@@ -62,12 +62,12 @@
     
     <tr>
         <td><label for="category">@Html.KnockoutHelperFor("SubscribeTermsPlanned", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().StartDate, datepicker: {}" type="text" title="Category" /></td>
+        <td><input class="form-control" data-bind="value: Project().StartDate" type="text" title="Category" /></td>
     </tr>
         </table>
     <br />
     <div>
-        @Html.KnockoutHelperForButton("Save", "click: $root.update", "btn btn-primary col-md-2 col-md-offset-4")
+        @Html.KnockoutHelperForButton("Save", "click: $root.save", "btn btn-primary col-md-2 col-md-offset-4")
         @Html.KnockoutHelperForButton("Cancel", "click: $root.cancel", "btn btn-primary col-md-2")
     </div>
 </div>

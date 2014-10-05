@@ -34,7 +34,7 @@ namespace Services.Factories
             return new ProjectDto
                        {
                             Id = model.Id,
-                            City = new CityConvertFactory().FromModel(model.City), 
+                            City = model.City != null ? model.City.Name : null, 
                             DateAdded = model.DateAdded.ToShortDateString(), 
                             Title = model.Title, 
                             ZipCode = model.ZipCode,
@@ -64,11 +64,20 @@ namespace Services.Factories
         {
             return new Project
                        {
+
                            Id = obj.Id,
-                           City = new CityConvertFactory().ToModel(obj.City),
-                           DateAdded = DateTime.Parse(obj.DateAdded),
+                           //City = obj.City.Name,
+                          // DateAdded = obj.DateAdded.ToShortDateString(),
                            Title = obj.Title,
-                           ZipCode = obj.ZipCode
+                           ZipCode = obj.ZipCode,
+                           //Architect = obj.Architect != null ? model.Architect.Name : null,
+                           DateModified = obj.DateModified,
+                           Description = obj.Description,
+                          // FinishDate = obj.FinishDate != null ? model.FinishDate.DateTime : null,
+                          // Owner = obj.Owner != null ? model.Owner.Name : null,
+                           Price = obj.Price,
+                           Space = obj.Space,
+                          // StartDate = obj.StartDate != null ? obj.StartDate : null
                        };
         }
 

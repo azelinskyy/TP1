@@ -38,7 +38,7 @@
     self.Language = ko.observableArray();
     self.RowCount = ko.observable();
 
-    datacontext.getProjectLists(null, self.Projects, self.Grid().totalRows);
+    datacontext.getProjectLists(self.Grid().searchOptions(), self.Projects, self.Grid().totalRows);
 
     self.changeDatesRange = function () {
         //// Place to refresh grid based on new dates range.
@@ -47,30 +47,40 @@
     self.DateFrom.subscribe(self.changeDatesRange);
     self.DateTo.subscribe(self.changeDatesRange);
 
-    //Add New Item
-    self.create = function () {
-        datacontext.self.createProject(self.Project());
-    };
-
     // Delete project
     self.delete = function (project) {
         if (confirm('Are you sure you want to delete project "' + project.Title + '"?')) {
             datacontext.deleteProject(project.Id);
-            datacontext.getProjectLists(null, self.Projects, ints);
+            datacontext.getProjectLists(self.Grid().searchOptions(), self.Projects, self.Grid().totalRows);
         }
+    };
+
+    self.save = function () {
+        var project = self.Project();
+        if (project.Id > 0) {
+            self.update();
+        } else {
+            self.create();
+        }
+        datacontext.getProjectLists(self.Grid().searchOptions(), self.Projects, self.Grid().totalRows);
+        self.cancel();
+    };
+
+    //Add New Item
+    self.create = function () {
+        datacontext.createProject(self.Project());
     };
 
     // Update product details
     self.update = function () {
         datacontext.updateProject(self.Project());
         self.changeVisibility(true);
-        datacontext.getProjectLists(null, self.Projects, ints);
     };
 
     // Cancel project details
     self.cancel = function () {
         self.changeVisibility(true);
-        // self.Project(null);
+        self.Project(null);
     };
 
     self.hideExport = function () {
@@ -96,23 +106,23 @@
                 });
     };
 
-    self.saveAs = function () {
+    self.saveAs = function() {
         $.ajax({
-            url: '/Report/SaveAs',
-            cache: false,
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
-            success: function (data) {
-                self.viewProjects();
-            }
-        })
+                url: '/Report/SaveAs',
+                cache: false,
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
+                success: function(data) {
+                    self.viewProjects();
+                }
+            })
             .fail(
-                function (xhr, textStatus, err) {
+                function(xhr, textStatus, err) {
                     alert(err);
                     self.viewProjects();
                 });
-    }
+    };
 
     // Tabs switch related code.
     self.viewProjects = function () {

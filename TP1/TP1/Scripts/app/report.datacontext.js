@@ -29,7 +29,7 @@ window.reportApp.datacontext = (function () {
     };
 
     function createProject(newProject) {
-        ajaxRequest("POST", projectUrl(null, "PutProject"), ko.toJSON(newProject));
+        ajaxRequest("POST", projectUrl(null, "PostProject"), ko.toJSON(newProject));
     };
 
     // private methods

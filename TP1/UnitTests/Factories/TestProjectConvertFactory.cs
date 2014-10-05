@@ -54,7 +54,7 @@ namespace UnitTests.Factories
             this.dto = new ProjectDto
                            {
                                Id = 143, 
-                               City = new CityDto { Id = 32, Name = "Lviv" }, 
+                               City =  "Lviv" , 
                                DateAdded = "06/16/1986", 
                                Title = "Test proj", 
                                ZipCode = "79031"
@@ -80,8 +80,7 @@ namespace UnitTests.Factories
         {
             ProjectDto result = this.converter.FromModel(this.model);
             Assert.AreEqual(this.dto.Id, result.Id);
-            Assert.AreEqual(this.dto.City.Id, result.City.Id);
-            Assert.AreEqual(this.dto.City.Name, result.City.Name);
+            Assert.AreEqual(this.dto.City, result.City);
             Assert.AreEqual(this.dto.DateAdded, result.DateAdded);
             Assert.AreEqual(this.dto.Title, result.Title);
             Assert.AreEqual(this.dto.ZipCode, result.ZipCode);

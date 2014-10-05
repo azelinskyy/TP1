@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace TP1.Controllers
 {
+	using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -158,7 +159,8 @@ namespace TP1.Controllers
         public int PostProject(ProjectDto project)
         {
             Project entity = this.ProjectConvertFactory.ToModel(project);
-            this.projectRepository.Add(entity);
+            entity.DateAdded = DateTime.Today;
+            this.ProjectRepository.Add(entity);
             return entity.Id;
         }
 

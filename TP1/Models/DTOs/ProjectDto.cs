@@ -30,7 +30,7 @@ namespace Model.DTOs
         /// <summary>
         ///     Gets or sets the city.
         /// </summary>
-        public CityDto City { get; set; }
+        public String City { get; set; }
 
         /// <summary>
         ///     Gets or sets the date added.
