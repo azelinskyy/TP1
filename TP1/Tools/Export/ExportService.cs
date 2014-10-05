@@ -70,7 +70,7 @@ namespace Tools.Export
             var attachment = new MemoryStream(pdfStream.ToArray());
             attachment.Seek(0, SeekOrigin.Begin);
 
-            new EmailService().Send(configuration.Email, attachment);
+            new EmailService().Send(configuration.Emails, attachment);
         }
 
         #endregion

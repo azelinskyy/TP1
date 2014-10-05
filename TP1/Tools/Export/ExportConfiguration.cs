@@ -25,7 +25,7 @@ namespace Tools.Export
         {
             this.From = DateTime.Now;
             this.To = this.From;
-            this.Email = string.Empty;
+            this.Emails = string.Empty;
             this.Culture = "en-US";
             this.Model = ReportModels.Columns;
         }
@@ -42,7 +42,7 @@ namespace Tools.Export
         /// <summary>
         ///     Gets or sets the email.
         /// </summary>
-        public string Email { get; set; }
+        public string Emails { get; set; }
 
         /// <summary>
         ///     Gets or sets the from.

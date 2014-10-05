@@ -8,7 +8,7 @@
     //Declare observable which will be bind with UI 
     self.DateFrom = ko.observable(new Date(new Date().setDate(new Date().getDate() - 7)).toLocaleDateString());
     self.DateTo = ko.observable(new Date().toLocaleDateString());
-    self.Email = ko.observable("");
+    self.Emails = ko.observable("");
     self.ExportModel = ko.observable("");
 
     self.displayGrid = ko.observable(true);
@@ -85,7 +85,7 @@
                 cache: false,
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
-                data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
+                data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
                 success: function(data) {
                     self.viewProjects();
                 }
@@ -132,6 +132,7 @@
 
     self.tryExport = function () {
         self.changeVisibility(false, false, true);
+        self.Emails("");
     };
 
     self.changeVisibility = function (grid, form, exp) {
