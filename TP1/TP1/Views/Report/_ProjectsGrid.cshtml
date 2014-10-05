@@ -1,0 +1,8 @@
+﻿<div class="well-lg">
+    <span>Please select desired project's date range</span>
+    <span>from</span>
+    ﻿<input id="dateFrom" type="text" data-bind="datepicker: {}, value: $root.DateFrom" />
+    <span>to</span>
+    <input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
+</div>
+@Html.Partial("~/Views/Report/_Grid.cshtml")

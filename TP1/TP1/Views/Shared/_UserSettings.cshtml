@@ -1,13 +1,14 @@
-﻿@if (Request.IsAuthenticated)
-{
-    <text>
-        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", new { area = string.Empty }, new { @class = "username", title = "Manage" })
-        @using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutForm" }))
-        {
-            @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-        }
-    </text>
-}
-
-<select data-bind="options: languages, optionsText: 'name', value: selectedLanguage"></select>
+﻿<ul class="nav navbar-nav navbar-right">
+    @if (Request.IsAuthenticated)
+    {
+        <li>@Html.ActionLink(User.Identity.Name, "Manage", "Account", new { area = string.Empty }, new { @class = "username", title = "Manage" })</li>
+        <li>
+            @using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            }
+        </li>
+    }
+    <li><select data-bind="options: languages, optionsText: 'name', value: selectedLanguage"></select></li>
+</ul>

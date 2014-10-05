@@ -37,14 +37,9 @@ namespace TP1
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include("~/Scripts/knockout-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/ajaxlogin").Include("~/Scripts/app/ajaxlogin.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
 
-            bundles.Add(
-                new ScriptBundle("~/bundles/todo").Include(
-                    "~/Scripts/app/todo.bindings.js",
-                    "~/Scripts/app/todo.datacontext.js",
-                    "~/Scripts/app/todo.model.js",
-                    "~/Scripts/app/todo.viewmodel.js"));
+            bundles.Add(new ScriptBundle("~/bundles/ajaxlogin").Include("~/Scripts/app/ajaxlogin.js"));
 
             bundles.Add(
                 new ScriptBundle("~/bundles/Internationalization").Include(
@@ -63,7 +58,7 @@ namespace TP1
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css", "~/Content/TodoList.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css"));
 
             bundles.Add(
                 new StyleBundle("~/Content/themes/base/css").Include(
@@ -79,6 +74,12 @@ namespace TP1
                     "~/Content/themes/base/jquery.ui.datepicker.css",
                     "~/Content/themes/base/jquery.ui.progressbar.css",
                     "~/Content/themes/base/jquery.ui.theme.css"));
+
+
+            bundles.Add(
+                new StyleBundle("~/Content/bootstrap").Include(
+                    "~/Content/bootstrap.css",
+                    "~/Content/bootstrap-theme.css"));
         }
 
         #endregion

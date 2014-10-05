@@ -10,15 +10,15 @@
     self.DateAdded = ko.observable("");
     self.Title = ko.observable("");
     self.ZipCode = ko.observable("");
-    self.DateFrom = ko.observable(new Date(new Date().setDate(new Date().getDate()-7)).toLocaleDateString());
+    self.DateFrom = ko.observable(new Date(new Date().setDate(new Date().getDate() - 7)).toLocaleDateString());
     self.DateTo = ko.observable(new Date().toLocaleDateString());
     self.Email = ko.observable("");
     self.ExportModel = ko.observable("");
 
-
     self.displayGrid = ko.observable(true);
     self.displayForm = ko.observable(false);
     self.displayExport = ko.observable(false);
+
 
     var projectModel = {
         Id: ko.observable(""),
@@ -109,18 +109,6 @@
         }
     };
 
-    // Edit project details
-    self.add = function () {
-        self.changeVisibility(false);
-        self.Project(projectModel);
-    };
-
-    // Edit project details
-    self.edit = function (project) {
-        self.changeVisibility(false);
-        self.Project(project);
-    };
-
     // Update product details
     self.update = function () {
         var projectToUpdate = self.Project();
@@ -153,18 +141,6 @@
         // self.Project(null);
     };
 
-    self.changeVisibility = function (state) {
-        self.displayGrid(state);
-        self.displayForm(!state);
-        self.displayExport(false);
-    };
-
-    self.tryExport = function () {
-        self.displayGrid(false);
-        self.displayForm(false);
-        self.displayExport(true);
-    };
-
     self.hideExport = function () {
         self.displayExport(false);
         self.displayGrid(true);
@@ -187,4 +163,31 @@
             self.hideExport();
         });
     }
+
+    // Tabs switch related code.
+    self.viewProjects = function () {
+        self.changeVisibility(true, false, false);
+    }
+
+    self.add = function () {
+        self.changeVisibility(false, true, false);
+        self.Project(projectModel);
+    };
+
+    self.edit = function (project) {
+        self.changeVisibility(false, true, false);
+        self.Project(project);
+    };
+
+    self.tryExport = function () {
+        self.changeVisibility(false, false, true);
+    };
+
+    self.changeVisibility = function (grid, form, exp) {
+        self.displayGrid(grid);
+        self.displayForm(form);
+        self.displayExport(exp);
+    };
+
+
 }

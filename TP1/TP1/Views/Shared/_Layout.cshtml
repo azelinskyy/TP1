@@ -1,34 +1,46 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-        @Styles.Render("~/Content/themes/base/css")
-    </head>
-    <body>
-        <div id="userSettings">
-            @Html.Partial("_UserSettings")
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <img src="~/Images/logo.gif" />
+            </div>
+            <div class="navbar-collapse collapse" id="userSettings">
+                @Html.Partial("_UserSettings")
+            </div>
         </div>
+    </div>
 
-        <div id="body">
-            @RenderBody()
-        </div>
 
-        <footer>
-            <p>&copy; @DateTime.Now.Year - team Alpha</p>
-        </footer>
+    
+    <div class="container">
+        @RenderBody()
+    </div>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/jqueryui")
-        @Scripts.Render("~/bundles/ajaxlogin")
-        @Scripts.Render("~/bundles/knockout")
-        @Scripts.Render("~/bundles/Internationalization")
-        @Scripts.Render("~/bundles/tools")
-        
-        @RenderSection("scripts", false)
-    </body>
+    <div class="container">
+        <p>&copy; @DateTime.Now.Year - team Alpha</p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/ajaxlogin")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/Internationalization")
+    @Scripts.Render("~/bundles/tools")
+
+    @RenderSection("scripts", false)
+</body>
 </html>

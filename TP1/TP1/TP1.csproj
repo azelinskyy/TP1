@@ -223,6 +223,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -278,6 +282,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -290,11 +295,22 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\logo.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\app\report.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Internationalization\base.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="Scripts\jquery-1.9.0.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.0.js" />
+    <Content Include="Scripts\jquery-1.9.0.min.js" />
+    <Content Include="Scripts\jquery-1.9.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
@@ -320,12 +336,8 @@
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\TodoList.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\app\ajaxlogin.js" />
-    <Content Include="Scripts\app\todo.viewmodel.js" />
-    <Content Include="Scripts\app\todo.datacontext.js" />
-    <Content Include="Scripts\app\todo.model.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -357,6 +369,8 @@
     <Content Include="Views\Report\_EditProjectForm.cshtml" />
     <Content Include="Views\Report\_Grid.cshtml" />
     <Content Include="Views\Report\_Index.cshtml" />
+    <Content Include="Views\Report\_ExportProjects.cshtml" />
+    <Content Include="Views\Report\_ProjectsGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,35 +1,17 @@
-﻿@Html.KnockoutHelperFor("From", "span")
-﻿<input id="dateFrom" type="text" data-bind="datepicker: {}, value: $root.DateFrom" />
-@Html.KnockoutHelperFor("To", "span")
-<input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
-    @Html.KnockoutHelperForButton("Export", "click: $root.tryExport")
-    @Html.KnockoutHelperForButton("Add", "click: $root.add")
-    @Html.Partial("~/Views/Report/_Grid.cshtml")
-<br />
-<div style="border-top: solid 2px  #282828; width: 430px; height: 10px">&nbsp;</div>
-<div data-bind="visible: displayForm">
-    @Html.Partial("~/Views/Report/_EditProjectForm.cshtml")
-</div>
+﻿<ul class="nav nav-pills nav-justified" role="tablist">
+    <li data-bind="css: { active: $root.displayGrid }"><a href="#" data-bind="    click: $root.viewProjects">Projects View</a></li>
+    <li data-bind="css: { active: $root.displayForm }"><a href="#" data-bind="    click: $root.add">Add/Edit Project</a></li>
+    <li data-bind="css: { active: $root.displayExport }"><a href="#" data-bind="    click: $root.tryExport">Export Projects</a></li>
+</ul>
 
-<div data-bind="visible: displayExport">
-    <div>
-        <div>
-            <h2>Export projects</h2>
-        </div>
-        <div>
-            <label for="email">@Html.KnockoutHelperFor("Email", "p")</label>
-            <input data-bind="value: $root.Email" type="text" title="Email" name="email" />
-        </div>
-        <div>
-            <label for="type">@Html.KnockoutHelperFor("Type", "p")</label>
-            <select data-bind="options: $root.ExportModels,
-                       optionsText: 'name',
-                       value: 'value'" name="type"></select>
-        </div>
-        <br />
-        <div>
-            @Html.KnockoutHelperForButton("Export", "click: $root.export")
-            @Html.KnockoutHelperForButton("Cancel", "click: $root.hideExport")
-        </div>
+<div class="container">
+    <div data-bind="visible: displayGrid">
+        @Html.Partial("~/Views/Report/_ProjectsGrid.cshtml")
+    </div>
+    <div data-bind="visible: displayForm">
+        @Html.Partial("~/Views/Report/_EditProjectForm.cshtml")
+    </div>
+    <div data-bind="visible: displayExport">
+        @Html.Partial("~/Views/Report/_ExportProjects.cshtml")
     </div>
 </div>

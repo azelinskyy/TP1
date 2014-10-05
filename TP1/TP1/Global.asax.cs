@@ -44,12 +44,17 @@ namespace TP1
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            var resourceService = new LocalizationService();
-            System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/ua.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(resourceService.Manager, new CultureInfo("uk-UA"))));
-            System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/en.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(resourceService.Manager, CultureInfo.CurrentCulture)));
-            System.IO.File.WriteAllText(Server.MapPath("~/Scripts/Internationalization/de.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(resourceService.Manager, new CultureInfo("de-DE"))));
+            this.GenerateLanguageFiles();
 
             System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<DomainContext>());
+        }
+
+        private void GenerateLanguageFiles()
+        {
+            var resourceService = new LocalizationService();
+            System.IO.File.WriteAllText(this.Server.MapPath("~/Scripts/Internationalization/ua.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(resourceService.Manager, new CultureInfo("uk-UA"))));
+            System.IO.File.WriteAllText(this.Server.MapPath("~/Scripts/Internationalization/en.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(resourceService.Manager, CultureInfo.CurrentCulture)));
+            System.IO.File.WriteAllText(this.Server.MapPath("~/Scripts/Internationalization/de.js"), JsonConvert.SerializeObject(ConvertToJson.ConvertResourceToDictionary(resourceService.Manager, new CultureInfo("de-DE"))));
         }
 
         #endregion

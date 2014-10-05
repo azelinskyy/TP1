@@ -1,0 +1,25 @@
+﻿<div>
+    <h2>Export projects</h2>
+</div>
+<div>
+    <label for="email">@Html.KnockoutHelperFor("Email", "p")</label>
+    <input data-bind="value: $root.Email" type="text" title="Email" name="email" />
+</div>
+<div>
+    <label for="type">@Html.KnockoutHelperFor("Type", "p")</label>
+    <select data-bind="options: $root.ExportModels,
+    optionsText: 'name',
+    value: 'value'"
+        name="type">
+    </select>
+</div>
+
+
+<div class="well-lg">
+    <span>You have selected</span>
+
+    <span data-bind="text: $root.Projects().length">from</span>
+    ﻿<input id="dateFrom" type="text" data-bind="datepicker: {}, value: $root.DateFrom" />
+    <span>to</span>
+    <input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
+</div>
