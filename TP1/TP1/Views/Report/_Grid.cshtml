@@ -1,5 +1,5 @@
 ﻿@using TP1.Helpers
-<table id="products1" class="nav nav-pills nav-justified" data-bind="visible: displayGrid">
+<table id="products1" class="nav nav-pills nav-justified table table-hover table-striped table-bordered table-condensed" data-bind="visible: displayGrid">
     <thead>
         <tr>
             <th><p>ID</p></th>
@@ -7,6 +7,7 @@
             <th>@Html.KnockoutHelperFor("ZipCode", "p")</th>
             <th>@Html.KnockoutHelperFor("City", "p")</th>
             <th>@Html.KnockoutHelperFor("DateAdded", "p")</th>
+            <th>@Html.KnockoutHelperFor("Action", "p")</th>
         </tr>
     </thead>
     <tbody data-bind="foreach: Projects">
@@ -17,8 +18,8 @@
             <td data-bind="text: City.Name"></td>
             <td data-bind="text: DateAdded"></td>
             <td>
-                @Html.KnockoutHelperForButton("Edit", "click: $root.edit", "btn btn-primary")
-                @Html.KnockoutHelperForButton("Delete", "click: $root.delete", "btn btn-primary ")
+                @Html.KnockoutHelperForButton("Edit", "click: $root.edit", "col-md-6 btn-primary btn")
+                @Html.KnockoutHelperForButton("Delete", "click: $root.delete", "col-md-6 btn-primary btn")
             </td>
         </tr>
     </tbody>

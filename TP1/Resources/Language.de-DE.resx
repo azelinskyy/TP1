@@ -276,4 +276,10 @@
   <data name="ProjectsView_SelectRangeText" xml:space="preserve">
     <value>Wählen Sie, bitte, die benötigten Daten:</value>
   </data>
+  <data name="RegistrationForm" xml:space="preserve">
+    <value>Anmeldeformular</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Aktion</value>
+  </data>
 </root>
