@@ -26,14 +26,13 @@
             <td colspan = "6">
                 <div class="pagerWrap">
                     <ul class="pager">
-                        <li class="pagerFirst" data-bind="click: selectFirst"><a href="#">First</a></li>
-                        <li class="pagerPrev" data-bind="click: selectPrevious"><a href="#">Previous</a></li>
+                        <li class="pagerFirst" data-bind="click: selectFirst"><a href="#" data-bind="text: language().First"></a></li>
+                        <li class="pagerPrev" data-bind="click: selectPrevious"><a href="#" data-bind="text: language().Previous"></a></li>
                         <li class="pagerCurrent">
-                            <span data-bind="text: searchOptions().pageIndex()"></span>
-                            <span>of total</span><span data-bind="text: totalPages()"></span><span> pages</span>
+                            @Html.KnockoutHelperFor("NumberOfTotalPages", "span", "", "searchOptions().pageIndex()", "totalPages()")
                         </li>
-                        <li class="pagerNext" data-bind="click: selectNext"><a href="#">Next</a></li>
-                        <li class="pagerLast" data-bind="click: selectLast"><a href="#">Last</a></li>
+                        <li class="pagerNext" data-bind="click: selectNext"><a href="#" data-bind="text: language().Next"></a></li>
+                        <li class="pagerLast" data-bind="click: selectLast"><a href="#" data-bind="text: language().Last"></a></li>
                     </ul>   
                 </div>
             </td>

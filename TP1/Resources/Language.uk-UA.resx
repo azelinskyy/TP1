@@ -243,4 +243,37 @@
   <data name="Save" xml:space="preserve">
     <value>Зберегти</value>
   </data>
+  <data name="ExportTab_ProjectsNumberAndRange" xml:space="preserve">
+    <value>Експортувати {0} проектів доданих з {1} до {2}</value>
+  </data>
+  <data name="ProjectsView" xml:space="preserve">
+    <value>Перегляд проектів</value>
+  </data>
+  <data name="AddEditProject" xml:space="preserve">
+    <value>Добавити/змінити проект</value>
+  </data>
+  <data name="ExportProjects" xml:space="preserve">
+    <value>Експортувати проекти</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>Перший</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Останній</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Вийти</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Наступний</value>
+  </data>
+  <data name="NumberOfTotalPages" xml:space="preserve">
+    <value>Сторінка {0} з {1}</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Попередній</value>
+  </data>
+  <data name="ProjectsView_SelectRangeText" xml:space="preserve">
+    <value>Будь ласка, виберіть необхідний інтервал дат проектів:</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿<ul class="nav nav-pills nav-justified" role="tablist">
-    <li data-bind="css: { active: $root.displayGrid }"><a href="#" data-bind="    click: $root.viewProjects">Projects View</a></li>
-    <li data-bind="css: { active: $root.displayForm }"><a href="#" data-bind="    click: $root.add">Add/Edit Project</a></li>
-    <li data-bind="css: { active: $root.displayExport }"><a href="#" data-bind="    click: $root.tryExport">Export Projects</a></li>
+    <li data-bind="css: { active: $root.displayGrid }"><a href="#" data-bind="    click: $root.viewProjects, text: language().ProjectsView"></a></li>
+    <li data-bind="css: { active: $root.displayForm }"><a href="#" data-bind="    click: $root.add, text: language().AddEditProject"></a></li>
+    <li data-bind="css: { active: $root.displayExport }"><a href="#" data-bind="    click: $root.tryExport, text: language().ExportProjects"></a></li>
 </ul>
 
 <div class="container">

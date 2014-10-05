@@ -243,4 +243,37 @@
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
   </data>
+  <data name="ExportTab_ProjectsNumberAndRange" xml:space="preserve">
+    <value>{0} Projekte exportieren eingefügt vom {1} bis {2}</value>
+  </data>
+  <data name="ProjectsView" xml:space="preserve">
+    <value>Projektenansicht</value>
+  </data>
+  <data name="AddEditProject" xml:space="preserve">
+    <value>Projekt hinzufügen/ändern</value>
+  </data>
+  <data name="ExportProjects" xml:space="preserve">
+    <value>Projekten exportieren</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>Erstes</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Lätztes</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Ausloggen</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Nächstes</value>
+  </data>
+  <data name="NumberOfTotalPages" xml:space="preserve">
+    <value>Seite {0} aus {1}</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Vorheriges</value>
+  </data>
+  <data name="ProjectsView_SelectRangeText" xml:space="preserve">
+    <value>Wählen Sie, bitte, die benötigten Daten:</value>
+  </data>
 </root>

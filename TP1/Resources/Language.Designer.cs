@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add/Edit Project.
+        /// </summary>
+        public static string AddEditProject {
+            get {
+                return ResourceManager.GetString("AddEditProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Address {
@@ -268,11 +277,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export Projects.
+        /// </summary>
+        public static string ExportProjects {
+            get {
+                return ResourceManager.GetString("ExportProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export {0} projects added from {1} to {2}.
         /// </summary>
         public static string ExportTab_ProjectsNumberAndRange {
             get {
                 return ResourceManager.GetString("ExportTab_ProjectsNumberAndRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First.
+        /// </summary>
+        public static string First {
+            get {
+                return ResourceManager.GetString("First", resourceCulture);
             }
         }
         
@@ -304,6 +331,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last.
+        /// </summary>
+        public static string Last {
+            get {
+                return ResourceManager.GetString("Last", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Legend.
         /// </summary>
         public static string Legend {
@@ -322,11 +358,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log off.
+        /// </summary>
+        public static string LogOff {
+            get {
+                return ResourceManager.GetString("LogOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string name {
             get {
                 return ResourceManager.GetString("name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page {0} of total {1} pages.
+        /// </summary>
+        public static string NumberOfTotalPages {
+            get {
+                return ResourceManager.GetString("NumberOfTotalPages", resourceCulture);
             }
         }
         
@@ -349,11 +412,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Previous.
+        /// </summary>
+        public static string Previous {
+            get {
+                return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project form.
         /// </summary>
         public static string ProjectFormTitle {
             get {
                 return ResourceManager.GetString("ProjectFormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Projects View.
+        /// </summary>
+        public static string ProjectsView {
+            get {
+                return ResourceManager.GetString("ProjectsView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select required project&apos;s date range:.
+        /// </summary>
+        public static string ProjectsView_SelectRangeText {
+            get {
+                return ResourceManager.GetString("ProjectsView_SelectRangeText", resourceCulture);
             }
         }
         

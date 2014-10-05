@@ -1,8 +1,14 @@
 ﻿<div class="well-lg">
-    <span>Please select desired project's date range</span>
-    <span>from</span>
-    ﻿<input id="dateFrom" type="text" data-bind="datepicker: {}, value: $root.DateFrom" />
-    <span>to</span>
-    <input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" />
+    @Html.KnockoutHelperFor("ProjectsView_SelectRangeText", "p")
+    <table>
+        <tr>
+            <td>@Html.KnockoutHelperFor("From", "span")</td>
+            <td><input id="dateFrom" type="text" data-bind="datepicker: {}, value: $root.DateFrom" /></td>
+        </tr>
+        <tr>
+            <td>@Html.KnockoutHelperFor("To", "span")</td>
+            <td><input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" /></td>
+        </tr>
+    </table>
 </div>
 @Html.Partial("~/Views/Report/_Grid.cshtml")
