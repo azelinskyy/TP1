@@ -87,15 +87,33 @@
                 contentType: 'application/json; charset=utf-8',
                 data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
                 success: function(data) {
-                    self.hideExport();
+                    self.viewProjects();
                 }
             })
             .fail(
                 function(xhr, textStatus, err) {
                     alert(err);
-                    self.hideExport();
+                    self.viewProjects();
                 });
     };
+
+    self.saveAs = function () {
+        $.ajax({
+            url: '/Report/SaveAs',
+            cache: false,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
+            success: function (data) {
+                self.viewProjects();
+            }
+        })
+            .fail(
+                function (xhr, textStatus, err) {
+                    alert(err);
+                    self.viewProjects();
+                });
+    }
 
     // Tabs switch related code.
     self.viewProjects = function() {
