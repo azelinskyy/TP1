@@ -4,7 +4,7 @@ var availableLanguages = [
     {
         name: "English",
         type: "en",
-        culture: "en-EN"
+        culture: "en-US"
     },
     {
         name: "Українська",

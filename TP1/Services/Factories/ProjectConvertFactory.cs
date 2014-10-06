@@ -33,19 +33,20 @@ namespace Services.Factories
         {
             return new ProjectDto
                        {
-                            Id = model.Id,
-                            City = model.City != null ? model.City.Name : null, 
-                            DateAdded = model.DateAdded.ToShortDateString(), 
-                            Title = model.Title, 
-                            ZipCode = model.ZipCode,
-                            Architect = model.Architect != null ? model.Architect.Name : null,
-                            DateModified = model.DateModified,
-                            Description  = model.Description,
-                            FinishDate = model.FinishDate != null ? model.FinishDate.Description : null,
-                            Owner = model.Owner != null ? model.Owner.Name : null,
-                            Price  = model.Price,
-                            Space  = model.Space,
-                            StartDate = model.StartDate != null ? model.StartDate.Description : null
+                           Id = model.Id,
+                           City = model.City != null ? model.City.Name : null,
+                           DateAdded = model.DateAdded.ToShortDateString(),
+                           Title = model.Title,
+                           Address = model.Address.AddressString,
+                           ZipCode = model.ZipCode,
+                           Architect = model.Architect != null ? model.Architect.Name : null,
+                           DateModified = model.DateModified,
+                           Description = model.Description,
+                           FinishDate = model.FinishDate != null ? model.FinishDate.Description : null,
+                           Owner = model.Owner != null ? model.Owner.Name : null,
+                           Price = model.Price,
+                           Space = model.Space,
+                           StartDate = model.StartDate != null ? model.StartDate.Description : null
                        };
         }
 
@@ -67,8 +68,9 @@ namespace Services.Factories
                            Id = obj.Id,
                            City = new City { Name = obj.City },
                            Title = obj.Title,
+                           Address = new Address { AddressString = obj.Address },
                            ZipCode = obj.ZipCode,
-                           Architect = obj.Architect != null ? new Company{ Name = obj.Architect } : null,
+                           Architect = obj.Architect != null ? new Company { Name = obj.Architect } : null,
                            DateModified = obj.DateModified,
                            Description = obj.Description,
                            FinishDate = !string.IsNullOrEmpty(obj.FinishDate) ? new DomainDate { Description = obj.FinishDate } : new DomainDate(),
