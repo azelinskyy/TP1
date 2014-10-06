@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="A_acrchitect" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Aktion</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="AddEditProject" xml:space="preserve">
+    <value>Projekt hinzufügen/ändern</value>
+  </data>
   <data name="Address" xml:space="preserve">
     <value>Adresse</value>
   </data>
@@ -135,6 +147,9 @@
   <data name="AreaVolume" xml:space="preserve">
     <value>Fläche/Volumen</value>
   </data>
+  <data name="B_builder" xml:space="preserve">
+    <value>B</value>
+  </data>
   <data name="BR_builders_representative" xml:space="preserve">
     <value>BV</value>
   </data>
@@ -147,11 +162,14 @@
   <data name="BuildingProject" xml:space="preserve">
     <value>Bauvorhaben</value>
   </data>
-  <data name="B_builder" xml:space="preserve">
-    <value>B</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Stadt</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>!!!Columns!!!</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Passwort bestätigen</value>
@@ -162,11 +180,41 @@
   <data name="DateAdded" xml:space="preserve">
     <value>Hinzufügungsdatum</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Ändern</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Empfänger E-Mails</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Datenexport</value>
+  </data>
+  <data name="ExportProjects" xml:space="preserve">
+    <value>Projekten exportieren</value>
+  </data>
+  <data name="ExportTab_ProjectsNumberAndRange" xml:space="preserve">
+    <value>{0} Projekte exportieren eingefügt vom {1} bis {2}</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>Erste</value>
+  </data>
   <data name="FirstTimeHere" xml:space="preserve">
     <value>Zum ersten Mal hier?</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>Von</value>
+  </data>
   <data name="FullInfoOnSite" xml:space="preserve">
     <value>Alle Projekte und zusätzliche detaillierte Informationen finden Sie unter www.bindexis.ch</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Lätzte</value>
   </data>
   <data name="Legend" xml:space="preserve">
     <value>Legende</value>
@@ -174,95 +222,11 @@
   <data name="LogIn" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="name" xml:space="preserve">
-    <value>Deutsch</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Passwort</value>
-  </data>
-  <data name="PlanningApplication" xml:space="preserve">
-    <value>Baugesuch geplant für</value>
-  </data>
-  <data name="RememberMe" xml:space="preserve">
-    <value>Auf diesem Computer merken</value>
-  </data>
-  <data name="SignUp" xml:space="preserve">
-    <value>Anmelden</value>
-  </data>
-  <data name="SiteName" xml:space="preserve">
-    <value>Berichte</value>
-  </data>
-  <data name="SubscribeTermsPlanned" xml:space="preserve">
-    <value>Bezug/Nutzung geplant für</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Titel</value>
-  </data>
-  <data name="UserName" xml:space="preserve">
-    <value>Benutzername</value>
-  </data>
-  <data name="ZipCode" xml:space="preserve">
-    <value>Postleitzahl</value>
-  </data>
-  <data name="A_acrchitect" xml:space="preserve">
-    <value>A</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>Empfänger E-Mails</value>
-  </data>
-  <data name="From" xml:space="preserve">
-    <value>Von</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>Bis</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>Bericht Darstellungsart</value>
-  </data>
-  <data name="Add" xml:space="preserve">
-    <value>Hinzufügen</value>
-  </data>
-  <data name="Export" xml:space="preserve">
-    <value>Datenexport</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Beschreibung</value>
-  </data>
-  <data name="ProjectFormTitle" xml:space="preserve">
-    <value>Projektform</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Löschen</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Ändern</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Speichern</value>
-  </data>
-  <data name="ExportTab_ProjectsNumberAndRange" xml:space="preserve">
-    <value>{0} Projekte exportieren eingefügt vom {1} bis {2}</value>
-  </data>
-  <data name="ProjectsView" xml:space="preserve">
-    <value>Projektenansicht</value>
-  </data>
-  <data name="AddEditProject" xml:space="preserve">
-    <value>Projekt hinzufügen/ändern</value>
-  </data>
-  <data name="ExportProjects" xml:space="preserve">
-    <value>Projekten exportieren</value>
-  </data>
-  <data name="First" xml:space="preserve">
-    <value>Erste</value>
-  </data>
-  <data name="Last" xml:space="preserve">
-    <value>Lätzte</value>
-  </data>
   <data name="LogOff" xml:space="preserve">
     <value>Ausloggen</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Deutsch</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Nächste</value>
@@ -270,8 +234,20 @@
   <data name="NumberOfTotalPages" xml:space="preserve">
     <value>Seite {0} aus {1}</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="ConstructionStartDate" xml:space="preserve">
+    <value>Baubeginn geplant für</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Vorherige</value>
+  </data>
+  <data name="ProjectFormTitle" xml:space="preserve">
+    <value>Projektform</value>
+  </data>
+  <data name="ProjectsView" xml:space="preserve">
+    <value>Projektenansicht</value>
   </data>
   <data name="ProjectsView_SelectRangeText" xml:space="preserve">
     <value>Wählen Sie, bitte, die benötigten Daten:</value>
@@ -279,7 +255,37 @@
   <data name="RegistrationForm" xml:space="preserve">
     <value>Anmeldeformular</value>
   </data>
-  <data name="Action" xml:space="preserve">
-    <value>Aktion</value>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Auf diesem Computer merken</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Berichte</value>
+  </data>
+  <data name="ConstructionEndDate" xml:space="preserve">
+    <value>Bezug/Nutzung geplant für</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>!!!Tables!!!</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Bis</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Bericht Darstellungsart</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Benutzername</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Postleitzahl</value>
   </data>
 </root>

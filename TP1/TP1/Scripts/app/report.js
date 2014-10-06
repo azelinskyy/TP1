@@ -98,7 +98,7 @@
             cache: false,
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
-            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
+            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: selectedLanguage().culture }),
             success: function (data) {
                 self.viewProjects();
                 self.Emails("");

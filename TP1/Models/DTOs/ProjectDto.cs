@@ -50,7 +50,7 @@ namespace Model.DTOs
         /// <summary>
         ///     Gets or sets the finish date.
         /// </summary>
-        public DateTime? FinishDate { get; set; }
+        public string FinishDate { get; set; }
 
         /// <summary>
         ///     Gets or sets the owner.
@@ -70,7 +70,7 @@ namespace Model.DTOs
         /// <summary>
         ///     Gets or sets the start date.
         /// </summary>
-        public DateTime? StartDate { get; set; }
+        public string StartDate { get; set; }
 
         /// <summary>
         ///     Gets or sets the title.
