@@ -4,11 +4,23 @@
     <table>
         <tr>
             <td>@Html.KnockoutHelperFor("From", "span")</td>
-            <td><input id="dateFrom" type="text" data-bind="datepicker: {}, value: $root.DateFrom" /></td>
+            <td>
+                <div class='input-group'>
+                    <input type='text' id='dateFrom' class="form-control" data-bind="datepicker: {}, value: $root.DateFrom" />
+                    <span class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </td>
         </tr>
         <tr>
             <td>@Html.KnockoutHelperFor("To", "span")</td>
-            <td><input id="dateTo" type="text" data-bind="datepicker: {}, value: $root.DateTo" /></td>
+            <td>
+                <div class='input-group'>
+                    <input type='text' id='dateTo' class="form-control" data-bind="datepicker: {}, value: $root.DateTo" />
+                    <span class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </td>
         </tr>
     </table>
 </div>

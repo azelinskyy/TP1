@@ -40,6 +40,7 @@
 
     datacontext.getProjectLists(self.Grid().searchOptions(), self.Projects, self.Grid().totalRows);
 
+    // Filter projects list if dates range has been changed.
     self.changeDatesRange = function () {
         var searchOptions = self.Grid().searchOptions();
         searchOptions.From = self.DateFrom();
@@ -86,13 +87,8 @@
 
     // Cancel project details
     self.cancel = function () {
-        self.changeVisibility(true);
+        self.changeVisibility(true, false, false);
         self.Project(null);
-    };
-
-    self.hideExport = function () {
-        self.displayExport(false);
-        self.displayGrid(true);
     };
 
     self.export = function () {
@@ -104,12 +100,14 @@
             data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
             success: function (data) {
                 self.viewProjects();
+                self.Emails("");
             }
         })
             .fail(
                 function (xhr, textStatus, err) {
                     alert(err);
                     self.viewProjects();
+                    self.Emails("");
                 });
     };
 
@@ -148,7 +146,6 @@
 
     self.tryExport = function () {
         self.changeVisibility(false, false, true);
-        self.Emails("");
     };
 
     self.changeVisibility = function (grid, form, exp) {
