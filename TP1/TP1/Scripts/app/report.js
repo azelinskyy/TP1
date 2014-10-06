@@ -62,7 +62,7 @@
     self.save = function () {
         if (countOfExistedError(self.Project.errors()) == 0) {
             var project = self.Project();
-            if (project.Id > 0) {
+            if (project.Id() > 0) {
                 self.update();
             } else {
                 self.create();
@@ -82,13 +82,14 @@
     // Update product details
     self.update = function () {
         datacontext.updateProject(self.Project());
+
         self.changeVisibility(true);
     };
 
     // Cancel project details
     self.cancel = function () {
         self.changeVisibility(true, false, false);
-        self.Project(null);
+        refreshModel();
     };
 
     self.export = function () {
@@ -136,12 +137,36 @@
 
     self.add = function () {
         self.changeVisibility(false, true, false);
-        self.Project(projectModel);
+        self.Project(refreshModel());
     };
+
+    function refreshModel() {
+        return setModel(null);
+    }
+
+    function setModel(project) {
+        projectModel.Id(project == null ? "" : project.Id);
+        projectModel.Title(project == null ? "" : project.Title);
+        projectModel.ZipCode(project == null ? "" : project.ZipCode);
+        projectModel.City(project == null ? "" : project.City);
+        projectModel.Address(project == null ? "" : project.Address);
+        projectModel.Architect(project == null ? "" : project.Architect);
+        projectModel.DateModified(project == null ? "" : project.DateModified);
+        projectModel.Description(project == null ? "" : project.Description);
+        projectModel.FinishDate(project == null ? "" : project.FinishDate);
+        projectModel.Owner(project == null ? "" : project.Owner);
+        projectModel.Price(project == null ? "" : project.Price);
+        projectModel.Space(project == null ? "" : project.Space);
+        projectModel.StartDate(project == null ? "" : project.StartDate);
+        self.Project.errors.showAllMessages(false);
+        self.Project.clearError();
+        return projectModel;
+    }
 
     self.edit = function (project) {
         self.changeVisibility(false, true, false);
-        self.Project(project);
+        setModel(project);
+        //self.Project(project);
     };
 
     self.tryExport = function () {
