@@ -21,10 +21,10 @@
                 name="type">
             </select></td>
     </tr>
-    <tr>
+    <tr>    
         <td colspan="2">
             <button type="button" class="btn btn-primary col-md-2  col-md-offset-3 disabled" data-bind="click: $root.saveAs">Save As</button>
-            <button type="button" class="btn btn-primary col-md-2" data-bind="click: $root.export">Export</button>
+            <button type="button" class="btn btn-primary col-md-2" data-bind="click: $root.export, disable: $root.Grid().totalRows() == 0">Export</button>
             <button type="button" class="btn btn-primary col-md-2" data-bind="click: $root.viewProjects">Cancel</button></td>
     </tr>
 </table>
