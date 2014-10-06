@@ -112,11 +112,23 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="A_acrchitect" xml:space="preserve">
+    <value>А</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Дія</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Додати</value>
+  </data>
+  <data name="AddEditProject" xml:space="preserve">
+    <value>Добавити/змінити проект</value>
+  </data>
   <data name="Address" xml:space="preserve">
     <value>Адреса</value>
   </data>
@@ -135,6 +147,9 @@
   <data name="AreaVolume" xml:space="preserve">
     <value>Площа / об'єм</value>
   </data>
+  <data name="B_builder" xml:space="preserve">
+    <value>Б</value>
+  </data>
   <data name="BR_builders_representative" xml:space="preserve">
     <value>ПБ</value>
   </data>
@@ -147,11 +162,14 @@
   <data name="BuildingProject" xml:space="preserve">
     <value>Проект будівлі</value>
   </data>
-  <data name="B_builder" xml:space="preserve">
-    <value>Б</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Відміна</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Місто</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>Колонки</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Підтвердити пароль</value>
@@ -162,11 +180,41 @@
   <data name="DateAdded" xml:space="preserve">
     <value>Дата додання</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Опис</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Електронні адреси отримувачів</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Експорт</value>
+  </data>
+  <data name="ExportProjects" xml:space="preserve">
+    <value>Експортувати проекти</value>
+  </data>
+  <data name="ExportTab_ProjectsNumberAndRange" xml:space="preserve">
+    <value>Експортувати {0} проектів доданих з {1} до {2}</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>Перша</value>
+  </data>
   <data name="FirstTimeHere" xml:space="preserve">
     <value>Вперше тут?</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>З</value>
+  </data>
   <data name="FullInfoOnSite" xml:space="preserve">
     <value>Всі проекти та додаткова докладна інформація доступна на www.bindexis.ch</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Остання</value>
   </data>
   <data name="Legend" xml:space="preserve">
     <value>Скорочення</value>
@@ -174,95 +222,11 @@
   <data name="LogIn" xml:space="preserve">
     <value>Ввійти</value>
   </data>
-  <data name="name" xml:space="preserve">
-    <value>Українська</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Пароль</value>
-  </data>
-  <data name="PlanningApplication" xml:space="preserve">
-    <value>Документація на будівництво запланована на</value>
-  </data>
-  <data name="RememberMe" xml:space="preserve">
-    <value>Запамятати</value>
-  </data>
-  <data name="SignUp" xml:space="preserve">
-    <value>Зареєструватись</value>
-  </data>
-  <data name="SiteName" xml:space="preserve">
-    <value>Репорти</value>
-  </data>
-  <data name="SubscribeTermsPlanned" xml:space="preserve">
-    <value>Здача об'єкту в експлуатацію запланована на</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Назва</value>
-  </data>
-  <data name="UserName" xml:space="preserve">
-    <value>Ім`я користувача</value>
-  </data>
-  <data name="ZipCode" xml:space="preserve">
-    <value>Індекс</value>
-  </data>
-  <data name="A_acrchitect" xml:space="preserve">
-    <value>А</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>Електронні адреси отримувачів</value>
-  </data>
-  <data name="From" xml:space="preserve">
-    <value>З</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>До</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>Тип відображення звіту</value>
-  </data>
-  <data name="Add" xml:space="preserve">
-    <value>Додати</value>
-  </data>
-  <data name="Export" xml:space="preserve">
-    <value>Експорт</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Опис</value>
-  </data>
-  <data name="ProjectFormTitle" xml:space="preserve">
-    <value>Форма проекту</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Відміна</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Видалити</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Редагувати</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Зберегти</value>
-  </data>
-  <data name="ExportTab_ProjectsNumberAndRange" xml:space="preserve">
-    <value>Експортувати {0} проектів доданих з {1} до {2}</value>
-  </data>
-  <data name="ProjectsView" xml:space="preserve">
-    <value>Перегляд проектів</value>
-  </data>
-  <data name="AddEditProject" xml:space="preserve">
-    <value>Добавити/змінити проект</value>
-  </data>
-  <data name="ExportProjects" xml:space="preserve">
-    <value>Експортувати проекти</value>
-  </data>
-  <data name="First" xml:space="preserve">
-    <value>Перша</value>
-  </data>
-  <data name="Last" xml:space="preserve">
-    <value>Остання</value>
-  </data>
   <data name="LogOff" xml:space="preserve">
     <value>Вийти</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Українська</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Наступна</value>
@@ -270,8 +234,20 @@
   <data name="NumberOfTotalPages" xml:space="preserve">
     <value>Сторінка {0} з {1}</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="ConstructionStartDate" xml:space="preserve">
+    <value>Початок будівництва запланований на</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Попередня</value>
+  </data>
+  <data name="ProjectFormTitle" xml:space="preserve">
+    <value>Форма проекту</value>
+  </data>
+  <data name="ProjectsView" xml:space="preserve">
+    <value>Перегляд проектів</value>
   </data>
   <data name="ProjectsView_SelectRangeText" xml:space="preserve">
     <value>Будь ласка, виберіть необхідний інтервал дат проектів:</value>
@@ -279,13 +255,37 @@
   <data name="RegistrationForm" xml:space="preserve">
     <value>Форма реєстрації</value>
   </data>
-  <data name="Action" xml:space="preserve">
-    <value>Дія</value>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запамятати</value>
   </data>
-  <data name="Columns" xml:space="preserve">
-    <value>Колонки</value>
+  <data name="Save" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Зареєструватись</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Репорти</value>
+  </data>
+  <data name="ConstructionEndDate" xml:space="preserve">
+    <value>Здача об'єкту в експлуатацію запланована на</value>
   </data>
   <data name="Tables" xml:space="preserve">
     <value>Таблиці</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Назва</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>До</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип відображення звіту</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Ім`я користувача</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Індекс</value>
   </data>
 </root>

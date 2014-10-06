@@ -140,12 +140,12 @@ namespace Tools.Export
             this.AddIfPresent(
                 project.StartDate,
                 sd => !string.IsNullOrEmpty(sd.Description),
-                sd => this.CreatePhrase(this.resourceService["PlanningApplication"], sd.Description),
+                sd => this.CreatePhrase(this.resourceService["ConstructionStartDate"], sd.Description),
                 item);
             this.AddIfPresent(
                 project.FinishDate,
                 fd => !string.IsNullOrEmpty(fd.Description),
-                fd => this.CreatePhrase(this.resourceService["SubscribeTermsPlanned"], fd.Description),
+                fd => this.CreatePhrase(this.resourceService["ConstructionEndDate"], fd.Description),
                 item);
             item.Add(Chunk.NEWLINE);
             return item;
@@ -194,12 +194,12 @@ namespace Tools.Export
             this.AddIfPresent(
                 project.StartDate,
                 sd => !string.IsNullOrEmpty(sd.Description),
-                sd => this.CreatePhrase(this.resourceService["PlanningApplication"], sd.Description),
+                sd => this.CreatePhrase(this.resourceService["ConstructionStartDate"], sd.Description),
                 result);
             this.AddIfPresent(
                 project.FinishDate,
                 fd => !string.IsNullOrEmpty(fd.Description),
-                fd => this.CreatePhrase(this.resourceService["SubscribeTermsPlanned"], fd.Description),
+                fd => this.CreatePhrase(this.resourceService["ConstructionEndDate"], fd.Description),
                 result);
             result.Add(Chunk.NEWLINE);
             return result;
@@ -360,13 +360,13 @@ namespace Tools.Export
 
                 this.AddIfPresent(
                     !string.IsNullOrEmpty(project.StartDate.Description),
-                    this.resourceService["PlanningApplication"],
+                    this.resourceService["ConstructionStartDate"],
                     project.StartDate.Description,
                     table);
 
                 this.AddIfPresent(
                     !string.IsNullOrEmpty(project.FinishDate.Description),
-                    this.resourceService["SubscribeTermsPlanned"],
+                    this.resourceService["ConstructionEndDate"],
                     project.FinishDate.Description,
                     table);
 

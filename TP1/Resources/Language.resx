@@ -112,11 +112,23 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="A_acrchitect" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddEditProject" xml:space="preserve">
+    <value>Add/Edit Project</value>
+  </data>
   <data name="Address" xml:space="preserve">
     <value>Address</value>
   </data>
@@ -135,6 +147,9 @@
   <data name="AreaVolume" xml:space="preserve">
     <value>Area / Volume</value>
   </data>
+  <data name="B_builder" xml:space="preserve">
+    <value>B</value>
+  </data>
   <data name="BR_builders_representative" xml:space="preserve">
     <value>BR</value>
   </data>
@@ -147,11 +162,14 @@
   <data name="BuildingProject" xml:space="preserve">
     <value>Building Project</value>
   </data>
-  <data name="B_builder" xml:space="preserve">
-    <value>B</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>Columns</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm Password</value>
@@ -162,11 +180,41 @@
   <data name="DateAdded" xml:space="preserve">
     <value>Date Added</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Recipients' Emails</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ExportProjects" xml:space="preserve">
+    <value>Export Projects</value>
+  </data>
+  <data name="ExportTab_ProjectsNumberAndRange" xml:space="preserve">
+    <value>Export {0} projects added from {1} to {2}</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>First</value>
+  </data>
   <data name="FirstTimeHere" xml:space="preserve">
     <value>First time here?</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
   <data name="FullInfoOnSite" xml:space="preserve">
     <value>All projects and additional detailed information can be found at www.bindexis.ch</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Last</value>
   </data>
   <data name="Legend" xml:space="preserve">
     <value>Legend</value>
@@ -174,95 +222,11 @@
   <data name="LogIn" xml:space="preserve">
     <value>Log in</value>
   </data>
-  <data name="name" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="PlanningApplication" xml:space="preserve">
-    <value>Building documentation planned for</value>
-  </data>
-  <data name="RememberMe" xml:space="preserve">
-    <value>Remember me</value>
-  </data>
-  <data name="SignUp" xml:space="preserve">
-    <value>Sign up</value>
-  </data>
-  <data name="SiteName" xml:space="preserve">
-    <value>Report</value>
-  </data>
-  <data name="SubscribeTermsPlanned" xml:space="preserve">
-    <value>Due for completion in</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="UserName" xml:space="preserve">
-    <value>Username</value>
-  </data>
-  <data name="ZipCode" xml:space="preserve">
-    <value>Zip Code</value>
-  </data>
-  <data name="A_acrchitect" xml:space="preserve">
-    <value>A</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>Recipients' Emails</value>
-  </data>
-  <data name="From" xml:space="preserve">
-    <value>From</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>To</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>Report's Layout Type</value>
-  </data>
-  <data name="Add" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="Export" xml:space="preserve">
-    <value>Export</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="ProjectFormTitle" xml:space="preserve">
-    <value>Project form</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="ExportTab_ProjectsNumberAndRange" xml:space="preserve">
-    <value>Export {0} projects added from {1} to {2}</value>
-  </data>
-  <data name="ProjectsView" xml:space="preserve">
-    <value>Projects View</value>
-  </data>
-  <data name="AddEditProject" xml:space="preserve">
-    <value>Add/Edit Project</value>
-  </data>
-  <data name="ExportProjects" xml:space="preserve">
-    <value>Export Projects</value>
-  </data>
-  <data name="First" xml:space="preserve">
-    <value>First</value>
-  </data>
-  <data name="Last" xml:space="preserve">
-    <value>Last</value>
-  </data>
   <data name="LogOff" xml:space="preserve">
     <value>Log off</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>English</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Next</value>
@@ -270,8 +234,20 @@
   <data name="NumberOfTotalPages" xml:space="preserve">
     <value>Page {0} of total {1} pages</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ConstructionStartDate" xml:space="preserve">
+    <value>Start of construction planned for</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Previous</value>
+  </data>
+  <data name="ProjectFormTitle" xml:space="preserve">
+    <value>Project form</value>
+  </data>
+  <data name="ProjectsView" xml:space="preserve">
+    <value>Projects View</value>
   </data>
   <data name="ProjectsView_SelectRangeText" xml:space="preserve">
     <value>Please select required project's date range:</value>
@@ -279,13 +255,37 @@
   <data name="RegistrationForm" xml:space="preserve">
     <value>Registration Form</value>
   </data>
-  <data name="Action" xml:space="preserve">
-    <value>Action</value>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me</value>
   </data>
-  <data name="Columns" xml:space="preserve">
-    <value>Columns</value>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="ConstructionEndDate" xml:space="preserve">
+    <value>Due for completion in</value>
   </data>
   <data name="Tables" xml:space="preserve">
     <value>Tables</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Report's Layout Type</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Zip Code</value>
   </data>
 </root>
