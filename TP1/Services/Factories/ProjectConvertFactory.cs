@@ -71,11 +71,11 @@ namespace Services.Factories
                            Architect = obj.Architect != null ? new Company{ Name = obj.Architect } : null,
                            DateModified = obj.DateModified,
                            Description = obj.Description,
-                           FinishDate = !string.IsNullOrEmpty(obj.FinishDate) ? new DomainDate { Description = obj.FinishDate } : null,
+                           FinishDate = !string.IsNullOrEmpty(obj.FinishDate) ? new DomainDate { Description = obj.FinishDate } : new DomainDate(),
                            Owner = obj.Owner != null ? new Company { Name = obj.Owner } : null,
                            Price = obj.Price,
                            Space = obj.Space,
-                           StartDate = !string.IsNullOrEmpty(obj.StartDate) ? new DomainDate { Description = obj.StartDate } : null,
+                           StartDate = !string.IsNullOrEmpty(obj.StartDate) ? new DomainDate { Description = obj.StartDate } : new DomainDate()
                        };
         }
 
