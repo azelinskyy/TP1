@@ -17,9 +17,9 @@
 
     var projectModel = {
         Id: ko.observable(""),
-        Title: ko.observable(""),
-        ZipCode: ko.observable(""),
-        City: ko.observable(""),
+        Title: ko.observable("").extend({ required: true }),
+        ZipCode: ko.observable("").extend({ minLength: 5, maxLength: 5, required: true }),
+        City: ko.observable("").extend({ required: true }),
         Address: ko.observable(""),
         Architect: ko.observable(""),
         DateModified: ko.observable(""),
@@ -59,14 +59,18 @@
     };
 
     self.save = function () {
-        var project = self.Project();
-        if (project.Id > 0) {
-            self.update();
+        if (countOfExistedError(self.Project.errors()) == 0) {
+            var project = self.Project();
+            if (project.Id > 0) {
+                self.update();
+            } else {
+                self.create();
+            }
+            datacontext.getProjectLists(self.Grid().searchOptions(), self.Projects, self.Grid().totalRows);
+            self.cancel();
         } else {
-            self.create();
+            self.Project.errors.showAllMessages();
         }
-        datacontext.getProjectLists(self.Grid().searchOptions(), self.Projects, self.Grid().totalRows);
-        self.cancel();
     };
 
     //Add New Item
@@ -152,4 +156,15 @@
         self.displayForm(form);
         self.displayExport(exp);
     };
+
+    function countOfExistedError(arr) {
+        var count = 0;
+        var i = arr.length;
+        while (i--) {
+            if (arr[i] !== null) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

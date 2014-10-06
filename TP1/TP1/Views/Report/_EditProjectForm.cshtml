@@ -1,70 +1,73 @@
 ﻿@using TP1.Helpers
 <div class="editform">
-    <table class="table table-hover table-striped table-bordered table-condensed">
-    <tr>
-        <td class="col-md-3"><label for="productId" data-bind="visible: false">ID</label></td>
-        <td class="col-md-9"><label data-bind="text: Project().Id, visible: false"></label></td>
-    </tr>
-    <tr>
-        <td><label for="title">@Html.KnockoutHelperFor("Title", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().Title" type="text" title="Name" /></td>
-    </tr>
+    <form id="projectForm">
+        <table class="table table-hover table-striped table-bordered table-condensed">
+            <tr>
+                <td class="col-md-3"><label for="productId" data-bind="visible: false">ID</label></td>
+                <td class="col-md-9"><label data-bind="text: Project().Id, visible: false"></label></td>
+            </tr>
+            <tr>
+                <td><label for="title">@Html.KnockoutHelperFor("Title", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().Title" type="text" id="producttitle" name="producttitle" />
+                </td>
+            </tr>
+            <tr>
+                <td><label for="name">@Html.KnockoutHelperFor("ZipCode", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().ZipCode" type="text" id="" name="" /></td>
+            </tr>
 
-    <tr>
-        <td><label for="name">@Html.KnockoutHelperFor("ZipCode", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().ZipCode" type="text" title="Name" /></td>
-    </tr>
-
-    <tr>
-        <td><label for="category">@Html.KnockoutHelperFor("City", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().City" type="text" title="Category" /></td>
-    </tr>
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("City", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().City" type="text" id="" name="" /></td>
+            </tr>
     
-    <tr>
-        <td><label for="category">@Html.KnockoutHelperFor("Address", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().Address" type="text" title="Category" /></td>
-    </tr>
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("Address", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().Address" type="text" id="" name=""/></td>
+            </tr>
     
-    <tr>
-        <td><label for="category">@Html.KnockoutHelperFor("Architect", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().Architect" type="text" title="Category" /></td>
-    </tr>
-    <!--
-    <tr>
-        <td><label for="category">@Html.KnockoutHelperFor("", "p")</label></td>
-        <td><input data-bind="value: Project().DateModified" type="text" title="Category" /></td>
-    </tr>
-    -->
-    <tr>
-        <td><label for="category">@Html.KnockoutHelperFor("Description", "p")</label></td>
-        <td><textarea class="form-control" data-bind="value: Project().Description" type="text" title="Category" rows="10" cols="44"></textarea></td>
-    </tr>
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("Architect", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().Architect" type="text" id="" name="" /></td>
+            </tr>
+            <!--
+                <tr>
+                    <td><label for="category">@Html.KnockoutHelperFor("", "p")</label></td>
+                    <td><input data-bind="value: Project().DateModified" type="text" title="Category" /></td>
+                </tr>
+                -->
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("Description", "p")</label></td>
+                <td><textarea class="form-control" data-bind="value: Project().Description" type="text" id="" name="" rows="10" cols="44"></textarea></td>
+            </tr>
     
-    <tr>
-        <td><label for="category">@Html.KnockoutHelperFor("SubscribeTermsPlanned", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().FinishDate" type="text" title="Category" /></td>
-    </tr>
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("SubscribeTermsPlanned", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().FinishDate" type="text" id="" name="" /></td>
+            </tr>
     
-    <tr>
-        <td><label for="category">@Html.KnockoutHelperFor("Builder", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().Owner" type="text" title="Category" /></td>
-    </tr>
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("Builder", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().Owner" type="text" id="" name="" /></td>
+            </tr>
     
-    <tr>
-        <td><label for="category">@Html.KnockoutHelperFor("ConstructionCost", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().Price" type="text" title="Category" /></td>
-    </tr>
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("ConstructionCost", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().Price" type="text" id="" name="" /></td>
+            </tr>
     
-    <tr>
-        <td><label for="category">@Html.KnockoutHelperFor("AreaVolume", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().Space" type="text" title="Category" /></td>
-    </tr>
-    
-    <tr>
-        <td><label for="category">@Html.KnockoutHelperFor("SubscribeTermsPlanned", "p")</label></td>
-        <td><input class="form-control" data-bind="value: Project().StartDate" type="text" title="Category" /></td>
-    </tr>
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("AreaVolume", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().Space" type="text" id="" name="" /></td>
+            </tr>
+            
+  <!--  <input type="submit" name="submitForm" value="Submit Form">-->
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("SubscribeTermsPlanned", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().StartDate" type="text" id="" name="" /></td>
+            </tr>
         </table>
+    </form>
     <br />
     <div>
         @Html.KnockoutHelperForButton("Save", "click: $root.save", "btn btn-primary col-md-2 col-md-offset-4")
