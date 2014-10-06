@@ -184,6 +184,7 @@ namespace Tools.Export
             {
                 fullPath = Path.Combine(this.rootPath, fullPath);
             }
+
             return fullPath;
         }
 
