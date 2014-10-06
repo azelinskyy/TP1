@@ -37,7 +37,7 @@ namespace Services.Factories
                            City = model.City != null ? model.City.Name : null,
                            DateAdded = model.DateAdded.ToShortDateString(),
                            Title = model.Title,
-                           Address = model.Address.AddressString,
+                           Address = model.Address != null ? model.Address.AddressString : null,
                            ZipCode = model.ZipCode,
                            Architect = model.Architect != null ? model.Architect.Name : null,
                            DateModified = model.DateModified,
