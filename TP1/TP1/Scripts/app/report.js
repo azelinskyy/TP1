@@ -41,7 +41,10 @@
     datacontext.getProjectLists(self.Grid().searchOptions(), self.Projects, self.Grid().totalRows);
 
     self.changeDatesRange = function () {
-        //// Place to refresh grid based on new dates range.
+        var searchOptions = self.Grid().searchOptions();
+        searchOptions.From = self.DateFrom();
+        searchOptions.To = self.DateTo();
+        datacontext.getProjectLists(searchOptions, self.Projects, self.Grid().totalRows);
     };
 
     self.DateFrom.subscribe(self.changeDatesRange);
@@ -106,19 +109,19 @@
                 });
     };
 
-    self.saveAs = function() {
+    self.saveAs = function () {
         $.ajax({
-                url: '/Report/SaveAs',
-                cache: false,
-                type: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
-                success: function(data) {
-                    self.viewProjects();
-                }
-            })
+            url: '/Report/SaveAs',
+            cache: false,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
+            success: function (data) {
+                self.viewProjects();
+            }
+        })
             .fail(
-                function(xhr, textStatus, err) {
+                function (xhr, textStatus, err) {
                     alert(err);
                     self.viewProjects();
                 });
