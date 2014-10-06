@@ -38,6 +38,7 @@ namespace DataAccess.Repositories
                 throw new ArgumentOutOfRangeException("Id");
             }
 
+            item.DateAdded = DateTime.Now;
             this.GetDbContext().Projects.Add(item);
             this.GetDbContext().SaveChanges();
         }
@@ -207,14 +208,13 @@ namespace DataAccess.Repositories
         public override void Update(Project item)
         {
             Project project = this.GetById(item.Id);
-            project.Address = item.Address;
-            project.Architect = item.Architect;
-            project.City = item.City;
-            project.DateAdded = item.DateAdded;
+            project.Address.AddressString = item.Address.AddressString;
+            project.Architect.Name = item.Architect.Name;
+            project.City.Name = item.City.Name;
             project.DateModified = item.DateModified;
             project.Description = item.Description;
             project.FinishDate = item.FinishDate;
-            project.Owner = item.Owner;
+            project.Owner.Name = item.Owner.Name;
             project.Price = item.Price;
             project.Space = item.Space;
             project.StartDate = item.StartDate;

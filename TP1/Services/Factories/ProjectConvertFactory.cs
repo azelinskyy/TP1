@@ -41,11 +41,11 @@ namespace Services.Factories
                             Architect = model.Architect != null ? model.Architect.Name : null,
                             DateModified = model.DateModified,
                             Description  = model.Description,
-                            FinishDate = model.FinishDate != null ? model.FinishDate.DateTime : null,
+                            FinishDate = model.FinishDate != null ? model.FinishDate.Description : null,
                             Owner = model.Owner != null ? model.Owner.Name : null,
                             Price  = model.Price,
                             Space  = model.Space,
-                            StartDate = model.StartDate != null ? model.StartDate.DateTime : null
+                            StartDate = model.StartDate != null ? model.StartDate.Description : null
                        };
         }
 
@@ -64,20 +64,18 @@ namespace Services.Factories
         {
             return new Project
                        {
-
                            Id = obj.Id,
-                           //City = obj.City.Name,
-                          // DateAdded = obj.DateAdded.ToShortDateString(),
+                           City = new City { Name = obj.City },
                            Title = obj.Title,
                            ZipCode = obj.ZipCode,
-                           //Architect = obj.Architect != null ? model.Architect.Name : null,
+                           Architect = obj.Architect != null ? new Company{ Name = obj.Architect } : null,
                            DateModified = obj.DateModified,
                            Description = obj.Description,
-                          // FinishDate = obj.FinishDate != null ? model.FinishDate.DateTime : null,
-                          // Owner = obj.Owner != null ? model.Owner.Name : null,
+                           FinishDate = !string.IsNullOrEmpty(obj.FinishDate) ? new DomainDate { Description = obj.FinishDate } : null,
+                           Owner = obj.Owner != null ? new Company { Name = obj.Owner } : null,
                            Price = obj.Price,
                            Space = obj.Space,
-                          // StartDate = obj.StartDate != null ? obj.StartDate : null
+                           StartDate = !string.IsNullOrEmpty(obj.StartDate) ? new DomainDate { Description = obj.StartDate } : null,
                        };
         }
 
