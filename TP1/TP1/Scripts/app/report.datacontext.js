@@ -39,7 +39,8 @@ window.reportApp.datacontext = (function () {
             contentType: "application/json",
             cache: false,
             type: type,
-            data: data
+            data: data,
+            async: false
         };
 
         var antiForgeryToken = $("#antiForgeryToken").val();
