@@ -4,7 +4,7 @@
         var dateInput = $(element);
         dateInput.datepicker(options);
 
-        dateInput.next('#btn').click(function () {
+        dateInput.next('.btn').click(function () {
             $(document).ready(function () {
                 dateInput.datepicker().focus();
             });
