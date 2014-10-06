@@ -1,2 +1,11 @@
-﻿label { display: block; }
-.validationMessage { color: Red; }
+﻿label {
+    display: block;
+}
+
+.validationMessage {
+    color: Red;
+}
+
+#registerPanel {
+    display: none;
+}

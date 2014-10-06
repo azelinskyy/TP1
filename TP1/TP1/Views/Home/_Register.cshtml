@@ -1,30 +1,43 @@
 ﻿@using TP1.Helpers
 @model TP1.Models.RegisterModel
 
+<div class="well-lg">
+    @Html.KnockoutHelperFor("SignUp", "h3")
+</div>
+
 @using (Html.BeginForm("JsonRegister", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { Id = "registerForm" }))
 {
     @Html.AntiForgeryToken()
-
-    <fieldset>
-        @Html.KnockoutHelperFor("RegistrationForm", "legend") 
-        @*<legend>Registration Form</legend>*@
-        <ol>
-            <li>
-                @Html.KnockoutHelperFor(m => m.UserName)  
-                @Html.TextBoxFor(m => m.UserName, new { id = "registerName" })
-            </li>
-            <li>
-                @Html.KnockoutHelperFor(m => m.Password) 
-                @Html.PasswordFor(m => m.Password)
-            </li>
-            <li>
-                @Html.KnockoutHelperFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
-            </li>
-            <li>
-                <input type="submit" data-bind ="value: language().SignUp"/>
-            </li>
-        </ol>
-        @Html.ValidationSummary()
-    </fieldset>
+    <div class="row">
+        <div class="col-md-1">@Html.KnockoutHelperFor(m => m.UserName)</div>
+        <div class="col-md-2">@Html.TextBoxFor(m => m.UserName, new { id = "registerName", @class = "form-control" })</div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">@Html.KnockoutHelperFor(m => m.Password)</div>
+        <div class="col-md-2">@Html.PasswordFor(m => m.Password, new { @class = "form-control" })</div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">@Html.KnockoutHelperFor(m => m.ConfirmPassword)</div>
+        <div class="col-md-2">@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })</div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+            <input type="submit" data-bind="value: language().SignUp" class="btn btn-primary" />
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">@Html.ValidationSummary()</div>
+    </div>
 }
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+        @Html.KnockoutHelperFor("AlreadySignedUp", "span")<a id="showLogin">@Html.KnockoutHelperFor("LogIn") </a>
+    </div>
+    <div class="col-md-1"></div>
+</div>

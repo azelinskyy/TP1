@@ -5,17 +5,14 @@
 }
 else
 {
-    <div id="loginPanel">
-        <section id="localLoginPanel">
-            @Html.KnockoutHelperFor("LogIn", "h2")
+    <div class="container">
+        <div class="container" id="loginPanel">
             @Html.Partial("_Login")
-        </section>
-        @Html.KnockoutHelperFor("FirstTimeHere", "p")  <a id="showRegister">@Html.KnockoutHelperFor("SignUp")</a>
-    </div>
-    <div id="registerPanel">
-        @Html.KnockoutHelperFor("SignUp", "h2")
-        @Html.Partial("_Register")
-        @Html.KnockoutHelperFor("AlreadySignedUp", "p")  <a id="showLogin">@Html.KnockoutHelperFor("LogIn") </a>
+        </div>
+
+        <div class="container" id="registerPanel">
+            @Html.Partial("_Register")
+        </div>
     </div>
 }
 
@@ -24,21 +21,21 @@ else
         $(document).ready(function () {
 
             ko.validation.rules.pattern.message = 'Invalid.';
-            
+
             ko.validation.configure({
                 registerExtenders: true,
                 messagesOnModified: true,
                 insertMessages: true,
-               // errorElementClass: "has-error",
-               // errorMessageClass: "has-error",
-                decorateElement:true,
+                // errorElementClass: "has-error",
+                // errorMessageClass: "has-error",
+                decorateElement: true,
                 parseInputAttributes: true,
                 messageTemplate: null
             });
-            
+
             var context = window.reportApp.datacontext();
             var grid = new gridModel(context.getProjectLists);
-            
+
             var viewModel = new ReportViewModel(context, languageModel(availableLanguages), grid);
             viewModel.errors = ko.validation.group(viewModel.Project);
             ko.applyBindings(viewModel);
@@ -46,4 +43,4 @@ else
     </script>
 }
 
-   @Scripts.Render("~/bundles/Report")
+@Scripts.Render("~/bundles/Report")
