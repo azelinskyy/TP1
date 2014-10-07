@@ -128,14 +128,24 @@ namespace Tools.Export
                 o => this.CreatePhrase(this.resourceService["B_builder"], o.Name),
                 item);
             this.AddIfPresent(
+                project.BuildersRepresentative,
+                br => !string.IsNullOrEmpty(br.Name),
+                br => this.CreatePhrase(this.resourceService["BV_buildersrepresentative"], br.Name),
+                item);
+            this.AddIfPresent(
                 project.Price,
-                p => p > 0,
+                p => !string.IsNullOrEmpty(p),
                 p => this.CreatePhrase(this.resourceService["ConstructionCost"], p.ToString(CultureInfo.InvariantCulture)),
                 item);
             this.AddIfPresent(
                 project.Space,
                 s => !string.IsNullOrEmpty(s),
                 s => this.CreatePhrase(this.resourceService["AreaVolume"], s),
+                item);
+            this.AddIfPresent(
+                project.PlannedApplicationDate,
+                pad => !string.IsNullOrEmpty(pad),
+                pad => this.CreatePhrase(this.resourceService["PlannedApplicationDate"], pad),
                 item);
             this.AddIfPresent(
                 project.StartDate,
@@ -182,14 +192,24 @@ namespace Tools.Export
                 o => this.CreatePhrase(this.resourceService["B_builder"], o.Name),
                 result);
             this.AddIfPresent(
+                project.BuildersRepresentative,
+                br => !string.IsNullOrEmpty(br.Name),
+                br => this.CreatePhrase(this.resourceService["BV_buildersrepresentative"], br.Name),
+                result);
+            this.AddIfPresent(
                 project.Price,
-                p => p > 0,
+                p => !string.IsNullOrEmpty(p),
                 p => this.CreatePhrase(this.resourceService["ConstructionCost"], p.ToString(CultureInfo.InvariantCulture)),
                 result);
             this.AddIfPresent(
                 project.Space,
                 s => !string.IsNullOrEmpty(s),
                 s => this.CreatePhrase(this.resourceService["AreaVolume"], s),
+                result);
+            this.AddIfPresent(
+                project.PlannedApplicationDate,
+                pad => !string.IsNullOrEmpty(pad),
+                pad => this.CreatePhrase(this.resourceService["PlannedApplicationDate"], pad),
                 result);
             this.AddIfPresent(
                 project.StartDate,
@@ -350,8 +370,15 @@ namespace Tools.Export
                     table);
 
                 this.AddIfPresent(
+                    project.BuildersRepresentative,
+                    br => !string.IsNullOrEmpty(br.Name),
+                    this.resourceService["BV_buildersrepresentative"],
+                    br => br.Name,
+                    table);
+
+                this.AddIfPresent(
                     project.Price,
-                    p => p > 0,
+                    p => !string.IsNullOrEmpty(p),
                     this.resourceService["ConstructionCost"],
                     p => p.ToString(CultureInfo.InvariantCulture),
                     table);
@@ -361,6 +388,13 @@ namespace Tools.Export
                     s => !string.IsNullOrEmpty(s),
                     this.resourceService["AreaVolume"],
                     s => s,
+                    table);
+
+                this.AddIfPresent(
+                    project.PlannedApplicationDate,
+                    pad => !string.IsNullOrEmpty(pad),
+                    this.resourceService["PlannedApplicationDate"],
+                    sd => sd,
                     table);
 
                 this.AddIfPresent(

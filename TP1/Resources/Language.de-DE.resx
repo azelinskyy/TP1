@@ -294,4 +294,10 @@
   <data name="BuilderRepresentative" xml:space="preserve">
     <value>Bauherrenvertreter</value>
   </data>
+  <data name="DeleteConfirmationQuestion" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie wollen, um Projekt '{0}' löschen?</value>
+  </data>
+  <data name="BV_buildersrepresentative" xml:space="preserve">
+    <value>BV</value>
+  </data>
 </root>

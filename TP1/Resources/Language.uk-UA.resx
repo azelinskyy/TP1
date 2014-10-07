@@ -289,9 +289,15 @@
     <value>Індекс</value>
   </data>
   <data name="PlannedApplicationDate" xml:space="preserve">
-    <value>Подання заявки заплановано на</value>
+    <value>Документаця на будівницітво запланована на</value>
   </data>
   <data name="BuilderRepresentative" xml:space="preserve">
     <value>Представник забудовника</value>
+  </data>
+  <data name="DeleteConfirmationQuestion" xml:space="preserve">
+    <value>Ви впевнені, що хочете видалити проект '{0}'?</value>
+  </data>
+  <data name="BV_buildersrepresentative" xml:space="preserve">
+    <value>ПЗ</value>
   </data>
 </root>

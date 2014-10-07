@@ -44,7 +44,7 @@ namespace Model.DomainModels
         /// <summary>
         /// Gets or sets the builders representative.
         /// </summary>
-        public Company BuildersRepresentative { get; set; }
+        public virtual Company BuildersRepresentative { get; set; }
 
         /// <summary>
         ///     Gets or sets the city.
@@ -84,7 +84,7 @@ namespace Model.DomainModels
         /// <summary>
         ///     Gets or sets the price.
         /// </summary>
-        public double Price { get; set; }
+        public string Price { get; set; }
 
         /// <summary>
         ///     Gets or sets the space.

@@ -123,8 +123,9 @@ namespace DataAccess.Repositories
         /// </returns>
         public int GetProjectsFilteredByDateRangeCount(ProjectGridFilter filter)
         {
+            var dueDate = filter.To.AddTicks(new TimeSpan(0, 23, 59, 59).Ticks);
             IQueryable<Project> projects =
-                this.GetDbContext().Projects.Where(p => p.DateAdded >= filter.From && p.DateAdded <= filter.To);
+                this.GetDbContext().Projects.Where(p => p.DateAdded >= filter.From && p.DateAdded <= dueDate);
             return projects.Count();
         }
 
@@ -142,8 +143,9 @@ namespace DataAccess.Repositories
         public List<Project> GetProjectsFilteredByProjectGrid(ProjectGridFilter filter)
         {
             // General filtering by date
+            var dueDate = filter.To.AddTicks(new TimeSpan(0, 23, 59, 59).Ticks);
             IQueryable<Project> projects =
-                this.GetDbContext().Projects.Where(p => p.DateAdded >= filter.From && p.DateAdded <= filter.To);
+                this.GetDbContext().Projects.Where(p => p.DateAdded >= filter.From && p.DateAdded <= dueDate);
 
             // sort by id if sorting field is not provided
             if (string.IsNullOrEmpty(filter.SortField))
@@ -221,6 +223,8 @@ namespace DataAccess.Repositories
             project.StartDate = item.StartDate;
             project.Title = item.Title;
             project.ZipCode = item.ZipCode;
+            project.BuildersRepresentative = item.BuildersRepresentative;
+            project.PlannedApplicationDate = item.PlannedApplicationDate;
 
             this.GetDbContext().SaveChanges();
         }

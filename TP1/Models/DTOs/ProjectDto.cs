@@ -70,7 +70,7 @@ namespace Model.DTOs
         /// <summary>
         ///     Gets or sets the price.
         /// </summary>
-        public double Price { get; set; }
+        public string Price { get; set; }
 
         /// <summary>
         ///     Gets or sets the space.

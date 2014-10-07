@@ -289,9 +289,15 @@
     <value>Zip Code</value>
   </data>
   <data name="PlannedApplicationDate" xml:space="preserve">
-    <value>Application applying is planned for</value>
+    <value>Сonstruction documentation planned for</value>
   </data>
   <data name="BuilderRepresentative" xml:space="preserve">
     <value>Builder's representative</value>
+  </data>
+  <data name="DeleteConfirmationQuestion" xml:space="preserve">
+    <value>Are you sure you want to delete project'{0}'?</value>
+  </data>
+  <data name="BV_buildersrepresentative" xml:space="preserve">
+    <value>BV</value>
   </data>
 </root>
