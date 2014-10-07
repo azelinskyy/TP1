@@ -10,6 +10,7 @@ namespace TP1.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -174,6 +175,17 @@ namespace TP1.Controllers
         {
             Project entity = this.ProjectConvertFactory.ToModel(project);
             this.ProjectRepository.Update(entity);
+        }
+
+        /// <summary>
+        /// Gets file with report to user download.
+        /// </summary>
+        /// <param name="export">The parameters for report.</param>
+        /// <returns>The file.</returns>
+        public ActionResult SaveAs(ExportConfiguration export)
+        {
+            IList<Project> projects = this.ProjectRepository.GetProjectsFilteredByDateRange(new ProjectGridFilter { From = export.From, To = export.To });
+            return this.File(new ExportService(Server.MapPath("~/bin")).ExportProjectsToStream(projects, export), "application/pdf", "download.pdf");
         }
 
         #endregion
