@@ -32,7 +32,7 @@
         Space: ko.observable(""),
         StartDate: ko.observable(""),
         PlannedApplicationDate: ko.observable(""),
-        BuildersRepresentative : ko.observable("")
+        BuildersRepresentative: ko.observable("")
     };
 
     self.Grid = ko.observable(gridModel);
@@ -117,21 +117,9 @@
     };
 
     self.saveAs = function () {
-        $.ajax({
-            url: '/Report/SaveAs',
-            cache: false,
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Email: self.Email(), Model: self.ExportModel().value, Language: "en-US" /*self.Culture.selectedLanguage().type*/ }),
-            success: function (data) {
-                self.viewProjects();
-            }
-        })
-            .fail(
-                function (xhr, textStatus, err) {
-                    alert(err);
-                    self.viewProjects();
-                });
+        var input = { From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: selectedLanguage().culture };
+        window.open('/Report/SaveAs?' + decodeURIComponent($.param(input)), '_blank');
+        self.viewProjects();
     };
 
     // Tabs switch related code.

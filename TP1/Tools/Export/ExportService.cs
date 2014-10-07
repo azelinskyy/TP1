@@ -80,6 +80,27 @@ namespace Tools.Export
             new EmailService().Send(configuration.Emails, attachment);
         }
 
+        /// <summary>
+        /// Exports list of projects and send their  as attachment by email.
+        /// </summary>
+        /// <param name="projects">
+        /// The enumeration of projects.
+        /// </param>
+        /// <param name="configuration">
+        /// The configuration for export.
+        /// </param>
+        public Stream ExportProjectsToStream(IEnumerable<Project> projects, ExportConfiguration configuration)
+        {
+            var pdfStream = new MemoryStream();
+
+            this.ExportProjects(projects, configuration, pdfStream);
+
+            var output = new MemoryStream(pdfStream.ToArray());
+            output.Seek(0, SeekOrigin.Begin);
+
+            return output;
+        }
+
         #endregion
     }
 }
