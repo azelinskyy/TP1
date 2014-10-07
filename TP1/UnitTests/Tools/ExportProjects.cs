@@ -47,7 +47,7 @@ namespace UnitTests.Tools
                                                                    "Gmür & Geschwentner Architekten AG, Zürich"
                                                            },
                                                    Owner = new Company { Name = "SPS Immobilien AG, Olten" },
-                                                   Price = 240000000,
+                                                   Price = "240000000",
                                                    Space =
                                                        "Gebäudefläche: 38 m Länge, 22 m Breite, die Gesamthöhe 64 m",
                                                    StartDate =

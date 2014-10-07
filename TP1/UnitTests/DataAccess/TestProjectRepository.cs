@@ -66,7 +66,7 @@ namespace UnitTests.DataAccess
                                 Description = "Cool project", 
                                 FinishDate = new DomainDate { DateTime = end, Description = "End" }, 
                                 Owner = new Company { Name = "Me" }, 
-                                Price = 10443, 
+                                Price = "10443", 
                                 Space = "to big"
                             };
         }
@@ -131,7 +131,7 @@ namespace UnitTests.DataAccess
             this.proj.Id = 0;
             this.repo.Add(this.proj);
 
-            this.proj.Price = 0;
+            this.proj.Price = "0";
             this.repo.Update(this.proj);
 
             Project projFromDb = this.repo.GetById(this.proj.Id);

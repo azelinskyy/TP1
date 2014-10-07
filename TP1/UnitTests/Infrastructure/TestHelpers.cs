@@ -43,9 +43,9 @@ namespace UnitTests.Infrastructure
         {
             this.projects = new List<Project>
                                 {
-                                    new Project { Id = 2, Price = 100 }, 
-                                    new Project { Id = 3, Price = 200 }, 
-                                    new Project { Id = 1, Price = 200 }
+                                    new Project { Id = 2, Price = "100" }, 
+                                    new Project { Id = 3, Price = "200" }, 
+                                    new Project { Id = 1, Price = "200" }
                                 };
         }
 

@@ -63,9 +63,9 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to A.
         /// </summary>
-        public static string A_acrchitect {
+        public static string A_architect {
             get {
-                return ResourceManager.GetString("A_acrchitect", resourceCulture);
+                return ResourceManager.GetString("A_architect", resourceCulture);
             }
         }
         
@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Builder&apos;s representative.
+        /// </summary>
+        public static string BuilderRepresentative {
+            get {
+                return ResourceManager.GetString("BuilderRepresentative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Builder&apos;s Representative.
         /// </summary>
         public static string BuildersRepresentative {
@@ -192,6 +201,15 @@ namespace Resources {
         public static string BuildingProject {
             get {
                 return ResourceManager.GetString("BuildingProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BV.
+        /// </summary>
+        public static string BV_buildersrepresentative {
+            get {
+                return ResourceManager.GetString("BV_buildersrepresentative", resourceCulture);
             }
         }
         
@@ -241,6 +259,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Due for completion in.
+        /// </summary>
+        public static string ConstructionEndDate {
+            get {
+                return ResourceManager.GetString("ConstructionEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start of construction planned for.
+        /// </summary>
+        public static string ConstructionStartDate {
+            get {
+                return ResourceManager.GetString("ConstructionStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date Added.
         /// </summary>
         public static string DateAdded {
@@ -255,6 +291,15 @@ namespace Resources {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete project&apos;{0}&apos;?.
+        /// </summary>
+        public static string DeleteConfirmationQuestion {
+            get {
+                return ResourceManager.GetString("DeleteConfirmationQuestion", resourceCulture);
             }
         }
         
@@ -358,7 +403,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legend.
+        ///   Looks up a localized string similar to Legend:.
         /// </summary>
         public static string Legend {
             get {
@@ -421,11 +466,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Building documentation planned for.
+        ///   Looks up a localized string similar to Сonstruction documentation planned for.
         /// </summary>
-        public static string PlanningApplication {
+        public static string PlannedApplicationDate {
             get {
-                return ResourceManager.GetString("PlanningApplication", resourceCulture);
+                return ResourceManager.GetString("PlannedApplicationDate", resourceCulture);
             }
         }
         
@@ -507,15 +552,6 @@ namespace Resources {
         public static string SiteName {
             get {
                 return ResourceManager.GetString("SiteName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Due for completion in.
-        /// </summary>
-        public static string SubscribeTermsPlanned {
-            get {
-                return ResourceManager.GetString("SubscribeTermsPlanned", resourceCulture);
             }
         }
         

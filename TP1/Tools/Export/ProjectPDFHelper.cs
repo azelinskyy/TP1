@@ -47,6 +47,16 @@ namespace Tools.Export
         private readonly Font normal;
 
         /// <summary>
+        ///     The legend bold fond const to internal use.
+        /// </summary>
+        private readonly Font legendBold;
+
+        /// <summary>
+        ///     The legend normal fond const to internal use.
+        /// </summary>
+        private readonly Font legendNormal;
+
+        /// <summary>
         /// The path of root to configure fonts.
         /// </summary>
         private readonly string rootPath;
@@ -87,6 +97,8 @@ namespace Tools.Export
             var unicodeBaseFont = BaseFont.CreateFont(fullPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             this.bold = new Font(unicodeBaseFont, 8, Font.BOLD);
             this.normal = new Font(unicodeBaseFont, 8, Font.NORMAL);
+            this.legendBold = new Font(unicodeBaseFont, 12, Font.BOLD);
+            this.legendNormal = new Font(unicodeBaseFont, 11, Font.NORMAL);
         }
 
         #endregion
@@ -120,7 +132,7 @@ namespace Tools.Export
             this.AddIfPresent(
                 project.Architect,
                 a => !string.IsNullOrEmpty(a.Name),
-                a => this.CreatePhrase(this.resourceService["A_acrchitect"], a.Name),
+                a => this.CreatePhrase(this.resourceService["A_architect"], a.Name),
                 item);
             this.AddIfPresent(
                 project.Owner,
@@ -184,7 +196,7 @@ namespace Tools.Export
             this.AddIfPresent(
                 project.Architect,
                 a => !string.IsNullOrEmpty(a.Name),
-                a => this.CreatePhrase(this.resourceService["A_acrchitect"], a.Name),
+                a => this.CreatePhrase(this.resourceService["A_architect"], a.Name),
                 result);
             this.AddIfPresent(
                 project.Owner,
@@ -283,31 +295,12 @@ namespace Tools.Export
                 var elements = this.CreateProjectPhrases(project);
                 foreach (var element in elements)
                 {
-                    var y = columnText.YLine;
-                    columnText.AddElement(element);
-                    var status = columnText.Go(true);
-                    if (ColumnText.HasMoreText(status))
-                    {
-                        column = (column + 1) % 3;
-                        if (column == 0)
-                        {
-                            document.NewPage();
-                        }
-
-                        columnText.SetSimpleColumn(
-                            columnPoints[column][0],
-                            columnPoints[column][1],
-                            columnPoints[column][2],
-                            columnPoints[column][3]);
-                        y = columnPoints[column][3];
-                    }
-
-                    columnText.YLine = y;
-                    columnText.SetText(null);
-                    columnText.AddElement(element);
-                    columnText.Go(false);
+                    column = this.AddColumnsToDocument(columnText, element, column, document, columnPoints);
                 }
             }
+
+            var legend = this.CreateLegend();
+            this.AddColumnsToDocument(columnText, legend, column, document, columnPoints);
 
             document.Close();
         }
@@ -358,7 +351,7 @@ namespace Tools.Export
                 this.AddIfPresent(
                     project.Architect,
                     a => !string.IsNullOrEmpty(a.Name),
-                    this.resourceService["A_acrchitect"],
+                    this.resourceService["A_architect"],
                     a => a.Name,
                     table);
 
@@ -415,6 +408,8 @@ namespace Tools.Export
             }
 
             document.Add(table);
+
+            document.Add(this.CreateLegend());
 
             document.Close();
         }
@@ -566,6 +561,49 @@ namespace Tools.Export
         private Phrase CreateProjectHeader(Project project)
         {
             return new Phrase(string.Format("{0} {1}", project.ZipCode, project.City), this.bold) { Leading = Leading };
+        }
+
+        private IElement CreateLegend()
+        {
+            var paragraph = new Paragraph { Leading = 14 };
+            paragraph.Add(Chunk.NEWLINE);
+            paragraph.Add(Chunk.NEWLINE);
+            paragraph.Add(new Phrase(this.resourceService["Legend"], this.legendBold) { Leading = 12 });
+            paragraph.Add(Chunk.NEWLINE);
+            paragraph.Add(new Phrase { new Chunk(this.resourceService["A_architect"] + ": ", this.legendBold), new Chunk(this.resourceService["Architect"], this.legendNormal) });
+            paragraph.Add(Chunk.NEWLINE);
+            paragraph.Add(new Phrase { new Chunk(this.resourceService["B_builder"] + ": ", this.legendBold), new Chunk(this.resourceService["Builder"], this.legendNormal) });
+            paragraph.Add(Chunk.NEWLINE);
+            paragraph.Add(new Phrase { new Chunk(this.resourceService["BV_buildersrepresentative"] + ": ", this.legendBold), new Chunk(this.resourceService["BuildersRepresentative"], this.legendNormal) });
+            return paragraph;
+        }
+
+        private int AddColumnsToDocument(ColumnText columnText, IElement element, int column, Document document, float[][] columnPoints)
+        {
+            var y = columnText.YLine;
+            columnText.AddElement(element);
+            var status = columnText.Go(true);
+            if (ColumnText.HasMoreText(status))
+            {
+                column = (column + 1) % 3;
+                if (column == 0)
+                {
+                    document.NewPage();
+                }
+
+                columnText.SetSimpleColumn(
+                    columnPoints[column][0],
+                    columnPoints[column][1],
+                    columnPoints[column][2],
+                    columnPoints[column][3]);
+                y = columnPoints[column][3];
+            }
+
+            columnText.YLine = y;
+            columnText.SetText(null);
+            columnText.AddElement(element);
+            columnText.Go(false);
+            return column;
         }
 
         #endregion
