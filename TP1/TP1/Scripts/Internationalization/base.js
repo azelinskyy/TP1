@@ -18,7 +18,7 @@ var availableLanguages = [
     }
 ];
 
-var languageModel = function (languages) {
+function languageModel(languages) {
     var self = this;
     self.languages = ko.observableArray(languages);
     self.selectedLanguage = ko.observable();

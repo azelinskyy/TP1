@@ -1,7 +1,9 @@
-﻿function ReportViewModel(datacontext, language, gridModel) {
+﻿function ApplicationViewModel(datacontext, language, gridModel) {
 
     //Make the self as 'this' reference
     var self = this;
+
+    self.langModule = ko.observable(language);
 
     self.ExportModels = ko.observableArray([{ name: "Columns", value: 0 }, { name: "Tables", value: 1 }]);
 
