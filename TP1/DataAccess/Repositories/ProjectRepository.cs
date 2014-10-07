@@ -217,7 +217,7 @@ namespace DataAccess.Repositories
             }
             else
             {
-                project.Address.AddressString = item.Address.AddressString;
+                (project.Address = project.Address ?? new Address()).AddressString = item.Address.AddressString;
             }
 
             if (item.Architect == null)
@@ -226,7 +226,7 @@ namespace DataAccess.Repositories
             }
             else
             {
-                project.Architect.Name = item.Architect.Name;
+                (project.Architect = project.Architect ?? new Company()).Name = item.Architect.Name;
             }
 
             if (item.City == null)
@@ -235,7 +235,7 @@ namespace DataAccess.Repositories
             }
             else
             {
-                project.City.Name = item.City.Name;
+                (project.City = project.City ?? new City()).Name = item.City.Name;
             }
 
             if (item.Owner == null)
@@ -244,7 +244,7 @@ namespace DataAccess.Repositories
             }
             else
             {
-                project.Owner.Name = item.Owner.Name;
+                (project.Owner = project.Owner ?? new Company()).Name = item.Owner.Name;
             }
 
             project.DateModified = item.DateModified;
