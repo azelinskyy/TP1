@@ -168,7 +168,7 @@ namespace TP1.Helpers
                 }
             }
 
-            tag.Attributes.Add("data-bind", string.Format("text: langModule().langModule().language().{0}{1}", name, additionBinders));
+            tag.Attributes.Add("data-bind", string.Format("text: langModule().language().{0}{1}", name, additionBinders));
 
             return new MvcHtmlString(tag.ToString());
         }
@@ -205,7 +205,7 @@ namespace TP1.Helpers
 
             tag.Attributes.Add(
                 "data-bind",
-                string.Format("text: String.format(langModule().langModule().language().{0}{1},{2})", name, additionBinders, string.Join(", ", values)));
+                string.Format("text: String.format(langModule().language().{0}{1},{2})", name, additionBinders, string.Join(", ", values)));
             return new MvcHtmlString(tag.ToString());
         }
 
