@@ -106,8 +106,9 @@ namespace DataAccess.Repositories
         /// </returns>
         public List<Project> GetProjectsFilteredByDateRange(ProjectGridFilter filter)
         {
+            var dueDate = filter.To.AddTicks(new TimeSpan(0, 23, 59, 59).Ticks);
             IQueryable<Project> projects =
-                this.GetDbContext().Projects.Where(p => p.DateAdded >= filter.From && p.DateAdded <= filter.To);
+                this.GetDbContext().Projects.Where(p => p.DateAdded >= filter.From && p.DateAdded <= dueDate);
             return projects.ToList();
         }
 

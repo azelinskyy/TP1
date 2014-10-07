@@ -40,15 +40,30 @@
                 <td><label for="category">@Html.KnockoutHelperFor("Description", "p")</label></td>
                 <td><textarea class="form-control" data-bind="value: Project().Description" type="text" id="" name="" rows="10" cols="44"></textarea></td>
             </tr>
+            
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("PlannedApplicationDate", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().PlannedApplicationDate" type="text" id="" name="" /></td>
+            </tr>
     
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("ConstructionStartDate", "p")</label></td>
                 <td><input class="form-control" data-bind="value: Project().FinishDate" type="text" id="" name="" /></td>
             </tr>
+
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("ConstructionEndDate", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().StartDate" type="text" id="" name="" /></td>
+            </tr>
     
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("Builder", "p")</label></td>
                 <td><input class="form-control" data-bind="value: Project().Owner" type="text" id="" name="" /></td>
+            </tr>
+            
+            <tr>
+                <td><label for="category">@Html.KnockoutHelperFor("BuildersRepresentative", "p")</label></td>
+                <td><input class="form-control" data-bind="value: Project().BuildersRepresentative" type="text" id="" name="" /></td>
             </tr>
     
             <tr>
@@ -62,10 +77,7 @@
             </tr>
             
   <!--  <input type="submit" name="submitForm" value="Submit Form">-->
-            <tr>
-                <td><label for="category">@Html.KnockoutHelperFor("ConstructionEndDate", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().StartDate" type="text" id="" name="" /></td>
-            </tr>
+            
         </table>
     </form>
     <br />

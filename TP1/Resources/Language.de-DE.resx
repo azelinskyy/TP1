@@ -288,4 +288,10 @@
   <data name="ZipCode" xml:space="preserve">
     <value>Postleitzahl</value>
   </data>
+  <data name="PlannedApplicationDate" xml:space="preserve">
+    <value>Baugesuch geplant für</value>
+  </data>
+  <data name="BuilderRepresentative" xml:space="preserve">
+    <value>Bauherrenvertreter</value>
+  </data>
 </root>

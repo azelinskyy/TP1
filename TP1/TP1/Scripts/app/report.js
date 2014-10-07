@@ -28,7 +28,9 @@
         Owner: ko.observable(""),
         Price: ko.observable(""),
         Space: ko.observable(""),
-        StartDate: ko.observable("")
+        StartDate: ko.observable(""),
+        PlannedApplicationDate: ko.observable(""),
+        BuildersRepresentative : ko.observable("")
     };
 
     self.Grid = ko.observable(gridModel);

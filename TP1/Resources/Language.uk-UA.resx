@@ -288,4 +288,10 @@
   <data name="ZipCode" xml:space="preserve">
     <value>Індекс</value>
   </data>
+  <data name="PlannedApplicationDate" xml:space="preserve">
+    <value>Подання заявки заплановано на</value>
+  </data>
+  <data name="BuilderRepresentative" xml:space="preserve">
+    <value>Представник забудовника</value>
+  </data>
 </root>

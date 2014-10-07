@@ -19,7 +19,7 @@ namespace Model.DomainModels
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Project"/> class.
+        ///     Initializes a new instance of the <see cref="Project" /> class.
         /// </summary>
         public Project()
         {
@@ -40,6 +40,11 @@ namespace Model.DomainModels
         ///     Gets or sets the architect.
         /// </summary>
         public virtual Company Architect { get; set; }
+
+        /// <summary>
+        /// Gets or sets the builders representative.
+        /// </summary>
+        public Company BuildersRepresentative { get; set; }
 
         /// <summary>
         ///     Gets or sets the city.
@@ -70,6 +75,11 @@ namespace Model.DomainModels
         ///     Gets or sets the owner.
         /// </summary>
         public virtual Company Owner { get; set; }
+
+        /// <summary>
+        /// Gets or sets the planned application date.
+        /// </summary>
+        public string PlannedApplicationDate { get; set; }
 
         /// <summary>
         ///     Gets or sets the price.
