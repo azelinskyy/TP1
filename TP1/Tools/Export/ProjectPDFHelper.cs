@@ -412,7 +412,7 @@ namespace Tools.Export
         /// </typeparam>
         private void AddIfPresent<T>(T source, Func<T, bool> check, Func<T, IElement> provide, Paragraph paragraph)
         {
-            if (!check(source))
+            if (source == null || !check(source))
             {
                 return;
             }
