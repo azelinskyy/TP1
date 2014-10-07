@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="A_architect" xml:space="preserve">
     <value>A</value>
@@ -156,11 +156,17 @@
   <data name="Builder" xml:space="preserve">
     <value>Bauherr</value>
   </data>
+  <data name="BuilderRepresentative" xml:space="preserve">
+    <value>Bauherrenvertreter</value>
+  </data>
   <data name="BuildersRepresentative" xml:space="preserve">
     <value>Bauherrenvertreter</value>
   </data>
   <data name="BuildingProject" xml:space="preserve">
     <value>Bauvorhaben</value>
+  </data>
+  <data name="BV_buildersrepresentative" xml:space="preserve">
+    <value>BV</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
@@ -177,11 +183,20 @@
   <data name="ConstructionCost" xml:space="preserve">
     <value>Bausumme</value>
   </data>
+  <data name="ConstructionEndDate" xml:space="preserve">
+    <value>Bezug/Nutzung geplant für</value>
+  </data>
+  <data name="ConstructionStartDate" xml:space="preserve">
+    <value>Baubeginn geplant für</value>
+  </data>
   <data name="DateAdded" xml:space="preserve">
     <value>Hinzufügungsdatum</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Löschen</value>
+  </data>
+  <data name="DeleteConfirmationQuestion" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie wollen, um Projekt '{0}' löschen?</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
@@ -237,8 +252,8 @@
   <data name="Password" xml:space="preserve">
     <value>Passwort</value>
   </data>
-  <data name="ConstructionStartDate" xml:space="preserve">
-    <value>Baubeginn geplant für</value>
+  <data name="PlannedApplicationDate" xml:space="preserve">
+    <value>Baugesuch geplant für</value>
   </data>
   <data name="Previous" xml:space="preserve">
     <value>Vorherige</value>
@@ -267,9 +282,6 @@
   <data name="SiteName" xml:space="preserve">
     <value>Berichte</value>
   </data>
-  <data name="ConstructionEndDate" xml:space="preserve">
-    <value>Bezug/Nutzung geplant für</value>
-  </data>
   <data name="Tables" xml:space="preserve">
     <value>!!!Tables!!!</value>
   </data>
@@ -288,16 +300,7 @@
   <data name="ZipCode" xml:space="preserve">
     <value>Postleitzahl</value>
   </data>
-  <data name="PlannedApplicationDate" xml:space="preserve">
-    <value>Baugesuch geplant für</value>
-  </data>
-  <data name="BuilderRepresentative" xml:space="preserve">
-    <value>Bauherrenvertreter</value>
-  </data>
-  <data name="DeleteConfirmationQuestion" xml:space="preserve">
-    <value>Sind Sie sicher, dass Sie wollen, um Projekt '{0}' löschen?</value>
-  </data>
-  <data name="BV_buildersrepresentative" xml:space="preserve">
-    <value>BV</value>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
   </data>
 </root>

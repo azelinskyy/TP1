@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="A_architect" xml:space="preserve">
     <value>A</value>
@@ -156,11 +156,17 @@
   <data name="Builder" xml:space="preserve">
     <value>Builder</value>
   </data>
+  <data name="BuilderRepresentative" xml:space="preserve">
+    <value>Builder's representative</value>
+  </data>
   <data name="BuildersRepresentative" xml:space="preserve">
     <value>Builder's Representative</value>
   </data>
   <data name="BuildingProject" xml:space="preserve">
     <value>Building Project</value>
+  </data>
+  <data name="BV_buildersrepresentative" xml:space="preserve">
+    <value>BV</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -177,11 +183,20 @@
   <data name="ConstructionCost" xml:space="preserve">
     <value>Construction cost</value>
   </data>
+  <data name="ConstructionEndDate" xml:space="preserve">
+    <value>Due for completion in</value>
+  </data>
+  <data name="ConstructionStartDate" xml:space="preserve">
+    <value>Start of construction planned for</value>
+  </data>
   <data name="DateAdded" xml:space="preserve">
     <value>Date Added</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="DeleteConfirmationQuestion" xml:space="preserve">
+    <value>Are you sure you want to delete project'{0}'?</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -237,8 +252,8 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
-  <data name="ConstructionStartDate" xml:space="preserve">
-    <value>Start of construction planned for</value>
+  <data name="PlannedApplicationDate" xml:space="preserve">
+    <value>Сonstruction documentation planned for</value>
   </data>
   <data name="Previous" xml:space="preserve">
     <value>Previous</value>
@@ -267,9 +282,6 @@
   <data name="SiteName" xml:space="preserve">
     <value>Report</value>
   </data>
-  <data name="ConstructionEndDate" xml:space="preserve">
-    <value>Due for completion in</value>
-  </data>
   <data name="Tables" xml:space="preserve">
     <value>Tables</value>
   </data>
@@ -288,16 +300,7 @@
   <data name="ZipCode" xml:space="preserve">
     <value>Zip Code</value>
   </data>
-  <data name="PlannedApplicationDate" xml:space="preserve">
-    <value>Сonstruction documentation planned for</value>
-  </data>
-  <data name="BuilderRepresentative" xml:space="preserve">
-    <value>Builder's representative</value>
-  </data>
-  <data name="DeleteConfirmationQuestion" xml:space="preserve">
-    <value>Are you sure you want to delete project'{0}'?</value>
-  </data>
-  <data name="BV_buildersrepresentative" xml:space="preserve">
-    <value>BV</value>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
   </data>
 </root>
