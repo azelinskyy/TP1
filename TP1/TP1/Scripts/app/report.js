@@ -57,7 +57,7 @@
 
     // Delete project
     self.delete = function (project) {
-        if (confirm(String.format(language().DeleteConfirmationQuestion, project.Title))) {
+        if (confirm(String.format(langModule().language().DeleteConfirmationQuestion, project.Title))) {
             datacontext.deleteProject(project.Id);
             datacontext.getProjectLists(self.Grid().searchOptions(), self.Projects, self.Grid().totalRows);
         }
@@ -102,7 +102,7 @@
             cache: false,
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
-            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: selectedLanguage().culture }),
+            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: selectedlangModule().language().culture }),
             success: function (data) {
                 self.viewProjects();
                 self.Emails("");
@@ -117,7 +117,7 @@
     };
 
     self.saveAs = function () {
-        var input = { From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: selectedLanguage().culture };
+        var input = { From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: selectedlangModule().language().culture };
         window.open('/Report/SaveAs?' + decodeURIComponent($.param(input)), '_blank');
         self.viewProjects();
     };

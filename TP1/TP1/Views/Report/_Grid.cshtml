@@ -28,13 +28,13 @@
             <td colspan = "6">
                 <div class="pagerWrap">
                     <ul class="pager">
-                        <li class="pagerFirst" data-bind="click: function(){Grid().selectFirst(Projects);}"><a href="#" data-bind="text: language().First"></a></li>
-                        <li class="pagerPrev" data-bind="click: function(){Grid().selectPrevious(Projects);}"><a href="#" data-bind="text: language().Previous"></a></li>
+                        <li class="pagerFirst" data-bind="click: function(){Grid().selectFirst(Projects);}"><a href="#" data-bind="text: langModule().language().First"></a></li>
+                        <li class="pagerPrev" data-bind="click: function(){Grid().selectPrevious(Projects);}"><a href="#" data-bind="text: langModule().language().Previous"></a></li>
                         <li class="pagerCurrent">
                             @Html.KnockoutHelperFor("NumberOfTotalPages", "span", "", "Grid().searchOptions().pageIndex()", "Grid().totalPages()")
                         </li>
-                        <li class="pagerNext" data-bind="click: function(){Grid().selectNext(Projects);}"><a href="#" data-bind="text: language().Next"></a></li>
-                        <li class="pagerLast" data-bind="click: function(){Grid().selectLast(Projects);}"><a href="#" data-bind="text: language().Last"></a></li>
+                        <li class="pagerNext" data-bind="click: function(){Grid().selectNext(Projects);}"><a href="#" data-bind="text: langModule().language().Next"></a></li>
+                        <li class="pagerLast" data-bind="click: function(){Grid().selectLast(Projects);}"><a href="#" data-bind="text: langModule().language().Last"></a></li>
                     </ul>   
                 </div>
             </td>
