@@ -211,13 +211,45 @@ namespace DataAccess.Repositories
         public override void Update(Project item)
         {
             Project project = this.GetById(item.Id);
-            project.Address.AddressString = item.Address.AddressString;
-            project.Architect.Name = item.Architect.Name;
-            project.City.Name = item.City.Name;
+            if (item.Address == null)
+            {
+                project.Address = null;
+            }
+            else
+            {
+                project.Address.AddressString = item.Address.AddressString;
+            }
+
+            if (item.Architect == null)
+            {
+                project.Architect = null;
+            }
+            else
+            {
+                project.Architect.Name = item.Architect.Name;
+            }
+
+            if (item.City == null)
+            {
+                project.City = null;
+            }
+            else
+            {
+                project.City.Name = item.City.Name;
+            }
+
+            if (item.Owner == null)
+            {
+                project.Owner = null;
+            }
+            else
+            {
+                project.Owner.Name = item.Owner.Name;
+            }
+
             project.DateModified = item.DateModified;
             project.Description = item.Description;
             project.FinishDate = item.FinishDate;
-            project.Owner.Name = item.Owner.Name;
             project.Price = item.Price;
             project.Space = item.Space;
             project.StartDate = item.StartDate;
