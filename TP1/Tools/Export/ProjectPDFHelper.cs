@@ -329,19 +329,19 @@ namespace Tools.Export
                 this.CreatePhraseRow(() => new Phrase(project.Description, this.normal) { Leading = Leading }, 2, table);
 
                 this.AddIfPresent(
-                    !string.IsNullOrEmpty(project.Address.AddressString),
+                    project.Address != null && !string.IsNullOrEmpty(project.Address.AddressString),
                     this.resourceService["Address"],
                     project.Address.AddressString,
                     table);
 
                 this.AddIfPresent(
-                    !string.IsNullOrEmpty(project.Architect.Name),
+                    project.Architect != null && !string.IsNullOrEmpty(project.Architect.Name),
                     this.resourceService["A_acrchitect"],
                     project.Architect.Name,
                     table);
 
                 this.AddIfPresent(
-                    !string.IsNullOrEmpty(project.Owner.Name),
+                    project.Owner != null && !string.IsNullOrEmpty(project.Owner.Name),
                     this.resourceService["B_builder"],
                     project.Owner.Name,
                     table);
@@ -359,13 +359,13 @@ namespace Tools.Export
                     table);
 
                 this.AddIfPresent(
-                    !string.IsNullOrEmpty(project.StartDate.Description),
+                    project.StartDate != null && !string.IsNullOrEmpty(project.StartDate.Description),
                     this.resourceService["ConstructionStartDate"],
                     project.StartDate.Description,
                     table);
 
                 this.AddIfPresent(
-                    !string.IsNullOrEmpty(project.FinishDate.Description),
+                    project.FinishDate != null && !string.IsNullOrEmpty(project.FinishDate.Description),
                     this.resourceService["ConstructionEndDate"],
                     project.FinishDate.Description,
                     table);
@@ -440,7 +440,7 @@ namespace Tools.Export
         /// </typeparam>
         private void AddIfPresent<T>(T source, Func<T, bool> check, Func<T, IElement> provide, ICollection<IElement> output)
         {
-            if (!check(source))
+            if (source == null || !check(source))
             {
                 return;
             }
