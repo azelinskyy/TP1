@@ -54,7 +54,7 @@ namespace UnitTests.Factories
             this.dto = new ProjectDto
                            {
                                Id = 143, 
-                               City =  "Lviv" , 
+                               City = "Lviv", 
                                DateAdded = "06/16/1986", 
                                Title = "Test proj", 
                                ZipCode = "79031"

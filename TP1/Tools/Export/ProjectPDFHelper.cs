@@ -329,45 +329,52 @@ namespace Tools.Export
                 this.CreatePhraseRow(() => new Phrase(project.Description, this.normal) { Leading = Leading }, 2, table);
 
                 this.AddIfPresent(
-                    project.Address != null && !string.IsNullOrEmpty(project.Address.AddressString),
+                    project.Address,
+                    a => !string.IsNullOrEmpty(a.AddressString),
                     this.resourceService["Address"],
-                    project.Address.AddressString,
+                    a => a.AddressString,
                     table);
 
                 this.AddIfPresent(
-                    project.Architect != null && !string.IsNullOrEmpty(project.Architect.Name),
+                    project.Architect,
+                    a => !string.IsNullOrEmpty(a.Name),
                     this.resourceService["A_acrchitect"],
-                    project.Architect.Name,
+                    a => a.Name,
                     table);
 
                 this.AddIfPresent(
-                    project.Owner != null && !string.IsNullOrEmpty(project.Owner.Name),
+                    project.Owner,
+                    o => !string.IsNullOrEmpty(o.Name),
                     this.resourceService["B_builder"],
-                    project.Owner.Name,
+                    o => o.Name,
                     table);
 
                 this.AddIfPresent(
-                    project.Price > 0,
+                    project.Price,
+                    p => p > 0,
                     this.resourceService["ConstructionCost"],
-                    project.Price.ToString(CultureInfo.InvariantCulture),
+                    p => p.ToString(CultureInfo.InvariantCulture),
                     table);
 
                 this.AddIfPresent(
-                    !string.IsNullOrEmpty(project.Space),
-                    this.resourceService["AreaVolume"],
                     project.Space,
+                    s => !string.IsNullOrEmpty(s),
+                    this.resourceService["AreaVolume"],
+                    s => s,
                     table);
 
                 this.AddIfPresent(
-                    project.StartDate != null && !string.IsNullOrEmpty(project.StartDate.Description),
+                    project.StartDate,
+                    sd => !string.IsNullOrEmpty(sd.Description),
                     this.resourceService["ConstructionStartDate"],
-                    project.StartDate.Description,
+                    sd => sd.Description,
                     table);
 
                 this.AddIfPresent(
-                    project.FinishDate != null && !string.IsNullOrEmpty(project.FinishDate.Description),
+                    project.FinishDate,
+                    fd => !string.IsNullOrEmpty(fd.Description),
                     this.resourceService["ConstructionEndDate"],
-                    project.FinishDate.Description,
+                    fd => fd.Description,
                     table);
 
                 this.AddEmptyCells(table, 2);
@@ -451,6 +458,9 @@ namespace Tools.Export
         /// <summary>
         /// The add if present.
         /// </summary>
+        /// <param name="source">
+        /// The source.
+        /// </param>
         /// <param name="check">
         /// The check.
         /// </param>
@@ -463,15 +473,13 @@ namespace Tools.Export
         /// <param name="output">
         /// The output.
         /// </param>
-        private void AddIfPresent(bool check, string firstCellProvide, string secondCellProvide, PdfPTable output)
+        private void AddIfPresent<T>(T source, Func<T, bool> check, string firstCellProvide, Func<T, string> secondCellProvide, PdfPTable output)
         {
-            if (!check)
+            if (source != null && check(source))
             {
-                return;
+                output.AddCell(new PdfPCell(new Phrase(firstCellProvide, this.bold) { Leading = Leading }));
+                output.AddCell(new PdfPCell(new Phrase(secondCellProvide(source), this.normal) { Leading = Leading }));
             }
-
-            output.AddCell(new PdfPCell(new Phrase(firstCellProvide, this.bold) { Leading = Leading }));
-            output.AddCell(new PdfPCell(new Phrase(secondCellProvide, this.normal) { Leading = Leading }));
         }
 
         /// <summary>
