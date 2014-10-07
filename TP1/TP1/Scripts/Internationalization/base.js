@@ -2,6 +2,11 @@
 
 var availableLanguages = [
     {
+        name: "Deutsch",
+        type: "de",
+        culture: "de-DE"
+    },
+    {
         name: "English",
         type: "en",
         culture: "en-US"
@@ -10,12 +15,8 @@ var availableLanguages = [
         name: "Українська",
         type: "ua",
         culture: "uk-UA"
-    },
-    {
-        name: "Deutsch",
-        type: "de",
-        culture: "de-DE"
     }
+    
 ];
 
 function languageModel(languages) {

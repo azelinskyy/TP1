@@ -211,36 +211,36 @@ namespace DataAccess.Repositories
         public override void Update(Project item)
         {
             Project project = this.GetById(item.Id);
-            if (item.Address == null)
+            if (item.Address == null || string.IsNullOrEmpty(item.Address.AddressString))
             {
-                project.Address = null;
+                this.GetDbContext().Entry(project).Reference(p => p.Address).CurrentValue = null;
             }
             else
             {
                 (project.Address = project.Address ?? new Address()).AddressString = item.Address.AddressString;
             }
 
-            if (item.Architect == null)
+            if (item.Architect == null || string.IsNullOrEmpty(item.Architect.Name))
             {
-                project.Architect = null;
+                this.GetDbContext().Entry(project).Reference(p => p.Architect).CurrentValue = null;
             }
             else
             {
                 (project.Architect = project.Architect ?? new Company()).Name = item.Architect.Name;
             }
 
-            if (item.City == null)
+            if (item.City == null || string.IsNullOrEmpty(item.City.Name))
             {
-                project.City = null;
+                this.GetDbContext().Entry(project).Reference(p => p.City).CurrentValue = null;
             }
             else
             {
                 (project.City = project.City ?? new City()).Name = item.City.Name;
             }
 
-            if (item.Owner == null)
+            if (item.Owner == null || string.IsNullOrEmpty(item.Owner.Name))
             {
-                project.Owner = null;
+                this.GetDbContext().Entry(project).Reference(p => p.Owner).CurrentValue = null; ;
             }
             else
             {

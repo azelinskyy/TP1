@@ -13,7 +13,7 @@
     self.totalRows = ko.observable(rowCount);
 
     self.totalPages = function () {
-        return Math.round(self.totalRows() / self.searchOptions().pageSize());
+        return Math.ceil(self.totalRows() / self.searchOptions().pageSize());
     };
     self.requestedPage = ko.observable(0),
 
