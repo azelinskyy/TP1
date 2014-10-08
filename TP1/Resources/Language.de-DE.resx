@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="A_architect" xml:space="preserve">
     <value>A</value>
@@ -310,13 +310,13 @@
     <value>Postleitzahl ist erforderlich und besteht aus 4-5 Ziffern</value>
   </data>
   <data name="AddTab" xml:space="preserve">
-    <value>AddTab</value>
+    <value>Hinzufüg Project</value>
   </data>
   <data name="EditTab" xml:space="preserve">
-    <value>EditTab</value>
+    <value>Projekt ändern</value>
   </data>
   <data name="ViewTab" xml:space="preserve">
-    <value>ViewTab</value>
+    <value>Projektansicht</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Aktualisieren</value>
