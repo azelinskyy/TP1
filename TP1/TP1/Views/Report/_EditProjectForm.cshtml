@@ -83,14 +83,17 @@
                 <td><label for="category">@Html.KnockoutHelperFor("AreaVolume", "p")</label></td>
                 <td><input class="form-control" data-bind="disable: readOnlyMode, value:  Project().Space" type="text" id="" name="" /></td>
             </tr>
-            
-  <!--  <input type="submit" name="submitForm" value="Submit Form">-->
-            
         </table>
     </form>
     <br />
     <div data-bind="if: !readOnlyMode()">
-        @Html.KnockoutHelperForButton("Save", "click: $root.save", "btn btn-primary col-md-2 col-md-offset-4")
+        <!-- ko if: (Project().Id() > 0) -->
+            @Html.KnockoutHelperForButton("Update", "click: $root.save", "btn btn-primary col-md-2 col-md-offset-4")
+        <!-- /ko -->
+        <!-- ko if: Project().Id() == 0 -->
+            @Html.KnockoutHelperForButton("Save", "click: $root.save", "btn btn-primary col-md-2 col-md-offset-4")
+        <!-- /ko -->
+
         @Html.KnockoutHelperForButton("Cancel", "click: $root.cancel", "btn btn-primary col-md-2")
     </div>
 </div>

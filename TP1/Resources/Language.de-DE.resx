@@ -318,4 +318,7 @@
   <data name="ViewTab" xml:space="preserve">
     <value>ViewTab</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
 </root>

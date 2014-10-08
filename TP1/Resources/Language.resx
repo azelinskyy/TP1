@@ -318,4 +318,7 @@
   <data name="ViewTab" xml:space="preserve">
     <value>View project</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
 </root>

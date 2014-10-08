@@ -2,7 +2,7 @@
     var self = this;
     project = project || {};
 
-    self.Id = ko.observable(project.Id);
+    self.Id = ko.observable(project.Id !== undefined ? project.Id : 0);
     self.Title = ko.observable(project.Title).extend({ required: true });
     self.ZipCode = ko.observable(project.ZipCode).extend({ minLength: 4, maxLength: 5, required: true });
     self.City = ko.observable(project.City).extend({ required: true });
