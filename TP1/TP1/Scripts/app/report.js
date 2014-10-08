@@ -49,31 +49,15 @@
     };
 
     self.save = function () {
-        self.projectModule.addProject(self.Project());
-        /*if (countOfExistedError(self.Project.errors()) == 0) {
-            var project = self.Project();
-            if (project.Id() > 0) {
-                self.update();
-            } else {
-                self.create();
-            }
+        if (self.projectModule.addProject(self.Project)) {
             datacontext.getProjectLists(self.Grid().searchOptions(), self.Projects, self.Grid().totalRows);
             self.cancel();
         } else {
             self.Project.errors.showAllMessages();
-        }*/
+        }
     };
 
-    //Add New Item
-    self.create = function () {
-        datacontext.createProject(self.Project());
-    };
 
-    // Update product details
-    self.update = function () {
-        datacontext.updateProject(self.Project());
-        self.changeVisibility(true);
-    };
 
     // Cancel project details
     self.cancel = function () {
@@ -151,16 +135,7 @@
         self.displayExport(exp);
     };
 
-    function countOfExistedError(arr) {
-        var count = 0;
-        var i = arr.length;
-        while (i--) {
-            if (arr[i] !== null) {
-                count++;
-            }
-        }
-        return count;
-    }
+
 }
 
 
