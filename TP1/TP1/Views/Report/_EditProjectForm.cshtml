@@ -9,14 +9,14 @@
             <tr>
                 <td><label for="title">@Html.KnockoutHelperFor("Title", "p")</label></td>
                 <td>
-                    <input class="form-control" data-bind="value: Project().Title, attr: { test: Project().Id }" type="text" id="producttitle" name="producttitle" />
+                    <input class="form-control" data-bind="disable: readOnlyMode, value: Project().Title" type="text" id="producttitle" name="producttitle" />
                     @Html.KnockoutHelperForValidationError("Project().Title", "RequiredError")
                 </td>
             </tr>
             <tr>
                 <td><label for="name">@Html.KnockoutHelperFor("ZipCode", "p")</label></td>
                 <td>
-                    <input class="form-control" data-bind="value: Project().ZipCode" type="text" id="" name="" />
+                    <input class="form-control" data-bind="disable: readOnlyMode, value:  Project().ZipCode" type="text" id="" name="" />
                     @Html.KnockoutHelperForValidationError("Project().ZipCode", "ZipCodeError")
                 </td>
             </tr>
@@ -24,64 +24,64 @@
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("City", "p")</label></td>
                 <td>
-                    <input class="form-control" data-bind="value: Project().City" type="text" id="" name="" />
+                    <input class="form-control" data-bind="disable: readOnlyMode, value:  Project().City" type="text" id="" name="" />
                     @Html.KnockoutHelperForValidationError("Project().City", "RequiredError")
                 </td>
             </tr>
     
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("Address", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().Address" type="text" id="" name=""/></td>
+                <td><input class="form-control" data-bind="disable: readOnlyMode, value:  Project().Address" type="text" id="" name=""/></td>
             </tr>
     
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("Architect", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().Architect" type="text" id="" name="" /></td>
+                <td><input class="form-control" data-bind="disable: readOnlyMode, value:  Project().Architect" type="text" id="" name="" /></td>
             </tr>
             <!--
                 <tr>
                     <td><label for="category">@Html.KnockoutHelperFor("", "p")</label></td>
-                    <td><input data-bind="value: Project().DateModified" type="text" title="Category" /></td>
+                    <td><input data-bind="disable: readOnlyMode, value:  Project().DateModified" type="text" title="Category" /></td>
                 </tr>
                 -->
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("Description", "p")</label></td>
-                <td><textarea class="form-control" data-bind="value: Project().Description" id="" name="" rows="10" cols="44"></textarea></td>
+                <td><textarea class="form-control" data-bind="disable: readOnlyMode, value:  Project().Description" id="" name="" rows="10" cols="44"></textarea></td>
             </tr>
             
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("PlannedApplicationDate", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().PlannedApplicationDate" type="text" id="" name="" /></td>
+                <td><input class="form-control" data-bind="disable: readOnlyMode, value:  Project().PlannedApplicationDate" type="text" id="" name="" /></td>
             </tr>
     
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("ConstructionStartDate", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().StartDate" type="text" id="" name="" /></td>
+                <td><input class="form-control" data-bind="disable: readOnlyMode, value:  Project().StartDate" type="text" id="" name="" /></td>
             </tr>
 
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("ConstructionEndDate", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().FinishDate" type="text" id="" name="" /></td>
+                <td><input class="form-control" data-bind="disable: readOnlyMode, value:  Project().FinishDate" type="text" id="" name="" /></td>
             </tr>
     
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("Builder", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().Owner" type="text" id="" name="" /></td>
+                <td><input class="form-control" data-bind="disable: readOnlyMode, value:  Project().Owner" type="text" id="" name="" /></td>
             </tr>
             
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("BuildersRepresentative", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().BuildersRepresentative" type="text" id="" name="" /></td>
+                <td><input class="form-control" data-bind="disable: readOnlyMode, value:  Project().BuildersRepresentative" type="text" id="" name="" /></td>
             </tr>
     
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("ConstructionCost", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().Price" type="text" id="" name="" /></td>
+                <td><input class="form-control" data-bind="disable: readOnlyMode, value:  Project().Price" type="text" id="" name="" /></td>
             </tr>
     
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("AreaVolume", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().Space" type="text" id="" name="" /></td>
+                <td><input class="form-control" data-bind="disable: readOnlyMode, value:  Project().Space" type="text" id="" name="" /></td>
             </tr>
             
   <!--  <input type="submit" name="submitForm" value="Submit Form">-->
@@ -89,7 +89,7 @@
         </table>
     </form>
     <br />
-    <div>
+    <div data-bind="if: !readOnlyMode()">
         @Html.KnockoutHelperForButton("Save", "click: $root.save", "btn btn-primary col-md-2 col-md-offset-4")
         @Html.KnockoutHelperForButton("Cancel", "click: $root.cancel", "btn btn-primary col-md-2")
     </div>

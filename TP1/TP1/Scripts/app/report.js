@@ -17,29 +17,11 @@
     self.displayForm = ko.observable(false);
     self.displayExport = ko.observable(false);
 
-    var projectModel = {
-        Id: ko.observable(""),
-        Title: ko.observable("").extend({
-            required: true
-        }),
-        ZipCode: ko.observable("").extend({ minLength: 4, maxLength: 5, required: true }),
-        City: ko.observable("").extend({ required: true }),
-        Address: ko.observable(""),
-        Architect: ko.observable(""),
-        DateModified: ko.observable(""),
-        Description: ko.observable(""),
-        FinishDate: ko.observable(""),
-        Owner: ko.observable(""),
-        Price: ko.observable(""),
-        Space: ko.observable(""),
-        StartDate: ko.observable(""),
-        PlannedApplicationDate: ko.observable(""),
-        BuildersRepresentative: ko.observable("")
-    };
+    self.readOnlyMode = ko.observable(true);
 
     self.Grid = ko.observable(gridModel);
 
-    self.Project = ko.observable(projectModel);
+    self.Project = ko.observable(new projectItem(null));
     self.Projects = ko.observableArray();   // Contains the list of projects
     self.Language = ko.observableArray();
     self.RowCount = ko.observable();
@@ -88,7 +70,6 @@
     // Update product details
     self.update = function () {
         datacontext.updateProject(self.Project());
-
         self.changeVisibility(true);
     };
 
@@ -130,8 +111,9 @@
     };
 
     self.add = function () {
+        self.readOnlyMode(false);
         self.changeVisibility(false, true, false);
-        self.Project(refreshModel());
+        refreshModel();
     };
 
     function refreshModel() {
@@ -139,28 +121,20 @@
     }
 
     function setModel(project) {
-        projectModel.Id(project == null ? "" : project.Id);
-        projectModel.Title(project == null ? "" : project.Title);
-        projectModel.ZipCode(project == null ? "" : project.ZipCode);
-        projectModel.City(project == null ? "" : project.City);
-        projectModel.Address(project == null ? "" : project.Address);
-        projectModel.Architect(project == null ? "" : project.Architect);
-        projectModel.DateModified(project == null ? "" : project.DateModified);
-        projectModel.Description(project == null ? "" : project.Description);
-        projectModel.FinishDate(project == null ? "" : project.FinishDate);
-        projectModel.Owner(project == null ? "" : project.Owner);
-        projectModel.Price(project == null ? "" : project.Price);
-        projectModel.Space(project == null ? "" : project.Space);
-        projectModel.StartDate(project == null ? "" : project.StartDate);
-        projectModel.PlannedApplicationDate(project == null ? "" : project.PlannedApplicationDate);
-        projectModel.BuildersRepresentative(project == null ? "" : project.BuildersRepresentative);
-        self.Project.errors.showAllMessages(false);
-        self.Project.clearError();
-        return projectModel;
+        self.Project(new projectItem(project));
+        self.errors = ko.validation.group(self.Project);
     }
 
     self.edit = function (project) {
         self.changeVisibility(false, true, false);
+        self.readOnlyMode(false);
+        setModel(project);
+        //self.Project(project);
+    };
+
+    self.view = function (project) {
+        self.changeVisibility(false, true, false);
+        self.readOnlyMode(true);
         setModel(project);
         //self.Project(project);
     };
@@ -186,3 +160,5 @@
         return count;
     }
 }
+
+

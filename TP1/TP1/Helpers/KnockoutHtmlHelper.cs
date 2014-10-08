@@ -25,7 +25,7 @@ namespace TP1.Helpers
         /// </summary>
         public static MvcHtmlString KnockoutHelperForValidationError<TModel>(this HtmlHelper<TModel> helper, string propertyName, string errorName)
         {
-            return new MvcHtmlString(string.Format("<p data-bind=\"validationMessage: {0}, text: langModule().language().{1} \"></p>", propertyName, errorName));   
+            return new MvcHtmlString(string.Format("<p class=\"text-danger\" data-bind=\"validationMessage: {0}, text: langModule().language().{1} \"></p>", propertyName, errorName));   
         }
 
         /// <summary>

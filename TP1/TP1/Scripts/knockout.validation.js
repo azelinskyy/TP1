@@ -972,7 +972,7 @@ ko.bindingHandlers['validationMessage'] = { // individual error message, if modi
 			msg = null,
 			isModified = false,
 			isValid = false;
-
+		obsv.extend({ validatable: true });
 		if (!obsv.isValid || !obsv.isModified) {
 			throw new Error("Observable is not validatable");
 		}
