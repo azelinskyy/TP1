@@ -9,8 +9,8 @@
     self.ExportModels = ko.observableArray([{ name: "Columns", value: 0 }, { name: "Tables", value: 1 }]);
 
     //Declare observable which will be bind with UI 
-    self.DateFrom = ko.observable(new Date(new Date().setDate(new Date().getDate() - 7)).toLocaleDateString());
-    self.DateTo = ko.observable(new Date().toLocaleDateString());
+    self.DateFrom = ko.observable($.datepicker.formatDate("mm/dd/yy", new Date(new Date().setDate(new Date().getDate() - 7))));
+    self.DateTo = ko.observable($.datepicker.formatDate("mm/dd/yy", new Date()));
     self.Emails = ko.observable("");
     self.ExportModel = ko.observable(self.ExportModels);
 
@@ -102,7 +102,7 @@
     };
 
     self.saveAs = function () {
-        var input = { From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: self.langModule().selectedLanguage().culture };
+        var input = { From: self.DateFrom(), To: self.DateTo(), Model: self.ExportModel().value, Culture: self.langModule().selectedLanguage().culture };
         window.open('/Report/SaveAs?' + decodeURIComponent($.param(input)), '_blank');
         self.viewProjects();
     };
