@@ -56,6 +56,7 @@ namespace TP1
             bundles.Add(
                 new ScriptBundle("~/bundles/report").Include(
                     "~/Scripts/app/report.js",
+                    "~/Scripts/app/project.model.js",
                     "~/Scripts/app/report.datacontext.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
