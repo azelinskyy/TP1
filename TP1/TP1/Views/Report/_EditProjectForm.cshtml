@@ -8,17 +8,25 @@
             </tr>
             <tr>
                 <td><label for="title">@Html.KnockoutHelperFor("Title", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().Title" type="text" id="producttitle" name="producttitle" />
+                <td>
+                    <input class="form-control" data-bind="value: Project().Title, attr: { test: Project().Id }" type="text" id="producttitle" name="producttitle" />
+                    @Html.KnockoutHelperForValidationError("Project().Title", "RequiredError")
                 </td>
             </tr>
             <tr>
                 <td><label for="name">@Html.KnockoutHelperFor("ZipCode", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().ZipCode" type="text" id="" name="" /></td>
+                <td>
+                    <input class="form-control" data-bind="value: Project().ZipCode" type="text" id="" name="" />
+                    @Html.KnockoutHelperForValidationError("Project().ZipCode", "ZipCodeError")
+                </td>
             </tr>
 
             <tr>
                 <td><label for="category">@Html.KnockoutHelperFor("City", "p")</label></td>
-                <td><input class="form-control" data-bind="value: Project().City" type="text" id="" name="" /></td>
+                <td>
+                    <input class="form-control" data-bind="value: Project().City" type="text" id="" name="" />
+                    @Html.KnockoutHelperForValidationError("Project().City", "RequiredError")
+                </td>
             </tr>
     
             <tr>

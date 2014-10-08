@@ -23,26 +23,15 @@ namespace TP1.Helpers
         /// <summary>
         /// The knockout helper for.
         /// </summary>
-        /// <param name="helper">
-        /// The helper.
-        /// </param>
-        /// <param name="expression">
-        /// The expression.
-        /// </param>
-        /// <param name="tagName">
-        /// The tag name.
-        /// </param>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <typeparam name="TValue">
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="MvcHtmlString"/>.
-        /// </returns>
-        public static MvcHtmlString KnockoutHelperFor<TModel, TValue>(
-            this HtmlHelper<TModel> helper, 
-            Expression<Func<TModel, TValue>> expression, 
-            string tagName = "label")
+        public static MvcHtmlString KnockoutHelperForValidationError<TModel>(this HtmlHelper<TModel> helper, string propertyName, string errorName)
+        {
+            return  new MvcHtmlString(string.Format("<p data-bind=\"validationMessage: {0}, text: langModule().language().{1} \"></p>", propertyName, errorName));   
+        }
+
+        /// <summary>
+        /// The knockout helper for.
+        /// </summary>
+        public static MvcHtmlString KnockoutHelperFor<TModel, TValue>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TValue>> expression, string tagName = "label")
         {
             string propertyName = ModelMetadata.FromLambdaExpression(expression, helper.ViewData).PropertyName;
 
@@ -52,26 +41,7 @@ namespace TP1.Helpers
         /// <summary>
         /// The knockout helper for.
         /// </summary>
-        /// <param name="helper">
-        /// The helper.
-        /// </param>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        /// <param name="tagName">
-        /// The tag name.
-        /// </param>
-        /// <param name="additionBinders">
-        /// The addition binders.
-        /// </param>
-        /// <returns>
-        /// The <see cref="MvcHtmlString"/>.
-        /// </returns>
-        public static MvcHtmlString KnockoutHelperFor(
-            this HtmlHelper helper, 
-            string name, 
-            string tagName = "label", 
-            string additionBinders = "")
+        public static MvcHtmlString KnockoutHelperFor(this HtmlHelper helper, string name, string tagName = "label", string additionBinders = "")
         {
             return Tag(name, tagName, additionBinders);
         }
@@ -79,30 +49,7 @@ namespace TP1.Helpers
         /// <summary>
         /// The knockout helper for.
         /// </summary>
-        /// <param name="helper">
-        /// The helper.
-        /// </param>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        /// <param name="tagName">
-        /// The tag name.
-        /// </param>
-        /// <param name="additionBinders">
-        /// The addition binders.
-        /// </param>
-        /// <param name="values">
-        /// The values.
-        /// </param>
-        /// <returns>
-        /// The <see cref="MvcHtmlString"/>.
-        /// </returns>
-        public static MvcHtmlString KnockoutHelperFor(
-            this HtmlHelper helper, 
-            string name, 
-            string tagName = "label", 
-            string additionBinders = "", 
-            params string[] values)
+        public static MvcHtmlString KnockoutHelperFor( this HtmlHelper helper, string name, string tagName = "label", string additionBinders = "", params string[] values)
         {
             return Tag(name, tagName, additionBinders, values);
         }
@@ -110,26 +57,7 @@ namespace TP1.Helpers
         /// <summary>
         /// The knockout helper for button.
         /// </summary>
-        /// <param name="helper">
-        /// The helper.
-        /// </param>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        /// <param name="additionBinders">
-        /// The addition binders.
-        /// </param>
-        /// <param name="classes">
-        /// The classes.
-        /// </param>
-        /// <returns>
-        /// The <see cref="MvcHtmlString"/>.
-        /// </returns>
-        public static MvcHtmlString KnockoutHelperForButton(
-            this HtmlHelper helper, 
-            string name, 
-            string additionBinders, 
-            string classes)
+        public static MvcHtmlString KnockoutHelperForButton(this HtmlHelper helper, string name, string additionBinders, string classes)
         {
             return Tag(name, "button", additionBinders, classes);
         }
@@ -137,21 +65,6 @@ namespace TP1.Helpers
         /// <summary>
         /// The tag.
         /// </summary>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        /// <param name="tagName">
-        /// The tag name.
-        /// </param>
-        /// <param name="additionBinders">
-        /// The addition binders.
-        /// </param>
-        /// <param name="classes">
-        /// The classes.
-        /// </param>
-        /// <returns>
-        /// The <see cref="MvcHtmlString"/>.
-        /// </returns>
         public static MvcHtmlString Tag(string name, string tagName, string additionBinders = "", string classes = "")
         {
             var tag = new TagBuilder(tagName);
@@ -176,26 +89,7 @@ namespace TP1.Helpers
         /// <summary>
         /// The tag.
         /// </summary>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        /// <param name="tagName">
-        /// The tag name.
-        /// </param>
-        /// <param name="additionBinders">
-        /// The addition binders.
-        /// </param>
-        /// <param name="values">
-        /// The values.
-        /// </param>
-        /// <returns>
-        /// The <see cref="MvcHtmlString"/>.
-        /// </returns>
-        public static MvcHtmlString Tag(
-            string name, 
-            string tagName, 
-            string additionBinders = "", 
-            params string[] values)
+        public static MvcHtmlString Tag(string name, string tagName, string additionBinders = "", params string[] values)
         {
             var tag = new TagBuilder(tagName);
             if (additionBinders != string.Empty)

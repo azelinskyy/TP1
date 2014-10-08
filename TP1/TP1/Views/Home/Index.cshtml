@@ -25,11 +25,12 @@ else
             ko.validation.configure({
                 registerExtenders: true,
                 messagesOnModified: true,
-                insertMessages: true,
+                insertMessages: false,
                 decorateElement: true,
                 parseInputAttributes: true,
                 messageTemplate: null
             });
+  
 
             var context = window.reportApp.datacontext();
             var grid = new gridModel(context.getProjectLists);

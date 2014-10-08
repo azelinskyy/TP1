@@ -19,7 +19,9 @@
 
     var projectModel = {
         Id: ko.observable(""),
-        Title: ko.observable("").extend({ required: true }),
+        Title: ko.observable("").extend({
+            required: true
+        }),
         ZipCode: ko.observable("").extend({ minLength: 4, maxLength: 5, required: true }),
         City: ko.observable("").extend({ required: true }),
         Address: ko.observable(""),
@@ -57,7 +59,7 @@
 
     // Delete project
     self.delete = function (project) {
-        if (confirm(String.format(langModule().language().DeleteConfirmationQuestion, project.Title))) {
+        if (confirm(String.format(self.langModule().language().DeleteConfirmationQuestion, project.Title))) {
             datacontext.deleteProject(project.Id);
             datacontext.getProjectLists(self.Grid().searchOptions(), self.Projects, self.Grid().totalRows);
         }
