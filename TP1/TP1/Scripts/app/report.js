@@ -18,7 +18,8 @@
     self.displayForm = ko.observable(false);
     self.displayExport = ko.observable(false);
 
-    self.readOnlyMode = ko.observable(true);
+    self.readOnlyMode = ko.observable(false);
+    self.isAddAction = ko.observable(true);
 
     self.Grid = ko.observable(gridModel);
 
@@ -55,6 +56,8 @@
         } else {
             self.Project.errors.showAllMessages();
         }
+        self.isAddAction(true);
+        self.readOnlyMode(false);
     };
 
 
@@ -62,6 +65,8 @@
     // Cancel project details
     self.cancel = function () {
         self.changeVisibility(true, false, false);
+        self.isAddAction(true);
+        self.readOnlyMode(false);
         refreshModel();
     };
 
@@ -93,6 +98,8 @@
 
     // Tabs switch related code.
     self.viewProjects = function () {
+        self.isAddAction(true);
+        self.readOnlyMode(false);
         self.changeVisibility(true, false, false);
     };
 
@@ -112,8 +119,9 @@
     }
 
     self.edit = function (project) {
-        self.changeVisibility(false, true, false);
+        self.isAddAction(false);
         self.readOnlyMode(false);
+        self.changeVisibility(false, true, false);
         setModel(project);
         //self.Project(project);
     };
@@ -126,6 +134,8 @@
     };
 
     self.tryExport = function () {
+        self.isAddAction(true);
+        self.readOnlyMode(false);
         self.changeVisibility(false, false, true);
     };
 

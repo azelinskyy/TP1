@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="A_architect" xml:space="preserve">
     <value>А</value>
@@ -308,5 +308,14 @@
   </data>
   <data name="ZipCodeError" xml:space="preserve">
     <value>Поштовий індекс </value>
+  </data>
+  <data name="AddTab" xml:space="preserve">
+    <value>Добавити проект</value>
+  </data>
+  <data name="EditTab" xml:space="preserve">
+    <value>Редагування</value>
+  </data>
+  <data name="ViewTab" xml:space="preserve">
+    <value>Перегляд</value>
   </data>
 </root>

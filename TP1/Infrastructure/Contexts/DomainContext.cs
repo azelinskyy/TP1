@@ -23,7 +23,7 @@ namespace Infrastructure.Contexts
         /// Initializes a new instance of the <see cref="DomainContext"/> class.
         /// </summary>
         public DomainContext()
-            : base("DefaultConnection")
+            : base("DefaultConnectionProducts")
         {
         }
 

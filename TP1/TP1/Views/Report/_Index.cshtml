@@ -1,7 +1,9 @@
 ﻿<ul class="nav nav-pills nav-justified" role="tablist">
-    <li data-bind="css: { active: $root.displayGrid }"><a href="#" data-bind="    click: $root.viewProjects, text: langModule().language().ProjectsView"></a></li>
-    <li data-bind="css: { active: $root.displayForm }"><a href="#" data-bind="    click: $root.add, text: langModule().language().AddEditProject"></a></li>
-    <li data-bind="css: { active: $root.displayExport }"><a href="#" data-bind="    click: $root.tryExport, text: langModule().language().ExportProjects"></a></li>
+    <li data-bind="css: { active: $root.displayGrid }"><a href="#" data-bind="click: $root.viewProjects, text: langModule().language().ProjectsView"></a></li>
+    <li data-bind="visible: (!readOnlyMode() && isAddAction()), css: { active: $root.displayForm }"><a href="#" data-bind="click: $root.add, text: langModule().language().AddTab"></a></li>
+    <li data-bind="visible: (!readOnlyMode() && !isAddAction()), css: { active: $root.displayForm }"><a href="#" data-bind="text: langModule().language().EditTab"></a></li>
+    <li data-bind="visible: readOnlyMode(), css: { active: $root.displayForm }"><a href="#" data-bind="    text: langModule().language().ViewTab"></a></li>
+    <li data-bind="css: { active: $root.displayExport }"><a href="#" data-bind="click: $root.tryExport, text: langModule().language().ExportProjects"></a></li>
 </ul>
 
 <div class="container">

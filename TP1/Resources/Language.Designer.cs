@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add project.
+        /// </summary>
+        public static string AddTab {
+            get {
+                return ResourceManager.GetString("AddTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Already signed up?.
         /// </summary>
         public static string AlreadySignedUp {
@@ -327,6 +336,15 @@ namespace Resources {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit project.
+        /// </summary>
+        public static string EditTab {
+            get {
+                return ResourceManager.GetString("EditTab", resourceCulture);
             }
         }
         
@@ -619,6 +637,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View project.
+        /// </summary>
+        public static string ViewTab {
+            get {
+                return ResourceManager.GetString("ViewTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zip Code.
         /// </summary>
         public static string ZipCode {
@@ -628,7 +655,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zip code is required and contains 4 digits.
+        ///   Looks up a localized string similar to Zip code is required and consists of 4-5 digits.
         /// </summary>
         public static string ZipCodeError {
             get {
