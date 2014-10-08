@@ -41,14 +41,14 @@ namespace Tools.Notification
 
             var client = new SmtpClient();
             client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("my_manhattan_2014@yahoo.com", "+{_P)O9i8u7y");
+            client.Credentials = new NetworkCredential("test_project_2014@yahoo.com", "+{_P)O9i8u7y");
             client.Host = "smtp.mail.yahoo.com";
             client.Port = 587;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.EnableSsl = true;
 
             var mail = new MailMessage();
-            mail.From = new MailAddress("my_manhattan_2014@yahoo.com");
+            mail.From = new MailAddress("test_project_2014@yahoo.com");
             mailsTo.ForEach(mailTo => mail.To.Add(mailTo));
 
             var attachment = new Attachment(output, MediaTypeNames.Application.Pdf);
