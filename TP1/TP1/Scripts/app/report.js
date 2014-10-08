@@ -104,7 +104,7 @@
             cache: false,
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
-            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: selectedlangModule().language().culture }),
+            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: self.langModule().selectedLanguage().culture }),
             success: function (data) {
                 self.viewProjects();
                 self.Emails("");
@@ -119,7 +119,7 @@
     };
 
     self.saveAs = function () {
-        var input = { From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: selectedlangModule().language().culture };
+        var input = { From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: self.langModule().selectedLanguage().culture };
         window.open('/Report/SaveAs?' + decodeURIComponent($.param(input)), '_blank');
         self.viewProjects();
     };
