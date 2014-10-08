@@ -16,10 +16,10 @@
     self.Emails = ko.observable("");
     self.ExportModel = ko.observable(self.ExportModels);
 
+    // View related properties.
     self.displayGrid = ko.observable(true);
     self.displayForm = ko.observable(false);
     self.displayExport = ko.observable(false);
-
     self.readOnlyMode = ko.observable(false);
     self.isAddAction = ko.observable(true);
 
@@ -28,8 +28,6 @@
 
     // Contains the list of projects.
     self.Projects = ko.observableArray();   
-
-    
 
     // Filter projects list if dates range has been changed.
     self.changeDatesRange = function () {
@@ -41,14 +39,6 @@
 
     self.DateFrom.subscribe(self.changeDatesRange);
     self.DateTo.subscribe(self.changeDatesRange);
-
-    // Delete project
-    self.delete = function (project) {
-        if (confirm(String.format(self.langModule().language().DeleteConfirmationQuestion, project.Title))) {
-            datacontext.deleteProject(project.Id);
-            self.refreshGrid(self.GridModule().searchOptions());
-        }
-    };
 
     self.save = function () {
         if (self.projectModule.addProject(self.Project)) {
@@ -63,10 +53,8 @@
 
     // Cancel edit/add/view actions. 
     self.cancel = function () {
-        self.changeVisibility(true, false, false);
-        self.isAddAction(true);
-        self.readOnlyMode(false);
-        refreshModel();
+        self.performShowActions("grid");
+        setModel(null);
     };
 
     self.export = function () {
@@ -97,60 +85,93 @@
 
     // Tabs switch related code.
     self.viewProjects = function () {
-        self.isAddAction(true);
-        self.readOnlyMode(false);
-        self.changeVisibility(true, false, false);
+        self.performShowActions("gridTab");
     };
 
+    // Display add form.
     self.add = function () {
-        self.readOnlyMode(false);
-        self.changeVisibility(false, true, false);
-        refreshModel();
+        self.performShowActions("addForm");
+        setModel(null);
     };
 
-    function refreshModel() {
-        return setModel(null);
-    }
+    // Delete project.
+    self.delete = function (project) {
+        if (confirm(String.format(self.langModule().language().DeleteConfirmationQuestion, project.Title))) {
+            datacontext.deleteProject(project.Id);
+            self.refreshGrid(self.GridModule().searchOptions());
+        }
+    };
+
+    // Display edit project form.
+    self.edit = function (project) {
+        self.performShowActions("editForm");
+        setModel(project);
+    };
+
+    // Display view project page.
+    self.view = function (project) {
+        self.performShowActions("viewForm");
+        setModel(project);
+    };
 
     function setModel(project) {
         self.Project(new projectItem(project));
         self.errors = ko.validation.group(self.Project);
-    }
-
-    self.edit = function (project) {
-        self.isAddAction(false);
-        self.readOnlyMode(false);
-        self.changeVisibility(false, true, false);
-        setModel(project);
-        //self.Project(project);
     };
 
-    self.view = function (project) {
-        self.changeVisibility(false, true, false);
-        self.readOnlyMode(true);
-        setModel(project);
-        //self.Project(project);
-    };
-
+    // Show export form.
     self.tryExport = function () {
-        self.isAddAction(true);
-        self.readOnlyMode(false);
-        self.changeVisibility(false, false, true);
-    };
-
-    self.changeVisibility = function (grid, form, exp) {
-        self.displayGrid(grid);
-        self.displayForm(form);
-        self.displayExport(exp);
-    };
-
-    self.refreshGrid = function (params) {
-        datacontext.getProjectLists(params, self.Projects, self.GridModule().totalRows);
+        self.performShowActions("exportTab");
     };
 
     // Initialize base state.
     self.getGridData = function() {
         return self.refreshGrid(self.GridModule().searchOptions());
+    };
+
+    self.performShowActions = function (action) {
+        switch (action) {
+            case "exportTab":
+                self.displayGrid(false);
+                self.displayForm(false);
+                self.displayExport(true);
+                self.isAddAction(true);
+                self.readOnlyMode(false);
+                break;
+            case "viewForm":
+                self.displayGrid(false);
+                self.displayForm(true);
+                self.displayExport(false);
+                self.isAddAction(false);
+                self.readOnlyMode(true);
+                break;
+            case "editForm":
+                self.displayGrid(false);
+                self.displayForm(true);
+                self.displayExport(false);
+                self.isAddAction(false);
+                self.readOnlyMode(false);
+                break;
+            case "addForm":
+                self.displayGrid(false);
+                self.displayForm(true);
+                self.displayExport(false);
+                self.readOnlyMode(false);
+                self.isAddAction(true);
+                break;
+            case "gridTab":
+            default:
+                self.displayGrid(true);
+                self.displayForm(false);
+                self.displayExport(false);
+                self.isAddAction(true);
+                self.readOnlyMode(false);
+                break;
+        }
+    };
+
+    self.refreshGrid = function (params) {
+        datacontext.getProjectLists(params, self.Projects, self.GridModule().totalRows);
     };
 
     self.refreshGrid(self.GridModule().searchOptions());
