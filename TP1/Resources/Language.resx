@@ -132,6 +132,9 @@
   <data name="Address" xml:space="preserve">
     <value>Address</value>
   </data>
+  <data name="AddTab" xml:space="preserve">
+    <value>Add Project</value>
+  </data>
   <data name="AlreadySignedUp" xml:space="preserve">
     <value>Already signed up?</value>
   </data>
@@ -201,8 +204,14 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="EditTab" xml:space="preserve">
+    <value>Edit Project</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Recipients' Emails</value>
@@ -273,6 +282,9 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me</value>
   </data>
+  <data name="RequiredError" xml:space="preserve">
+    <value>This field is required</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -294,31 +306,19 @@
   <data name="Type" xml:space="preserve">
     <value>Report's Layout Type</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
   <data name="UserName" xml:space="preserve">
     <value>Username</value>
-  </data>
-  <data name="ZipCode" xml:space="preserve">
-    <value>Zip Code</value>
-  </data>
-  <data name="Download" xml:space="preserve">
-    <value>Download</value>
-  </data>
-  <data name="RequiredError" xml:space="preserve">
-    <value>This field is required</value>
-  </data>
-  <data name="ZipCodeError" xml:space="preserve">
-    <value>Zip code is required and consists of 4-5 digits</value>
-  </data>
-  <data name="AddTab" xml:space="preserve">
-    <value>Add Project</value>
-  </data>
-  <data name="EditTab" xml:space="preserve">
-    <value>Edit Project</value>
   </data>
   <data name="ViewTab" xml:space="preserve">
     <value>View Project</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>Update</value>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Zip Code</value>
+  </data>
+  <data name="ZipCodeError" xml:space="preserve">
+    <value>Zip code is required and consists of 4-5 digits</value>
   </data>
 </root>

@@ -132,6 +132,9 @@
   <data name="Address" xml:space="preserve">
     <value>Adresse</value>
   </data>
+  <data name="AddTab" xml:space="preserve">
+    <value>Projekt Hinzufügen</value>
+  </data>
   <data name="AlreadySignedUp" xml:space="preserve">
     <value>Schon angemeldet?</value>
   </data>
@@ -201,8 +204,14 @@
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Ändern</value>
+  </data>
+  <data name="EditTab" xml:space="preserve">
+    <value>Projekt ändern</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Empfänger E-Mails</value>
@@ -211,7 +220,7 @@
     <value>Datenexport</value>
   </data>
   <data name="ExportProjects" xml:space="preserve">
-    <value>Projekten exportieren</value>
+    <value>Projekte exportieren</value>
   </data>
   <data name="ExportTab_ProjectsNumberAndRange" xml:space="preserve">
     <value>{0} Projekte exportieren eingefügt vom {1} bis {2}</value>
@@ -273,6 +282,9 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Auf diesem Computer merken</value>
   </data>
+  <data name="RequiredError" xml:space="preserve">
+    <value>Dieses Feld ist erforderlich</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
   </data>
@@ -294,31 +306,19 @@
   <data name="Type" xml:space="preserve">
     <value>Bericht Darstellungsart</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
   <data name="UserName" xml:space="preserve">
     <value>Benutzername</value>
-  </data>
-  <data name="ZipCode" xml:space="preserve">
-    <value>Postleitzahl</value>
-  </data>
-  <data name="Download" xml:space="preserve">
-    <value>Download</value>
-  </data>
-  <data name="RequiredError" xml:space="preserve">
-    <value>Dieses Feld ist erforderlich</value>
-  </data>
-  <data name="ZipCodeError" xml:space="preserve">
-    <value>Postleitzahl ist erforderlich und besteht aus 4-5 Ziffern</value>
-  </data>
-  <data name="AddTab" xml:space="preserve">
-    <value>Projekt Hinzufügen</value>
-  </data>
-  <data name="EditTab" xml:space="preserve">
-    <value>Projekt ändern</value>
   </data>
   <data name="ViewTab" xml:space="preserve">
     <value>Projektansicht</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>Aktualisieren</value>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Postleitzahl</value>
+  </data>
+  <data name="ZipCodeError" xml:space="preserve">
+    <value>Postleitzahl ist erforderlich und besteht aus 4-5 Ziffern</value>
   </data>
 </root>

@@ -24,8 +24,9 @@
     <tr>
         <td colspan="2">
             @Html.KnockoutHelperForButton("Download", "click: $root.saveAs, disable: $root.GridModule().totalRows() == 0", "btn btn-primary col-md-2  col-md-offset-3")
-            @Html.KnockoutHelperForButton("Export", "click: $root.export, disable: $root.GridModule().totalRows() == 0 || $root.Emails() == ''", "btn btn-primary col-md-2")
+            @Html.KnockoutHelperForButton("Export", "click: $root.export, disable: true", "btn btn-primary col-md-2")
             @Html.KnockoutHelperForButton("Cancel", "click: $root.viewProjects", "btn btn-primary col-md-2")
         </td>
     </tr>
+    <tr><td colspan="2">Email sending is temporarily unavailable due to issues with SMTP client. Please use download functionality to view PDF report,</td></tr>
 </table>
