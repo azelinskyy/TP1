@@ -1,7 +1,7 @@
 ﻿@using TP1.Helpers
 @if (@User.Identity.IsAuthenticated)
 {
-        @Html.Partial("~/Views/Report/_Index.cshtml")
+    @Html.Partial("~/Views/Report/_Index.cshtml")
 }
 else
 {
@@ -11,7 +11,7 @@ else
         </div>
 
         <div class="container" id="registerPanel">
-         @Html.Partial("_Register")
+            @Html.Partial("_Register")
         </div>
     </div>
 }
@@ -26,7 +26,7 @@ else
                 parseInputAttributes: true,
                 messageTemplate: null
             });
-          
+
             var context = window.project.datacontext();
             var grid = new gridModel(context.getProjectLists);
             var lang = new languageModel(availableLanguages);
@@ -34,6 +34,8 @@ else
             var viewModel = new ApplicationViewModel(context, lang, grid, project);
             viewModel.errors = ko.validation.group(viewModel.Project);
             ko.applyBindings(viewModel);
+
+            initSpinner();
         });
     </script>
 }

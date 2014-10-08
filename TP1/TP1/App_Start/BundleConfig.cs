@@ -51,6 +51,7 @@ namespace TP1
             bundles.Add(
                 new ScriptBundle("~/bundles/tools").Include(
                     "~/Scripts/tools/binders.datepicker.js",
+                    "~/Scripts/tools/spinner.js",
                     "~/Scripts/tools/grid.base.js"));
 
             bundles.Add(

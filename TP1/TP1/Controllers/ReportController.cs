@@ -12,6 +12,7 @@ namespace TP1.Controllers
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Threading;
     using System.Web.Mvc;
 
     using DataAccess.Repositories;
@@ -93,9 +94,7 @@ namespace TP1.Controllers
         /// </param>
         public void Export(ExportConfiguration export)
         {
-            IList<Project> projects =
-                this.ProjectRepository.GetProjectsFilteredByDateRange(
-                    new ProjectGridFilter { From = export.From, To = export.To });
+            IList<Project> projects = this.ProjectRepository.GetProjectsFilteredByDateRange(new ProjectGridFilter { From = export.From, To = export.To });
             new ExportService(Server.MapPath("~/bin")).ExportProjects(projects, export);
         }
 

@@ -274,6 +274,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\logo.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -308,6 +309,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\tools\binders.datepicker.js" />
     <Content Include="Scripts\tools\grid.base.js" />
+    <Content Include="Scripts\tools\spinner.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
