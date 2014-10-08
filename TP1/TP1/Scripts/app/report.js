@@ -17,6 +17,8 @@
     self.displayForm = ko.observable(false);
     self.displayExport = ko.observable(false);
 
+    self.readOnlyMode = ko.observable(true);
+
     var projectModel = {
         Id: ko.observable(""),
         Title: ko.observable("").extend({
@@ -88,7 +90,6 @@
     // Update product details
     self.update = function () {
         datacontext.updateProject(self.Project());
-
         self.changeVisibility(true);
     };
 
@@ -130,6 +131,7 @@
     };
 
     self.add = function () {
+        self.readOnlyMode(false);
         self.changeVisibility(false, true, false);
         self.Project(refreshModel());
     };
@@ -161,6 +163,14 @@
 
     self.edit = function (project) {
         self.changeVisibility(false, true, false);
+        self.readOnlyMode(false);
+        setModel(project);
+        //self.Project(project);
+    };
+
+    self.view = function (project) {
+        self.changeVisibility(false, true, false);
+        self.readOnlyMode(true);
         setModel(project);
         //self.Project(project);
     };
