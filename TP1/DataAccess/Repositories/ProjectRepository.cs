@@ -240,7 +240,7 @@ namespace DataAccess.Repositories
 
             if (item.Owner == null || string.IsNullOrEmpty(item.Owner.Name))
             {
-                this.GetDbContext().Entry(project).Reference(p => p.Owner).CurrentValue = null; ;
+                this.GetDbContext().Entry(project).Reference(p => p.Owner).CurrentValue = null;
             }
             else
             {

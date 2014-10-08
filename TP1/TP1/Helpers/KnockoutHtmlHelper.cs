@@ -25,7 +25,7 @@ namespace TP1.Helpers
         /// </summary>
         public static MvcHtmlString KnockoutHelperForValidationError<TModel>(this HtmlHelper<TModel> helper, string propertyName, string errorName)
         {
-            return  new MvcHtmlString(string.Format("<p data-bind=\"validationMessage: {0}, text: langModule().language().{1} \"></p>", propertyName, errorName));   
+            return new MvcHtmlString(string.Format("<p data-bind=\"validationMessage: {0}, text: langModule().language().{1} \"></p>", propertyName, errorName));   
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace TP1.Helpers
         /// <summary>
         /// The knockout helper for.
         /// </summary>
-        public static MvcHtmlString KnockoutHelperFor( this HtmlHelper helper, string name, string tagName = "label", string additionBinders = "", params string[] values)
+        public static MvcHtmlString KnockoutHelperFor(this HtmlHelper helper, string name, string tagName = "label", string additionBinders = "", params string[] values)
         {
             return Tag(name, tagName, additionBinders, values);
         }
