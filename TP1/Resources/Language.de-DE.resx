@@ -310,7 +310,7 @@
     <value>Postleitzahl ist erforderlich und besteht aus 4-5 Ziffern</value>
   </data>
   <data name="AddTab" xml:space="preserve">
-    <value>Hinzufüg Project</value>
+    <value>Projekt Hinzufügen</value>
   </data>
   <data name="EditTab" xml:space="preserve">
     <value>Projekt ändern</value>
