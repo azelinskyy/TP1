@@ -57,7 +57,8 @@ namespace TP1
                 new ScriptBundle("~/bundles/report").Include(
                     "~/Scripts/app/report.js",
                     "~/Scripts/app/project.model.js",
-                    "~/Scripts/app/report.datacontext.js"));
+                    "~/Scripts/app/project.viewmodel.js",
+                    "~/Scripts/app/project.datacontext.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

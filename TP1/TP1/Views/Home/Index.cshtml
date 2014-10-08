@@ -28,10 +28,11 @@ else
             });
   
 
-            var context = window.reportApp.datacontext();
+            var context = window.project.datacontext();
             var grid = new gridModel(context.getProjectLists);
             var lang = new languageModel(availableLanguages);
-            var viewModel = new ApplicationViewModel(context, lang, grid);
+            var project = window.project.projectViewModel(context);
+            var viewModel = new ApplicationViewModel(context, lang, grid, project);
             viewModel.errors = ko.validation.group(viewModel.Project);
             ko.applyBindings(viewModel);
         });

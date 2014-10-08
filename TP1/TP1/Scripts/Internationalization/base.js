@@ -53,5 +53,5 @@ if (!String.format) {
         }
 
         return s;
-    }
+    };
 }

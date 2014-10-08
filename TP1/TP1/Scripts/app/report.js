@@ -1,7 +1,8 @@
-﻿function ApplicationViewModel(datacontext, language, gridModel) {
+﻿function ApplicationViewModel(datacontext, language, gridModel, projectViewModel) {
 
     //Make the self as 'this' reference
     var self = this;
+    self.projectModule = projectViewModel;
 
     self.langModule = ko.observable(language);
 
@@ -48,7 +49,8 @@
     };
 
     self.save = function () {
-        if (countOfExistedError(self.Project.errors()) == 0) {
+        self.projectModule.addProject(self.Project());
+        /*if (countOfExistedError(self.Project.errors()) == 0) {
             var project = self.Project();
             if (project.Id() > 0) {
                 self.update();
@@ -59,7 +61,7 @@
             self.cancel();
         } else {
             self.Project.errors.showAllMessages();
-        }
+        }*/
     };
 
     //Add New Item
