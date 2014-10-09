@@ -11,10 +11,6 @@ window.project.datacontext = (function () {
 
     return datacontext;
 
-    function updateProject(projectToUpdate) {
-        ajaxRequest("POST", projectUrl(null, "PutProject"), ko.toJSON(projectToUpdate));
-    };
-
     function getProjectLists(requestOptions, projectObservable, totalCount) {
         // Initialize the view-model
         ajaxRequest("GET", projectUrl(null, "GetReport"), requestOptions).done(getSucceeded);
@@ -24,12 +20,16 @@ window.project.datacontext = (function () {
         }
     };
 
+    function updateProject(projectToUpdate) {
+        ajaxRequest("PUT", projectApiUrl(projectToUpdate.Id()), ko.toJSON(projectToUpdate));
+    };
+
     function deleteProject(projectId) {
-        ajaxRequest("GET", projectUrl(null, "DeleteProject"), { id: projectId });
+        ajaxRequest("DELETE", projectApiUrl(projectId));
     };
 
     function createProject(newProject) {
-        ajaxRequest("POST", projectUrl(null, "PostProject"), ko.toJSON(newProject));
+        ajaxRequest("POST", projectApiUrl(null), ko.toJSON(newProject));
     };
 
     // private methods
@@ -56,5 +56,10 @@ window.project.datacontext = (function () {
     // routes
     function projectUrl(id, action) {
          return "/Report/" + action + "/" + (id || "");
+    }
+
+    // routes
+    function projectApiUrl(id) {
+        return "/api/project/" + (id || "");
     }
 });

@@ -24,7 +24,7 @@
     self.isAddAction = ko.observable(true);
 
     // Curent project, uses at edit/view/add form.
-    self.Project = ko.observable(new projectItem(null));
+    self.Project = ko.observable(new projectModel(null));
 
     // Contains the list of projects.
     self.Projects = ko.observableArray();   
@@ -115,7 +115,7 @@
     };
 
     function setModel(project) {
-        self.Project(new projectItem(project));
+        self.Project(new projectModel(project));
         self.errors = ko.validation.group(self.Project);
     };
 

@@ -75,18 +75,6 @@ namespace TP1.Controllers
         #region Public Methods and Operators
 
         /// <summary>
-        /// The delete project.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        public void DeleteProject(int id)
-        {
-            Project projectToRemove = this.ProjectRepository.GetById(id);
-            this.projectRepository.Remove(projectToRemove);
-        }
-
-        /// <summary>
         /// The export.
         /// </summary>
         /// <param name="export">
@@ -113,20 +101,6 @@ namespace TP1.Controllers
         }
 
         /// <summary>
-        /// The get project.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// The <see cref="ProjectDto"/>.
-        /// </returns>
-        public ProjectDto GetProject(int id)
-        {
-            return this.ProjectConvertFactory.FromModel(this.ProjectRepository.GetById(id));
-        }
-
-        /// <summary>
         /// The get report.
         /// </summary>
         /// <param name="filter">
@@ -145,35 +119,6 @@ namespace TP1.Controllers
                             totalRows = this.ProjectRepository.GetProjectsFilteredByDateRangeCount(filter),
                             result = jsonData
                         });
-        }
-
-        /// <summary>
-        /// The post project.
-        /// </summary>
-        /// <param name="project">
-        /// The project.
-        /// </param>
-        /// <returns>
-        /// The <see cref="int"/>.
-        /// </returns>
-        public int PostProject(ProjectDto project)
-        {
-            Project entity = this.ProjectConvertFactory.ToModel(project);
-            entity.DateAdded = DateTime.Today;
-            this.ProjectRepository.Add(entity);
-            return entity.Id;
-        }
-
-        /// <summary>
-        /// The put project.
-        /// </summary>
-        /// <param name="project">
-        /// The project.
-        /// </param>
-        public void PutProject(ProjectDto project)
-        {
-            Project entity = this.ProjectConvertFactory.ToModel(project);
-            this.ProjectRepository.Update(entity);
         }
 
         /// <summary>

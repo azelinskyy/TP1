@@ -1,4 +1,4 @@
-﻿function projectItem(project) {
+﻿function projectModel(project) {
     var self = this;
     project = project || {};
 
