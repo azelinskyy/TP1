@@ -28,10 +28,9 @@ else
             });
 
             var context = window.project.datacontext();
-            var grid = new gridModel(context.getProjectLists);
             var lang = new languageModel(availableLanguages);
             var project = window.project.projectViewModel(context);
-            var viewModel = new ApplicationViewModel(context, lang, grid, project);
+            var viewModel = new ApplicationViewModel(context, lang, gridModel, project);
             viewModel.errors = ko.validation.group(viewModel.Project);
             ko.applyBindings(viewModel);
 

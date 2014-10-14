@@ -28,13 +28,17 @@
             <td colspan = "6">
                 <div class="pagerWrap">
                     <ul class="pager">
-                        <li class="pagerFirst" data-bind="click: function () { GridModule().selectFirst(Projects); }"><a href="#" data-bind="    text: langModule().language().First"></a></li>
-                        <li class="pagerPrev" data-bind="click: function () { GridModule().selectPrevious(Projects); }"><a href="#" data-bind="    text: langModule().language().Previous"></a></li>
+                        <li class="pagerFirst" data-bind="click: GridModule().selectFirst"><a href="#" data-bind="    text: langModule().language().First"></a></li>
+                        <li class="pagerPrev" data-bind="click: GridModule().selectPrevious"><a href="#" data-bind="    text: langModule().language().Previous"></a></li>
                         <li class="pagerCurrent">
                             @Html.KnockoutHelperFor("NumberOfTotalPages", "span", "", "GridModule().searchOptions().pageIndex()", "GridModule().totalPages()")
                         </li>
-                        <li class="pagerNext" data-bind="click: function () { GridModule().selectNext(Projects); }"><a href="#" data-bind="    text: langModule().language().Next"></a></li>
-                        <li class="pagerLast" data-bind="click: function () { GridModule().selectLast(Projects); }"><a href="#" data-bind="    text: langModule().language().Last"></a></li>
+                        <li class="pagerNext" data-bind="click: GridModule().selectNext"><a href="#" data-bind="    text: langModule().language().Next"></a></li>
+                        <li class="pagerLast" data-bind="click: GridModule().selectLast"><a href="#" data-bind="    text: langModule().language().Last"></a></li>
+                        <li>
+                             <!--ko text: langModule().language().ProjectsPerPage --><!--/ko-->
+                            <select data-bind="options: GridModule().itemPerPage, value: GridModule().searchOptions().pageSize"></select>
+                        </li>                    
                     </ul>   
                 </div>
             </td>

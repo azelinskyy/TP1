@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -10,44 +11,43 @@ namespace TP1.Controllers
     public class ProjectController : BaseApiController
     {
         // GET api/project
-        public HttpResponseMessage GetProject()
+        public IHttpActionResult GetProject()
         {
-            HttpResponseMessage response = this.Request.CreateResponse(HttpStatusCode.Created);
-
-            return response;
+            return Ok();
         }
 
         // GET api/project/5
-        public HttpResponseMessage GetProject(int id)
+        public IHttpActionResult GetProject(int id)
         {
             try
             {
                 var data = this.ProjectConvertFactory.FromModel(this.ProjectRepository.GetById(id));
-                return this.Request.CreateResponse(HttpStatusCode.OK, data);
+                return this.Ok(data);
             }
             catch
             {
-                throw new HttpResponseException(this.Request.CreateResponse(HttpStatusCode.NotFound));
+                return this.NotFound();
             }
         }
 
         // POST api/project
-        public HttpResponseMessage PostProject([FromBody]ProjectDto project)
+        public IHttpActionResult PostProject([FromBody]ProjectDto project)
         {
             Project entity = this.ProjectConvertFactory.ToModel(project);
             entity.DateAdded = DateTime.Today;
             this.ProjectRepository.Add(entity);
 
-            return this.Request.CreateResponse(HttpStatusCode.Created);
+           // return this.Request.CreateResponse(HttpStatusCode.Created);
+            return this.Created<ProjectDto>(Request.RequestUri + entity.Id.ToString(CultureInfo.InvariantCulture), this.ProjectConvertFactory.FromModel(entity));
         }
 
         // PUT api/project/5
-        public HttpResponseMessage PutProject(int id, [FromBody]ProjectDto project)
+        public IHttpActionResult PutProject(int id, [FromBody]ProjectDto project)
         {
             Project entity = this.ProjectConvertFactory.ToModel(project);
             this.ProjectRepository.Update(entity);
 
-            return this.Request.CreateResponse(HttpStatusCode.OK);
+            return this.Ok();
         }
 
         // DELETE api/project/5

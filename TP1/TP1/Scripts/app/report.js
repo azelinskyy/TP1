@@ -1,12 +1,8 @@
 ﻿function ApplicationViewModel(datacontext, language, gridModel, projectViewModel) {
-
     // Make the self as 'this' reference
     var self = this;
 
-    // Global modules.
-    self.projectModule = projectViewModel;
-    self.langModule = ko.observable(language);
-    self.GridModule = ko.observable(gridModel);
+    
 
     self.ExportModels = ko.observableArray([{ name: "Columns", value: 0 }, { name: "Tables", value: 1 }]);
 
@@ -27,7 +23,12 @@
     self.Project = ko.observable(new projectModel(null));
 
     // Contains the list of projects.
-    self.Projects = ko.observableArray();   
+    self.Projects = ko.observableArray();
+
+    // Global modules.
+    self.projectModule = projectViewModel;
+    self.langModule = ko.observable(language);
+    self.GridModule = ko.observable(new gridModel(datacontext.getProjectLists, null, self.Projects));
 
     // Filter projects list if dates range has been changed.
     self.changeDatesRange = function () {

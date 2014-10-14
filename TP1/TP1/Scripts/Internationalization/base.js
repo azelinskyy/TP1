@@ -15,8 +15,7 @@ var availableLanguages = [
         name: "Українська",
         type: "ua",
         culture: "uk-UA"
-    }
-    
+    }  
 ];
 
 function languageModel(languages) {
@@ -39,8 +38,7 @@ function languageModel(languages) {
 
         $.ajax("/Internationalization/GetLanguage/", options).done(function (data) {
             self.language(data);
-        });;
-
+        });
     });
 };
 

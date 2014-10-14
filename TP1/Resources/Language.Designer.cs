@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add project.
+        ///   Looks up a localized string similar to Add Project.
         /// </summary>
         public static string AddTab {
             get {
@@ -340,7 +340,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit project.
+        ///   Looks up a localized string similar to Edit Project.
         /// </summary>
         public static string EditTab {
             get {
@@ -520,6 +520,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Projects per page: .
+        /// </summary>
+        public static string ProjectsPerPage {
+            get {
+                return ResourceManager.GetString("ProjectsPerPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Projects View.
         /// </summary>
         public static string ProjectsView {
@@ -646,7 +655,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View project.
+        ///   Looks up a localized string similar to View Project.
         /// </summary>
         public static string ViewTab {
             get {
