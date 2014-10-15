@@ -9,6 +9,7 @@
 namespace Model.Filters
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     ///     The project grid filter.
@@ -24,6 +25,7 @@ namespace Model.Filters
         {
             this.From = DateTime.Now.AddDays(-7);
             this.To = DateTime.Now;
+            this.UnselectedIds = new List<int>();
         }
 
         #endregion
@@ -39,6 +41,8 @@ namespace Model.Filters
         ///     Gets or sets the to date.
         /// </summary>
         public DateTime To { get; set; }
+
+        public List<int> UnselectedIds { get; set; }
 
         #endregion
     }

@@ -8,11 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace TP1.Controllers
 {
-    using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
-    using System.Threading;
+    using System.Web.Http;
     using System.Web.Mvc;
 
     using DataAccess.Repositories;
@@ -82,7 +80,9 @@ namespace TP1.Controllers
         /// </param>
         public void Export(ExportConfiguration export)
         {
-            IList<Project> projects = this.ProjectRepository.GetProjectsFilteredByDateRange(new ProjectGridFilter { From = export.From, To = export.To });
+            IList<Project> projects =
+                this.ProjectRepository.GetProjectsFilteredByDateRangeExcludingIds(
+                    new ProjectGridFilter { From = export.From, To = export.To, UnselectedIds = export.UnselectedIds });
             new ExportService(Server.MapPath("~/bin")).ExportProjects(projects, export);
         }
 
@@ -97,7 +97,7 @@ namespace TP1.Controllers
         /// </returns>
         public IEnumerable<Project> GetAcceptableProjectsRange(ProjectGridFilter filter)
         {
-            return this.ProjectRepository.GetProjectsFilteredByDateRange(filter);
+            return this.ProjectRepository.GetProjectsFilteredByDateRangeExcludingIds(filter);
         }
 
         /// <summary>
@@ -128,7 +128,9 @@ namespace TP1.Controllers
         /// <returns>The file.</returns>
         public ActionResult SaveAs(ExportConfiguration export)
         {
-            IList<Project> projects = this.ProjectRepository.GetProjectsFilteredByDateRange(new ProjectGridFilter { From = export.From, To = export.To });
+            IList<Project> projects =
+                this.ProjectRepository.GetProjectsFilteredByDateRangeExcludingIds(
+                    new ProjectGridFilter { From = export.From, To = export.To, UnselectedIds = export.UnselectedIds });
             return this.File(new ExportService(Server.MapPath("~/bin")).ExportProjectsToStream(projects, export), "application/pdf", "download.pdf");
         }
 

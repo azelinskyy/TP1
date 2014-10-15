@@ -1,12 +1,13 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using Model.DomainModels;
-using Model.DTOs;
-
-namespace TP1.Controllers
+﻿namespace TP1.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+
+    using Model.DomainModels;
+    using Model.DTOs;
+
     public class ProjectController : BaseApiController
     {
         // GET api/project

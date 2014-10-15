@@ -1,4 +1,4 @@
-﻿function ApplicationViewModel(datacontext, language, gridModel, projectViewModel) {
+﻿function ApplicationViewModel(datacontext, language, gridModel, projectViewModel, unselectedProjects) {
 
     // Make the self as 'this' reference
     var self = this;
@@ -7,6 +7,7 @@
     self.projectModule = projectViewModel;
     self.langModule = ko.observable(language);
     self.GridModule = ko.observable(gridModel);
+    self.UnselectedProjectsModule = ko.observable(unselectedProjects);
 
     self.ExportModels = ko.observableArray([{ name: "Columns", value: 0 }, { name: "Tables", value: 1 }]);
 
@@ -35,6 +36,7 @@
         searchOptions.From = self.DateFrom();
         searchOptions.To = self.DateTo();
         self.refreshGrid(searchOptions);
+        self.UnselectedProjectsModule().reset();
     };
 
     self.DateFrom.subscribe(self.changeDatesRange);
@@ -63,7 +65,7 @@
             cache: false,
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
-            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: self.langModule().selectedLanguage().culture }),
+            data: ko.toJSON({ From: self.DateFrom(), To: self.DateTo(), Emails: self.Emails(), Model: self.ExportModel().value, Culture: self.langModule().selectedLanguage().culture, UnselectedIds : self.UnselectedProjectsModule().unselectedProjects() }),
             success: function (data) {
                 self.viewProjects();
                 self.Emails("");
@@ -78,7 +80,7 @@
     };
 
     self.saveAs = function () {
-        var input = { From: self.DateFrom(), To: self.DateTo(), Model: self.ExportModel().value, Culture: self.langModule().selectedLanguage().culture };
+        var input = { From: self.DateFrom(), To: self.DateTo(), Model: self.ExportModel().value, Culture: self.langModule().selectedLanguage().culture, UnselectedIds: self.UnselectedProjectsModule().unselectedProjects() };
         window.open('/Report/SaveAs?' + decodeURIComponent($.param(input)), '_blank');
         self.viewProjects();
     };

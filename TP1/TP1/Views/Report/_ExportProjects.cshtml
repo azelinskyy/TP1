@@ -1,6 +1,6 @@
 ﻿@using TP1.Helpers
 <div class="well-lg">
-    @Html.KnockoutHelperFor("ExportTab_ProjectsNumberAndRange", "h3", "", "$root.GridModule().totalRows()", " $root.DateFrom()", "$root.DateTo()")
+    @Html.KnockoutHelperFor("ExportTab_ProjectsNumberAndRange", "h3", "", "$root.GridModule().totalRows() - $root.UnselectedProjectsModule().unselectedProjects().length", " $root.DateFrom()", "$root.DateTo()")
 </div>
 
 <table class="table table-hover table-striped table-bordered table-condensed">

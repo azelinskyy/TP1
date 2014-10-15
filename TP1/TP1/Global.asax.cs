@@ -21,6 +21,10 @@ namespace TP1
 
     using Resources;
 
+    using Tools.Export;
+
+    using TP1.Binders;
+
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
@@ -47,6 +51,7 @@ namespace TP1
             this.GenerateLanguageFiles();
 
             System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<DomainContext>());
+            ModelBinders.Binders.Add(typeof(ExportConfiguration), new ExportConfigurationBinder());
         }
 
         private void GenerateLanguageFiles()
