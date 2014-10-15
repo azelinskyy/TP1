@@ -1,5 +1,7 @@
-﻿function gridModel(getDataFunction, rowCount) {
+﻿function gridModel(getDataFunction, rowCount, dataToUpdate1) {
     var self = this;
+
+    self.itemPerPage = [10, 20, 30, 40, 50];
 
     var requestOptions = {
         pageIndex: ko.observable(1),
@@ -22,32 +24,36 @@
         self.validateAndReloadGrid(1, dataToUpdate);
     };
 
-    self.selectLast = function (dataToUpdate) {
-        self.validateAndReloadGrid(self.totalPages(), dataToUpdate);
+    self.selectLast = function () {
+        self.validateAndReloadGrid(self.totalPages());
     };
 
-    self.selectNext = function (dataToUpdate) {
+    self.selectNext = function () {
         var newPageValue = self.searchOptions().pageIndex() + 1;
-        self.validateAndReloadGrid(newPageValue, dataToUpdate);
+        self.validateAndReloadGrid(newPageValue);
     };
 
-    self.selectPrevious = function (dataToUpdate) {
+    self.selectPrevious = function () {
         var newPageValue = self.searchOptions().pageIndex() - 1;
-        self.validateAndReloadGrid(newPageValue, dataToUpdate);
+        self.validateAndReloadGrid(newPageValue);
     };
+    
+    self.searchOptions().pageSize.subscribe(function (item) {
+        self.reloadGrid();
+    });
 
     function checkRange(newValue) {
         return newValue > 0 && newValue <= self.totalPages();
     };
 
-    self.validateAndReloadGrid = function (newPageValue, dataToUpdate) {
+    self.validateAndReloadGrid = function (newPageValue) {
         if (checkRange(newPageValue)) {
             self.searchOptions().pageIndex(newPageValue);
-            self.reloadGrid(dataToUpdate);
+            self.reloadGrid();
         }
     };
 
-    self.reloadGrid = function (dataToUpdate) {
-        self.reloadData(self.searchOptions(), dataToUpdate, self.totalRows);
+    self.reloadGrid = function () {
+        self.reloadData(self.searchOptions(), dataToUpdate1, self.totalRows);
     };
 };

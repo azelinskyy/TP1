@@ -15,8 +15,7 @@ var availableLanguages = [
         name: "Українська",
         type: "ua",
         culture: "uk-UA"
-    }
-    
+    }  
 ];
 
 var uProjects = [];
@@ -79,8 +78,7 @@ function languageModel(languages) {
 
         $.ajax("/Internationalization/GetLanguage/", options).done(function (data) {
             self.language(data);
-        });;
-
+        });
     });
 };
 
