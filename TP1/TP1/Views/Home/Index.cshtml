@@ -29,8 +29,9 @@ else
 
             var context = window.project.datacontext();
             var lang = new languageModel(availableLanguages);
+            var unselectedProjects = new unselectedProjectsModel();
             var project = window.project.projectViewModel(context);
-            var viewModel = new ApplicationViewModel(context, lang, gridModel, project);
+            var viewModel = new ApplicationViewModel(context, lang, grid, project, unselectedProjects);
             viewModel.errors = ko.validation.group(viewModel.Project);
             ko.applyBindings(viewModel);
 

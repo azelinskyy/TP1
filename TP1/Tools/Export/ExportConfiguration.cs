@@ -9,7 +9,7 @@
 namespace Tools.Export
 {
     using System;
-    using System.Globalization;
+    using System.Collections.Generic;
 
     /// <summary>
     ///     The export model.
@@ -28,6 +28,7 @@ namespace Tools.Export
             this.Emails = string.Empty;
             this.Culture = "en-US";
             this.Model = ReportModels.Columns;
+            this.UnselectedIds = new List<int>();
         }
 
         #endregion
@@ -58,6 +59,8 @@ namespace Tools.Export
         ///     Gets or sets the to.
         /// </summary>
         public DateTime To { get; set; }
+
+        public List<int> UnselectedIds { get; set; }
 
         #endregion
     }

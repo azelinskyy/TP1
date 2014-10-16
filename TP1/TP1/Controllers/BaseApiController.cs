@@ -1,9 +1,11 @@
-﻿using System.Web.Http;
-using DataAccess.Repositories;
-using Services.Factories;
-
-namespace TP1.Controllers
+﻿namespace TP1.Controllers
 {
+    using System.Web.Http;
+
+    using DataAccess.Repositories;
+
+    using Services.Factories;
+
     public class BaseApiController : ApiController
     {
         #region Fields

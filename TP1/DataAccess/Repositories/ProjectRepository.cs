@@ -104,11 +104,18 @@ namespace DataAccess.Repositories
         /// <returns>
         /// The <see cref="List"/>.
         /// </returns>
-        public List<Project> GetProjectsFilteredByDateRange(ProjectGridFilter filter)
+        public List<Project> GetProjectsFilteredByDateRangeExcludingIds(ProjectGridFilter filter)
         {
             var dueDate = filter.To.AddTicks(new TimeSpan(0, 23, 59, 59).Ticks);
             IQueryable<Project> projects =
                 this.GetDbContext().Projects.Where(p => p.DateAdded >= filter.From && p.DateAdded <= dueDate);
+            
+            // exclude manually unselected projects
+            if (filter.UnselectedIds != null && filter.UnselectedIds.Any())
+            {
+                projects = projects.Where(p => !filter.UnselectedIds.Contains(p.Id));
+            }
+
             return projects.ToList();
         }
 

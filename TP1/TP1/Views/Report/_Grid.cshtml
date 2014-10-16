@@ -3,6 +3,7 @@
     <thead>
         <tr>
             <th><p>ID</p></th>
+            <td><input type="checkbox" data-bind="event: { change: function (data, event) { $root.UnselectedProjectsModule().updateProjects(Projects(), event) } }, checked: $root.UnselectedProjectsModule().allProjectsChecked(Projects)"><br></td>
             <th>@Html.KnockoutHelperFor("Title", "p")</th>
             <th>@Html.KnockoutHelperFor("ZipCode", "p")</th>
             <th>@Html.KnockoutHelperFor("City", "p")</th>
@@ -13,6 +14,7 @@
     <tbody data-bind="foreach: Projects">
         <tr>
             <td data-bind="text: Id"></td>
+            <td><input type="checkbox" data-bind="event: { change: $root.UnselectedProjectsModule().updateProject }, checked: $root.UnselectedProjectsModule().projectChecked(Id)"><br></td>
             <td class="col-md-5" data-bind="text: Title, click: $root.view"></td>
             <td class="col-md-1" data-bind="text: ZipCode, click: $root.view"></td>
             <td class="col-md-2" data-bind="text: City, click: $root.view"></td>
