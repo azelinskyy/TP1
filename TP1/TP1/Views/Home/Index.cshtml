@@ -1,5 +1,4 @@
-﻿@using TP1.Helpers
-@if (@User.Identity.IsAuthenticated)
+﻿@if (@User.Identity.IsAuthenticated)
 {
     @Html.Partial("~/Views/Report/_Index.cshtml")
 }
@@ -31,7 +30,7 @@ else
             var lang = new languageModel(availableLanguages);
             var unselectedProjects = new unselectedProjectsModel();
             var project = window.project.projectViewModel(context);
-            var viewModel = new ApplicationViewModel(context, lang, grid, project, unselectedProjects);
+            var viewModel = new ApplicationViewModel(context, lang, gridModel, project, unselectedProjects);
             viewModel.errors = ko.validation.group(viewModel.Project);
             ko.applyBindings(viewModel);
 

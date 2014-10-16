@@ -286,6 +286,7 @@
     </Content>
     <Content Include="Scripts\app\project.model.js" />
     <Content Include="Scripts\app\project.datacontext.js" />
+    <Content Include="Scripts\app\project.unselectedProjectsModel.js" />
     <Content Include="Scripts\app\report.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
