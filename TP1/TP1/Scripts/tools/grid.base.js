@@ -1,6 +1,7 @@
-﻿function gridModel(getDataFunction, rowCount, dataToUpdate1) {
+﻿function gridModel(getDataFunction, rowCount, dataToUpdate) {
     var self = this;
 
+    // array with possible options(uses at "items per page" dropdown)
     self.itemPerPage = [10, 20, 30, 40, 50];
 
     var requestOptions = {
@@ -20,8 +21,8 @@
     self.requestedPage = ko.observable(0),
 
     // navigation functionality
-    self.selectFirst = function (dataToUpdate) {
-        self.validateAndReloadGrid(1, dataToUpdate);
+    self.selectFirst = function () {
+        self.validateAndReloadGrid(1);
     };
 
     self.selectLast = function () {
@@ -54,6 +55,6 @@
     };
 
     self.reloadGrid = function () {
-        self.reloadData(self.searchOptions(), dataToUpdate1, self.totalRows);
+        self.reloadData(self.searchOptions(), dataToUpdate, self.totalRows);
     };
 };
