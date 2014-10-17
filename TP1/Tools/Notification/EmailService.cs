@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace Tools.Notification
 {
     using System.IO;
@@ -33,30 +35,29 @@ namespace Tools.Notification
         /// </param>
         public void Send(string emails, Stream output)
         {
-            var mailsTo = emails.Split(',', ';').ToList();
+            var mailsTo = ParseEmails(emails);
             if (!mailsTo.Any())
             {
                 return;
             }
 
-            var client = new SmtpClient
-                             {
-                                 UseDefaultCredentials = false,
-                                 Credentials = new NetworkCredential("bindexis", "Welcome!"),
-                                 Host = "localhost",
-                                 Port = 25,
-                                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                                 EnableSsl = false
-                             };
+            var configurator = new EmailConfiguration();
+
+            var client = new SmtpClient();
 
             var mail = new MailMessage();
             mailsTo.ForEach(mailTo => mail.To.Add(mailTo));
 
             var attachment = new Attachment(output, MediaTypeNames.Application.Pdf);
-            attachment.ContentDisposition.FileName = "attachment.pdf";
+            attachment.ContentDisposition.FileName = configurator.AttachmentFileName();
             mail.Attachments.Add(attachment);
 
             client.Send(mail);
+        }
+
+        private static List<string> ParseEmails(string emails)
+        {
+            return emails.Split(',', ';').ToList();
         }
 
         #endregion

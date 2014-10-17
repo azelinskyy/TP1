@@ -38,6 +38,7 @@
       <HintPath>..\packages\iTextSharp.5.5.2\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -47,13 +48,16 @@
     <Compile Include="Export\ProjectPDFHelper.cs" />
     <Compile Include="Export\ProjectPageEventHelper.cs" />
     <Compile Include="Export\ReportModels.cs" />
+    <Compile Include="Notification\EmailConfigurationSection.cs" />
     <Compile Include="Notification\EmailService.cs" />
+    <Compile Include="Notification\EmailConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="arialuni.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

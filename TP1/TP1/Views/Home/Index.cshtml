@@ -1,6 +1,6 @@
 ﻿@if (@User.Identity.IsAuthenticated)
 {
-    @Html.Partial("~/Views/Report/_Index.cshtml")
+    
 }
 else
 {
@@ -14,7 +14,7 @@ else
         </div>
     </div>
 }
-
+@Html.Partial("~/Views/Report/_Index.cshtml")
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {

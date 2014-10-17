@@ -7,6 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Configuration;
+using System.Net.Configuration;
+using System.Net.Mail;
+
 namespace UnitTests.Tools
 {
     using System;
@@ -58,6 +62,21 @@ namespace UnitTests.Tools
         #endregion
 
         #region Public Methods and Operators
+
+        /// <summary>
+        /// The set up.
+        /// </summary>
+        [SetUp]
+        public void SetUp()
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var mail = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
+            if (mail.Smtp.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+            {
+                mail.Smtp.SpecifiedPickupDirectory.PickupDirectoryLocation = AppDomain.CurrentDomain.BaseDirectory;
+                config.Save();
+            }
+        }
 
         /// <summary>
         /// Exports projects to pdf and check file size after that.
