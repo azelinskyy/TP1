@@ -10,6 +10,7 @@ namespace DataAccess.Repositories
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Threading.Tasks;
     using System.Web;
 
@@ -71,6 +72,7 @@ namespace DataAccess.Repositories
                 return httpContext.Items[ContextKey] as DomainContext;
             }
 
+            Debugger.Break();
             throw new Exception("No HttpContext available");
         }
 
