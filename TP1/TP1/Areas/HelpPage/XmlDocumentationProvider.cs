@@ -48,22 +48,6 @@ namespace TP1.Areas.HelpPage
         #region Constructors and Destructors
 
         /// <summary>
-        /// NotImplementedException
-        /// </summary>
-        public string GetDocumentation(HttpControllerDescriptor controllerDescriptor)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// NotImplementedException
-        /// </summary>
-        public string GetResponseDocumentation(HttpActionDescriptor actionDescriptor)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="XmlDocumentationProvider"/> class.
         /// </summary>
         /// <param name="documentPath">
@@ -83,6 +67,22 @@ namespace TP1.Areas.HelpPage
         #endregion
 
         #region Public Methods and Operators
+
+        /// <summary>
+        /// NotImplementedException
+        /// </summary>
+        public string GetDocumentation(HttpControllerDescriptor controllerDescriptor)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// NotImplementedException
+        /// </summary>
+        public string GetResponseDocumentation(HttpActionDescriptor actionDescriptor)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// The get documentation.

@@ -13,6 +13,7 @@ namespace Tools.Export
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Model.DomainModels;
 
@@ -68,7 +69,7 @@ namespace Tools.Export
         /// <param name="configuration">
         /// The configuration for export.
         /// </param>
-        public void ExportProjects(IEnumerable<Project> projects, ExportConfiguration configuration)
+        public async Task ExportProjects(IEnumerable<Project> projects, ExportConfiguration configuration)
         {
             var pdfStream = new MemoryStream();
 
@@ -77,7 +78,7 @@ namespace Tools.Export
             var attachment = new MemoryStream(pdfStream.ToArray());
             attachment.Seek(0, SeekOrigin.Begin);
 
-            new EmailService().Send(configuration.Emails, attachment);
+            await new EmailService().Send(configuration.Emails, attachment);
         }
 
         /// <summary>

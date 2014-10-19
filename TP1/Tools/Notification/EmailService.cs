@@ -7,15 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
 namespace Tools.Notification
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Net;
     using System.Net.Mail;
     using System.Net.Mime;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The email service.
@@ -33,7 +32,7 @@ namespace Tools.Notification
         /// <param name="output">
         /// The output stream with file.
         /// </param>
-        public void Send(string emails, Stream output)
+        public async Task Send(string emails, Stream output)
         {
             var mailsTo = ParseEmails(emails);
             if (!mailsTo.Any())
@@ -52,7 +51,7 @@ namespace Tools.Notification
             attachment.ContentDisposition.FileName = configurator.AttachmentFileName();
             mail.Attachments.Add(attachment);
 
-            client.Send(mail);
+            await client.SendMailAsync(mail);
         }
 
         private static List<string> ParseEmails(string emails)

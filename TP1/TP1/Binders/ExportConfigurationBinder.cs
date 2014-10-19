@@ -17,11 +17,12 @@
                 var config = new ExportConfiguration
                                  {
                                      Culture = request.QueryString.Get("Culture"),
-                                     Emails = request.QueryString.Get("Emails"),
                                      From = DateTime.Parse(request.QueryString.Get("From")),
                                      To = DateTime.Parse(request.QueryString.Get("To")),
                                      Model = (ReportModels)Enum.Parse(typeof(ReportModels), request.QueryString.Get("Model")),
-                                     UnselectedIds = request.QueryString.Get("UnselectedIds[]").Split(',').Select(int.Parse).ToList()
+                                     UnselectedIds = request.QueryString.AllKeys.Contains("UnselectedIds[]") 
+                                        ? request.QueryString.Get("UnselectedIds[]").Split(',').Select(int.Parse).ToList() 
+                                        : null
                                  };
 
                 return config;

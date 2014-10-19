@@ -7,15 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Configuration;
-using System.Net.Configuration;
-using System.Net.Mail;
-
 namespace UnitTests.Tools
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.IO;
+    using System.Net.Configuration;
+    using System.Net.Mail;
 
     using Model.DomainModels;
 

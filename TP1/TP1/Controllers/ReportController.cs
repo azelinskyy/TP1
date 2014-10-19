@@ -10,10 +10,11 @@ namespace TP1.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Http;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
 
     using DataAccess.Repositories;
+    using DataAccess.Repositories.Interfaces.Async;
 
     using Model.DomainModels;
     using Model.DTOs;
@@ -40,7 +41,7 @@ namespace TP1.Controllers
         /// <summary>
         ///     The project repository.
         /// </summary>
-        private ProjectRepository projectRepository;
+        private IProjectRepositoryAsync projectRepositoryAsync;
 
         #endregion
 
@@ -60,11 +61,11 @@ namespace TP1.Controllers
         /// <summary>
         ///     Gets the project repository.
         /// </summary>
-        public ProjectRepository ProjectRepository
+        public IProjectRepositoryAsync ProjectRepositoryAsync
         {
             get
             {
-                return this.projectRepository = this.projectRepository ?? new ProjectRepository();
+                return this.projectRepositoryAsync = this.projectRepositoryAsync ?? new ProjectRepositoryAsync();
             }
         }
 
@@ -78,12 +79,12 @@ namespace TP1.Controllers
         /// <param name="export">
         /// The data with export info - email, from/to, language.
         /// </param>
-        public void Export(ExportConfiguration export)
+        public async Task Export(ExportConfiguration export)
         {
             IList<Project> projects =
-                this.ProjectRepository.GetProjectsFilteredByDateRangeExcludingIds(
+                await this.ProjectRepositoryAsync.GetProjectsFilteredByDateRangeExcludingIdsAsync(
                     new ProjectGridFilter { From = export.From, To = export.To, UnselectedIds = export.UnselectedIds });
-            new ExportService(Server.MapPath("~/bin")).ExportProjects(projects, export);
+            await new ExportService(Server.MapPath("~/bin")).ExportProjects(projects, export);
         }
 
         /// <summary>
@@ -92,12 +93,9 @@ namespace TP1.Controllers
         /// <param name="filter">
         /// The filter.
         /// </param>
-        /// <returns>
-        /// The <see cref="IEnumerable"/>.
-        /// </returns>
-        public IEnumerable<Project> GetAcceptableProjectsRange(ProjectGridFilter filter)
+        public async Task<IEnumerable<Project>> GetAcceptableProjectsRange(ProjectGridFilter filter)
         {
-            return this.ProjectRepository.GetProjectsFilteredByDateRangeExcludingIds(filter);
+            return await this.ProjectRepositoryAsync.GetProjectsFilteredByDateRangeExcludingIdsAsync(filter);
         }
 
         /// <summary>
@@ -109,14 +107,14 @@ namespace TP1.Controllers
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
-        public string GetReport(ProjectGridFilter filter)
+        public async Task<string> GetReport(ProjectGridFilter filter)
         {
-            string jsonData = JsonConvert.SerializeObject(this.SortReport(filter));
+            string jsonData = JsonConvert.SerializeObject(await this.SortReport(filter));
             return
                 JsonConvert.SerializeObject(
                     new
                         {
-                            totalRows = this.ProjectRepository.GetProjectsFilteredByDateRangeCount(filter),
+                            totalRows = await this.ProjectRepositoryAsync.GetProjectsFilteredByDateRangeCountAsync(filter),
                             result = jsonData
                         });
         }
@@ -126,10 +124,10 @@ namespace TP1.Controllers
         /// </summary>
         /// <param name="export">The parameters for report.</param>
         /// <returns>The file.</returns>
-        public ActionResult SaveAs(ExportConfiguration export)
+        public async Task<ActionResult> SaveAs(ExportConfiguration export)
         {
             IList<Project> projects =
-                this.ProjectRepository.GetProjectsFilteredByDateRangeExcludingIds(
+                await this.ProjectRepositoryAsync.GetProjectsFilteredByDateRangeExcludingIdsAsync(
                     new ProjectGridFilter { From = export.From, To = export.To, UnselectedIds = export.UnselectedIds });
             return this.File(new ExportService(Server.MapPath("~/bin")).ExportProjectsToStream(projects, export), "application/pdf", "download.pdf");
         }
@@ -144,12 +142,9 @@ namespace TP1.Controllers
         /// <param name="filter">
         /// The grid filter with order, page size and proper field to perform sorting.
         /// </param>
-        /// <returns>
-        /// The <see cref="IList"/>.
-        /// </returns>
-        private IList<ProjectDto> SortReport(ProjectGridFilter filter)
+        private async Task<IList<ProjectDto>> SortReport(ProjectGridFilter filter)
         {
-            IEnumerable<Project> filteredList = this.ProjectRepository.GetProjectsFilteredByProjectGrid(filter);
+            IEnumerable<Project> filteredList = await this.ProjectRepositoryAsync.GetProjectsFilteredByProjectGridAsync(filter);
             return filteredList.Select(this.ProjectConvertFactory.FromModel).ToList();
         }
 

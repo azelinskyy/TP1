@@ -1,8 +1,10 @@
 ﻿namespace TP1.Controllers
 {
     using System;
+    using System.Diagnostics;
     using System.Net;
     using System.Net.Http;
+    using System.Threading.Tasks;
     using System.Web.Http;
 
     using Model.DomainModels;
@@ -14,16 +16,15 @@
         public HttpResponseMessage GetProject()
         {
             HttpResponseMessage response = this.Request.CreateResponse(HttpStatusCode.Created);
-
             return response;
         }
 
         // GET api/project/5
-        public HttpResponseMessage GetProject(int id)
+        public async Task<HttpResponseMessage> GetProject(int id)
         {
             try
             {
-                var data = this.ProjectConvertFactory.FromModel(this.ProjectRepository.GetById(id));
+                var data = this.ProjectConvertFactory.FromModel(await this.ProjectRepositoryAsync.GetByIdAsync(id));
                 return this.Request.CreateResponse(HttpStatusCode.OK, data);
             }
             catch
@@ -33,29 +34,27 @@
         }
 
         // POST api/project
-        public HttpResponseMessage PostProject([FromBody]ProjectDto project)
+        public async Task<HttpResponseMessage> PostProject([FromBody]ProjectDto project)
         {
             Project entity = this.ProjectConvertFactory.ToModel(project);
             entity.DateAdded = DateTime.Today;
-            this.ProjectRepository.Add(entity);
-
+            await this.ProjectRepositoryAsync.AddAsync(entity);
             return this.Request.CreateResponse(HttpStatusCode.Created);
         }
 
         // PUT api/project/5
-        public HttpResponseMessage PutProject(int id, [FromBody]ProjectDto project)
+        public async Task<HttpResponseMessage> PutProject(int id, [FromBody]ProjectDto project)
         {
             Project entity = this.ProjectConvertFactory.ToModel(project);
-            this.ProjectRepository.Update(entity);
-
+            await this.ProjectRepositoryAsync.UpdateAsync(entity);
             return this.Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE api/project/5
-        public HttpResponseMessage DeleteProject(int id)
+        public async Task<HttpResponseMessage> DeleteProject(int id)
         {
-            Project projectToRemove = this.ProjectRepository.GetById(id);
-            this.ProjectRepository.Remove(projectToRemove);
+            Project projectToRemove = await this.ProjectRepositoryAsync.GetByIdAsync(id);
+            await this.ProjectRepositoryAsync.RemoveAsync(projectToRemove);
             return this.Request.CreateResponse(HttpStatusCode.OK);
         }
     }

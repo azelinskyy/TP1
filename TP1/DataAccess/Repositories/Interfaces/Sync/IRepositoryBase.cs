@@ -6,7 +6,7 @@
 //   The RepositoryBase interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace DataAccess.Repositories
+namespace DataAccess.Repositories.Interfaces.Sync
 {
     using System.Collections.Generic;
 

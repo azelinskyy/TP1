@@ -10,8 +10,10 @@ namespace DataAccess.Repositories
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Data.SqlClient;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Infrastructure.Helpers;
 
@@ -24,6 +26,17 @@ namespace DataAccess.Repositories
     public class ProjectRepository : RepositoryBase<Project>
     {
         #region Public Methods and Operators
+
+        public async Task<int> GetProjectsCountAsync()
+        {
+            Task<int> task = this.GetDbContext().Projects.CountAsync();
+            return await task;
+        }
+
+        public int GetProjectsCount()
+        {
+            return this.GetDbContext().Projects.Count();
+        }
 
         /// <summary>
         /// The add.

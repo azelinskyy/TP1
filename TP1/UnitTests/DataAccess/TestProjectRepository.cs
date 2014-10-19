@@ -9,6 +9,7 @@
 namespace UnitTests.DataAccess
 {
     using System;
+    using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
 
@@ -17,6 +18,7 @@ namespace UnitTests.DataAccess
     using global::Infrastructure.Contexts;
 
     using Model.DomainModels;
+    using Model.Filters;
 
     using NUnit.Framework;
 
@@ -38,6 +40,11 @@ namespace UnitTests.DataAccess
         /// </summary>
         private ProjectRepoWrapper repo;
 
+        /// <summary>
+        ///     The repo.
+        /// </summary>
+        private ProjectRepoWrapperAsync repoAsync;
+
         #endregion
 
         #region Public Methods and Operators
@@ -49,6 +56,7 @@ namespace UnitTests.DataAccess
         public void SetUp()
         {
             this.repo = new ProjectRepoWrapper();
+            this.repoAsync = new ProjectRepoWrapperAsync();
             DateTime modify = DateTime.Now;
             DateTime start = DateTime.Now;
             DateTime end = DateTime.Now;
@@ -78,6 +86,43 @@ namespace UnitTests.DataAccess
         public void TearDown()
         {
             this.repo = null;
+        }
+
+        [Test]
+        public async void TestAsync()
+        {
+            int n = 100;
+            var sw = new Stopwatch();
+            sw.Start();
+            int sumSunc = 0;
+            for (int i = 0; i < n; i++)
+            {
+                sumSunc += this.repo.GetCount();
+            }
+
+            sw.Stop();
+            TimeSpan timeSync = sw.Elapsed;
+
+            sw.Restart();
+            int sumAsync = 0;
+            for (int i = 0; i < n; i++)
+            {
+                sumAsync += await this.repo.GetProjectsCountAsync();
+            }
+
+            sw.Stop();
+            TimeSpan timeAsync = sw.Elapsed;
+            long k = timeSync.Ticks / timeAsync.Ticks;
+            Assert.AreEqual(sumAsync, sumSunc);
+            Assert.Less(timeAsync, timeSync);
+        }
+
+        [Test]
+        public async void TestToListAsync()
+        {
+            var filter = new ProjectGridFilter { From = DateTime.Now.AddDays(-7), To = DateTime.Now };
+            var list = await this.repoAsync.GetProjectsFilteredByProjectGridAsync(filter);
+            Assert.True(list.Any());
         }
 
         /// <summary>
@@ -144,6 +189,33 @@ namespace UnitTests.DataAccess
         ///     The project repo wrapper.
         /// </summary>
         internal sealed class ProjectRepoWrapper : ProjectRepository
+        {
+            #region Fields
+
+            /// <summary>
+            ///     The context.
+            /// </summary>
+            private DomainContext context;
+
+            #endregion
+
+            #region Methods
+
+            /// <summary>
+            ///     The get db context.
+            /// </summary>
+            /// <returns>
+            ///     The <see cref="DomainContext" />.
+            /// </returns>
+            protected override DomainContext GetDbContext()
+            {
+                return this.context = this.context ?? new DomainContext();
+            }
+
+            #endregion
+        }
+
+        internal sealed class ProjectRepoWrapperAsync : ProjectRepositoryAsync
         {
             #region Fields
 

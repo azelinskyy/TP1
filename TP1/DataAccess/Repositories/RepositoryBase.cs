@@ -12,6 +12,8 @@ namespace DataAccess.Repositories
     using System.Collections.Generic;
     using System.Web;
 
+    using DataAccess.Repositories.Interfaces.Sync;
+
     using Infrastructure.Contexts;
 
     using Model.DomainModels;

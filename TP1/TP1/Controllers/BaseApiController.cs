@@ -3,6 +3,7 @@
     using System.Web.Http;
 
     using DataAccess.Repositories;
+    using DataAccess.Repositories.Interfaces.Async;
 
     using Services.Factories;
 
@@ -18,7 +19,7 @@
         /// <summary>
         ///     The project repository.
         /// </summary>
-        private ProjectRepository projectRepository;
+        private IProjectRepositoryAsync projectRepositoryAsync;
 
         #endregion
 
@@ -38,11 +39,11 @@
         /// <summary>
         ///     Gets the project repository.
         /// </summary>
-        public ProjectRepository ProjectRepository
+        public IProjectRepositoryAsync ProjectRepositoryAsync
         {
             get
             {
-                return this.projectRepository = this.projectRepository ?? new ProjectRepository();
+                return this.projectRepositoryAsync = this.projectRepositoryAsync ?? new ProjectRepositoryAsync();
             }
         }
 
