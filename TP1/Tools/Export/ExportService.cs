@@ -39,24 +39,24 @@ namespace Tools.Export
         /// <param name="projects">
         /// The enumeration of projects.
         /// </param>
-        /// <param name="configuration">
-        /// The configuration for export.
+        /// <param name="context">
+        /// The context for export.
         /// </param>
-        public void ExportProjects(IEnumerable<Project> projects, ExportConfiguration configuration, Stream output)
+        public void ExportProjects(IEnumerable<Project> projects, ExportContext context, Stream output)
         {
             if (!projects.Any())
             {
                 throw new ArgumentException("The collection of projects should not be empty.");
             }
 
-            var pdfHelper = new ProjectPDFHelper(this.rootPath, new CultureInfo(configuration.Culture));
-            if (configuration.Model == ReportModels.Columns)
+            var pdfHelper = new ProjectPDFHelper(this.rootPath, new CultureInfo(context.Culture));
+            if (context.Model == ReportModels.Columns)
             {
-                pdfHelper.ExportProjects(projects, configuration, output);
+                pdfHelper.ExportProjects(projects, context, output);
             }
             else
             {
-                pdfHelper.ExportProjectsAsTable(projects, configuration, output);
+                pdfHelper.ExportProjectsAsTable(projects, context, output);
             }
         }
 
@@ -66,19 +66,19 @@ namespace Tools.Export
         /// <param name="projects">
         /// The enumeration of projects.
         /// </param>
-        /// <param name="configuration">
-        /// The configuration for export.
+        /// <param name="context">
+        /// The context for export.
         /// </param>
-        public async Task ExportProjects(IEnumerable<Project> projects, ExportConfiguration configuration)
+        public async Task ExportProjects(IEnumerable<Project> projects, ExportContext context)
         {
             var pdfStream = new MemoryStream();
 
-            this.ExportProjects(projects, configuration, pdfStream);
+            this.ExportProjects(projects, context, pdfStream);
 
             var attachment = new MemoryStream(pdfStream.ToArray());
             attachment.Seek(0, SeekOrigin.Begin);
 
-            await new EmailService().Send(configuration.Emails, attachment);
+            await new EmailService().Send(context.Emails, attachment);
         }
 
         /// <summary>
@@ -87,14 +87,14 @@ namespace Tools.Export
         /// <param name="projects">
         /// The enumeration of projects.
         /// </param>
-        /// <param name="configuration">
-        /// The configuration for export.
+        /// <param name="context">
+        /// The context for export.
         /// </param>
-        public Stream ExportProjectsToStream(IEnumerable<Project> projects, ExportConfiguration configuration)
+        public Stream ExportProjectsToStream(IEnumerable<Project> projects, ExportContext context)
         {
             var pdfStream = new MemoryStream();
 
-            this.ExportProjects(projects, configuration, pdfStream);
+            this.ExportProjects(projects, context, pdfStream);
 
             var output = new MemoryStream(pdfStream.ToArray());
             output.Seek(0, SeekOrigin.Begin);

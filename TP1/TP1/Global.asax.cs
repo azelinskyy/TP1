@@ -51,7 +51,7 @@ namespace TP1
             this.GenerateLanguageFiles();
 
             System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<DomainContext>());
-            ModelBinders.Binders.Add(typeof(ExportConfiguration), new ExportConfigurationBinder());
+            ModelBinders.Binders.Add(typeof(ExportContext), new ExportContextBinder());
         }
 
         private void GenerateLanguageFiles()

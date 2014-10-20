@@ -7,14 +7,14 @@
 
     using Tools.Export;
 
-    public class ExportConfigurationBinder : DefaultModelBinder
+    public class ExportContextBinder : DefaultModelBinder
     {
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             HttpRequestBase request = controllerContext.HttpContext.Request;
-            if (bindingContext.ModelType == typeof(ExportConfiguration) && request.HttpMethod.ToUpper().Equals("GET") && request.QueryString.Count != 0)
+            if (bindingContext.ModelType == typeof(ExportContext) && request.HttpMethod.ToUpper().Equals("GET") && request.QueryString.Count != 0)
             {
-                var config = new ExportConfiguration
+                var config = new ExportContext
                                  {
                                      Culture = request.QueryString.Get("Culture"),
                                      From = DateTime.Parse(request.QueryString.Get("From")),

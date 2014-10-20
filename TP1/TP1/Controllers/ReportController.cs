@@ -79,7 +79,7 @@ namespace TP1.Controllers
         /// <param name="export">
         /// The data with export info - email, from/to, language.
         /// </param>
-        public async Task Export(ExportConfiguration export)
+        public async Task Export(ExportContext export)
         {
             IList<Project> projects =
                 await this.ProjectRepositoryAsync.GetProjectsFilteredByDateRangeExcludingIdsAsync(
@@ -124,7 +124,7 @@ namespace TP1.Controllers
         /// </summary>
         /// <param name="export">The parameters for report.</param>
         /// <returns>The file.</returns>
-        public async Task<ActionResult> SaveAs(ExportConfiguration export)
+        public async Task<ActionResult> SaveAs(ExportContext export)
         {
             IList<Project> projects =
                 await this.ProjectRepositoryAsync.GetProjectsFilteredByDateRangeExcludingIdsAsync(

@@ -243,17 +243,17 @@ namespace Tools.Export
         /// <param name="projects">
         /// The enumeration of projects.
         /// </param>
-        /// <param name="configuration">
-        /// The configuration for export.
+        /// <param name="context">
+        /// The context for export.
         /// </param>
         /// <param name="output">
         /// The output stream.
         /// </param>
-        internal void ExportProjects(IEnumerable<Project> projects, ExportConfiguration configuration, Stream output)
+        internal void ExportProjects(IEnumerable<Project> projects, ExportContext context, Stream output)
         {
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectPageEventHelper(configuration.From, configuration.To, this.culture, this.rootPath);
+            writer.PageEvent = new ProjectPageEventHelper(context.From, context.To, this.culture, this.rootPath);
 
             document.SetMargins(
                 document.LeftMargin,
@@ -311,17 +311,17 @@ namespace Tools.Export
         /// <param name="projects">
         /// The enumeration of projects.
         /// </param>
-        /// <param name="configuration">
-        /// The configuration for export.
+        /// <param name="context">
+        /// The context for export.
         /// </param>
         /// <param name="output">
         /// The output stream.
         /// </param>
-        internal void ExportProjectsAsTable(IEnumerable<Project> projects, ExportConfiguration configuration, Stream output)
+        internal void ExportProjectsAsTable(IEnumerable<Project> projects, ExportContext context, Stream output)
         {
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectPageEventHelper(configuration.From, configuration.To, this.culture, this.rootPath);
+            writer.PageEvent = new ProjectPageEventHelper(context.From, context.To, this.culture, this.rootPath);
 
             document.SetMargins(
                 document.LeftMargin,

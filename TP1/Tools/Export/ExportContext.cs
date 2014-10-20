@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExportConfiguration.cs" company="Team Alpha Solutions">
+// <copyright file="ExportContext.cs" company="Team Alpha Solutions">
 //   Copyright © 2014 Team Alpha Solutions
 // </copyright>
 // <summary>
@@ -14,14 +14,14 @@ namespace Tools.Export
     /// <summary>
     ///     The export model.
     /// </summary>
-    public class ExportConfiguration
+    public class ExportContext
     {
         #region Constructors and Destructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ExportConfiguration" /> class.
+        ///     Initializes a new instance of the <see cref="ExportContext" /> class.
         /// </summary>
-        public ExportConfiguration()
+        public ExportContext()
         {
             this.From = DateTime.Now;
             this.To = this.From;
