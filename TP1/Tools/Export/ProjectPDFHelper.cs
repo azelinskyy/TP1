@@ -57,11 +57,6 @@ namespace Tools.Export
         private readonly Font legendNormal;
 
         /// <summary>
-        /// The path of root to configure fonts.
-        /// </summary>
-        private readonly string rootPath;
-
-        /// <summary>
         ///     The culture.
         /// </summary>
         private readonly CultureInfo culture;
@@ -78,23 +73,17 @@ namespace Tools.Export
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectPDFHelper"/> class.
         /// </summary>
-        /// <param name="rootPath"></param>
         /// <param name="culture">
         ///     The culture.
         /// </param>
-        public ProjectPDFHelper(string rootPath, CultureInfo culture)
+        public ProjectPDFHelper(CultureInfo culture)
         {
-            this.rootPath = rootPath;
             this.culture = culture;
             this.resourceService = new LocalizationService(culture);
 
-            var fullPath = "arialuni.ttf";
-            if (!string.IsNullOrEmpty(rootPath))
-            {
-                fullPath = Path.Combine(rootPath, fullPath);
-            }
+            var configuration = new PdfExportConfiguration();
 
-            var unicodeBaseFont = BaseFont.CreateFont(fullPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            var unicodeBaseFont = BaseFont.CreateFont(configuration.GetFontPath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             this.bold = new Font(unicodeBaseFont, 8, Font.BOLD);
             this.normal = new Font(unicodeBaseFont, 8, Font.NORMAL);
             this.legendBold = new Font(unicodeBaseFont, 12, Font.BOLD);
@@ -253,7 +242,7 @@ namespace Tools.Export
         {
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectPageEventHelper(context.From, context.To, this.culture, this.rootPath);
+            writer.PageEvent = new ProjectPageEventHelper(context.From, context.To, this.culture);
 
             document.SetMargins(
                 document.LeftMargin,
@@ -321,7 +310,7 @@ namespace Tools.Export
         {
             var document = new Document();
             var writer = PdfWriter.GetInstance(document, output);
-            writer.PageEvent = new ProjectPageEventHelper(context.From, context.To, this.culture, this.rootPath);
+            writer.PageEvent = new ProjectPageEventHelper(context.From, context.To, this.culture);
 
             document.SetMargins(
                 document.LeftMargin,

@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+﻿    // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ProjectPageEventHelper.cs" company="Team Alpha Solutions">
 //   Copyright © 2014 Team Alpha Solutions
 // </copyright>
@@ -40,11 +40,6 @@ namespace Tools.Export
         private readonly CultureInfo culture;
 
         /// <summary>
-        /// The path of root to configure fonts.
-        /// </summary>
-        private readonly string rootPath;
-
-        /// <summary>
         ///     The date from.
         /// </summary>
         private readonly DateTime dateFrom;
@@ -75,16 +70,16 @@ namespace Tools.Export
         /// <param name="culture">
         ///     The culture.
         /// </param>
-        /// <param name="rootPath"></param>
-        public ProjectPageEventHelper(DateTime dateFrom, DateTime dateTo, CultureInfo culture, string rootPath)
+        public ProjectPageEventHelper(DateTime dateFrom, DateTime dateTo, CultureInfo culture)
         {
             this.dateFrom = dateFrom;
             this.dateTo = dateTo;
             this.culture = culture;
-            this.rootPath = rootPath;
             this.resourceService = new LocalizationService(culture);
 
-            var unicodeBaseFont = BaseFont.CreateFont(this.GetFullPath("arialuni.ttf"), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            var configuration = new PdfExportConfiguration();
+
+            var unicodeBaseFont = BaseFont.CreateFont(configuration.GetFontPath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             this.footer = new Font(unicodeBaseFont, 11, Font.NORMAL);
             this.header = new Font(unicodeBaseFont, 12, Font.BOLD);
         }
@@ -156,7 +151,10 @@ namespace Tools.Export
             headerTable.SetWidths(new[] { 1, 2 });
             headerTable.TotalWidth = document.Right - document.Left;
 
-            var image = Image.GetInstance(this.GetFullPath("logo.gif"));
+
+            var configuration = new PdfExportConfiguration();
+
+            var image = Image.GetInstance(configuration.GetLogoPath());
             image.ScalePercent(75);
 
             var cell = this.GetNoBorderCell(image);
@@ -176,16 +174,6 @@ namespace Tools.Export
                 document.Left,
                 document.Top + ((document.TopMargin + image.ScaledHeight) / 2),
                 writer.DirectContent);
-        }
-
-        private string GetFullPath(string fullPath)
-        {
-            if (!string.IsNullOrEmpty(this.rootPath))
-            {
-                fullPath = Path.Combine(this.rootPath, fullPath);
-            }
-
-            return fullPath;
         }
 
         /// <summary>

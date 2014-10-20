@@ -84,7 +84,7 @@ namespace TP1.Controllers
             IList<Project> projects =
                 await this.ProjectRepositoryAsync.GetProjectsFilteredByDateRangeExcludingIdsAsync(
                     new ProjectGridFilter { From = export.From, To = export.To, UnselectedIds = export.UnselectedIds });
-            await new ExportService(Server.MapPath("~/bin")).ExportProjects(projects, export);
+            await new ExportService().ExportProjects(projects, export);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace TP1.Controllers
             IList<Project> projects =
                 await this.ProjectRepositoryAsync.GetProjectsFilteredByDateRangeExcludingIdsAsync(
                     new ProjectGridFilter { From = export.From, To = export.To, UnselectedIds = export.UnselectedIds });
-            return this.File(new ExportService(Server.MapPath("~/bin")).ExportProjectsToStream(projects, export), "application/pdf", "download.pdf");
+            return this.File(new ExportService().ExportProjectsToStream(projects, export), "application/pdf", "download.pdf");
         }
 
         #endregion

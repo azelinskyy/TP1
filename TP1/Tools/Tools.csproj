@@ -45,6 +45,8 @@
     <Compile Include="Export\DateFormatter.cs" />
     <Compile Include="Export\ExportContext.cs" />
     <Compile Include="Export\ExportService.cs" />
+    <Compile Include="Export\PdfExportConfiguration.cs" />
+    <Compile Include="Export\PdfExportConfigurationSection.cs" />
     <Compile Include="Export\ProjectPDFHelper.cs" />
     <Compile Include="Export\ProjectPageEventHelper.cs" />
     <Compile Include="Export\ReportModels.cs" />
