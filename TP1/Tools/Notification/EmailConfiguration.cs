@@ -2,16 +2,16 @@
 {
     public class EmailConfiguration
     {
-        private readonly EmailConfigurationSection configuration;
+        private readonly EmailConfigurationSection _configuration;
 
         public EmailConfiguration()
         {
-            this.configuration = (EmailConfigurationSection)System.Configuration.ConfigurationManager.GetSection("emailConfiguration");
+            this._configuration = (EmailConfigurationSection)System.Configuration.ConfigurationManager.GetSection("emailConfiguration");
         }
 
         public virtual string AttachmentFileName()
         {
-            return this.configuration.AttachmentFileName;
+            return this._configuration.AttachmentFileName;
         }
     }
 }
